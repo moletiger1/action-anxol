@@ -1,0 +1,7 @@
+[frame] 注釈_B01c 募集内容（3／4）  {layout=vertical width=1440 gap=4 padding=[16,20] fill=#EAEFF4 cornerRadius=12 stroke=$border-strong}
+  [frame] Head  {gap=8 alignItems=center}
+    [icon] icon-sticky-note  {width=16 height=16 fill=$text-sub icon=sticky-note}
+    [text] 注釈｜B01c 募集内容（3／4）  {fill=$text fontSize=14 fontWeight=700}
+  [text] 目的：対象者・公開できる根拠・相談目的・相談費の条件を決める。  {width=fill_container fill=$text-sub fontSize=13 fontWeight=normal}
+  [text] 遷移：「次へ：公開内容の確認」→ B01d。  {width=fill_container fill=$text-sub fontSize=13 fontWeight=normal}
+  [text] 注記：支払条件（使途・確認者・返金条件）が未設定なら、公開後も拠出は開始されず参加希望のみ受け付ける。  {width=fill_container fill=$text-sub fontSize=13 fontWeight=normal}

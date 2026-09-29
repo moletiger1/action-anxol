@@ -1,0 +1,6 @@
+[frame] グループB_案件作成・参加  {layout=vertical width=1440 gap=6}
+  [frame] Head  {gap=16 alignItems=center}
+    [frame] Tag  {width=56 height=56 fill=$primary cornerRadius=12 justifyContent=center alignItems=center}
+      [text] B  {fill=#FFFFFF fontSize=28 fontWeight=700}
+    [text] 案件作成・参加  {fill=$text fontSize=36 fontWeight=700}
+  [text] B01 案件作成ウィザード（4段階）／B02 当事者登録・資料共有（サインインの段階違い）  {width=fill_container fill=$text-sub fontSize=16 fontWeight=normal}

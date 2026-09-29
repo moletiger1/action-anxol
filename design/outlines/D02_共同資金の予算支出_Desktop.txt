@@ -1,0 +1,368 @@
+[frame] D02_共同資金の予算支出_Desktop  {width=1440 height=2184 fill=$bg}
+  [frame] <App Sidebar> Sidebar  {layout=vertical width=248 height=fill_container gap=20 padding=[20,14] fill=$surface stroke=$border}
+    [frame] Logo  {gap=10 alignItems=center}
+      [frame] Mark  {width=36 height=36 fill=$primary cornerRadius=10 justifyContent=center alignItems=center}
+        [icon] icon-users-round  {width=20 height=20 fill=#FFFFFF icon=users-round}
+      [text] 集団訴訟.jp  {fill=$text fontSize=20 fontWeight=700}
+      [text] （仮）  {fill=$text-muted fontSize=13 fontWeight=normal}
+    [frame] <Button/Secondary> Create  {width=fill_container height=44 gap=8 padding=[0,24] fill=$surface cornerRadius=10 stroke=$primary justifyContent=center alignItems=center}
+      [icon] Icon  {width=20 height=20 fill=$primary-dark icon=plus}
+      [text] 案件を作る  {fill=$primary-dark fontSize=16 fontWeight=700}
+    [frame] Nav Group  {layout=vertical width=fill_container gap=4}
+      [frame] <Nav Item> Nav 案件を探す  {width=fill_container height=44 gap=12 padding=[0,12] cornerRadius=10 alignItems=center}
+        [icon] Icon  {width=20 height=20 fill=$text-sub icon=search}
+        [text] 案件を探す  {width=fill_container fill=$text-sub fontSize=15 fontWeight=500}
+      [frame] <Nav Item> Nav 参加中の案件  {width=fill_container height=44 gap=12 padding=[0,12] cornerRadius=10 alignItems=center}
+        [icon] Icon  {width=20 height=20 fill=$text-sub icon=folder-open}
+        [text] 参加中の案件  {width=fill_container fill=$text-sub fontSize=15 fontWeight=500}
+      [frame] <Nav Item> Nav お金の記録  {width=fill_container height=44 gap=12 padding=[0,12] fill=$primary-soft cornerRadius=10 alignItems=center}
+        [icon] Icon  {width=20 height=20 fill=$text-sub icon=receipt-text}
+        [text] お金の記録  {width=fill_container fill=$text-sub fontSize=15 fontWeight=500}
+      [frame] <Nav Item> Nav 通知  {width=fill_container height=44 gap=12 padding=[0,12] cornerRadius=10 alignItems=center}
+        [icon] Icon  {width=20 height=20 fill=$text-sub icon=bell}
+        [text] 通知  {width=fill_container fill=$text-sub fontSize=15 fontWeight=500}
+        [frame] Count  {padding=[1,8] fill=$primary cornerRadius=999}
+          [text] 3  {fill=#FFFFFF fontSize=12 fontWeight=700}
+    [frame] Spacer  {width=fill_container height=fill_container}
+    [frame] Lawyer Entry  {width=fill_container gap=10 padding=12 cornerRadius=10 stroke=$border alignItems=center}
+      [icon] icon-briefcase-business  {width=20 height=20 fill=$text-sub icon=briefcase-business}
+      [frame] Text  {layout=vertical width=fill_container}
+        [text] 弁護士用ワークスペース  {width=fill_container fill=$text fontSize=14 fontWeight=700}
+        [text] 提案の作成・送信はこちら  {width=fill_container fill=$text-muted fontSize=12 fontWeight=normal}
+    [frame] Account  {width=fill_container gap=10 padding=4 alignItems=center}
+      [frame] Avatar  {width=36 height=36 fill=#EEF1F5 cornerRadius=18 justifyContent=center alignItems=center}
+        [icon] icon-user  {width=18 height=18 fill=$text-sub icon=user}
+      [frame] User Text  {layout=vertical width=fill_container}
+        [text] あなたのアカウント  {width=fill_container fill=$text fontSize=14 fontWeight=700}
+        [text] メールでサインイン中  {width=fill_container fill=$text-muted fontSize=12 fontWeight=normal}
+    [frame] <Demo Badge> Demo  {gap=6 padding=[4,10] fill=#EEF1F5 cornerRadius=999 stroke=$border-strong alignItems=center}
+      [icon] Icon  {width=14 height=14 fill=$text-sub icon=flask-conical}
+      [text] デモ表示・数値は架空  {fill=$text-sub fontSize=13 fontWeight=normal}
+  [frame] Main  {layout=vertical width=fill_container gap=24 padding=[28,36,72,36]}
+    [frame] Top Bar  {width=fill_container justifyContent=space_between alignItems=end}
+      [frame] Title  {layout=vertical gap=2}
+        [text] お金の記録 ／ 法人会員・利用者の共同相談  {fill=$text-muted fontSize=14 fontWeight=normal}
+        [text] 共同資金の予算・支出  {fill=$text fontSize=28 fontWeight=700}
+      [frame] Right  {gap=16 alignItems=center}
+        [frame] <Badge> Badge 別時点のデモ（相談実施後の想定）  {gap=6 padding=[4,10] fill=#EEF1F5 cornerRadius=999 alignItems=center}
+          [icon] Icon  {width=16 height=16 fill=$text-sub icon=calendar-clock}
+          [text] 別時点のデモ（相談実施後の想定）  {fill=$text-sub fontSize=14 fontWeight=500}
+        [frame] <Badge> Role  {gap=6 padding=[4,10] fill=$primary-soft cornerRadius=999 alignItems=center}
+          [icon] Icon  {width=16 height=16 fill=$primary-dark icon=user-check}
+          [text] あなたの役割：支出確認担当  {fill=$primary-dark fontSize=14 fontWeight=500}
+    [frame] <Stage Banner> Stage Banner  {width=fill_container gap=24 padding=[20,24] fill=$surface cornerRadius=12 stroke=$border alignItems=center}
+      [frame] Stage  {layout=vertical width=340 gap=4}
+        [frame] Stage Head  {gap=6 alignItems=center}
+          [icon] Stage Icon  {width=16 height=16 fill=$text-muted icon=flag}
+          [text] 現在の段階  {fill=$text-muted fontSize=13 fontWeight=normal}
+        [text] 共同相談を実施中（段階4／5）  {width=fill_container fill=$text fontSize=18 fontWeight=700}
+      [rectangle] VDivider  {width=1 height=56 fill=$border}
+      [frame] Next  {layout=vertical width=fill_container gap=4}
+        [frame] Next Head  {gap=6 alignItems=center}
+          [icon] Next Icon  {width=16 height=16 fill=$primary-dark icon=circle-arrow-right}
+          [text] 次にすること  {fill=$primary-dark fontSize=13 fontWeight=700}
+        [text] 初期調査の請求（500 USDC）が届いています。報告書を確認し、履行を確認してください。確認が揃うまで支払いは行われません。  {width=fill_container fill=$text fontSize=16 fontWeight=normal}
+    [frame] Ledger Switch  {gap=4 padding=4 fill=#E9EDF2 cornerRadius=12}
+      [frame] Seg 共同相談費の会計  {height=44 gap=8 padding=[0,18] fill=$surface cornerRadius=9 alignItems=center}
+        [text] 共同相談費の会計  {fill=$text fontSize=15 fontWeight=700}
+      [frame] Seg 訴訟費用の会計  {height=44 gap=8 padding=[0,18] cornerRadius=9 alignItems=center}
+        [text] 訴訟費用の会計  {fill=$text-sub fontSize=15 fontWeight=500}
+        [text] 未開始・別会計  {fill=$text-muted fontSize=13 fontWeight=normal}
+    [frame] Summary  {width=fill_container gap=16}
+      [frame] Metric 入金合計  {layout=vertical width=fill_container gap=6 padding=20 fill=$surface cornerRadius=12 stroke=$border}
+        [frame] Head  {gap=8 alignItems=center}
+          [icon] icon-arrow-down-to-line  {width=18 height=18 fill=$text icon=arrow-down-to-line}
+          [text] 入金合計  {fill=$text-sub fontSize=14 fontWeight=700}
+        [text] 2,000 USDC  {fill=$text fontSize=26 fontWeight=700}
+        [text] 参考 約300,000円  {width=fill_container fill=$text-muted fontSize=13 fontWeight=normal}
+      [frame] Metric 支払済み  {layout=vertical width=fill_container gap=6 padding=20 fill=$surface cornerRadius=12 stroke=$border}
+        [frame] Head  {gap=8 alignItems=center}
+          [icon] icon-circle-check  {width=18 height=18 fill=$green icon=circle-check}
+          [text] 支払済み  {fill=$text-sub fontSize=14 fontWeight=700}
+        [text] 1,200 USDC  {fill=$text fontSize=26 fontWeight=700}
+        [text] 参考 約180,000円  {width=fill_container fill=$text-muted fontSize=13 fontWeight=normal}
+      [frame] Metric 未払いの契約済み費用  {layout=vertical width=fill_container gap=6 padding=20 fill=$surface cornerRadius=12 stroke=$border}
+        [frame] Head  {gap=8 alignItems=center}
+          [icon] icon-file-clock  {width=18 height=18 fill=$amber icon=file-clock}
+          [text] 未払いの契約済み費用  {fill=$text-sub fontSize=14 fontWeight=700}
+        [text] 500 USDC  {fill=$text fontSize=26 fontWeight=700}
+        [text] 参考 約75,000円・支払条件待ち  {width=fill_container fill=$text-muted fontSize=13 fontWeight=normal}
+      [frame] Metric 未拘束残高  {layout=vertical width=fill_container gap=6 padding=20 fill=$surface cornerRadius=12 stroke=$border}
+        [frame] Head  {gap=8 alignItems=center}
+          [icon] icon-wallet  {width=18 height=18 fill=$primary-dark icon=wallet}
+          [text] 未拘束残高  {fill=$text-sub fontSize=14 fontWeight=700}
+        [text] 300 USDC  {fill=$text fontSize=26 fontWeight=700}
+        [text] 参考 約45,000円  {width=fill_container fill=$text-muted fontSize=13 fontWeight=normal}
+    [frame] Allocation  {layout=vertical width=fill_container gap=12 padding=[20,24] fill=$surface cornerRadius=12 stroke=$border}
+      [frame] Head  {width=fill_container justifyContent=space_between}
+        [text] 予算の使われ方（目標 2,000 USDC に対する割合）  {fill=$text fontSize=15 fontWeight=700}
+        [text] 未拘束残高の全額が、すぐに返金できるとは限りません  {fill=$text-muted fontSize=13 fontWeight=normal}
+      [frame] Stack  {width=fill_container height=16 gap=2 cornerRadius=8}
+        [rectangle] Paid  {width=641 height=16 fill=$primary}
+        [rectangle] Committed  {width=267 height=16 fill=$amber-line}
+        [rectangle] Free  {width=fill_container height=16 fill=#C9D3DE}
+      [frame] Legend  {gap=28}
+        [frame] L 支払済み 1,200（60%）  {gap=8 alignItems=center}
+          [rectangle] Swatch  {width=12 height=12 fill=$primary cornerRadius=3}
+          [text] 支払済み 1,200（60%）  {fill=$text-sub fontSize=14 fontWeight=normal}
+        [frame] L 契約済み・未払い 500（25%）  {gap=8 alignItems=center}
+          [rectangle] Swatch  {width=12 height=12 fill=$amber-line cornerRadius=3}
+          [text] 契約済み・未払い 500（25%）  {fill=$text-sub fontSize=14 fontWeight=normal}
+        [frame] L 未拘束 300（15%）  {gap=8 alignItems=center}
+          [rectangle] Swatch  {width=12 height=12 fill=#C9D3DE cornerRadius=3}
+          [text] 未拘束 300（15%）  {fill=$text-sub fontSize=14 fontWeight=normal}
+    [frame] Section 支出の一覧  {layout=vertical width=fill_container gap=14}
+      [frame] Head  {layout=vertical width=fill_container gap=2}
+        [text] 支出の一覧  {width=fill_container fill=$text fontSize=20 fontWeight=700}
+        [text] 支払いは、契約済みの受取先と費目の上限の範囲でのみ行われます。自由な宛先への送金はできません。  {width=fill_container fill=$text-muted fontSize=14 fontWeight=normal}
+      [frame] Ledger Table  {layout=vertical width=fill_container fill=$surface cornerRadius=12 stroke=$border}
+        [frame] Header Row  {width=fill_container gap=16 padding=[12,20] fill=#F4F6F9 stroke=$border alignItems=center}
+          [frame] Col0  {layout=vertical width=fill_container gap=2}
+            [text] 用途  {fill=$text-sub fontSize=13 fontWeight=700}
+          [frame] Col1  {layout=vertical width=170 gap=2}
+            [text] 受取先  {width=fill_container fill=$text-sub fontSize=13 fontWeight=700}
+          [frame] Col2  {layout=vertical width=88 gap=2 alignItems=end}
+            [text] 上限  {width=fill_container fill=$text-sub fontSize=13 fontWeight=700}
+          [frame] Col3  {layout=vertical width=88 gap=2 alignItems=end}
+            [text] 金額  {width=fill_container fill=$text-sub fontSize=13 fontWeight=700}
+          [frame] Col4  {layout=vertical width=190 gap=2}
+            [text] 支払条件  {width=fill_container fill=$text-sub fontSize=13 fontWeight=700}
+          [frame] Col5  {layout=vertical width=170 gap=2}
+            [text] 承認・履行確認  {width=fill_container fill=$text-sub fontSize=13 fontWeight=700}
+          [frame] Col6  {layout=vertical width=72 gap=2}
+            [text] 履歴  {width=fill_container fill=$text-sub fontSize=13 fontWeight=700}
+        [frame] Row 法律相談,共同相談 2回・結果の共有  {width=fill_container gap=16 padding=[16,20] stroke=$border alignItems=center}
+          [frame] Col0  {layout=vertical width=fill_container gap=2}
+            [text] 法律相談  {fill=$text fontSize=15 fontWeight=700}
+            [text] 共同相談 2回・結果の共有  {width=fill_container fill=$text-muted fontSize=13 fontWeight=normal}
+          [frame] Col1  {layout=vertical width=170 gap=2}
+            [text] 弁護士A  {width=fill_container fill=$text fontSize=15 fontWeight=normal}
+            [text] 〔架空〕法律事務所  {width=fill_container fill=$text-muted fontSize=13 fontWeight=normal}
+          [frame] Col2  {layout=vertical width=88 gap=2 alignItems=end}
+            [text] 1,200  {width=fill_container fill=$text fontSize=15 fontWeight=normal}
+            [text] USDC  {width=fill_container fill=$text-muted fontSize=13 fontWeight=normal}
+          [frame] Col3  {layout=vertical width=88 gap=2 alignItems=end}
+            [text] 1,200  {width=fill_container fill=$text fontSize=15 fontWeight=normal}
+            [text] USDC  {width=fill_container fill=$text-muted fontSize=13 fontWeight=normal}
+          [frame] Col4  {layout=vertical width=190 gap=2}
+            [text] 相談の実施と結果の共有後  {width=fill_container fill=$text fontSize=15 fontWeight=normal}
+          [frame] Col5  {layout=vertical width=170 gap=2}
+            [frame] <Badge> Badge 支払済み  {gap=6 padding=[4,10] fill=$green-soft cornerRadius=999 alignItems=center}
+              [icon] Icon  {width=16 height=16 fill=$green icon=circle-check}
+              [text] 支払済み  {fill=$green fontSize=14 fontWeight=500}
+            [text] 確認 2／2・2027年1月28日  {fill=$text-muted fontSize=13 fontWeight=normal}
+          [frame] Col6  {layout=vertical width=72 gap=2}
+            [frame] <Button/Text> Btn 履歴  {height=44 gap=6 padding=0 alignItems=center}
+              [text] 履歴  {fill=$primary-dark fontSize=16 fontWeight=500}
+              [icon] Icon  {width=18 height=18 fill=$primary-dark icon=chevron-right}
+        [frame] Row 初期調査,公表資料・通知内容の調査  {width=fill_container gap=16 padding=[16,20] fill=#FBFEFE stroke=#00000000 alignItems=center}
+          [frame] Col0  {layout=vertical width=fill_container gap=2}
+            [text] 初期調査  {fill=$text fontSize=15 fontWeight=700}
+            [text] 公表資料・通知内容の調査  {width=fill_container fill=$text-muted fontSize=13 fontWeight=normal}
+          [frame] Col1  {layout=vertical width=170 gap=2}
+            [text] 弁護士A  {width=fill_container fill=$text fontSize=15 fontWeight=normal}
+            [text] 〔架空〕法律事務所  {width=fill_container fill=$text-muted fontSize=13 fontWeight=normal}
+          [frame] Col2  {layout=vertical width=88 gap=2 alignItems=end}
+            [text] 500  {width=fill_container fill=$text fontSize=15 fontWeight=normal}
+            [text] USDC  {width=fill_container fill=$text-muted fontSize=13 fontWeight=normal}
+          [frame] Col3  {layout=vertical width=88 gap=2 alignItems=end}
+            [text] 500  {width=fill_container fill=$text fontSize=15 fontWeight=normal}
+            [text] USDC  {width=fill_container fill=$text-muted fontSize=13 fontWeight=normal}
+          [frame] Col4  {layout=vertical width=190 gap=2}
+            [text] 調査報告書の提出後  {width=fill_container fill=$text fontSize=15 fontWeight=normal}
+          [frame] Col5  {layout=vertical width=170 gap=2}
+            [frame] <Badge> Badge 確認待ち  {gap=6 padding=[4,10] fill=$amber-soft cornerRadius=999 alignItems=center}
+              [icon] Icon  {width=16 height=16 fill=$amber icon=clock-3}
+              [text] 確認待ち  {fill=$amber fontSize=14 fontWeight=500}
+            [text] 履行確認 1／2  {fill=$text-muted fontSize=13 fontWeight=normal}
+          [frame] Col6  {layout=vertical width=72 gap=2}
+            [frame] Expand  {width=44 height=44 fill=$primary-soft cornerRadius=10 justifyContent=center alignItems=center}
+              [icon] icon-chevron-up  {width=20 height=20 fill=$primary-dark icon=chevron-up}
+        [frame] Row Detail 初期調査  {layout=vertical width=fill_container gap=16 padding=[4,20,24,20] fill=#FBFEFE stroke=$border}
+          [text] 支払いの根拠：契約条件 → 請求 → 確認 → 支払い  {width=fill_container fill=$text fontSize=15 fontWeight=700}
+          [frame] Flow  {width=fill_container gap=8 alignItems=center}
+            [frame] Flow 契約条件  {layout=vertical width=fill_container gap=6 padding=16 fill=$surface cornerRadius=10 stroke=$border}
+              [frame] Head  {width=fill_container gap=8 alignItems=center}
+                [text] 1  {fill=$text-muted fontSize=13 fontWeight=700}
+                [text] 契約条件  {width=fill_container fill=$text fontSize=16 fontWeight=700}
+              [frame] <Badge> Badge 確認済み  {gap=6 padding=[4,10] fill=$green-soft cornerRadius=999 alignItems=center}
+                [icon] Icon  {width=16 height=16 fill=$green icon=circle-check}
+                [text] 確認済み  {fill=$green fontSize=14 fontWeight=500}
+              [text] 2027年1月10日 契約  {width=fill_container fill=$text-sub fontSize=13 fontWeight=normal}
+              [text] 上限 500 USDC・報告書の提出後に支払い  {width=fill_container fill=$text-sub fontSize=13 fontWeight=normal}
+              [frame] <Button/Text> Btn 契約条件を見る  {height=36 gap=6 padding=[0,4] alignItems=center}
+                [text] 契約条件を見る  {fill=$primary-dark fontSize=16 fontWeight=500}
+                [icon] Icon  {width=18 height=18 fill=$primary-dark icon=chevron-right}
+            [icon] icon-arrow-right  {width=18 height=18 fill=$text-muted icon=arrow-right}
+            [frame] Flow 請求  {layout=vertical width=fill_container gap=6 padding=16 fill=$surface cornerRadius=10 stroke=$border}
+              [frame] Head  {width=fill_container gap=8 alignItems=center}
+                [text] 2  {fill=$text-muted fontSize=13 fontWeight=700}
+                [text] 請求  {width=fill_container fill=$text fontSize=16 fontWeight=700}
+              [frame] <Badge> Badge 受領  {gap=6 padding=[4,10] fill=$green-soft cornerRadius=999 alignItems=center}
+                [icon] Icon  {width=16 height=16 fill=$green icon=circle-check}
+                [text] 受領  {fill=$green fontSize=14 fontWeight=500}
+              [text] 2027年2月3日 請求 500 USDC  {width=fill_container fill=$text-sub fontSize=13 fontWeight=normal}
+              [text] 調査報告書を添付  {width=fill_container fill=$text-sub fontSize=13 fontWeight=normal}
+              [frame] <Button/Text> Btn 請求書を見る  {height=36 gap=6 padding=[0,4] alignItems=center}
+                [text] 請求書を見る  {fill=$primary-dark fontSize=16 fontWeight=500}
+                [icon] Icon  {width=18 height=18 fill=$primary-dark icon=chevron-right}
+            [icon] icon-arrow-right  {width=18 height=18 fill=$text-muted icon=arrow-right}
+            [frame] Flow 確認  {layout=vertical width=fill_container gap=6 padding=16 fill=$surface cornerRadius=10 stroke=$amber-line}
+              [frame] Head  {width=fill_container gap=8 alignItems=center}
+                [text] 3  {fill=$text-muted fontSize=13 fontWeight=700}
+                [text] 確認  {width=fill_container fill=$text fontSize=16 fontWeight=700}
+              [frame] <Badge> Badge 確認待ち 1／2  {gap=6 padding=[4,10] fill=$amber-soft cornerRadius=999 alignItems=center}
+                [icon] Icon  {width=16 height=16 fill=$amber icon=clock-3}
+                [text] 確認待ち 1／2  {fill=$amber fontSize=14 fontWeight=500}
+              [text] 支出確認担当2名のうち1名が確認  {width=fill_container fill=$text-sub fontSize=13 fontWeight=normal}
+              [text] あなたの確認が未了です  {width=fill_container fill=$text-sub fontSize=13 fontWeight=normal}
+            [icon] icon-arrow-right  {width=18 height=18 fill=$text-muted icon=arrow-right}
+            [frame] Flow 支払い  {layout=vertical width=fill_container gap=6 padding=16 fill=$surface cornerRadius=10 stroke=$border}
+              [frame] Head  {width=fill_container gap=8 alignItems=center}
+                [text] 4  {fill=$text-muted fontSize=13 fontWeight=700}
+                [text] 支払い  {width=fill_container fill=$text fontSize=16 fontWeight=700}
+              [frame] <Badge> Badge 未実行  {gap=6 padding=[4,10] fill=#EEF1F5 cornerRadius=999 alignItems=center}
+                [icon] Icon  {width=16 height=16 fill=$text-sub icon=circle-dashed}
+                [text] 未実行  {fill=$text-sub fontSize=14 fontWeight=500}
+              [text] 2名の確認後、3日間の支払待機期間を経て実行可能。未払い請求は精算期限まで異議申立て可能で、支払実行には別途取引送信が必要（表示例）  {width=fill_container fill=$text-sub fontSize=13 fontWeight=normal}
+              [text] 精算期限：2027年2月17日（表示例）  {width=fill_container fill=$text-sub fontSize=13 fontWeight=normal}
+              [text] 期限後は誰かが期限切れ処理を送信。未払い上限は返金原資へ戻り、返金は本人が別途請求  {width=fill_container fill=$text-sub fontSize=13 fontWeight=normal}
+          [frame] Reviewer Action  {layout=vertical width=fill_container gap=16 padding=20 fill=$primary-soft cornerRadius=10}
+            [frame] Text  {layout=vertical width=fill_container gap=4}
+              [frame] Head  {gap=8 alignItems=center}
+                [icon] icon-user-check  {width=18 height=18 fill=$primary-dark icon=user-check}
+                [text] 支出確認担当の操作  {fill=$primary-dark fontSize=16 fontWeight=700}
+              [text] この操作は、この募集で選任された支出確認担当にだけ表示されます（このデモでは2名の確認が必要な設定）。報告書が契約条件を満たすかを確認してください。  {width=fill_container fill=$text fontSize=14 fontWeight=normal}
+            [frame] Actions  {width=fill_container gap=12 justifyContent=end}
+              [frame] <Button/Secondary> Btn 不明点・異議を記録する  {height=48 gap=8 padding=[0,24] fill=$surface cornerRadius=10 stroke=$primary justifyContent=center alignItems=center}
+                [icon] Icon  {width=20 height=20 fill=$primary-dark icon=message-square-warning}
+                [text] 不明点・異議を記録する  {fill=$primary-dark fontSize=16 fontWeight=700}
+              [frame] <Button/Primary> Btn 報告書を確認し、履行を確認する  {height=48 gap=8 padding=[0,24] fill=$primary cornerRadius=10 justifyContent=center alignItems=center}
+                [icon] Icon  {width=20 height=20 fill=#FFFFFF icon=check}
+                [text] 報告書を確認し、履行を確認する  {fill=#FFFFFF fontSize=16 fontWeight=700}
+        [frame] Row 資料整理,参加者資料の整理・匿名化  {width=fill_container gap=16 padding=[16,20] stroke=$border alignItems=center}
+          [frame] Col0  {layout=vertical width=fill_container gap=2}
+            [text] 資料整理  {fill=$text fontSize=15 fontWeight=700}
+            [text] 参加者資料の整理・匿名化  {width=fill_container fill=$text-muted fontSize=13 fontWeight=normal}
+          [frame] Col1  {layout=vertical width=170 gap=2}
+            [text] 未契約  {width=fill_container fill=$text fontSize=15 fontWeight=normal}
+            [text] 提案の採択後に決定  {width=fill_container fill=$text-muted fontSize=13 fontWeight=normal}
+          [frame] Col2  {layout=vertical width=88 gap=2 alignItems=end}
+            [text] 200  {width=fill_container fill=$text fontSize=15 fontWeight=normal}
+            [text] USDC  {width=fill_container fill=$text-muted fontSize=13 fontWeight=normal}
+          [frame] Col3  {layout=vertical width=88 gap=2 alignItems=end}
+            [text] —  {width=fill_container fill=$text fontSize=15 fontWeight=normal}
+            [text] 未拘束  {width=fill_container fill=$text-muted fontSize=13 fontWeight=normal}
+          [frame] Col4  {layout=vertical width=190 gap=2}
+            [text] 契約後に設定  {width=fill_container fill=$text fontSize=15 fontWeight=normal}
+          [frame] Col5  {layout=vertical width=170 gap=2}
+            [frame] <Badge> Badge 未契約  {gap=6 padding=[4,10] fill=#EEF1F5 cornerRadius=999 alignItems=center}
+              [icon] Icon  {width=16 height=16 fill=$text-sub icon=circle-dashed}
+              [text] 未契約  {fill=$text-sub fontSize=14 fontWeight=500}
+          [frame] Col6  {layout=vertical width=72 gap=2}
+            [frame] <Button/Text> Btn 履歴  {height=44 gap=6 padding=0 alignItems=center}
+              [text] 履歴  {fill=$primary-dark fontSize=16 fontWeight=500}
+              [icon] Icon  {width=18 height=18 fill=$primary-dark icon=chevron-right}
+        [frame] Row 決済等の予備費,送金手数料などの実費  {width=fill_container gap=16 padding=[16,20] stroke=#00000000 alignItems=center}
+          [frame] Col0  {layout=vertical width=fill_container gap=2}
+            [text] 決済等の予備費  {fill=$text fontSize=15 fontWeight=700}
+            [text] 送金手数料などの実費  {width=fill_container fill=$text-muted fontSize=13 fontWeight=normal}
+          [frame] Col1  {layout=vertical width=170 gap=2}
+            [text] 手数料の支払先  {width=fill_container fill=$text fontSize=15 fontWeight=normal}
+            [text] ネットワーク手数料等  {width=fill_container fill=$text-muted fontSize=13 fontWeight=normal}
+          [frame] Col2  {layout=vertical width=88 gap=2 alignItems=end}
+            [text] 100  {width=fill_container fill=$text fontSize=15 fontWeight=normal}
+            [text] USDC  {width=fill_container fill=$text-muted fontSize=13 fontWeight=normal}
+          [frame] Col3  {layout=vertical width=88 gap=2 alignItems=end}
+            [text] 0  {width=fill_container fill=$text fontSize=15 fontWeight=normal}
+            [text] 未拘束  {width=fill_container fill=$text-muted fontSize=13 fontWeight=normal}
+          [frame] Col4  {layout=vertical width=190 gap=2}
+            [text] 実費のみ・上限内  {width=fill_container fill=$text fontSize=15 fontWeight=normal}
+          [frame] Col5  {layout=vertical width=170 gap=2}
+            [frame] <Badge> Badge 未使用  {gap=6 padding=[4,10] fill=#EEF1F5 cornerRadius=999 alignItems=center}
+              [icon] Icon  {width=16 height=16 fill=$text-sub icon=circle-dashed}
+              [text] 未使用  {fill=$text-sub fontSize=14 fontWeight=500}
+          [frame] Col6  {layout=vertical width=72 gap=2}
+            [frame] <Button/Text> Btn 履歴  {height=44 gap=6 padding=0 alignItems=center}
+              [text] 履歴  {fill=$primary-dark fontSize=16 fontWeight=500}
+              [icon] Icon  {width=18 height=18 fill=$primary-dark icon=chevron-right}
+    [frame] Fixed Rules  {layout=vertical width=fill_container gap=18 padding=24 fill=$surface cornerRadius=12 stroke=$border}
+      [frame] Head  {width=fill_container gap=12 alignItems=center}
+        [frame] IconWrap  {width=40 height=40 fill=$primary-soft cornerRadius=10 justifyContent=center alignItems=center}
+          [icon] icon-lock-keyhole  {width=20 height=20 fill=$primary-dark icon=lock-keyhole}
+        [frame] Text  {layout=vertical width=fill_container gap=2}
+          [text] この募集の支払条件は、管理者だけでは変更できません  {width=fill_container fill=$text fontSize=18 fontWeight=700}
+          [text] 固定されているのは、共同資金の支払いに関する次の範囲です。人が担う確認と混同しないよう分けて示します。  {width=fill_container fill=$text-sub fontSize=14 fontWeight=normal}
+        [frame] <Button/Text> Btn 検証用情報を見る  {height=44 gap=6 padding=[0,4] alignItems=center}
+          [text] 検証用情報を見る  {fill=$primary-dark fontSize=16 fontWeight=500}
+          [icon] Icon  {width=18 height=18 fill=$primary-dark icon=chevron-right}
+      [frame] Cols  {width=fill_container gap=20}
+        [frame] コントラクトで固定されている範囲  {layout=vertical width=fill_container gap=10 padding=20 fill=$primary-soft cornerRadius=10}
+          [frame] Head  {gap=8 alignItems=center}
+            [icon] icon-lock  {width=18 height=18 fill=$primary-dark icon=lock}
+            [text] コントラクトで固定されている範囲  {fill=$primary-dark fontSize=16 fontWeight=700}
+          [frame] Item  {width=fill_container gap=10}
+            [frame] IconBox  {height=26 alignItems=center}
+              [icon] icon-dot  {width=18 height=18 fill=$primary-dark icon=dot}
+            [text] 支払先は、契約済みとして登録された受取先に限られる  {width=fill_container fill=$text fontSize=14 fontWeight=normal}
+          [frame] Item  {width=fill_container gap=10}
+            [frame] IconBox  {height=26 alignItems=center}
+              [icon] icon-dot  {width=18 height=18 fill=$primary-dark icon=dot}
+            [text] 費目ごとの上限額を超えて支払えない  {width=fill_container fill=$text fontSize=14 fontWeight=normal}
+          [frame] Item  {width=fill_container gap=10}
+            [frame] IconBox  {height=26 alignItems=center}
+              [icon] icon-dot  {width=18 height=18 fill=$primary-dark icon=dot}
+            [text] 所定の確認が揃う前に支払われない  {width=fill_container fill=$text fontSize=14 fontWeight=normal}
+          [frame] Item  {width=fill_container gap=10}
+            [frame] IconBox  {height=26 alignItems=center}
+              [icon] icon-dot  {width=18 height=18 fill=$primary-dark icon=dot}
+            [text] 返金額の計算方法と、請求できる条件  {width=fill_container fill=$text fontSize=14 fontWeight=normal}
+        [frame] 人が確認・実行する範囲  {layout=vertical width=fill_container gap=10 padding=20 fill=#F1F5F6 cornerRadius=10}
+          [frame] Head  {gap=8 alignItems=center}
+            [icon] icon-users  {width=18 height=18 fill=$text-sub icon=users}
+            [text] 人が確認・実行する範囲  {fill=$text-sub fontSize=16 fontWeight=700}
+          [frame] Item  {width=fill_container gap=10}
+            [frame] IconBox  {height=26 alignItems=center}
+              [icon] icon-dot  {width=18 height=18 fill=$text-sub icon=dot}
+            [text] 弁護士業務の内容・品質の評価、契約内容の交渉  {width=fill_container fill=$text fontSize=14 fontWeight=normal}
+          [frame] Item  {width=fill_container gap=10}
+            [frame] IconBox  {height=26 alignItems=center}
+              [icon] icon-dot  {width=18 height=18 fill=$text-sub icon=dot}
+            [text] 請求書・報告書が実態に合っているかの確認  {width=fill_container fill=$text fontSize=14 fontWeight=normal}
+          [frame] Item  {width=fill_container gap=10}
+            [frame] IconBox  {height=26 alignItems=center}
+              [icon] icon-dot  {width=18 height=18 fill=$text-sub icon=dot}
+            [text] 本人確認・利益相反の確認  {width=fill_container fill=$text fontSize=14 fontWeight=normal}
+          [frame] Item  {width=fill_container gap=10}
+            [frame] IconBox  {height=26 alignItems=center}
+              [icon] icon-dot  {width=18 height=18 fill=$text-sub icon=dot}
+            [text] 銀行口座への円での送金・受取り（担当：精算を依頼された弁護士または決済事業者）  {width=fill_container fill=$text fontSize=14 fontWeight=normal}
+    [frame] Section 支払いが止まる状態  {layout=vertical width=fill_container gap=14}
+      [frame] Head  {layout=vertical width=fill_container gap=2}
+        [text] 支払いが止まる状態  {width=fill_container fill=$text fontSize=20 fontWeight=700}
+        [text] 次の状態では、確認や期限の条件が満たされるまで支払いは実行されません。  {width=fill_container fill=$text-muted fontSize=14 fontWeight=normal}
+      [frame] States  {width=fill_container gap=16}
+        [frame] State 条件未達  {layout=vertical width=fill_container gap=10 padding=20 fill=$surface cornerRadius=12 stroke=$border}
+          [frame] <Badge> Badge 条件未達  {gap=6 padding=[4,10] fill=$red-soft cornerRadius=999 alignItems=center}
+            [icon] Icon  {width=16 height=16 fill=$red icon=circle-alert}
+            [text] 条件未達  {fill=$red fontSize=14 fontWeight=500}
+          [text] 報告書が未提出のため、初期調査の支払条件を満たしていません。受取先に提出を依頼しています。  {width=fill_container fill=$text-sub fontSize=14 fontWeight=normal}
+          [frame] <Button/Text> Btn 不足している条件を見る  {height=40 gap=6 padding=[0,4] alignItems=center}
+            [text] 不足している条件を見る  {fill=$primary-dark fontSize=16 fontWeight=500}
+            [icon] Icon  {width=18 height=18 fill=$primary-dark icon=chevron-right}
+        [frame] State 異議確認中  {layout=vertical width=fill_container gap=10 padding=20 fill=$surface cornerRadius=12 stroke=$border}
+          [frame] <Badge> Badge 異議確認中  {gap=6 padding=[4,10] fill=$amber-soft cornerRadius=999 alignItems=center}
+            [icon] Icon  {width=16 height=16 fill=$amber icon=clock-3}
+            [text] 異議確認中  {fill=$amber fontSize=14 fontWeight=500}
+          [text] 拠出者から「調査範囲が契約と異なる」との異議が出ています。裁定担当の結論が確定するまで支払いは保留されます。  {width=fill_container fill=$text-sub fontSize=14 fontWeight=normal}
+          [frame] <Button/Text> Btn 異議の内容と回答を見る  {height=40 gap=6 padding=[0,4] alignItems=center}
+            [text] 異議の内容と回答を見る  {fill=$primary-dark fontSize=16 fontWeight=500}
+            [icon] Icon  {width=18 height=18 fill=$primary-dark icon=chevron-right}
+        [frame] State 期限付き停止  {layout=vertical width=fill_container gap=10 padding=20 fill=$surface cornerRadius=12 stroke=$border}
+          [frame] <Badge> Badge 期限付き停止  {gap=6 padding=[4,10] fill=$red-soft cornerRadius=999 alignItems=center}
+            [icon] Icon  {width=16 height=16 fill=$red icon=circle-pause}
+            [text] 期限付き停止  {fill=$red fontSize=14 fontWeight=500}
+          [text] この表示例では、異議確認のため2027年2月3日から7日間停止します。停止で精算期限は延長されません。  {width=fill_container fill=$text-sub fontSize=14 fontWeight=normal}
+          [frame] <Button/Text> Btn 停止の理由と期限を見る  {height=40 gap=6 padding=[0,4] alignItems=center}
+            [text] 停止の理由と期限を見る  {fill=$primary-dark fontSize=16 fontWeight=500}
+            [icon] Icon  {width=18 height=18 fill=$primary-dark icon=chevron-right}

@@ -1,0 +1,7 @@
+[frame] 注釈_A02 共通事件ページ  {layout=vertical width=1440 gap=4 padding=[16,20] fill=#EAEFF4 cornerRadius=12 stroke=$border-strong}
+  [frame] Head  {gap=8 alignItems=center}
+    [icon] icon-sticky-note  {width=16 height=16 fill=$text-sub icon=sticky-note}
+    [text] 注釈｜A02 共通事件ページ  {fill=$text fontSize=14 fontWeight=700}
+  [text] 目的：同じ出来事の共通ページ。対象と目的から募集を選ぶ。  {width=fill_container fill=$text-sub fontSize=13 fontWeight=normal}
+  [text] 遷移：「この募集を見る」→ A03／副次「別の相談目的で募集する」→ B01（既存事件に募集を追加）。  {width=fill_container fill=$text-sub fontSize=13 fontWeight=normal}
+  [text] 注記：募集ごとの人数・資金は合算しない。原本メール・参加者名は非公開。「分かっていること」は公表資料（share.timescar.jp/news/2026/0928/1815.html・第2報）の要約で、公開時は原文と照合する。  {width=fill_container fill=$text-sub fontSize=13 fontWeight=normal}

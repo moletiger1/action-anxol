@@ -1,0 +1,7 @@
+[frame] 注釈_B02 当事者登録・資料共有  {layout=vertical width=1440 gap=4 padding=[16,20] fill=#EAEFF4 cornerRadius=12 stroke=$border-strong}
+  [frame] Head  {gap=8 alignItems=center}
+    [icon] icon-sticky-note  {width=16 height=16 fill=$text-sub icon=sticky-note}
+    [text] 注釈｜B02 当事者登録・資料共有  {fill=$text fontSize=14 fontWeight=700}
+  [text] 目的：参加希望の登録と、本人・関係性の確認完了を区別して示す。資料はファイルごとに閲覧者と弁護士への共有許可を表示。  {width=fill_container fill=$text-sub fontSize=13 fontWeight=normal}
+  [text] 遷移：「次へ：内容の確認」→ 内容確認 → D01／「資料を共有せずに進む」→ 内容確認。  {width=fill_container fill=$text-sub fontSize=13 fontWeight=normal}
+  [text] 注記：全応募弁護士への自動開示はしない。収集は目的付きで最小限。本人確認の方式・事業者は未確定（設計注釈参照）。  {width=fill_container fill=$text-sub fontSize=13 fontWeight=normal}

@@ -1,0 +1,7 @@
+[frame] 注釈_C03 弁護士向け提案作成  {layout=vertical width=1440 gap=4 padding=[16,20] fill=#EAEFF4 cornerRadius=12 stroke=$border-strong}
+  [frame] Head  {gap=8 alignItems=center}
+    [icon] icon-sticky-note  {width=16 height=16 fill=$text-sub icon=sticky-note}
+    [text] 注釈｜C03 弁護士向け提案作成  {fill=$text fontSize=14 fontWeight=700}
+  [text] 目的：匿名の集計をもとに提案を作成。下書き保存・プレビュー・送信。  {width=fill_container fill=$text-sub fontSize=13 fontWeight=normal}
+  [text] 遷移：「提案を送信する」→ 送信済みの提案（資格確認の完了まで参加者には非公開）。  {width=fill_container fill=$text-sub fontSize=13 fontWeight=normal}
+  [text] 注記：利益相反の確認と採択の前に原本を閲覧できない。実在しない登録番号・実績・認証バッジは作らない。  {width=fill_container fill=$text-sub fontSize=13 fontWeight=normal}

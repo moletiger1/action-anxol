@@ -1,0 +1,43 @@
+[frame] C02b_採択の確認_審議役_Desktop  {layout=vertical width=1440 height=900 gap=16 fill=#172B4D66 justifyContent=center alignItems=center}
+  [frame] Context  {gap=8 padding=[6,14] fill=$surface cornerRadius=999 alignItems=center}
+    [icon] icon-user-check  {width=16 height=16 fill=$primary-dark icon=user-check}
+    [text] 審議役として閲覧中・決定条件を満たした後の表示（背景はC02）  {fill=$text-sub fontSize=13 fontWeight=normal}
+    [frame] <Demo Badge> Demo  {gap=6 padding=[4,10] fill=#EEF1F5 cornerRadius=999 stroke=$border-strong alignItems=center}
+      [icon] Icon  {width=14 height=14 fill=$text-sub icon=flask-conical}
+      [text] デモ表示・数値は架空  {fill=$text-sub fontSize=13 fontWeight=normal}
+  [frame] <Confirm Dialog> Adopt Dialog  {layout=vertical width=600 gap=20 padding=28 fill=$surface cornerRadius=16}
+    [frame] Head  {width=fill_container gap=14 alignItems=center}
+      [frame] Icon Wrap  {width=44 height=44 fill=$primary-soft cornerRadius=22 justifyContent=center alignItems=center}
+        [icon] Icon  {width=22 height=22 fill=$primary-dark icon=shield-check}
+      [text] 弁護士Aを共同相談の相談先として採択しますか？  {width=fill_container fill=$text fontSize=20 fontWeight=700}
+    [text] 採択は共同相談の相談先の決定です。訴訟の委任や和解の成立ではありません。確定すると審議記録に残り、参加者に通知されます。  {width=fill_container fill=$text-sub fontSize=16 fontWeight=normal}
+    [frame] Content  {layout=vertical width=fill_container}
+      [frame] <Cost Row> Cost 相談費用（税込）  {width=fill_container gap=16 padding=[12,0] stroke=$border alignItems=center}
+        [frame] Left  {layout=vertical width=fill_container gap=2}
+          [text] 相談費用（税込）  {width=fill_container fill=$text-sub fontSize=16 fontWeight=normal}
+        [frame] Right  {layout=vertical gap=2 alignItems=end}
+          [text] 1,200 USDC  {fill=$text fontSize=16 fontWeight=700}
+          [text] 参考 約180,000円・法律相談の予算内  {fill=$text-muted fontSize=13 fontWeight=normal}
+      [frame] <Cost Row> Cost 決定条件  {width=fill_container gap=16 padding=[12,0] stroke=$border alignItems=center}
+        [frame] Left  {layout=vertical width=fill_container gap=2}
+          [text] 決定条件  {width=fill_container fill=$text-sub fontSize=16 fontWeight=normal}
+          [text] この募集で設定された条件（設定内容は審議記録に掲載）  {width=fill_container(0) fill=$text-muted fontSize=13 fontWeight=normal}
+        [frame] Right  {layout=vertical gap=2 alignItems=end}
+          [text] 満たしています  {fill=$text fontSize=16 fontWeight=700}
+      [frame] <Cost Row> Cost 利益相反の確認  {width=fill_container gap=16 padding=[12,0] stroke=$border alignItems=center}
+        [frame] Left  {layout=vertical width=fill_container gap=2}
+          [text] 利益相反の確認  {width=fill_container fill=$text-sub fontSize=16 fontWeight=normal}
+          [text] 弁護士A・審議役の双方  {width=fill_container(0) fill=$text-muted fontSize=13 fontWeight=normal}
+        [frame] Right  {layout=vertical gap=2 alignItems=end}
+          [text] 確認済み  {fill=$text fontSize=16 fontWeight=700}
+      [frame] <Cost Row> Cost 採択後に起きること  {width=fill_container gap=16 padding=[12,0] stroke=#00000000 alignItems=center}
+        [frame] Left  {layout=vertical width=fill_container gap=2}
+          [text] 採択後に起きること  {width=fill_container fill=$text-sub fontSize=16 fontWeight=normal}
+          [text] 契約条件が支払条件に反映され、支出確認担当の確認後に支払われます  {width=fill_container(0) fill=$text-muted fontSize=13 fontWeight=normal}
+        [frame] Right  {layout=vertical gap=2 alignItems=end}
+          [text] 契約条件の登録  {fill=$text fontSize=16 fontWeight=700}
+    [frame] Footer  {width=fill_container gap=12 justifyContent=end}
+      [frame] <Button/Secondary> Cancel  {height=48 gap=8 padding=[0,24] fill=$surface cornerRadius=10 stroke=$primary justifyContent=center alignItems=center}
+        [text] 戻って確認する  {fill=$primary-dark fontSize=16 fontWeight=700}
+      [frame] <Button/Primary> Confirm  {height=48 gap=8 padding=[0,24] fill=$primary cornerRadius=10 justifyContent=center alignItems=center}
+        [text] 確定する  {fill=#FFFFFF fontSize=16 fontWeight=700}

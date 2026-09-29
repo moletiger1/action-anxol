@@ -1,0 +1,88 @@
+[frame] M_D03_本人の精算_Mobile  {layout=vertical width=390 fill=$bg}
+  [frame] <Mobile Header> Mobile Header  {width=390 height=56 gap=4 padding=[0,12,0,4] fill=$surface stroke=$border alignItems=center}
+    [frame] Back  {width=44 height=44 justifyContent=center alignItems=center}
+      [icon] Back Icon  {width=24 height=24 fill=$text icon=chevron-left}
+    [text] あなたの精算  {width=fill_container fill=$text fontSize=16 fontWeight=700}
+    [frame] <Demo Badge> Demo  {gap=6 padding=[4,10] fill=#EEF1F5 cornerRadius=999 stroke=$border-strong alignItems=center}
+      [icon] Icon  {width=14 height=14 fill=$text-sub icon=flask-conical}
+      [text] デモ  {fill=$text-sub fontSize=13 fontWeight=normal}
+  [frame] Content  {layout=vertical width=fill_container gap=16 padding=[16,16,24,16]}
+    [frame] <Badge> Badge 本人だけが閲覧できます  {gap=6 padding=[4,10] fill=#EEF1F5 cornerRadius=999 alignItems=center}
+      [icon] Icon  {width=16 height=16 fill=$text-sub icon=lock}
+      [text] 本人だけが閲覧できます  {fill=$text-sub fontSize=14 fontWeight=500}
+    [frame] Stage Card  {layout=vertical width=fill_container gap=8 padding=16 fill=$surface cornerRadius=12 stroke=$border}
+      [text] 現在の段階  {fill=$text-muted fontSize=12 fontWeight=normal}
+      [text] 返金の請求受付中・回収金の精算中  {width=fill_container fill=$text fontSize=16 fontWeight=700}
+      [frame] Next  {gap=6 padding=[4,0,0,0] alignItems=center}
+        [icon] icon-circle-arrow-right  {width=16 height=16 fill=$primary-dark icon=circle-arrow-right}
+        [text] 次にすること  {fill=$primary-dark fontSize=12 fontWeight=700}
+      [text] 返金を請求できる金額があります。回収金は振込前の確認期間中です。  {width=fill_container fill=$text fontSize=14 fontWeight=normal}
+    [frame] Switch  {width=fill_container gap=4 padding=4 fill=#E9EDF2 cornerRadius=12}
+      [frame] Seg 相談費などの返金  {width=fill_container height=44 fill=$surface cornerRadius=9 justifyContent=center alignItems=center}
+        [text] 相談費などの返金  {fill=$text fontSize=14 fontWeight=700}
+      [frame] Seg 回収金の受取り  {width=fill_container height=44 cornerRadius=9 justifyContent=center alignItems=center}
+        [text] 回収金の受取り  {fill=$text-sub fontSize=14 fontWeight=500}
+    [frame] Refund  {layout=vertical width=fill_container gap=4 padding=[16,16,8,16] fill=$surface cornerRadius=12 stroke=$border}
+      [text] 相談費などの返金  {width=fill_container fill=$text fontSize=18 fontWeight=700}
+      [text] 対象：法人会員・利用者の共同相談（精算確定後の想定）  {width=fill_container fill=$text-muted fontSize=12 fontWeight=normal}
+      [frame] <Cost Row> Cost 拠出額  {width=fill_container gap=16 padding=[12,0] stroke=$border alignItems=center}
+        [frame] Left  {layout=vertical width=fill_container gap=2}
+          [text] 拠出額  {width=fill_container fill=$text-sub fontSize=16 fontWeight=normal}
+        [frame] Right  {layout=vertical gap=2 alignItems=end}
+          [text] 10.00 USDC  {fill=$text fontSize=16 fontWeight=700}
+          [text] 参考 約1,500円  {fill=$text-muted fontSize=13 fontWeight=normal}
+      [frame] <Cost Row> Cost 確定費用（按分）  {width=fill_container gap=16 padding=[12,0] stroke=$border alignItems=center}
+        [frame] Left  {layout=vertical width=fill_container gap=2}
+          [text] 確定費用（按分）  {width=fill_container fill=$text-sub fontSize=16 fontWeight=normal}
+        [frame] Right  {layout=vertical gap=2 alignItems=end}
+          [text] − 8.50 USDC  {fill=$text fontSize=16 fontWeight=700}
+      [frame] <Cost Row> Cost 返金可能額  {width=fill_container gap=16 padding=[12,0] stroke=$border alignItems=center}
+        [frame] Left  {layout=vertical width=fill_container gap=2}
+          [text] 返金可能額  {width=fill_container fill=$text-sub fontSize=16 fontWeight=normal}
+        [frame] Right  {layout=vertical gap=2 alignItems=end}
+          [text] 1.50 USDC  {fill=$text fontSize=16 fontWeight=700}
+      [frame] <Cost Row> Cost 受取予定額  {width=fill_container gap=16 padding=[12,0] stroke=#00000000 alignItems=center}
+        [frame] Left  {layout=vertical width=fill_container gap=2}
+          [text] 受取予定額  {width=fill_container fill=$text fontSize=16 fontWeight=700}
+        [frame] Right  {layout=vertical gap=2 alignItems=end}
+          [text] 1.50 USDC  {fill=$text fontSize=20 fontWeight=700}
+          [text] 参考 約225円  {fill=$text-muted fontSize=13 fontWeight=normal}
+    [frame] Claim Status  {width=fill_container gap=10 padding=[12,14] fill=$green-soft cornerRadius=10 alignItems=center}
+      [frame] <Badge> Badge 請求できます  {gap=6 padding=[4,10] fill=$surface cornerRadius=999 alignItems=center}
+        [icon] Icon  {width=16 height=16 fill=$green icon=circle-check}
+        [text] 請求できます  {fill=$green fontSize=14 fontWeight=500}
+      [text] 返金条件成立  {width=fill_container fill=$green fontSize=13 fontWeight=500}
+    [text] 返金条件を満たしているため、管理者の個別承認を待たずに本人の操作で請求できます。  {width=fill_container fill=$text-sub fontSize=14 fontWeight=normal}
+    [frame] <Button/Text> Btn 別の経路で手続きを確認する  {height=44 gap=6 padding=[0,4] alignItems=center}
+      [text] 別の経路で手続きを確認する  {fill=$primary-dark fontSize=16 fontWeight=500}
+      [icon] Icon  {width=18 height=18 fill=$primary-dark icon=chevron-right}
+    [frame] Recovery Preview  {layout=vertical width=fill_container gap=8 padding=16 fill=#F4F6F9 cornerRadius=12 stroke=$border}
+      [frame] Head  {width=fill_container justifyContent=space_between alignItems=center}
+        [text] 回収金の受取り  {fill=$text fontSize=16 fontWeight=700}
+        [frame] <Badge> Badge 精算中  {gap=6 padding=[4,10] fill=$amber-soft cornerRadius=999 alignItems=center}
+          [icon] Icon  {width=16 height=16 fill=$amber icon=clock-3}
+          [text] 精算中  {fill=$amber fontSize=14 fontWeight=500}
+      [text] 〔架空の別シナリオ〕今回の振込額 3,900円・最終的な収支 ＋3,300円。振込前に内容を確認できます。  {width=fill_container fill=$text-sub fontSize=14 fontWeight=normal}
+      [frame] <Button/Text> Btn 回収金の内訳を見る  {height=44 gap=6 padding=[0,4] alignItems=center}
+        [text] 回収金の内訳を見る  {fill=$primary-dark fontSize=16 fontWeight=500}
+        [icon] Icon  {width=18 height=18 fill=$primary-dark icon=chevron-right}
+  [frame] CTA Bar  {layout=vertical width=fill_container gap=8 padding=[12,16] fill=$surface stroke=$border}
+    [frame] <Button/Primary> Btn 1.50 USDCの返金を請求する  {width=fill_container height=52 gap=8 padding=[0,24] fill=$primary cornerRadius=10 justifyContent=center alignItems=center}
+      [icon] Icon  {width=20 height=20 fill=#FFFFFF icon=undo-2}
+      [text] 1.50 USDCの返金を請求する  {fill=#FFFFFF fontSize=16 fontWeight=700}
+  [frame] <Mobile Bottom Nav> Bottom Nav  {width=fill_container height=84 padding=[8,8,20,8] fill=$surface stroke=$border}
+    [frame] Tab 探す  {layout=vertical width=fill_container height=fill_container gap=4 justifyContent=center alignItems=center}
+      [icon] Icon  {width=24 height=24 fill=$text-muted icon=search}
+      [text] 探す  {fill=$text-muted fontSize=12 fontWeight=500}
+    [frame] Tab 参加中  {layout=vertical width=fill_container height=fill_container gap=4 justifyContent=center alignItems=center}
+      [icon] Icon  {width=24 height=24 fill=$text-muted icon=folder-open}
+      [text] 参加中  {fill=$text-muted fontSize=12 fontWeight=500}
+    [frame] Tab 作る  {layout=vertical width=fill_container height=fill_container gap=4 justifyContent=center alignItems=center}
+      [icon] Icon  {width=24 height=24 fill=$text-muted icon=circle-plus}
+      [text] 作る  {fill=$text-muted fontSize=12 fontWeight=500}
+    [frame] Tab お金の記録  {layout=vertical width=fill_container height=fill_container gap=4 justifyContent=center alignItems=center}
+      [icon] Icon  {width=24 height=24 fill=$primary icon=receipt-text}
+      [text] お金の記録  {fill=$primary-dark fontSize=12 fontWeight=700}
+    [frame] Tab 通知  {layout=vertical width=fill_container height=fill_container gap=4 justifyContent=center alignItems=center}
+      [icon] Icon  {width=24 height=24 fill=$text-muted icon=bell}
+      [text] 通知  {fill=$text-muted fontSize=12 fontWeight=500}

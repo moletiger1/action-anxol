@@ -1,0 +1,6 @@
+[frame] グループC_拠出・弁護士の提案・審議  {layout=vertical width=1440 gap=6}
+  [frame] Head  {gap=16 alignItems=center}
+    [frame] Tag  {width=56 height=56 fill=$primary cornerRadius=12 justifyContent=center alignItems=center}
+      [text] C  {fill=#FFFFFF fontSize=28 fontWeight=700}
+    [text] 拠出・弁護士の提案・審議  {fill=$text fontSize=36 fontWeight=700}
+  [text] C01 拠出確認（状態の段階違い）／C02 提案の比較・審議（審議役の確認ダイアログ）／C03 弁護士向け提案作成  {width=fill_container fill=$text-sub fontSize=16 fontWeight=normal}

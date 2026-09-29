@@ -1,0 +1,85 @@
+[frame] M_C01_共同相談費の拠出確認_Mobile  {layout=vertical width=390 fill=$bg}
+  [frame] <Mobile Header> Mobile Header  {width=390 height=56 gap=4 padding=[0,12,0,4] fill=$surface stroke=$border alignItems=center}
+    [frame] Back  {width=44 height=44 justifyContent=center alignItems=center}
+      [icon] Back Icon  {width=24 height=24 fill=$text icon=chevron-left}
+    [text] 相談費を拠出  {width=fill_container fill=$text fontSize=16 fontWeight=700}
+    [frame] <Demo Badge> Demo  {gap=6 padding=[4,10] fill=#EEF1F5 cornerRadius=999 stroke=$border-strong alignItems=center}
+      [icon] Icon  {width=14 height=14 fill=$text-sub icon=flask-conical}
+      [text] デモ  {fill=$text-sub fontSize=13 fontWeight=normal}
+  [frame] Content  {layout=vertical width=fill_container gap=16 padding=[16,16,24,16]}
+    [frame] Mobile Stepper  {layout=vertical width=fill_container gap=8}
+      [frame] Head  {width=fill_container justifyContent=space_between}
+        [text] 段階 2／4  {fill=$primary-dark fontSize=13 fontWeight=700}
+        [text] ルールの確認  {fill=$text fontSize=13 fontWeight=700}
+      [frame] Bars  {width=fill_container gap=4}
+        [rectangle] Seg  {width=fill_container height=6 fill=$primary cornerRadius=3}
+        [rectangle] Seg  {width=fill_container height=6 fill=$primary cornerRadius=3}
+        [rectangle] Seg  {width=fill_container height=6 fill=$border cornerRadius=3}
+        [rectangle] Seg  {width=fill_container height=6 fill=$border cornerRadius=3}
+    [frame] Stage Card  {layout=vertical width=fill_container gap=8 padding=16 fill=$surface cornerRadius=12 stroke=$border}
+      [text] 現在の段階  {fill=$text-muted fontSize=12 fontWeight=normal}
+      [text] 拠出前の確認  {width=fill_container fill=$text fontSize=16 fontWeight=700}
+      [frame] Next  {gap=6 padding=[4,0,0,0] alignItems=center}
+        [icon] icon-circle-arrow-right  {width=16 height=16 fill=$primary-dark icon=circle-arrow-right}
+        [text] 次にすること  {fill=$primary-dark fontSize=12 fontWeight=700}
+      [text] ルールを確認して、画面上の状態遷移デモを開始できます。実際の送金はありません。  {width=fill_container fill=$text fontSize=14 fontWeight=normal}
+    [frame] Amount  {layout=vertical width=fill_container padding=[8,16] fill=$surface cornerRadius=12 stroke=$border}
+      [frame] <Cost Row> Cost コントラクトへの拠出額  {width=fill_container gap=16 padding=[12,0] stroke=$border alignItems=center}
+        [frame] Left  {layout=vertical width=fill_container gap=2}
+          [text] コントラクトへの拠出額  {width=fill_container fill=$text-sub fontSize=16 fontWeight=normal}
+        [frame] Right  {layout=vertical gap=2 alignItems=end}
+          [text] 10.00 USDC  {fill=$text fontSize=16 fontWeight=700}
+          [text] 参考 約1,500円  {fill=$text-muted fontSize=13 fontWeight=normal}
+      [frame] <Cost Row> Cost 支払資産  {width=fill_container gap=16 padding=[12,0] stroke=$border alignItems=center}
+        [frame] Left  {layout=vertical width=fill_container gap=2}
+          [text] 支払資産  {width=fill_container fill=$text-sub fontSize=16 fontWeight=normal}
+          [text] デモ用のネットワーク  {width=fill_container(0) fill=$text-muted fontSize=13 fontWeight=normal}
+        [frame] Right  {layout=vertical gap=2 alignItems=end}
+          [text] USDC  {fill=$text fontSize=16 fontWeight=700}
+      [frame] <Cost Row> Cost 残高  {width=fill_container gap=16 padding=[12,0] stroke=#00000000 alignItems=center}
+        [frame] Left  {layout=vertical width=fill_container gap=2}
+          [text] 残高  {width=fill_container fill=$text-sub fontSize=16 fontWeight=normal}
+          [text] 拠出後の残高  {width=fill_container(0) fill=$text-muted fontSize=13 fontWeight=normal}
+        [frame] Right  {layout=vertical gap=2 alignItems=end}
+          [text] 25.40 → 15.40 USDC  {fill=$text fontSize=16 fontWeight=700}
+    [text] 円換算は1 USDC＝150円の説明用の仮レートによる参考額です。銀行の円預金をコントラクトが保管するものではありません。  {width=fill_container fill=$text-muted fontSize=12 fontWeight=normal}
+    [frame] Section この募集のルール  {layout=vertical width=fill_container gap=14}
+      [frame] Head  {layout=vertical width=fill_container gap=2}
+        [text] この募集のルール  {width=fill_container fill=$text fontSize=20 fontWeight=700}
+      [frame] Accordion  {layout=vertical width=fill_container fill=$surface cornerRadius=12 stroke=$border}
+        [frame] Acc 使い道  {layout=vertical width=fill_container stroke=$border}
+          [frame] Head  {width=fill_container height=52 gap=10 padding=[0,16] alignItems=center}
+            [text] 使い道  {width=fill_container fill=$text fontSize=15 fontWeight=700}
+            [icon] icon-chevron-up  {width=20 height=20 fill=$text-sub icon=chevron-up}
+          [frame] Body  {layout=vertical width=fill_container padding=[0,16,14,16]}
+            [text] 法律相談 1,200／初期調査 500／資料整理 200／決済等の予備費 100（USDC）。この範囲外には使われません。  {width=fill_container fill=$text-sub fontSize=14 fontWeight=normal}
+        [frame] Acc 募集期限・目標額  {layout=vertical width=fill_container stroke=$border}
+          [frame] Head  {width=fill_container height=52 gap=10 padding=[0,16] alignItems=center}
+            [text] 募集期限・目標額  {width=fill_container fill=$text fontSize=15 fontWeight=700}
+            [icon] icon-chevron-down  {width=20 height=20 fill=$text-sub icon=chevron-down}
+        [frame] Acc 誰が確認するか  {layout=vertical width=fill_container stroke=$border}
+          [frame] Head  {width=fill_container height=52 gap=10 padding=[0,16] alignItems=center}
+            [text] 誰が確認するか  {width=fill_container fill=$text fontSize=15 fontWeight=700}
+            [icon] icon-chevron-down  {width=20 height=20 fill=$text-sub icon=chevron-down}
+        [frame] Acc 返金できる条件  {layout=vertical width=fill_container stroke=$border}
+          [frame] Head  {width=fill_container height=52 gap=10 padding=[0,16] alignItems=center}
+            [text] 返金できる条件  {width=fill_container fill=$text fontSize=15 fontWeight=700}
+            [icon] icon-chevron-down  {width=20 height=20 fill=$text-sub icon=chevron-down}
+        [frame] Acc 拠出の意味（議決権・取り分は増えません）  {layout=vertical width=fill_container}
+          [frame] Head  {width=fill_container height=52 gap=10 padding=[0,16] alignItems=center}
+            [text] 拠出の意味（議決権・取り分は増えません）  {width=fill_container fill=$text fontSize=15 fontWeight=700}
+            [icon] icon-chevron-down  {width=20 height=20 fill=$text-sub icon=chevron-down}
+    [frame] Check 上記のルールを確認しました  {width=fill_container gap=12 padding=[12,14] fill=$primary-soft cornerRadius=10}
+      [frame] Box  {width=22 height=22 fill=$primary cornerRadius=6 stroke=$primary justifyContent=center alignItems=center}
+        [icon] icon-check  {width=16 height=16 fill=#FFFFFF icon=check}
+      [frame] Text  {layout=vertical width=fill_container gap=2}
+        [text] 上記のルールを確認しました  {width=fill_container fill=$text fontSize=16 fontWeight=normal}
+        [text] 初期状態では未チェックです  {width=fill_container fill=$text-muted fontSize=14 fontWeight=normal}
+    [text] 次の画面で拠出状態を画面上に再現します。実際のウォレット接続・送金はありません。ネットワーク手数料は別途必要ですが、このデモでは見積もりません。  {width=fill_container fill=$text-sub fontSize=14 fontWeight=normal}
+  [frame] CTA Bar  {layout=vertical width=fill_container gap=8 padding=[12,16] fill=$surface stroke=$border alignItems=center}
+    [frame] <Button/Primary> Btn 10 USDCを拠出する  {width=fill_container height=52 gap=8 padding=[0,24] fill=$primary cornerRadius=10 justifyContent=center alignItems=center}
+      [icon] Icon  {width=20 height=20 fill=#FFFFFF icon=wallet}
+      [text] 10 USDCを拠出する  {fill=#FFFFFF fontSize=16 fontWeight=700}
+    [frame] <Button/Text> Btn 戻って金額を変える  {height=44 gap=6 padding=[0,4] alignItems=center}
+      [text] 戻って金額を変える  {fill=$primary-dark fontSize=16 fontWeight=500}
+      [icon] Icon  {width=18 height=18 fill=$primary-dark icon=chevron-right}

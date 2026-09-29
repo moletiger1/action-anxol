@@ -1,0 +1,75 @@
+[frame] M_B01_案件作成_似た案件の確認_Mobile  {layout=vertical width=390 fill=$bg}
+  [frame] <Mobile Header> Mobile Header  {width=390 height=56 gap=4 padding=[0,12,0,4] fill=$surface stroke=$border alignItems=center}
+    [frame] Back  {width=44 height=44 justifyContent=center alignItems=center}
+      [icon] Back Icon  {width=24 height=24 fill=$text icon=chevron-left}
+    [text] 案件を作る  {width=fill_container fill=$text fontSize=16 fontWeight=700}
+    [frame] <Demo Badge> Demo  {gap=6 padding=[4,10] fill=#EEF1F5 cornerRadius=999 stroke=$border-strong alignItems=center}
+      [icon] Icon  {width=14 height=14 fill=$text-sub icon=flask-conical}
+      [text] デモ  {fill=$text-sub fontSize=13 fontWeight=normal}
+  [frame] Content  {layout=vertical width=fill_container gap=16 padding=[16,16,24,16]}
+    [frame] Top  {width=fill_container justifyContent=space_between alignItems=center}
+      [frame] Autosave  {gap=6 alignItems=center}
+        [icon] icon-cloud-check  {width=18 height=18 fill=$green icon=cloud-check}
+        [text] 自動保存済み  {fill=$text-sub fontSize=14 fontWeight=normal}
+      [frame] <Button/Text> Btn 保存して閉じる  {height=44 gap=6 padding=[0,4] alignItems=center}
+        [text] 保存して閉じる  {fill=$primary-dark fontSize=16 fontWeight=500}
+        [icon] Icon  {width=18 height=18 fill=$primary-dark icon=chevron-right}
+    [frame] Mobile Stepper  {layout=vertical width=fill_container gap=8}
+      [frame] Head  {width=fill_container justifyContent=space_between}
+        [text] 段階 2／4  {fill=$primary-dark fontSize=13 fontWeight=700}
+        [text] 似た案件の確認  {fill=$text fontSize=13 fontWeight=700}
+      [frame] Bars  {width=fill_container gap=4}
+        [rectangle] Seg  {width=fill_container height=6 fill=$primary cornerRadius=3}
+        [rectangle] Seg  {width=fill_container height=6 fill=$primary cornerRadius=3}
+        [rectangle] Seg  {width=fill_container height=6 fill=$border cornerRadius=3}
+        [rectangle] Seg  {width=fill_container height=6 fill=$border cornerRadius=3}
+    [frame] Stage Card  {layout=vertical width=fill_container gap=8 padding=16 fill=$surface cornerRadius=12 stroke=$border}
+      [text] 現在の段階  {fill=$text-muted fontSize=12 fontWeight=normal}
+      [text] 似た案件の確認（段階2／4）  {width=fill_container fill=$text fontSize=16 fontWeight=700}
+      [frame] Next  {gap=6 padding=[4,0,0,0] alignItems=center}
+        [icon] icon-circle-arrow-right  {width=16 height=16 fill=$primary-dark icon=circle-arrow-right}
+        [text] 次にすること  {fill=$primary-dark fontSize=12 fontWeight=700}
+      [text] 同じ出来事なら既存の事件に参加するか、別の募集を追加できます。違う出来事ならそのまま進めます。  {width=fill_container fill=$text fontSize=14 fontWeight=normal}
+    [text] 入力内容に近い事件が2件見つかりました  {width=fill_container fill=$text fontSize=20 fontWeight=700}
+    [frame] Confirmed Duplicate  {layout=vertical width=fill_container gap=12 padding=16 fill=#FBFEFE cornerRadius=12 stroke=$primary}
+      [frame] Head  {width=fill_container gap=8 alignItems=center}
+        [icon] icon-link-2  {width=18 height=18 fill=$primary-dark icon=link-2}
+        [text] 同じ出来事はすでに登録されています  {width=fill_container fill=$primary-dark fontSize=16 fontWeight=700}
+      [frame] <Badge> Badge 公表資料で同じ出来事と確認  {gap=6 padding=[4,10] fill=$green-soft cornerRadius=999 alignItems=center}
+        [icon] Icon  {width=16 height=16 fill=$green icon=badge-check}
+        [text] 公表資料で同じ出来事と確認  {fill=$green fontSize=14 fontWeight=500}
+      [text] タイムズカーの個人情報漏えいに関する共同相談  {width=fill_container fill=$text fontSize=18 fontWeight=700}
+      [text] 募集中の相談 2件・更新 2026年9月29日  {fill=$text-muted fontSize=13 fontWeight=normal}
+      [frame] <Button/Primary> Btn この案件に参加する  {width=fill_container height=48 gap=8 padding=[0,24] fill=$primary cornerRadius=10 justifyContent=center alignItems=center}
+        [icon] Icon  {width=20 height=20 fill=#FFFFFF icon=user-plus}
+        [text] この案件に参加する  {fill=#FFFFFF fontSize=16 fontWeight=700}
+      [frame] <Button/Secondary> Btn この事件に別の募集を追加する  {width=fill_container height=48 gap=8 padding=[0,24] fill=$surface cornerRadius=10 stroke=$primary justifyContent=center alignItems=center}
+        [icon] Icon  {width=20 height=20 fill=$primary-dark icon=plus}
+        [text] この事件に別の募集を追加する  {fill=$primary-dark fontSize=16 fontWeight=700}
+    [frame] Similar Candidate  {layout=vertical width=fill_container gap=10 padding=16 fill=$surface cornerRadius=12 stroke=$border}
+      [frame] <Badge> Badge 似ている可能性（企業名・時期）  {gap=6 padding=[4,10] fill=#EEF1F5 cornerRadius=999 alignItems=center}
+        [icon] Icon  {width=16 height=16 fill=$text-sub icon=git-compare-arrows}
+        [text] 似ている可能性（企業名・時期）  {fill=$text-sub fontSize=14 fontWeight=500}
+      [text] 〔架空の例〕カーシェア予約アプリで他の会員情報が表示された件  {width=fill_container fill=$text fontSize=16 fontWeight=700}
+      [frame] Actions  {layout=vertical width=fill_container}
+        [frame] <Button/Text> Btn この案件に参加する  {height=44 gap=6 padding=[0,4] alignItems=center}
+          [text] この案件に参加する  {fill=$primary-dark fontSize=16 fontWeight=500}
+          [icon] Icon  {width=18 height=18 fill=$primary-dark icon=chevron-right}
+        [frame] <Button/Text> Btn この事件に別の募集を追加する  {height=44 gap=6 padding=[0,4] alignItems=center}
+          [text] この事件に別の募集を追加する  {fill=$primary-dark fontSize=16 fontWeight=500}
+          [icon] Icon  {width=18 height=18 fill=$primary-dark icon=chevron-right}
+    [frame] Different Event  {layout=vertical width=fill_container gap=8 padding=16 fill=#F1F5F6 cornerRadius=12}
+      [text] どちらとも違う出来事の場合  {width=fill_container fill=$text fontSize=16 fontWeight=700}
+      [text] 既存の事件との違いを一言添えて、別の事件として説明できます。似ているという判定だけで作成が止まることはありません。  {width=fill_container fill=$text-sub fontSize=14 fontWeight=normal}
+    [frame] Callout   {width=fill_container gap=12 padding=[14,16] fill=#EEF1F5 cornerRadius=10}
+      [frame] IconBox  {height=26 alignItems=center}
+        [icon] icon-shield-check  {width=20 height=20 fill=$text-sub icon=shield-check}
+      [frame] Text  {layout=vertical width=fill_container gap=2}
+        [text] 既存の事件に参加しても、入力内容や資料が自動で移ることはありません。  {width=fill_container fill=$text fontSize=14 fontWeight=normal}
+  [frame] CTA Bar  {layout=vertical width=fill_container gap=8 padding=[12,16] fill=$surface stroke=$border}
+    [frame] Row  {width=fill_container gap=12}
+      [frame] <Button/Secondary> Btn 戻る  {height=48 gap=8 padding=[0,24] fill=$surface cornerRadius=10 stroke=$primary justifyContent=center alignItems=center}
+        [icon] Icon  {width=20 height=20 fill=$primary-dark icon=arrow-left}
+        [text] 戻る  {fill=$primary-dark fontSize=16 fontWeight=700}
+      [frame] <Button/Secondary> Btn 別の事件として次へ  {width=fill_container height=48 gap=8 padding=[0,24] fill=$surface cornerRadius=10 stroke=$primary justifyContent=center alignItems=center}
+        [text] 別の事件として次へ  {fill=$primary-dark fontSize=16 fontWeight=700}

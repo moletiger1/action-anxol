@@ -1,0 +1,141 @@
+[frame] M_A03_募集詳細_Mobile  {layout=vertical width=390 fill=$bg}
+  [frame] <Mobile Header> Mobile Header  {width=390 height=56 gap=4 padding=[0,12,0,4] fill=$surface stroke=$border alignItems=center}
+    [frame] Back  {width=44 height=44 justifyContent=center alignItems=center}
+      [icon] Back Icon  {width=24 height=24 fill=$text icon=chevron-left}
+    [text] 募集詳細  {width=fill_container fill=$text fontSize=16 fontWeight=700}
+    [frame] <Demo Badge> Demo  {gap=6 padding=[4,10] fill=#EEF1F5 cornerRadius=999 stroke=$border-strong alignItems=center}
+      [icon] Icon  {width=14 height=14 fill=$text-sub icon=flask-conical}
+      [text] デモ  {fill=$text-sub fontSize=13 fontWeight=normal}
+  [frame] Content  {layout=vertical width=fill_container gap=16 padding=[16,16,24,16]}
+    [frame] Badges  {gap=6}
+      [frame] <Badge> Badge 参加希望を受付中  {gap=6 padding=[4,10] fill=$primary-soft cornerRadius=999 alignItems=center}
+        [icon] Icon  {width=16 height=16 fill=$primary-dark icon=users}
+        [text] 参加希望を受付中  {fill=$primary-dark fontSize=14 fontWeight=500}
+      [frame] <Badge> Badge 相談費を募集中  {gap=6 padding=[4,10] fill=$primary-soft cornerRadius=999 alignItems=center}
+        [icon] Icon  {width=16 height=16 fill=$primary-dark icon=hand-coins}
+        [text] 相談費を募集中  {fill=$primary-dark fontSize=14 fontWeight=500}
+    [text] 法人会員・利用者の共同相談  {width=fill_container fill=$text fontSize=24 fontWeight=700}
+    [frame] Event Link  {gap=6 alignItems=center}
+      [icon] icon-folder-open  {width=16 height=16 fill=$primary-dark icon=folder-open}
+      [text] 事件：タイムズカーの個人情報漏えい  {fill=$primary-dark fontSize=14 fontWeight=normal}
+    [frame] Stage Card  {layout=vertical width=fill_container gap=8 padding=16 fill=$surface cornerRadius=12 stroke=$border}
+      [text] 現在の段階  {fill=$text-muted fontSize=12 fontWeight=normal}
+      [text] 相談費を募集中  {width=fill_container fill=$text fontSize=16 fontWeight=700}
+      [frame] Next  {gap=6 padding=[4,0,0,0] alignItems=center}
+        [icon] icon-circle-arrow-right  {width=16 height=16 fill=$primary-dark icon=circle-arrow-right}
+        [text] 次にすること  {fill=$primary-dark fontSize=12 fontWeight=700}
+      [text] 対象に当てはまるか確認して、参加希望を登録してください。拠出は登録後に任意で行えます。  {width=fill_container fill=$text fontSize=14 fontWeight=normal}
+    [frame] Mobile Stepper  {layout=vertical width=fill_container gap=8}
+      [frame] Head  {width=fill_container justifyContent=space_between}
+        [text] 段階 2／5  {fill=$primary-dark fontSize=13 fontWeight=700}
+        [text] 相談費の募集  {fill=$text fontSize=13 fontWeight=700}
+      [frame] Bars  {width=fill_container gap=4}
+        [rectangle] Seg  {width=fill_container height=6 fill=$primary cornerRadius=3}
+        [rectangle] Seg  {width=fill_container height=6 fill=$primary cornerRadius=3}
+        [rectangle] Seg  {width=fill_container height=6 fill=$border cornerRadius=3}
+        [rectangle] Seg  {width=fill_container height=6 fill=$border cornerRadius=3}
+        [rectangle] Seg  {width=fill_container height=6 fill=$border cornerRadius=3}
+    [frame] Summary  {layout=vertical width=fill_container gap=14 padding=16 fill=$surface cornerRadius=12 stroke=$border}
+      [frame] <Budget Progress> Progress  {layout=vertical width=fill_container gap=10}
+        [frame] Top  {width=fill_container justifyContent=space_between alignItems=end}
+          [frame] Amount  {layout=vertical}
+            [text] 現在 1,120 USDC  {fill=$text fontSize=20 fontWeight=700}
+            [text] 参考 約168,000円  {fill=$text-muted fontSize=13 fontWeight=normal}
+          [text] 56%  {fill=$primary-dark fontSize=20 fontWeight=700}
+        [frame] Track  {width=fill_container height=10 fill=$border cornerRadius=5}
+          [rectangle] Bar  {width=182 height=10 fill=$primary cornerRadius=5}
+        [text] 目標 2,000 USDC（参考 約300,000円）  {width=fill_container fill=$text-muted fontSize=13 fontWeight=normal}
+      [frame] Facts  {layout=vertical width=fill_container}
+        [frame] KV 募集期限  {width=fill_container gap=16 padding=[10,0] stroke=$border}
+          [text] 募集期限  {width=88 fill=$text-muted fontSize=14 fontWeight=normal}
+          [text] 2026年11月30日（残り62日）  {width=fill_container fill=$text fontSize=15 fontWeight=normal}
+        [frame] KV 登録  {width=fill_container gap=16 padding=[10,0] stroke=#00000000}
+          [text] 登録  {width=88 fill=$text-muted fontSize=14 fontWeight=normal}
+          [text] 248人（拠出は任意）  {width=fill_container fill=$text fontSize=15 fontWeight=normal}
+      [frame] Callout   {width=fill_container gap=12 padding=[14,16] fill=$primary-soft cornerRadius=10}
+        [frame] IconBox  {height=26 alignItems=center}
+          [icon] icon-info  {width=20 height=20 fill=$primary-dark icon=info}
+        [frame] Text  {layout=vertical width=fill_container gap=2}
+          [text] 今回集めるのは共同相談費です。訴訟への正式依頼は相談後に本人が決めます。  {width=fill_container fill=$text fontSize=14 fontWeight=normal}
+      [frame] <Button/Text> Btn 入金前に使途・決め方・返金条件を確認  {height=44 gap=6 padding=[0,4] alignItems=center}
+        [text] 入金前に使途・決め方・返金条件を確認  {fill=$primary-dark fontSize=16 fontWeight=500}
+        [icon] Icon  {width=18 height=18 fill=$primary-dark icon=chevron-right}
+    [frame] Tabs  {width=fill_container gap=16 stroke=$border}
+      [frame] <Tab Item> Tab 概要  {layout=vertical padding=[12,4,10,4] stroke=$primary}
+        [text] 概要  {fill=$primary-dark fontSize=16 fontWeight=700}
+      [frame] <Tab Item> Tab 資料・更新  {layout=vertical padding=[12,4,10,4] stroke=#00000000}
+        [text] 資料・更新  {fill=$text-sub fontSize=16 fontWeight=500}
+      [frame] <Tab Item> Tab 提案  {layout=vertical padding=[12,4,10,4] stroke=#00000000}
+        [text] 提案  {fill=$text-sub fontSize=16 fontWeight=500}
+      [frame] <Tab Item> Tab お金の記録  {layout=vertical padding=[12,4,10,4] stroke=#00000000}
+        [text] お金の記録  {fill=$text-sub fontSize=16 fontWeight=500}
+    [frame] Section 参加対象  {layout=vertical width=fill_container gap=14}
+      [frame] Head  {layout=vertical width=fill_container gap=2}
+        [text] 参加対象  {width=fill_container fill=$text fontSize=20 fontWeight=700}
+      [frame] Item  {width=fill_container gap=10}
+        [frame] IconBox  {height=26 alignItems=center}
+          [icon] icon-circle-check  {width=18 height=18 fill=$primary icon=circle-check}
+        [text] 法人会員として契約している企業・団体の担当者  {width=fill_container fill=$text fontSize=15 fontWeight=normal}
+      [frame] Item  {width=fill_container gap=10}
+        [frame] IconBox  {height=26 alignItems=center}
+          [icon] icon-circle-check  {width=18 height=18 fill=$primary icon=circle-check}
+        [text] 法人会員の契約で車両を利用した個人  {width=fill_container fill=$text fontSize=15 fontWeight=normal}
+      [frame] Item  {width=fill_container gap=10}
+        [frame] IconBox  {height=26 alignItems=center}
+          [icon] icon-info  {width=18 height=18 fill=$primary icon=info}
+        [text] 対象か分からない方も登録できます  {width=fill_container fill=$text fontSize=15 fontWeight=normal}
+    [frame] Section 参加の状況  {layout=vertical width=fill_container gap=14}
+      [frame] Head  {layout=vertical width=fill_container gap=2}
+        [text] 参加の状況  {width=fill_container fill=$text fontSize=20 fontWeight=700}
+        [text] 段階ごとの別の数です。確認済み被害者数ではありません。  {width=fill_container fill=$text-muted fontSize=14 fontWeight=normal}
+      [frame] Grid  {layout=vertical width=fill_container gap=8}
+        [frame] Row  {width=fill_container gap=8}
+          [frame] M 登録  {layout=vertical width=fill_container gap=2 padding=[12,14] fill=$surface cornerRadius=12 stroke=$border}
+            [text] 登録  {width=fill_container fill=$text-sub fontSize=13 fontWeight=700}
+            [text] 248人  {fill=$text fontSize=22 fontWeight=700}
+          [frame] M 本人・関係性の確認  {layout=vertical width=fill_container gap=2 padding=[12,14] fill=$surface cornerRadius=12 stroke=$border}
+            [text] 本人・関係性の確認  {width=fill_container fill=$text-sub fontSize=13 fontWeight=700}
+            [text] 176人  {fill=$text fontSize=22 fontWeight=700}
+        [frame] Row  {width=fill_container gap=8}
+          [frame] M 資料確認  {layout=vertical width=fill_container gap=2 padding=[12,14] fill=$surface cornerRadius=12 stroke=$border}
+            [text] 資料確認  {width=fill_container fill=$text-sub fontSize=13 fontWeight=700}
+            [text] 124人  {fill=$text fontSize=22 fontWeight=700}
+          [frame] M 拠出  {layout=vertical width=fill_container gap=2 padding=[12,14] fill=$surface cornerRadius=12 stroke=$border}
+            [text] 拠出  {width=fill_container fill=$text-sub fontSize=13 fontWeight=700}
+            [text] 112人  {fill=$text fontSize=22 fontWeight=700}
+    [frame] Section この募集の支払条件  {layout=vertical width=fill_container gap=14}
+      [frame] Head  {layout=vertical width=fill_container gap=2}
+        [text] この募集の支払条件  {width=fill_container fill=$text fontSize=20 fontWeight=700}
+      [frame] Card  {layout=vertical width=fill_container padding=[4,16] fill=$surface cornerRadius=12 stroke=$border}
+        [frame] P 使い道  {layout=vertical width=fill_container gap=2 padding=[12,0] stroke=$border}
+          [text] 使い道  {fill=$text-muted fontSize=13 fontWeight=700}
+          [text] 法律相談・初期調査・資料整理・予備費（計2,000 USDC）  {width=fill_container fill=$text fontSize=15 fontWeight=normal}
+        [frame] P 誰が確認するか  {layout=vertical width=fill_container gap=2 padding=[12,0] stroke=$border}
+          [text] 誰が確認するか  {fill=$text-muted fontSize=13 fontWeight=700}
+          [text] 参加者から選ばれた支出確認担当  {width=fill_container fill=$text fontSize=15 fontWeight=normal}
+        [frame] P 返金できる条件  {layout=vertical width=fill_container gap=2 padding=[12,0]}
+          [text] 返金できる条件  {fill=$text-muted fontSize=13 fontWeight=700}
+          [text] 目標未達・相談先未決定のとき、未使用分を本人が請求  {width=fill_container fill=$text fontSize=15 fontWeight=normal}
+  [frame] CTA Bar  {layout=vertical width=fill_container gap=8 padding=[12,16] fill=$surface stroke=$border alignItems=center}
+    [frame] <Button/Primary> Btn 当事者として参加する  {width=fill_container height=52 gap=8 padding=[0,24] fill=$primary cornerRadius=10 justifyContent=center alignItems=center}
+      [icon] Icon  {width=20 height=20 fill=#FFFFFF icon=user-plus}
+      [text] 当事者として参加する  {fill=#FFFFFF fontSize=16 fontWeight=700}
+    [frame] <Button/Text> Btn 応援として支援する  {height=44 gap=6 padding=[0,4] alignItems=center}
+      [text] 応援として支援する  {fill=$primary-dark fontSize=16 fontWeight=500}
+      [icon] Icon  {width=18 height=18 fill=$primary-dark icon=chevron-right}
+  [frame] <Mobile Bottom Nav> Bottom Nav  {width=fill_container height=84 padding=[8,8,20,8] fill=$surface stroke=$border}
+    [frame] Tab 探す  {layout=vertical width=fill_container height=fill_container gap=4 justifyContent=center alignItems=center}
+      [icon] Icon  {width=24 height=24 fill=$primary icon=search}
+      [text] 探す  {fill=$primary-dark fontSize=12 fontWeight=700}
+    [frame] Tab 参加中  {layout=vertical width=fill_container height=fill_container gap=4 justifyContent=center alignItems=center}
+      [icon] Icon  {width=24 height=24 fill=$text-muted icon=folder-open}
+      [text] 参加中  {fill=$text-muted fontSize=12 fontWeight=500}
+    [frame] Tab 作る  {layout=vertical width=fill_container height=fill_container gap=4 justifyContent=center alignItems=center}
+      [icon] Icon  {width=24 height=24 fill=$text-muted icon=circle-plus}
+      [text] 作る  {fill=$text-muted fontSize=12 fontWeight=500}
+    [frame] Tab お金の記録  {layout=vertical width=fill_container height=fill_container gap=4 justifyContent=center alignItems=center}
+      [icon] Icon  {width=24 height=24 fill=$text-muted icon=receipt-text}
+      [text] お金の記録  {fill=$text-muted fontSize=12 fontWeight=500}
+    [frame] Tab 通知  {layout=vertical width=fill_container height=fill_container gap=4 justifyContent=center alignItems=center}
+      [icon] Icon  {width=24 height=24 fill=$text-muted icon=bell}
+      [text] 通知  {fill=$text-muted fontSize=12 fontWeight=500}

@@ -1,0 +1,267 @@
+[frame] C02_弁護士提案の比較審議_Desktop  {width=1440 height=1730 fill=$bg}
+  [frame] <App Sidebar> Sidebar  {layout=vertical width=248 height=fill_container gap=20 padding=[20,14] fill=$surface stroke=$border}
+    [frame] Logo  {gap=10 alignItems=center}
+      [frame] Mark  {width=36 height=36 fill=$primary cornerRadius=10 justifyContent=center alignItems=center}
+        [icon] icon-users-round  {width=20 height=20 fill=#FFFFFF icon=users-round}
+      [text] 集団訴訟.jp  {fill=$text fontSize=20 fontWeight=700}
+      [text] （仮）  {fill=$text-muted fontSize=13 fontWeight=normal}
+    [frame] <Button/Secondary> Create  {width=fill_container height=44 gap=8 padding=[0,24] fill=$surface cornerRadius=10 stroke=$primary justifyContent=center alignItems=center}
+      [icon] Icon  {width=20 height=20 fill=$primary-dark icon=plus}
+      [text] 案件を作る  {fill=$primary-dark fontSize=16 fontWeight=700}
+    [frame] Nav Group  {layout=vertical width=fill_container gap=4}
+      [frame] <Nav Item> Nav 案件を探す  {width=fill_container height=44 gap=12 padding=[0,12] cornerRadius=10 alignItems=center}
+        [icon] Icon  {width=20 height=20 fill=$text-sub icon=search}
+        [text] 案件を探す  {width=fill_container fill=$text-sub fontSize=15 fontWeight=500}
+      [frame] <Nav Item> Nav 参加中の案件  {width=fill_container height=44 gap=12 padding=[0,12] fill=$primary-soft cornerRadius=10 alignItems=center}
+        [icon] Icon  {width=20 height=20 fill=$text-sub icon=folder-open}
+        [text] 参加中の案件  {width=fill_container fill=$text-sub fontSize=15 fontWeight=500}
+      [frame] <Nav Item> Nav お金の記録  {width=fill_container height=44 gap=12 padding=[0,12] cornerRadius=10 alignItems=center}
+        [icon] Icon  {width=20 height=20 fill=$text-sub icon=receipt-text}
+        [text] お金の記録  {width=fill_container fill=$text-sub fontSize=15 fontWeight=500}
+      [frame] <Nav Item> Nav 通知  {width=fill_container height=44 gap=12 padding=[0,12] cornerRadius=10 alignItems=center}
+        [icon] Icon  {width=20 height=20 fill=$text-sub icon=bell}
+        [text] 通知  {width=fill_container fill=$text-sub fontSize=15 fontWeight=500}
+        [frame] Count  {padding=[1,8] fill=$primary cornerRadius=999}
+          [text] 3  {fill=#FFFFFF fontSize=12 fontWeight=700}
+    [frame] Spacer  {width=fill_container height=fill_container}
+    [frame] Lawyer Entry  {width=fill_container gap=10 padding=12 cornerRadius=10 stroke=$border alignItems=center}
+      [icon] icon-briefcase-business  {width=20 height=20 fill=$text-sub icon=briefcase-business}
+      [frame] Text  {layout=vertical width=fill_container}
+        [text] 弁護士用ワークスペース  {width=fill_container fill=$text fontSize=14 fontWeight=700}
+        [text] 提案の作成・送信はこちら  {width=fill_container fill=$text-muted fontSize=12 fontWeight=normal}
+    [frame] Account  {width=fill_container gap=10 padding=4 alignItems=center}
+      [frame] Avatar  {width=36 height=36 fill=#EEF1F5 cornerRadius=18 justifyContent=center alignItems=center}
+        [icon] icon-user  {width=18 height=18 fill=$text-sub icon=user}
+      [frame] User Text  {layout=vertical width=fill_container}
+        [text] あなたのアカウント  {width=fill_container fill=$text fontSize=14 fontWeight=700}
+        [text] メールでサインイン中  {width=fill_container fill=$text-muted fontSize=12 fontWeight=normal}
+    [frame] <Demo Badge> Demo  {gap=6 padding=[4,10] fill=#EEF1F5 cornerRadius=999 stroke=$border-strong alignItems=center}
+      [icon] Icon  {width=14 height=14 fill=$text-sub icon=flask-conical}
+      [text] デモ表示・数値は架空  {fill=$text-sub fontSize=13 fontWeight=normal}
+  [frame] Main  {layout=vertical width=fill_container gap=24 padding=[28,36,72,36]}
+    [frame] Top Bar  {width=fill_container justifyContent=space_between alignItems=end}
+      [frame] Title  {layout=vertical gap=2}
+        [text] 参加中の案件 ／ 法人会員・利用者の共同相談  {fill=$text-muted fontSize=14 fontWeight=normal}
+        [text] 弁護士の提案を比較する  {fill=$text fontSize=28 fontWeight=700}
+      [frame] Right  {gap=16 alignItems=center}
+        [frame] <Badge> Role  {gap=6 padding=[4,10] fill=#EEF1F5 cornerRadius=999 alignItems=center}
+          [icon] Icon  {width=16 height=16 fill=$text-sub icon=user}
+          [text] あなたの役割：参加者（質問・意見を投稿できます）  {fill=$text-sub fontSize=14 fontWeight=500}
+    [frame] <Stage Banner> Stage Banner  {width=fill_container gap=24 padding=[20,24] fill=$surface cornerRadius=12 stroke=$border alignItems=center}
+      [frame] Stage  {layout=vertical width=340 gap=4}
+        [frame] Stage Head  {gap=6 alignItems=center}
+          [icon] Stage Icon  {width=16 height=16 fill=$text-muted icon=flag}
+          [text] 現在の段階  {fill=$text-muted fontSize=13 fontWeight=normal}
+        [text] 弁護士の提案・審議（段階3／5）  {width=fill_container fill=$text fontSize=18 fontWeight=700}
+      [rectangle] VDivider  {width=1 height=56 fill=$border}
+      [frame] Next  {layout=vertical width=fill_container gap=4}
+        [frame] Next Head  {gap=6 alignItems=center}
+          [icon] Next Icon  {width=16 height=16 fill=$primary-dark icon=circle-arrow-right}
+          [text] 次にすること  {fill=$primary-dark fontSize=13 fontWeight=700}
+        [text] 3件の提案を同じ項目で比べ、気になる点を質問してください。相談先の採択は、選任された審議役が決定条件に沿って行います。  {width=fill_container fill=$text fontSize=16 fontWeight=normal}
+    [frame] Callout ここで選ぶのは「共同相談の相談先」です  {width=fill_container gap=12 padding=[14,16] fill=$primary-soft cornerRadius=10}
+      [frame] IconBox  {height=24 alignItems=center}
+        [icon] icon-info  {width=20 height=20 fill=$primary-dark icon=info}
+      [frame] Text  {layout=vertical width=fill_container gap=2}
+        [text] ここで選ぶのは「共同相談の相談先」です  {width=fill_container fill=$primary-dark fontSize=16 fontWeight=700}
+        [text] 訴訟の委任ではありません。訴訟などの正式な依頼は、相談結果を見たうえで、希望する人が本人として個別に決めます。  {width=fill_container fill=$text fontSize=14 fontWeight=normal}
+    [frame] Body  {width=fill_container gap=28}
+      [frame] Compare  {layout=vertical width=fill_container gap=16}
+        [frame] Table Head  {width=fill_container justifyContent=space_between alignItems=center}
+          [text] 提案の比較（3件）  {fill=$text fontSize=20 fontWeight=700}
+          [frame] Sort  {height=44 gap=8 padding=[0,14] fill=$surface cornerRadius=10 stroke=$border-strong alignItems=center}
+            [icon] icon-arrow-down-up  {width=16 height=16 fill=$text-sub icon=arrow-down-up}
+            [text] 項目の並び：標準  {fill=$text fontSize=14 fontWeight=normal}
+            [icon] icon-chevron-down  {width=16 height=16 fill=$text-sub icon=chevron-down}
+        [frame] Proposal Table  {layout=vertical width=fill_container fill=$surface cornerRadius=12 stroke=$border}
+          [frame] Header  {width=fill_container gap=12 padding=[14,16] fill=#F4F6F9 stroke=$border}
+            [text] 項目  {width=112 fill=$text-sub fontSize=13 fontWeight=700}
+            [frame] H A  {layout=vertical width=fill_container}
+              [text] 弁護士A  {fill=$text fontSize=16 fontWeight=700}
+              [text] 〔架空〕法律事務所  {fill=$text-muted fontSize=12 fontWeight=normal}
+            [frame] H B  {layout=vertical width=fill_container}
+              [text] 弁護士B  {fill=$text fontSize=16 fontWeight=700}
+              [text] 〔架空〕法律事務所  {fill=$text-muted fontSize=12 fontWeight=normal}
+            [frame] H C  {layout=vertical width=fill_container}
+              [text] 弁護士C  {fill=$text fontSize=16 fontWeight=700}
+              [text] 〔架空〕法律事務所  {fill=$text-muted fontSize=12 fontWeight=normal}
+          [frame] Row 今回の相談費用（税込）  {width=fill_container gap=12 padding=[14,16] stroke=$border}
+            [text] 今回の相談費用（税込）  {width=112 fill=$text-sub fontSize=13 fontWeight=700}
+            [frame] C0  {layout=vertical width=fill_container gap=4}
+              [text] 1,200 USDC  {width=fill_container fill=$text fontSize=14 fontWeight=700}
+              [text] 参考 約180,000円  {width=fill_container fill=$text-muted fontSize=12 fontWeight=normal}
+            [frame] C1  {layout=vertical width=fill_container gap=4}
+              [text] 1,000 USDC  {width=fill_container fill=$text fontSize=14 fontWeight=700}
+              [text] 参考 約150,000円  {width=fill_container fill=$text-muted fontSize=12 fontWeight=normal}
+            [frame] C2  {layout=vertical width=fill_container gap=4}
+              [text] 1,400 USDC  {width=fill_container fill=$text fontSize=14 fontWeight=700}
+              [text] 参考 約210,000円  {width=fill_container fill=$text-muted fontSize=12 fontWeight=normal}
+              [frame] <Badge> Badge 予算を200超過  {gap=6 padding=[4,10] fill=$amber-soft cornerRadius=999 alignItems=center}
+                [icon] Icon  {width=16 height=16 fill=$amber icon=clock-3}
+                [text] 予算を200超過  {fill=$amber fontSize=14 fontWeight=500}
+          [frame] Row 相談範囲  {width=fill_container gap=12 padding=[14,16] stroke=$border}
+            [text] 相談範囲  {width=112 fill=$text-sub fontSize=13 fontWeight=700}
+            [frame] C0  {layout=vertical width=fill_container gap=4}
+              [text] 共同相談2回・書面での回答  {width=fill_container fill=$text fontSize=14 fontWeight=normal}
+            [frame] C1  {layout=vertical width=fill_container gap=4}
+              [text] 共同相談1回・質疑への書面回答  {width=fill_container fill=$text fontSize=14 fontWeight=normal}
+            [frame] C2  {layout=vertical width=fill_container gap=4}
+              [text] 共同相談2回・希望者の個別質問（各30分）  {width=fill_container fill=$text fontSize=14 fontWeight=normal}
+          [frame] Row 調査内容  {width=fill_container gap=12 padding=[14,16] stroke=$border}
+            [text] 調査内容  {width=112 fill=$text-sub fontSize=13 fontWeight=700}
+            [frame] C0  {layout=vertical width=fill_container gap=4}
+              [text] 公表資料と通知内容の分析、法人利用者への影響の整理  {width=fill_container fill=$text fontSize=14 fontWeight=normal}
+            [frame] C1  {layout=vertical width=fill_container gap=4}
+              [text] 公表資料の分析  {width=fill_container fill=$text fontSize=14 fontWeight=normal}
+            [frame] C2  {layout=vertical width=fill_container gap=4}
+              [text] 公表資料・通知の分析、同種事案の整理  {width=fill_container fill=$text fontSize=14 fontWeight=normal}
+          [frame] Row 納期  {width=fill_container gap=12 padding=[14,16] stroke=$border}
+            [text] 納期  {width=112 fill=$text-sub fontSize=13 fontWeight=700}
+            [frame] C0  {layout=vertical width=fill_container gap=4}
+              [text] 採択から6週間  {width=fill_container fill=$text fontSize=14 fontWeight=normal}
+            [frame] C1  {layout=vertical width=fill_container gap=4}
+              [text] 採択から4週間  {width=fill_container fill=$text fontSize=14 fontWeight=normal}
+            [frame] C2  {layout=vertical width=fill_container gap=4}
+              [text] 採択から8週間  {width=fill_container fill=$text fontSize=14 fontWeight=normal}
+          [frame] Row 担当体制  {width=fill_container gap=12 padding=[14,16] stroke=$border}
+            [text] 担当体制  {width=112 fill=$text-sub fontSize=13 fontWeight=700}
+            [frame] C0  {layout=vertical width=fill_container gap=4}
+              [text] 弁護士2名  {width=fill_container fill=$text fontSize=14 fontWeight=normal}
+            [frame] C1  {layout=vertical width=fill_container gap=4}
+              [text] 弁護士1名  {width=fill_container fill=$text fontSize=14 fontWeight=normal}
+            [frame] C2  {layout=vertical width=fill_container gap=4}
+              [text] 弁護士2名・事務1名  {width=fill_container fill=$text fontSize=14 fontWeight=normal}
+          [frame] Row 実費  {width=fill_container gap=12 padding=[14,16] stroke=$border}
+            [text] 実費  {width=112 fill=$text-sub fontSize=13 fontWeight=700}
+            [frame] C0  {layout=vertical width=fill_container gap=4}
+              [text] 上限 50 USDC  {width=fill_container fill=$text fontSize=14 fontWeight=normal}
+            [frame] C1  {layout=vertical width=fill_container gap=4}
+              [text] なし  {width=fill_container fill=$text fontSize=14 fontWeight=normal}
+            [frame] C2  {layout=vertical width=fill_container gap=4}
+              [text] 上限 100 USDC  {width=fill_container fill=$text fontSize=14 fontWeight=normal}
+          [frame] Row 将来の訴訟費用  {width=fill_container gap=12 padding=[14,16] stroke=$border}
+            [text] 将来の訴訟費用  {width=112 fill=$text-sub fontSize=13 fontWeight=700}
+            [frame] C0  {layout=vertical width=fill_container gap=4}
+              [text] 提示あり（概算）  {width=fill_container fill=$text fontSize=14 fontWeight=normal}
+              [frame] <Badge> Badge 提示あり  {gap=6 padding=[4,10] fill=$green-soft cornerRadius=999 alignItems=center}
+                [icon] Icon  {width=16 height=16 fill=$green icon=circle-check}
+                [text] 提示あり  {fill=$green fontSize=14 fontWeight=500}
+            [frame] C1  {layout=vertical width=fill_container gap=4}
+              [text] 相談後に提示  {width=fill_container fill=$text fontSize=14 fontWeight=normal}
+              [frame] <Badge> Badge 未提示  {gap=6 padding=[4,10] fill=#EEF1F5 cornerRadius=999 alignItems=center}
+                [icon] Icon  {width=16 height=16 fill=$text-sub icon=circle-dashed}
+                [text] 未提示  {fill=$text-sub fontSize=14 fontWeight=500}
+            [frame] C2  {layout=vertical width=fill_container gap=4}
+              [text] 考え方のみ提示  {width=fill_container fill=$text fontSize=14 fontWeight=normal}
+              [frame] <Badge> Badge 一部提示  {gap=6 padding=[4,10] fill=$primary-soft cornerRadius=999 alignItems=center}
+                [icon] Icon  {width=16 height=16 fill=$primary-dark icon=info}
+                [text] 一部提示  {fill=$primary-dark fontSize=14 fontWeight=500}
+          [frame] Row 利益相反の確認  {width=fill_container gap=12 padding=[14,16] stroke=$border}
+            [text] 利益相反の確認  {width=112 fill=$text-sub fontSize=13 fontWeight=700}
+            [frame] C0  {layout=vertical width=fill_container gap=4}
+              [frame] <Badge> Badge 確認済み  {gap=6 padding=[4,10] fill=$green-soft cornerRadius=999 alignItems=center}
+                [icon] Icon  {width=16 height=16 fill=$green icon=circle-check}
+                [text] 確認済み  {fill=$green fontSize=14 fontWeight=500}
+            [frame] C1  {layout=vertical width=fill_container gap=4}
+              [frame] <Badge> Badge 確認済み  {gap=6 padding=[4,10] fill=$green-soft cornerRadius=999 alignItems=center}
+                [icon] Icon  {width=16 height=16 fill=$green icon=circle-check}
+                [text] 確認済み  {fill=$green fontSize=14 fontWeight=500}
+            [frame] C2  {layout=vertical width=fill_container gap=4}
+              [frame] <Badge> Badge 確認中  {gap=6 padding=[4,10] fill=$amber-soft cornerRadius=999 alignItems=center}
+                [icon] Icon  {width=16 height=16 fill=$amber icon=clock-3}
+                [text] 確認中  {fill=$amber fontSize=14 fontWeight=500}
+          [frame] Row 質問と回答  {width=fill_container gap=12 padding=[14,16]}
+            [text] 質問と回答  {width=112 fill=$text-sub fontSize=13 fontWeight=700}
+            [frame] C0  {layout=vertical width=fill_container gap=4}
+              [text] 回答済み 3件  {width=fill_container fill=$text fontSize=14 fontWeight=normal}
+            [frame] C1  {layout=vertical width=fill_container gap=4}
+              [text] 回答済み 1件  {width=fill_container fill=$text fontSize=14 fontWeight=normal}
+            [frame] C2  {layout=vertical width=fill_container gap=4}
+              [text] 回答待ち 1件・回答済み 1件  {width=fill_container fill=$text fontSize=14 fontWeight=normal}
+        [text] AIによる勝率の推定や、提案の自動順位付けは行いません。費用の円換算は1 USDC＝150円の仮レートによる参考額です。  {width=fill_container fill=$text-muted fontSize=13 fontWeight=normal}
+        [frame] Section 説明・質問・審議記録  {layout=vertical width=fill_container gap=14 padding=[16,0,0,0]}
+          [frame] Head  {layout=vertical width=fill_container gap=2}
+            [text] 説明・質問・審議記録  {width=fill_container fill=$text fontSize=20 fontWeight=700}
+            [text] 弁護士からの説明と、参加者の質問・回答はすべて記録され、参加者が閲覧できます。  {width=fill_container fill=$text-muted fontSize=14 fontWeight=normal}
+          [frame] Tabs  {width=fill_container gap=28 stroke=$border}
+            [frame] <Tab Item> Tab 質問と回答（6）  {layout=vertical padding=[12,4,10,4] stroke=$primary}
+              [text] 質問と回答（6）  {fill=$primary-dark fontSize=16 fontWeight=700}
+            [frame] <Tab Item> Tab 専門家の説明（3）  {layout=vertical padding=[12,4,10,4] stroke=#00000000}
+              [text] 専門家の説明（3）  {fill=$text-sub fontSize=16 fontWeight=500}
+            [frame] <Tab Item> Tab 審議記録（2）  {layout=vertical padding=[12,4,10,4] stroke=#00000000}
+              [text] 審議記録（2）  {fill=$text-sub fontSize=16 fontWeight=500}
+          [frame] QA 法人会員の利用者  {layout=vertical width=fill_container gap=10 padding=20 fill=$surface cornerRadius=12 stroke=$border}
+            [frame] Head  {width=fill_container gap=10 alignItems=center}
+              [text] 参加者の質問 → 弁護士A  {fill=$text-muted fontSize=13 fontWeight=700}
+              [frame] <Badge> Badge 回答済み  {gap=6 padding=[4,10] fill=$green-soft cornerRadius=999 alignItems=center}
+                [icon] Icon  {width=16 height=16 fill=$green icon=circle-check}
+                [text] 回答済み  {fill=$green fontSize=14 fontWeight=500}
+            [text] 法人会員の利用者として相談に参加した場合、勤務先の担当者にも内容が共有されますか？  {width=fill_container fill=$text fontSize=15 fontWeight=700}
+            [frame] Answer  {layout=vertical width=fill_container gap=4 padding=[12,16] fill=#F4F6F9 cornerRadius=10}
+              [text] 弁護士Aの回答（2026年10月20日）  {fill=$text-sub fontSize=13 fontWeight=700}
+              [text] 共同相談の内容は参加者全体に共有しますが、個人ごとの資料や質問者の名前は、本人の同意なく勤務先に共有しません。  {width=fill_container fill=$text fontSize=14 fontWeight=normal}
+          [frame] QA 予算を超える20  {layout=vertical width=fill_container gap=10 padding=20 fill=$surface cornerRadius=12 stroke=$border}
+            [frame] Head  {width=fill_container gap=10 alignItems=center}
+              [text] 参加者の質問 → 弁護士C  {fill=$text-muted fontSize=13 fontWeight=700}
+              [frame] <Badge> Badge 回答待ち  {gap=6 padding=[4,10] fill=$amber-soft cornerRadius=999 alignItems=center}
+                [icon] Icon  {width=16 height=16 fill=$amber icon=clock-3}
+                [text] 回答待ち  {fill=$amber fontSize=14 fontWeight=500}
+            [text] 予算を超える200 USDC分は、どのように扱う想定ですか？  {width=fill_container fill=$text fontSize=15 fontWeight=700}
+          [frame] Ask  {width=fill_container gap=12 padding=16 fill=$surface cornerRadius=12 stroke=$border alignItems=center}
+            [frame] Field  {width=fill_container height=48 padding=[0,16] cornerRadius=10 stroke=$border-strong alignItems=center}
+              [text] 提案について質問・意見を書く（名前は表示されません）  {width=fill_container fill=$text-muted fontSize=16 fontWeight=normal}
+            [frame] <Button/Primary> Btn 質問・意見を投稿する  {height=48 gap=8 padding=[0,24] fill=$primary cornerRadius=10 justifyContent=center alignItems=center}
+              [icon] Icon  {width=20 height=20 fill=#FFFFFF icon=send}
+              [text] 質問・意見を投稿する  {fill=#FFFFFF fontSize=16 fontWeight=700}
+      [frame] Who Decides  {layout=vertical width=320 gap=16}
+        [frame] Who Card  {layout=vertical width=fill_container gap=14 padding=20 fill=$surface cornerRadius=12 stroke=$border}
+          [frame] Head  {gap=8 alignItems=center}
+            [icon] icon-users  {width=20 height=20 fill=$primary-dark icon=users}
+            [text] 誰が選ぶか  {fill=$text fontSize=18 fontWeight=700}
+          [frame] KV  {layout=vertical width=fill_container}
+            [frame] W 母集団  {layout=vertical width=fill_container gap=4 padding=[10,0] stroke=$border}
+              [text] 母集団  {fill=$text-muted fontSize=13 fontWeight=700}
+              [text] この募集で本人・関係性の確認が済んだ参加者（現在176人）  {width=fill_container fill=$text fontSize=14 fontWeight=normal}
+            [frame] W 審議役の選任方法  {layout=vertical width=fill_container gap=4 padding=[10,0] stroke=$border}
+              [text] 審議役の選任方法  {fill=$text-muted fontSize=13 fontWeight=700}
+              [frame] <Badge> Badge 未設定  {gap=6 padding=[4,10] fill=#EEF1F5 cornerRadius=999 alignItems=center}
+                [icon] Icon  {width=16 height=16 fill=$text-sub icon=circle-dashed}
+                [text] 未設定  {fill=$text-sub fontSize=14 fontWeight=500}
+            [frame] W 審議役の人数・定足数  {layout=vertical width=fill_container gap=4 padding=[10,0] stroke=$border}
+              [text] 審議役の人数・定足数  {fill=$text-muted fontSize=13 fontWeight=700}
+              [frame] <Badge> Badge 未設定  {gap=6 padding=[4,10] fill=#EEF1F5 cornerRadius=999 alignItems=center}
+                [icon] Icon  {width=16 height=16 fill=$text-sub icon=circle-dashed}
+                [text] 未設定  {fill=$text-sub fontSize=14 fontWeight=500}
+            [frame] W 利益相反の確認  {layout=vertical width=fill_container gap=4 padding=[10,0] stroke=$border}
+              [text] 利益相反の確認  {fill=$text-muted fontSize=13 fontWeight=700}
+              [text] 審議役は、就任前に各弁護士との関係がないことを申告・確認します  {width=fill_container fill=$text fontSize=14 fontWeight=normal}
+            [frame] W 決定条件  {layout=vertical width=fill_container gap=4 padding=[10,0] stroke=$border}
+              [text] 決定条件  {fill=$text-muted fontSize=13 fontWeight=700}
+              [frame] <Badge> Badge 未設定  {gap=6 padding=[4,10] fill=#EEF1F5 cornerRadius=999 alignItems=center}
+                [icon] Icon  {width=16 height=16 fill=$text-sub icon=circle-dashed}
+                [text] 未設定  {fill=$text-sub fontSize=14 fontWeight=500}
+          [frame] Decision Status  {layout=vertical width=fill_container gap=6 padding=14 fill=$amber-soft cornerRadius=10 stroke=$amber-line}
+            [frame] Head  {gap=8 alignItems=center}
+              [icon] icon-circle-pause  {width=18 height=18 fill=$amber icon=circle-pause}
+              [text] まだ採択できません  {fill=$amber fontSize=16 fontWeight=700}
+            [text] 選任方法と決定条件が未設定のため、誰も相談先を決定できません。設定案は参加者に公開され、意見を募ってから確定します。  {width=fill_container fill=$text fontSize=14 fontWeight=normal}
+          [frame] <Button/Secondary> Btn 決定方法の設定案に意見を送る  {width=fill_container height=48 gap=8 padding=[0,24] fill=$surface cornerRadius=10 stroke=$primary justifyContent=center alignItems=center}
+            [text] 決定方法の設定案に意見を送る  {fill=$primary-dark fontSize=16 fontWeight=700}
+        [frame] <State Panel> State 採択の操作は審議役にだけ表示されます  {layout=vertical width=fill_container gap=12 padding=28 fill=$surface cornerRadius=12 stroke=$border alignItems=center}
+          [frame] Icon Wrap  {width=52 height=52 fill=#EEF1F5 cornerRadius=26 justifyContent=center alignItems=center}
+            [icon] Icon  {width=24 height=24 fill=$text-sub icon=lock}
+          [text] 採択の操作は審議役にだけ表示されます  {width=fill_container fill=$text fontSize=18 fontWeight=700}
+          [text] あなたは参加者として、質問・意見の投稿と審議記録の閲覧ができます。  {width=fill_container fill=$text-sub fontSize=14 fontWeight=normal}
+        [frame] Links  {layout=vertical width=fill_container padding=[8,20] fill=$surface cornerRadius=12 stroke=$border}
+          [frame] <Button/Text> Btn 専門家の説明を読む  {height=44 gap=6 padding=[0,4] alignItems=center}
+            [text] 専門家の説明を読む  {fill=$primary-dark fontSize=16 fontWeight=500}
+            [icon] Icon  {width=18 height=18 fill=$primary-dark icon=chevron-right}
+          [frame] <Button/Text> Btn 参加者の質問を見る  {height=44 gap=6 padding=[0,4] alignItems=center}
+            [text] 参加者の質問を見る  {fill=$primary-dark fontSize=16 fontWeight=500}
+            [icon] Icon  {width=18 height=18 fill=$primary-dark icon=chevron-right}
+          [frame] <Button/Text> Btn 弁護士の回答を見る  {height=44 gap=6 padding=[0,4] alignItems=center}
+            [text] 弁護士の回答を見る  {fill=$primary-dark fontSize=16 fontWeight=500}
+            [icon] Icon  {width=18 height=18 fill=$primary-dark icon=chevron-right}
+          [frame] <Button/Text> Btn 審議記録を見る  {height=44 gap=6 padding=[0,4] alignItems=center}
+            [text] 審議記録を見る  {fill=$primary-dark fontSize=16 fontWeight=500}
+            [icon] Icon  {width=18 height=18 fill=$primary-dark icon=chevron-right}

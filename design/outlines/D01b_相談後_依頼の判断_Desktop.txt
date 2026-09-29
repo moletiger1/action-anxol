@@ -1,0 +1,148 @@
+[frame] D01b_相談後_依頼の判断_Desktop  {width=1440 height=1156 fill=$bg}
+  [frame] <App Sidebar> Sidebar  {layout=vertical width=248 height=fill_container gap=20 padding=[20,14] fill=$surface stroke=$border}
+    [frame] Logo  {gap=10 alignItems=center}
+      [frame] Mark  {width=36 height=36 fill=$primary cornerRadius=10 justifyContent=center alignItems=center}
+        [icon] icon-users-round  {width=20 height=20 fill=#FFFFFF icon=users-round}
+      [text] 集団訴訟.jp  {fill=$text fontSize=20 fontWeight=700}
+      [text] （仮）  {fill=$text-muted fontSize=13 fontWeight=normal}
+    [frame] <Button/Secondary> Create  {width=fill_container height=44 gap=8 padding=[0,24] fill=$surface cornerRadius=10 stroke=$primary justifyContent=center alignItems=center}
+      [icon] Icon  {width=20 height=20 fill=$primary-dark icon=plus}
+      [text] 案件を作る  {fill=$primary-dark fontSize=16 fontWeight=700}
+    [frame] Nav Group  {layout=vertical width=fill_container gap=4}
+      [frame] <Nav Item> Nav 案件を探す  {width=fill_container height=44 gap=12 padding=[0,12] cornerRadius=10 alignItems=center}
+        [icon] Icon  {width=20 height=20 fill=$text-sub icon=search}
+        [text] 案件を探す  {width=fill_container fill=$text-sub fontSize=15 fontWeight=500}
+      [frame] <Nav Item> Nav 参加中の案件  {width=fill_container height=44 gap=12 padding=[0,12] fill=$primary-soft cornerRadius=10 alignItems=center}
+        [icon] Icon  {width=20 height=20 fill=$text-sub icon=folder-open}
+        [text] 参加中の案件  {width=fill_container fill=$text-sub fontSize=15 fontWeight=500}
+      [frame] <Nav Item> Nav お金の記録  {width=fill_container height=44 gap=12 padding=[0,12] cornerRadius=10 alignItems=center}
+        [icon] Icon  {width=20 height=20 fill=$text-sub icon=receipt-text}
+        [text] お金の記録  {width=fill_container fill=$text-sub fontSize=15 fontWeight=500}
+      [frame] <Nav Item> Nav 通知  {width=fill_container height=44 gap=12 padding=[0,12] cornerRadius=10 alignItems=center}
+        [icon] Icon  {width=20 height=20 fill=$text-sub icon=bell}
+        [text] 通知  {width=fill_container fill=$text-sub fontSize=15 fontWeight=500}
+        [frame] Count  {padding=[1,8] fill=$primary cornerRadius=999}
+          [text] 3  {fill=#FFFFFF fontSize=12 fontWeight=700}
+    [frame] Spacer  {width=fill_container height=fill_container}
+    [frame] Lawyer Entry  {width=fill_container gap=10 padding=12 cornerRadius=10 stroke=$border alignItems=center}
+      [icon] icon-briefcase-business  {width=20 height=20 fill=$text-sub icon=briefcase-business}
+      [frame] Text  {layout=vertical width=fill_container}
+        [text] 弁護士用ワークスペース  {width=fill_container fill=$text fontSize=14 fontWeight=700}
+        [text] 提案の作成・送信はこちら  {width=fill_container fill=$text-muted fontSize=12 fontWeight=normal}
+    [frame] Account  {width=fill_container gap=10 padding=4 alignItems=center}
+      [frame] Avatar  {width=36 height=36 fill=#EEF1F5 cornerRadius=18 justifyContent=center alignItems=center}
+        [icon] icon-user  {width=18 height=18 fill=$text-sub icon=user}
+      [frame] User Text  {layout=vertical width=fill_container}
+        [text] あなたのアカウント  {width=fill_container fill=$text fontSize=14 fontWeight=700}
+        [text] メールでサインイン中  {width=fill_container fill=$text-muted fontSize=12 fontWeight=normal}
+    [frame] <Demo Badge> Demo  {gap=6 padding=[4,10] fill=#EEF1F5 cornerRadius=999 stroke=$border-strong alignItems=center}
+      [icon] Icon  {width=14 height=14 fill=$text-sub icon=flask-conical}
+      [text] デモ表示・数値は架空  {fill=$text-sub fontSize=13 fontWeight=normal}
+  [frame] Main  {layout=vertical width=fill_container gap=24 padding=[28,36,72,36]}
+    [frame] Top Bar  {width=fill_container justifyContent=space_between alignItems=end}
+      [frame] Title  {layout=vertical gap=2}
+        [text] 参加中の案件 ／ 〔架空の例〕オンライン英会話の自動更新で二重に請求された件  {fill=$text-muted fontSize=14 fontWeight=normal}
+        [text] 相談結果が共有されました  {fill=$text fontSize=28 fontWeight=700}
+      [frame] Right  {gap=16 alignItems=center}
+        [frame] <Badge> Badge 架空案件の別シナリオ  {gap=6 padding=[4,10] fill=#EEF1F5 cornerRadius=999 alignItems=center}
+          [icon] Icon  {width=16 height=16 fill=$text-sub icon=flask-conical}
+          [text] 架空案件の別シナリオ  {fill=$text-sub fontSize=14 fontWeight=500}
+        [frame] <Demo Badge> Demo  {gap=6 padding=[4,10] fill=#EEF1F5 cornerRadius=999 stroke=$border-strong alignItems=center}
+          [icon] Icon  {width=14 height=14 fill=$text-sub icon=flask-conical}
+          [text] デモ表示・数値は架空  {fill=$text-sub fontSize=13 fontWeight=normal}
+    [frame] <Stage Banner> Stage Banner  {width=fill_container gap=24 padding=[20,24] fill=$surface cornerRadius=12 stroke=$border alignItems=center}
+      [frame] Stage  {layout=vertical width=340 gap=4}
+        [frame] Stage Head  {gap=6 alignItems=center}
+          [icon] Stage Icon  {width=16 height=16 fill=$text-muted icon=flag}
+          [text] 現在の段階  {fill=$text-muted fontSize=13 fontWeight=normal}
+        [text] 相談結果の共有（段階5／5）  {width=fill_container fill=$text fontSize=18 fontWeight=700}
+      [rectangle] VDivider  {width=1 height=56 fill=$border}
+      [frame] Next  {layout=vertical width=fill_container gap=4}
+        [frame] Next Head  {gap=6 alignItems=center}
+          [icon] Next Icon  {width=16 height=16 fill=$primary-dark icon=circle-arrow-right}
+          [text] 次にすること  {fill=$primary-dark fontSize=13 fontWeight=700}
+        [text] 相談結果を読み、弁護士に個別に依頼するかを決めてください。依頼しなくても、結果は引き続き閲覧できます。  {width=fill_container fill=$text fontSize=16 fontWeight=normal}
+    [frame] Body  {width=fill_container gap=28}
+      [frame] Decision  {layout=vertical width=fill_container gap=20}
+        [frame] Result Summary  {layout=vertical width=fill_container gap=12 padding=24 fill=$surface cornerRadius=12 stroke=$border}
+          [frame] Head  {gap=10 alignItems=center}
+            [frame] <Badge> Badge 相談結果を共有済み  {gap=6 padding=[4,10] fill=$green-soft cornerRadius=999 alignItems=center}
+              [icon] Icon  {width=16 height=16 fill=$green icon=circle-check}
+              [text] 相談結果を共有済み  {fill=$green fontSize=14 fontWeight=500}
+            [text] 2027年3月2日  {fill=$text-muted fontSize=14 fontWeight=normal}
+          [text] 相談結果の要点  {width=fill_container fill=$text fontSize=18 fontWeight=700}
+          [frame] Item  {width=fill_container gap=10}
+            [frame] IconBox  {height=26 alignItems=center}
+              [icon] icon-dot  {width=18 height=18 fill=$text-sub icon=dot}
+            [text] 解約後に請求された翌月分は、返金を求められる可能性があると説明されました  {width=fill_container fill=$text fontSize=16 fontWeight=normal}
+          [frame] Item  {width=fill_container gap=10}
+            [frame] IconBox  {height=26 alignItems=center}
+              [icon] icon-dot  {width=18 height=18 fill=$text-sub icon=dot}
+            [text] 返金額は一人ひとりの契約・請求の状況によって異なります  {width=fill_container fill=$text fontSize=16 fontWeight=normal}
+          [frame] Item  {width=fill_container gap=10}
+            [frame] IconBox  {height=26 alignItems=center}
+              [icon] icon-dot  {width=18 height=18 fill=$text-sub icon=dot}
+            [text] 希望する人は、弁護士Aに個別に交渉を依頼できます（訴訟は含まない）  {width=fill_container fill=$text fontSize=16 fontWeight=normal}
+          [frame] <Button/Text> Btn 相談結果の全文を読む  {height=44 gap=6 padding=[0,4] alignItems=center}
+            [text] 相談結果の全文を読む  {fill=$primary-dark fontSize=16 fontWeight=500}
+            [icon] Icon  {width=18 height=18 fill=$primary-dark icon=chevron-right}
+        [frame] Engagement Terms  {layout=vertical width=fill_container gap=16 padding=24 fill=$surface cornerRadius=12 stroke=$primary}
+          [text] 弁護士Aへの個別の依頼条件  {width=fill_container fill=$text fontSize=20 fontWeight=700}
+          [frame] Terms  {layout=vertical width=fill_container}
+            [frame] KV 依頼内容  {width=fill_container gap=16 padding=[10,0] stroke=$border}
+              [text] 依頼内容  {width=160 fill=$text-muted fontSize=14 fontWeight=normal}
+              [text] 事業者への返金請求の交渉（交渉で解決しない場合の訴訟は、別途の依頼）  {width=fill_container fill=$text fontSize=15 fontWeight=normal}
+            [frame] KV 依頼先  {width=fill_container gap=16 padding=[10,0] stroke=$border}
+              [text] 依頼先  {width=160 fill=$text-muted fontSize=14 fontWeight=normal}
+              [text] 弁護士A〔架空〕法律事務所  {width=fill_container fill=$text fontSize=15 fontWeight=normal}
+            [frame] KV 着手金  {width=fill_container gap=16 padding=[10,0] stroke=$border}
+              [text] 着手金  {width=160 fill=$text-muted fontSize=14 fontWeight=normal}
+              [text] 0円  {width=fill_container fill=$text fontSize=15 fontWeight=normal}
+            [frame] KV 報酬（税込）  {width=fill_container gap=16 padding=[10,0] stroke=$border}
+              [text] 報酬（税込）  {width=160 fill=$text-muted fontSize=14 fontWeight=normal}
+              [text] 実際に回収できた金額の20%  {width=fill_container fill=$text fontSize=15 fontWeight=normal}
+            [frame] KV 実費  {width=fill_container gap=16 padding=[10,0] stroke=$border}
+              [text] 実費  {width=160 fill=$text-muted fontSize=14 fontWeight=normal}
+              [text] 上限500円。証憑に基づき精算  {width=fill_container fill=$text fontSize=15 fontWeight=normal}
+            [frame] KV 控除の条件  {width=fill_container gap=16 padding=[10,0] stroke=#00000000}
+              [text] 控除の条件  {width=160 fill=$text-muted fontSize=14 fontWeight=normal}
+              [text] 報酬と未精算の実費は、回収金から差し引いてから振り込まれます。回収がない場合、報酬は発生しません  {width=fill_container fill=$text fontSize=15 fontWeight=normal}
+          [frame] Callout   {width=fill_container gap=12 padding=[14,16] fill=#EEF1F5 cornerRadius=10}
+            [frame] IconBox  {height=26 alignItems=center}
+              [icon] icon-file-signature  {width=20 height=20 fill=$text-sub icon=file-pen}
+            [frame] Text  {layout=vertical width=fill_container gap=2}
+              [text] 依頼すると、弁護士Aとの委任契約の確認画面に進みます。契約が成立するまで、依頼は完了していません。審議での採択は、あなた個人の委任ではありません。  {width=fill_container fill=$text fontSize=14 fontWeight=normal}
+          [frame] Actions  {width=fill_container gap=16 justifyContent=end alignItems=center}
+            [frame] <Button/Text> Btn 弁護士に質問する  {height=44 gap=6 padding=[0,4] alignItems=center}
+              [text] 弁護士に質問する  {fill=$primary-dark fontSize=16 fontWeight=500}
+              [icon] Icon  {width=18 height=18 fill=$primary-dark icon=chevron-right}
+            [frame] <Button/Secondary> Btn 今回は見送る  {height=48 gap=8 padding=[0,24] fill=$surface cornerRadius=10 stroke=$primary justifyContent=center alignItems=center}
+              [text] 今回は見送る  {fill=$primary-dark fontSize=16 fontWeight=700}
+            [frame] <Button/Primary> Btn この条件で弁護士に依頼する  {height=48 gap=8 padding=[0,24] fill=$primary cornerRadius=10 justifyContent=center alignItems=center}
+              [icon] Icon  {width=20 height=20 fill=#FFFFFF icon=arrow-right}
+              [text] この条件で弁護士に依頼する  {fill=#FFFFFF fontSize=16 fontWeight=700}
+      [frame] Aside  {layout=vertical width=340 gap=16}
+        [frame] If Skip  {layout=vertical width=fill_container gap=10 padding=20 fill=$surface cornerRadius=12 stroke=$border}
+          [text] 見送る場合  {fill=$text fontSize=16 fontWeight=700}
+          [frame] Item  {width=fill_container gap=10}
+            [frame] IconBox  {height=26 alignItems=center}
+              [icon] icon-circle-check  {width=18 height=18 fill=$primary-dark icon=circle-check}
+            [text] 相談結果は引き続き閲覧できます  {width=fill_container fill=$text fontSize=14 fontWeight=normal}
+          [frame] Item  {width=fill_container gap=10}
+            [frame] IconBox  {height=26 alignItems=center}
+              [icon] icon-circle-check  {width=18 height=18 fill=$primary-dark icon=circle-check}
+            [text] 共同相談費の未使用分は、条件に沿って返金を請求できます  {width=fill_container fill=$text fontSize=14 fontWeight=normal}
+          [frame] Item  {width=fill_container gap=10}
+            [frame] IconBox  {height=26 alignItems=center}
+              [icon] icon-circle-check  {width=18 height=18 fill=$primary-dark icon=circle-check}
+            [text] あとから依頼したくなった場合も、受付期間内なら依頼できます（2027年4月30日まで）  {width=fill_container fill=$text fontSize=14 fontWeight=normal}
+        [frame] My Status  {layout=vertical width=fill_container padding=[16,20] fill=$surface cornerRadius=12 stroke=$border}
+          [frame] KV 参加状態  {width=fill_container gap=16 padding=[10,0] stroke=$border}
+            [text] 参加状態  {width=110 fill=$text-muted fontSize=14 fontWeight=normal}
+            [text] 当事者・本人確認済み  {width=fill_container fill=$text fontSize=15 fontWeight=normal}
+          [frame] KV 既払いの相談費  {width=fill_container gap=16 padding=[10,0] stroke=$border}
+            [text] 既払いの相談費  {width=110 fill=$text-muted fontSize=14 fontWeight=normal}
+            [text] 600円（円での拠出・架空）  {width=fill_container fill=$text fontSize=15 fontWeight=normal}
+          [frame] KV 依頼の状態  {width=fill_container gap=16 padding=[10,0] stroke=#00000000}
+            [text] 依頼の状態  {width=110 fill=$text-muted fontSize=14 fontWeight=normal}
+            [text] 未決定  {width=fill_container fill=$text fontSize=15 fontWeight=normal}

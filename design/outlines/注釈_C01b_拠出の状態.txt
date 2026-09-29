@@ -1,0 +1,6 @@
+[frame] 注釈_C01b 拠出の状態  {layout=vertical width=1440 gap=4 padding=[16,20] fill=#EAEFF4 cornerRadius=12 stroke=$border-strong}
+  [frame] Head  {gap=8 alignItems=center}
+    [icon] icon-sticky-note  {width=16 height=16 fill=$text-sub icon=sticky-note}
+    [text] 注釈｜C01b 拠出の状態  {fill=$text fontSize=14 fontWeight=700}
+  [text] 確認待ち・処理中・完了・取消・残高不足。処理中はボタンを無効化し、同じ拠出の再送信を防ぐ。  {width=fill_container fill=$text-sub fontSize=13 fontWeight=normal}
+  [text] どの状態でも「資金が移動したか」と次の行動を表示。  {width=fill_container fill=$text-sub fontSize=13 fontWeight=normal}

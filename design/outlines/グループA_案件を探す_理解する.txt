@@ -1,0 +1,6 @@
+[frame] グループA_案件を探す・理解する  {layout=vertical width=1440 gap=6}
+  [frame] Head  {gap=16 alignItems=center}
+    [frame] Tag  {width=56 height=56 fill=$primary cornerRadius=12 justifyContent=center alignItems=center}
+      [text] A  {fill=#FFFFFF fontSize=28 fontWeight=700}
+    [text] 案件を探す・理解する  {fill=$text fontSize=36 fontWeight=700}
+  [text] A01 案件一覧 → A02 共通事件ページ → A03 募集詳細  {width=fill_container fill=$text-sub fontSize=16 fontWeight=normal}

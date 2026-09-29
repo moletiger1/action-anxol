@@ -1,0 +1,16 @@
+# Cloud Run source uploads contain only the web application and build configuration.
+*
+!package.json
+!package-lock.json
+!next.config.ts
+!next-env.d.ts
+!tsconfig.json
+!postcss.config.mjs
+!src/
+!src/**
+!public/
+!public/**
+**/.env*
+**/*.pem
+**/*.key
+**/.DS_Store

@@ -1,0 +1,7 @@
+[frame] 注釈_D01 参加中の案件・次の行動  {layout=vertical width=1440 gap=4 padding=[16,20] fill=#EAEFF4 cornerRadius=12 stroke=$border-strong}
+  [frame] Head  {gap=8 alignItems=center}
+    [icon] icon-sticky-note  {width=16 height=16 fill=$text-sub icon=sticky-note}
+    [text] 注釈｜D01 参加中の案件・次の行動  {fill=$text fontSize=14 fontWeight=700}
+  [text] 目的：今必要な行動を1つだけ目立たせる。参加状態・拠出額・未読・段階を一覧。  {width=fill_container fill=$text-sub fontSize=13 fontWeight=normal}
+  [text] 遷移：「提案を比較する」→ C02／「続きから再開する」→ B01b。  {width=fill_container fill=$text-sub fontSize=13 fontWeight=normal}
+  [text] 注記：A03とは別時点（提案・審議段階）のデモ。  {width=fill_container fill=$text-sub fontSize=13 fontWeight=normal}

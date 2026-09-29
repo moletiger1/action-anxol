@@ -1,0 +1,7 @@
+[frame] 注釈_D02 共同資金の予算・支出  {layout=vertical width=1440 gap=4 padding=[16,20] fill=#EAEFF4 cornerRadius=12 stroke=$border-strong}
+  [frame] Head  {gap=8 alignItems=center}
+    [icon] icon-sticky-note  {width=16 height=16 fill=$text-sub icon=sticky-note}
+    [text] 注釈｜D02 共同資金の予算・支出  {fill=$text fontSize=14 fontWeight=700}
+  [text] 目的：会計表を主役に、入金2,000／支払済み1,200／未払いの契約済み500／未拘束300 USDCを区別。  {width=fill_container fill=$text-sub fontSize=13 fontWeight=normal}
+  [text] 遷移：履行確認のデモで支払済み状態を表示。実際の支払いは、必要な確認・待機期間・異議と停止の解消後に別途取引送信が必要。  {width=fill_container fill=$text-sub fontSize=13 fontWeight=normal}
+  [text] 注記：相談実施後の別時点のデモ。条件未達・異議確認中・期限付き停止・期限切れを切替可能。期限切れは処理済みの表示例：支払済み1,200／拘束中0／返金原資800 USDC。初期調査500 USDCの拘束を解除し、返金は本人が別途請求。確認担当の人数は仮設定。  {width=fill_container fill=$text-sub fontSize=13 fontWeight=normal}

@@ -1,0 +1,7 @@
+[frame] 注釈_B01b 似た案件の確認（2／4）  {layout=vertical width=1440 gap=4 padding=[16,20] fill=#EAEFF4 cornerRadius=12 stroke=$border-strong}
+  [frame] Head  {gap=8 alignItems=center}
+    [icon] icon-sticky-note  {width=16 height=16 fill=$text-sub icon=sticky-note}
+    [text] 注釈｜B01b 似た案件の確認（2／4）  {fill=$text fontSize=14 fontWeight=700}
+  [text] 目的：重複を避けつつ、類似判定だけで作成を拒否しない。  {width=fill_container fill=$text-sub fontSize=13 fontWeight=normal}
+  [text] 遷移：「この案件に参加する」→ A03／「この事件に別の募集を追加する」→ B01c（既存事件に紐付け）／「別の事件として次へ」→ B01c。  {width=fill_container fill=$text-sub fontSize=13 fontWeight=normal}
+  [text] 注記：同一と確定した重複だけ「同じ出来事はすでに登録されています」と案内。資金・個人情報は自動で移転しない。  {width=fill_container fill=$text-sub fontSize=13 fontWeight=normal}

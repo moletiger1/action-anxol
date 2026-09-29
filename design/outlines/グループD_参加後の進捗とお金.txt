@@ -1,0 +1,6 @@
+[frame] グループD_参加後の進捗とお金  {layout=vertical width=1440 gap=6}
+  [frame] Head  {gap=16 alignItems=center}
+    [frame] Tag  {width=56 height=56 fill=$primary cornerRadius=12 justifyContent=center alignItems=center}
+      [text] D  {fill=#FFFFFF fontSize=28 fontWeight=700}
+    [text] 参加後の進捗とお金  {fill=$text fontSize=36 fontWeight=700}
+  [text] D01 参加中の案件（相談後の依頼判断）／D02 共同資金の予算・支出／D03 本人の返金・回収金の精算  {width=fill_container fill=$text-sub fontSize=16 fontWeight=normal}

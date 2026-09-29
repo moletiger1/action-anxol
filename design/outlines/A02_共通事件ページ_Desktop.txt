@@ -1,0 +1,197 @@
+[frame] A02_共通事件ページ_Desktop  {layout=vertical width=1440 fill=$bg}
+  [frame] <Public Header> Header  {width=fill_container height=72 padding=[0,120] fill=$surface stroke=$border justifyContent=space_between alignItems=center}
+    [frame] Left  {gap=48 alignItems=center}
+      [frame] Logo  {gap=10 alignItems=center}
+        [frame] Mark  {width=36 height=36 fill=$primary cornerRadius=10 justifyContent=center alignItems=center}
+          [icon] icon-users-round  {width=20 height=20 fill=#FFFFFF icon=users-round}
+        [text] 集団訴訟.jp  {fill=$text fontSize=20 fontWeight=700}
+        [text] （仮）  {fill=$text-muted fontSize=13 fontWeight=normal}
+      [frame] Nav  {gap=32 alignItems=center}
+        [text] 案件を探す  {fill=$primary-dark fontSize=15 fontWeight=700}
+        [text] 使い方  {fill=$text-sub fontSize=15 fontWeight=500}
+        [text] お金の仕組み  {fill=$text-sub fontSize=15 fontWeight=500}
+        [text] 弁護士の方へ  {fill=$text-sub fontSize=15 fontWeight=500}
+    [frame] Right  {gap=16 alignItems=center}
+      [frame] <Demo Badge> Demo  {gap=6 padding=[4,10] fill=#EEF1F5 cornerRadius=999 stroke=$border-strong alignItems=center}
+        [icon] Icon  {width=14 height=14 fill=$text-sub icon=flask-conical}
+        [text] デモ表示・数値は架空  {fill=$text-sub fontSize=13 fontWeight=normal}
+      [frame] <Button/Text> Login  {height=44 gap=6 padding=[0,4] alignItems=center}
+        [text] ログイン  {fill=$primary-dark fontSize=16 fontWeight=500}
+        [icon] Icon  {width=18 height=18 fill=$primary-dark icon=chevron-right}
+      [frame] <Button/Secondary> Create  {height=44 gap=8 padding=[0,24] fill=$surface cornerRadius=10 stroke=$primary justifyContent=center alignItems=center}
+        [icon] Icon  {width=20 height=20 fill=$primary-dark icon=plus}
+        [text] 案件を作る  {fill=$primary-dark fontSize=16 fontWeight=700}
+  [frame] Main  {layout=vertical width=fill_container gap=24 padding=[24,120,96,120]}
+    [frame] Breadcrumb  {gap=8 alignItems=center}
+      [text] 案件を探す  {fill=$primary-dark fontSize=14 fontWeight=normal}
+      [icon] icon-chevron-right  {width=14 height=14 fill=$text-muted icon=chevron-right}
+      [text] タイムズカーの個人情報漏えいに関する共同相談  {fill=$text-muted fontSize=14 fontWeight=normal}
+    [frame] Title Block  {layout=vertical width=fill_container gap=10}
+      [frame] Badges  {gap=8 alignItems=center}
+        [frame] <Badge> Badge 共通の事件ページ  {gap=6 padding=[4,10] fill=#EEF1F5 cornerRadius=999 alignItems=center}
+          [icon] Icon  {width=16 height=16 fill=$text-sub icon=folder-open}
+          [text] 共通の事件ページ  {fill=$text-sub fontSize=14 fontWeight=500}
+        [frame] <Badge> Badge 募集中の相談 2件  {gap=6 padding=[4,10] fill=$primary-soft cornerRadius=999 alignItems=center}
+          [icon] Icon  {width=16 height=16 fill=$primary-dark icon=users}
+          [text] 募集中の相談 2件  {fill=$primary-dark fontSize=14 fontWeight=500}
+        [text] 個人情報・プライバシー  {fill=$text-muted fontSize=13 fontWeight=normal}
+      [text] タイムズカーの個人情報漏えいに関する共同相談  {fill=$text fontSize=32 fontWeight=700}
+      [text] 同じ出来事のページは一つです。最初の作成者だけのページではなく、誰でも別の目的の募集を追加できます。  {width=800 fill=$text-muted fontSize=14 fontWeight=normal}
+    [frame] <Stage Banner> Stage Banner  {width=fill_container gap=24 padding=[20,24] fill=$surface cornerRadius=12 stroke=$border alignItems=center}
+      [frame] Stage  {layout=vertical width=340 gap=4}
+        [frame] Stage Head  {gap=6 alignItems=center}
+          [icon] Stage Icon  {width=16 height=16 fill=$text-muted icon=flag}
+          [text] 現在の段階  {fill=$text-muted fontSize=13 fontWeight=normal}
+        [text] 募集中の相談が2件あります  {width=fill_container fill=$text fontSize=18 fontWeight=700}
+      [rectangle] VDivider  {width=1 height=56 fill=$border}
+      [frame] Next  {layout=vertical width=fill_container gap=4}
+        [frame] Next Head  {gap=6 alignItems=center}
+          [icon] Next Icon  {width=16 height=16 fill=$primary-dark icon=circle-arrow-right}
+          [text] 次にすること  {fill=$primary-dark fontSize=13 fontWeight=700}
+        [text] あなたの立場（個人会員／法人会員・利用者）と相談したいことに合う募集を選び、参加希望を登録してください。  {width=fill_container fill=$text fontSize=16 fontWeight=normal}
+    [frame] Body  {width=fill_container gap=32}
+      [frame] Content  {layout=vertical width=fill_container gap=32}
+        [frame] Section この出来事について募集中の相談  {layout=vertical width=fill_container gap=14}
+          [frame] Head  {layout=vertical width=fill_container gap=2}
+            [text] この出来事について募集中の相談  {width=fill_container fill=$text fontSize=20 fontWeight=700}
+            [text] 対象と目的から選んでください。人数や資金は募集ごとに管理され、合算されません。  {width=fill_container fill=$text-muted fontSize=14 fontWeight=normal}
+          [frame] Recruitment Cards  {width=fill_container gap=16}
+            [frame] Recruit 個人会員向けの共同相談  {layout=vertical width=fill_container gap=14 padding=24 fill=$surface cornerRadius=12 stroke=$border}
+              [frame] Head  {width=fill_container gap=10 alignItems=center}
+                [frame] IconWrap  {width=40 height=40 fill=$primary-soft cornerRadius=10 justifyContent=center alignItems=center}
+                  [icon] icon-user  {width=20 height=20 fill=$primary-dark icon=user}
+                [text] 個人会員向けの共同相談  {width=fill_container fill=$text fontSize=18 fontWeight=700}
+              [frame] <Badge> Badge 参加希望を受付中  {gap=6 padding=[4,10] fill=$primary-soft cornerRadius=999 alignItems=center}
+                [icon] Icon  {width=16 height=16 fill=$primary-dark icon=users}
+                [text] 参加希望を受付中  {fill=$primary-dark fontSize=14 fontWeight=500}
+              [frame] KV  {layout=vertical width=fill_container}
+                [frame] KV 対象  {width=fill_container gap=16 padding=[10,0] stroke=$border}
+                  [text] 対象  {width=56 fill=$text-muted fontSize=14 fontWeight=normal}
+                  [text] 個人会員として通知を受け取った方・心当たりのある方  {width=fill_container fill=$text fontSize=15 fontWeight=normal}
+                [frame] KV 目的  {width=fill_container gap=16 padding=[10,0] stroke=$border}
+                  [text] 目的  {width=56 fill=$text-muted fontSize=14 fontWeight=normal}
+                  [text] 漏えいした情報の範囲の確認と、個人としての対応の相談  {width=fill_container fill=$text fontSize=15 fontWeight=normal}
+                [frame] KV 状況  {width=fill_container gap=16 padding=[10,0] stroke=#00000000}
+                  [text] 状況  {width=56 fill=$text-muted fontSize=14 fontWeight=normal}
+                  [text] 登録 61人・相談費は条件設定前（拠出は未開始）  {width=fill_container fill=$text fontSize=15 fontWeight=normal}
+              [frame] <Button/Secondary> Btn この募集を見る  {width=fill_container height=48 gap=8 padding=[0,24] fill=$surface cornerRadius=10 stroke=$primary justifyContent=center alignItems=center}
+                [icon] Icon  {width=20 height=20 fill=$primary-dark icon=arrow-right}
+                [text] この募集を見る  {fill=$primary-dark fontSize=16 fontWeight=700}
+            [frame] Recruit 法人会員・利用者の共同相談  {layout=vertical width=fill_container gap=14 padding=24 fill=$surface cornerRadius=12 stroke=$border}
+              [frame] Head  {width=fill_container gap=10 alignItems=center}
+                [frame] IconWrap  {width=40 height=40 fill=$primary-soft cornerRadius=10 justifyContent=center alignItems=center}
+                  [icon] icon-building-2  {width=20 height=20 fill=$primary-dark icon=building-2}
+                [text] 法人会員・利用者の共同相談  {width=fill_container fill=$text fontSize=18 fontWeight=700}
+              [frame] <Badge> Badge 相談費を募集中 56%  {gap=6 padding=[4,10] fill=$primary-soft cornerRadius=999 alignItems=center}
+                [icon] Icon  {width=16 height=16 fill=$primary-dark icon=hand-coins}
+                [text] 相談費を募集中 56%  {fill=$primary-dark fontSize=14 fontWeight=500}
+              [frame] KV  {layout=vertical width=fill_container}
+                [frame] KV 対象  {width=fill_container gap=16 padding=[10,0] stroke=$border}
+                  [text] 対象  {width=56 fill=$text-muted fontSize=14 fontWeight=normal}
+                  [text] 法人会員の担当者、法人契約で利用した個人  {width=fill_container fill=$text fontSize=15 fontWeight=normal}
+                [frame] KV 目的  {width=fill_container gap=16 padding=[10,0] stroke=$border}
+                  [text] 目的  {width=56 fill=$text-muted fontSize=14 fontWeight=normal}
+                  [text] 法人・利用者への影響の確認と、説明の求め方・賠償の可能性の相談  {width=fill_container fill=$text fontSize=15 fontWeight=normal}
+                [frame] KV 状況  {width=fill_container gap=16 padding=[10,0] stroke=#00000000}
+                  [text] 状況  {width=56 fill=$text-muted fontSize=14 fontWeight=normal}
+                  [text] 登録 248人・拠出 112人・1,120／2,000 USDC  {width=fill_container fill=$text fontSize=15 fontWeight=normal}
+              [frame] <Button/Secondary> Btn この募集を見る  {width=fill_container height=48 gap=8 padding=[0,24] fill=$surface cornerRadius=10 stroke=$primary justifyContent=center alignItems=center}
+                [icon] Icon  {width=20 height=20 fill=$primary-dark icon=arrow-right}
+                [text] この募集を見る  {fill=$primary-dark fontSize=16 fontWeight=700}
+          [frame] Add Recruit  {gap=12 alignItems=center}
+            [frame] <Button/Text> Btn 別の相談目的で募集する  {height=44 gap=6 padding=[0,4] alignItems=center}
+              [text] 別の相談目的で募集する  {fill=$primary-dark fontSize=16 fontWeight=500}
+              [icon] Icon  {width=18 height=18 fill=$primary-dark icon=chevron-right}
+            [text] 例：再発防止の要望、クレジットカード情報の確認など  {fill=$text-muted fontSize=13 fontWeight=normal}
+        [frame] Section 出来事の概要  {layout=vertical width=fill_container gap=14}
+          [frame] Head  {layout=vertical width=fill_container gap=2}
+            [text] 出来事の概要  {width=fill_container fill=$text fontSize=20 fontWeight=700}
+          [frame] Card  {layout=vertical width=fill_container gap=12 padding=24 fill=$surface cornerRadius=12 stroke=$border}
+            [text] 2026年9月28日、タイムズカーの運営会社は「タイムズカーWebサイト」への不正アクセスに関する調査結果（第2報）を公表しました。公表資料では、会員等の氏名・住所・連絡先・運転免許情報などが対象とされ、対象者には個別の通知を順次行うとしています。  {width=fill_container fill=$text fontSize=16 fontWeight=normal}
+            [text] このページでは、公表資料で確認できることと、まだ分かっていないことを分けて整理しています。記載は公表資料と参加者からの更新提案に基づき、更新のたびに履歴を残します。  {width=fill_container fill=$text-sub fontSize=15 fontWeight=normal}
+        [frame] Section 分かっていること／未確認のこと  {layout=vertical width=fill_container gap=14}
+          [frame] Head  {layout=vertical width=fill_container gap=2}
+            [text] 分かっていること／未確認のこと  {width=fill_container fill=$text fontSize=20 fontWeight=700}
+          [frame] Known Unknown  {width=fill_container gap=16}
+            [frame] 分かっていること（公表資料より）  {layout=vertical width=fill_container gap=10 padding=20 fill=$surface cornerRadius=12 stroke=$border}
+              [frame] Head  {gap=8 alignItems=center}
+                [icon] icon-circle-check  {width=18 height=18 fill=$green icon=circle-check}
+                [text] 分かっていること（公表資料より）  {fill=$green fontSize=16 fontWeight=700}
+              [frame] Item  {width=fill_container gap=10}
+                [frame] IconBox  {height=26 alignItems=center}
+                  [icon] icon-check  {width=18 height=18 fill=$green icon=check}
+                [text] 「タイムズカーWebサイト」への不正アクセスについて、調査結果（第2報）が公表された（2026年9月28日）  {width=fill_container fill=$text fontSize=15 fontWeight=normal}
+              [frame] Item  {width=fill_container gap=10}
+                [frame] IconBox  {height=26 alignItems=center}
+                  [icon] icon-check  {width=18 height=18 fill=$green icon=check}
+                [text] 公表資料では、氏名・住所・生年月日・連絡先・運転免許情報などが対象とされ、クレジットカード情報は含まれないとされている  {width=fill_container fill=$text fontSize=15 fontWeight=normal}
+              [frame] Item  {width=fill_container gap=10}
+                [frame] IconBox  {height=26 alignItems=center}
+                  [icon] icon-check  {width=18 height=18 fill=$green icon=check}
+                [text] 対象者への個別通知を順次行うとされ、問い合わせ窓口が案内されている  {width=fill_container fill=$text fontSize=15 fontWeight=normal}
+            [frame] 未確認のこと  {layout=vertical width=fill_container gap=10 padding=20 fill=#F4F6F9 cornerRadius=12 stroke=$border}
+              [frame] Head  {gap=8 alignItems=center}
+                [icon] icon-circle-dashed  {width=18 height=18 fill=$text-sub icon=circle-dashed}
+                [text] 未確認のこと  {fill=$text-sub fontSize=16 fontWeight=700}
+              [frame] Item  {width=fill_container gap=10}
+                [frame] IconBox  {height=26 alignItems=center}
+                  [icon] icon-circle-dashed  {width=18 height=18 fill=$text-sub icon=circle-dashed}
+                [text] 一人ひとりについて、どの項目が漏えいしたか  {width=fill_container fill=$text fontSize=15 fontWeight=normal}
+              [frame] Item  {width=fill_container gap=10}
+                [frame] IconBox  {height=26 alignItems=center}
+                  [icon] icon-circle-dashed  {width=18 height=18 fill=$text-sub icon=circle-dashed}
+                [text] 法人契約の利用者一人ひとりが、どの範囲で対象になるか  {width=fill_container fill=$text fontSize=15 fontWeight=normal}
+              [frame] Item  {width=fill_container gap=10}
+                [frame] IconBox  {height=26 alignItems=center}
+                  [icon] icon-circle-dashed  {width=18 height=18 fill=$text-sub icon=circle-dashed}
+                [text] 被害の有無・金額と、賠償が受けられるかどうか  {width=fill_container fill=$text fontSize=15 fontWeight=normal}
+        [frame] Section 更新履歴  {layout=vertical width=fill_container gap=14}
+          [frame] Head  {layout=vertical width=fill_container gap=2}
+            [text] 更新履歴  {width=fill_container fill=$text fontSize=20 fontWeight=700}
+            [text] 変更点はすべて記録され、誰でも確認できます。  {width=fill_container fill=$text-muted fontSize=14 fontWeight=normal}
+          [frame] Card  {layout=vertical width=fill_container padding=[8,24] fill=$surface cornerRadius=12 stroke=$border}
+            [frame] H 2026年9月29日 18:10  {width=fill_container gap=16 padding=[14,0] stroke=$border}
+              [frame] DotCol  {height=26 alignItems=center}
+                [ellipse] Dot  {width=10 height=10 fill=$primary}
+              [text] 2026年9月29日 18:10  {width=170 fill=$text-muted fontSize=14 fontWeight=normal}
+              [text] 法人会員・利用者の共同相談で、相談費の募集が始まりました（支払条件の設定後）  {width=fill_container fill=$text fontSize=15 fontWeight=normal}
+            [frame] H 2026年9月29日 10:30  {width=fill_container gap=16 padding=[14,0] stroke=$border}
+              [frame] DotCol  {height=26 alignItems=center}
+                [ellipse] Dot  {width=10 height=10 fill=$border-strong}
+              [text] 2026年9月29日 10:30  {width=170 fill=$text-muted fontSize=14 fontWeight=normal}
+              [text] 法人会員・利用者の共同相談が追加されました  {width=fill_container fill=$text fontSize=15 fontWeight=normal}
+            [frame] H 2026年9月28日 21:05  {width=fill_container gap=16 padding=[14,0]}
+              [frame] DotCol  {height=26 alignItems=center}
+                [ellipse] Dot  {width=10 height=10 fill=$border-strong}
+              [text] 2026年9月28日 21:05  {width=170 fill=$text-muted fontSize=14 fontWeight=normal}
+              [text] 事件ページが作成され、個人会員向けの共同相談が始まりました  {width=fill_container fill=$text fontSize=15 fontWeight=normal}
+            [frame] <Button/Text> Btn すべての履歴を見る  {height=44 gap=6 padding=[0,4] alignItems=center}
+              [text] すべての履歴を見る  {fill=$primary-dark fontSize=16 fontWeight=500}
+              [icon] Icon  {width=18 height=18 fill=$primary-dark icon=chevron-right}
+      [frame] Aside  {layout=vertical width=352 gap=16}
+        [frame] Sources  {layout=vertical width=fill_container gap=12 padding=20 fill=$surface cornerRadius=12 stroke=$border}
+          [text] 公表資料  {fill=$text fontSize=16 fontWeight=700}
+          [frame] Source  {layout=vertical width=fill_container gap=4 padding=14 fill=#F4F6F9 cornerRadius=10}
+            [text] 「タイムズカーWebサイト」への不正アクセスに関する調査結果および今後の対応について（第2報）  {width=fill_container fill=$text fontSize=15 fontWeight=700}
+            [text] share.timescar.jp/news/2026/0928/1815.html  {width=fill_container fill=$text-muted fontSize=13 fontWeight=normal}
+            [text] 公表日 2026年9月28日  {width=fill_container fill=$text-muted fontSize=13 fontWeight=normal}
+          [frame] <Button/Text> Btn 外部サイトで開く  {height=44 gap=6 padding=[0,4] alignItems=center}
+            [text] 外部サイトで開く  {fill=$primary-dark fontSize=16 fontWeight=500}
+            [icon] Icon  {width=18 height=18 fill=$primary-dark icon=chevron-right}
+        [frame] Not Public  {layout=vertical width=fill_container gap=10 padding=20 fill=$surface cornerRadius=12 stroke=$border}
+          [text] このページで公開しないもの  {fill=$text fontSize=16 fontWeight=700}
+          [frame] <Badge> Badge 通知メールの原本  {gap=6 padding=[4,10] fill=#EEF1F5 cornerRadius=999 alignItems=center}
+            [icon] Icon  {width=16 height=16 fill=$text-sub icon=lock}
+            [text] 通知メールの原本  {fill=$text-sub fontSize=14 fontWeight=500}
+          [frame] <Badge> Badge 参加者の名前・連絡先  {gap=6 padding=[4,10] fill=#EEF1F5 cornerRadius=999 alignItems=center}
+            [icon] Icon  {width=16 height=16 fill=$text-sub icon=lock}
+            [text] 参加者の名前・連絡先  {fill=$text-sub fontSize=14 fontWeight=500}
+          [frame] <Badge> Badge 個人ごとの漏えい項目  {gap=6 padding=[4,10] fill=#EEF1F5 cornerRadius=999 alignItems=center}
+            [icon] Icon  {width=16 height=16 fill=$text-sub icon=lock}
+            [text] 個人ごとの漏えい項目  {fill=$text-sub fontSize=14 fontWeight=500}
+          [text] 資料は各募集の中で、本人が許可した範囲にだけ共有されます。  {width=fill_container fill=$text-muted fontSize=13 fontWeight=normal}
+        [frame] Suggest  {layout=vertical width=fill_container gap=10 padding=20 fill=$surface cornerRadius=12 stroke=$border}
+          [text] 内容の誤りに気づいたら  {fill=$text fontSize=16 fontWeight=700}
+          [text] 根拠となる公表資料を添えて、更新を提案できます。反映された変更は更新履歴に残ります。  {width=fill_container fill=$text-sub fontSize=14 fontWeight=normal}
+          [frame] <Button/Secondary> Btn 更新を提案する  {width=fill_container height=48 gap=8 padding=[0,24] fill=$surface cornerRadius=10 stroke=$primary justifyContent=center alignItems=center}
+            [text] 更新を提案する  {fill=$primary-dark fontSize=16 fontWeight=700}

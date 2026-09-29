@@ -1,0 +1,6 @@
+[frame] 注釈_C02b 採択の確認（審議役のみ）  {layout=vertical width=1440 gap=4 padding=[16,20] fill=#EAEFF4 cornerRadius=12 stroke=$border-strong}
+  [frame] Head  {gap=8 alignItems=center}
+    [icon] icon-sticky-note  {width=16 height=16 fill=$text-sub icon=sticky-note}
+    [text] 注釈｜C02b 採択の確認（審議役のみ）  {fill=$text fontSize=14 fontWeight=700}
+  [text] 決定条件を満たした後、審議役にだけ表示される確認ダイアログ。  {width=fill_container fill=$text-sub fontSize=13 fontWeight=normal}
+  [text] 遷移：「弁護士Aを採択する」→ 審議記録に記録・契約条件の登録 → D02 の支払条件に反映。  {width=fill_container fill=$text-sub fontSize=13 fontWeight=normal}

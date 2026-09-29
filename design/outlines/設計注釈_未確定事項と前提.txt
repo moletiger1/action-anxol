@@ -1,0 +1,26 @@
+[frame] 設計注釈_未確定事項と前提  {layout=vertical width=720 gap=14 padding=32 fill=#EAEFF4 cornerRadius=16 stroke=$border-strong}
+  [text] 設計注釈｜未確定事項と前提  {fill=$text fontSize=24 fontWeight=700}
+  [frame] N 未確定：審議の決め方  {layout=vertical width=fill_container gap=2 padding=[10,0] stroke=$border-strong}
+    [text] 未確定：審議の決め方  {width=fill_container fill=$text fontSize=15 fontWeight=700}
+    [text] 審議役の母集団・選任方法・人数・定足数・決定条件は未確定。C02では「未設定」と表示し、条件がそろうまで採択できない状態にしている。  {width=fill_container fill=$text-sub fontSize=14 fontWeight=normal}
+  [frame] N 未確定：支出確認担当  {layout=vertical width=fill_container gap=2 padding=[10,0] stroke=$border-strong}
+    [text] 未確定：支出確認担当  {width=fill_container fill=$text fontSize=15 fontWeight=700}
+    [text] 支出確認担当の選任方法と人数は未確定。D02の「確認 1／2」はデモ用の仮設定。  {width=fill_container fill=$text-sub fontSize=14 fontWeight=normal}
+  [frame] N 未確定：本人確認  {layout=vertical width=fill_container gap=2 padding=[10,0] stroke=$border-strong}
+    [text] 未確定：本人確認  {width=fill_container fill=$text fontSize=15 fontWeight=700}
+    [text] 本人確認の方式・委託先・保存期間は未確定。B02では「確認中」の状態のみ示す。  {width=fill_container fill=$text-sub fontSize=14 fontWeight=normal}
+  [frame] N 未確定：資産・ネットワーク・換算  {layout=vertical width=fill_container gap=2 padding=[10,0] stroke=$border-strong}
+    [text] 未確定：資産・ネットワーク・換算  {width=fill_container fill=$text fontSize=15 fontWeight=700}
+    [text] USDC・ネットワーク・1 USDC＝150円はUI説明用。正式採用・現在相場ではない。円換算は常に「参考」と表示。  {width=fill_container fill=$text-sub fontSize=14 fontWeight=normal}
+  [frame] N 未設定なら集金できない  {layout=vertical width=fill_container gap=2 padding=[10,0] stroke=$border-strong}
+    [text] 未設定なら集金できない  {width=fill_container fill=$text fontSize=15 fontWeight=700}
+    [text] 支払条件（使途・確認者・返金条件）が未設定の募集は、公開後も拠出を受け付けない（B01c・B01d、E00の無効状態）。  {width=fill_container fill=$text-sub fontSize=14 fontWeight=normal}
+  [frame] N 固定される範囲と人が担う範囲  {layout=vertical width=fill_container gap=2 padding=[10,0] stroke=$border-strong}
+    [text] 固定される範囲と人が担う範囲  {width=fill_container fill=$text fontSize=15 fontWeight=700}
+    [text] コントラクトで固定：支払先の条件・費目の上限・確認前の支払い禁止・返金計算。人が担う：弁護士業務・請求内容の確認・本人確認・利益相反確認・円の回収と銀行振込（D02・D03）。管理者が案件を自由承認・出金する画面は作らない。  {width=fill_container fill=$text-sub fontSize=14 fontWeight=normal}
+  [frame] N デモデータ  {layout=vertical width=fill_container gap=2 padding=[10,0] stroke=$border-strong}
+    [text] デモデータ  {width=fill_container fill=$text fontSize=15 fontWeight=700}
+    [text] タイムズ案件の人数・金額・進捗はすべて仮データ。D02・D01・D03は別時点のデモ。円での回収精算は架空案件の別シナリオで、タイムズ案件の勝訴・回収実績ではない。  {width=fill_container fill=$text-sub fontSize=14 fontWeight=normal}
+  [frame] N プロトタイプ接続  {layout=vertical width=fill_container gap=2 padding=[10,0] stroke=$border-strong}
+    [text] プロトタイプ接続  {width=fill_container fill=$text fontSize=15 fontWeight=700}
+    [text] この環境ではプロトタイプの接続を作成できないため、各画面上の注釈に主要CTAの遷移先を記載。  {width=fill_container fill=$text-sub fontSize=14 fontWeight=normal}

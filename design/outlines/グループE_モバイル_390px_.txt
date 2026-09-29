@@ -1,0 +1,6 @@
+[frame] グループE_モバイル（390px）  {layout=vertical width=1440 gap=6}
+  [frame] Head  {gap=16 alignItems=center}
+    [frame] Tag  {width=56 height=56 fill=$primary cornerRadius=12 justifyContent=center alignItems=center}
+      [text] E  {fill=#FFFFFF fontSize=28 fontWeight=700}
+    [text] モバイル（390px）  {fill=$text fontSize=36 fontWeight=700}
+  [text] A03 募集詳細／B01 似た案件の確認／C01 拠出確認／D03 本人の精算（返金・回収金タブ）。共通部品・状態は E00 を参照  {width=fill_container fill=$text-sub fontSize=16 fontWeight=normal}

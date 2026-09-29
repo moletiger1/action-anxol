@@ -1,0 +1,6 @@
+[frame] 注釈_M D03b 本人の精算（モバイル・回収金タブ）  {layout=vertical width=390 gap=4 padding=[16,20] fill=#EAEFF4 cornerRadius=12 stroke=$border-strong}
+  [frame] Head  {gap=8 alignItems=center}
+    [icon] icon-sticky-note  {width=16 height=16 fill=$text-sub icon=sticky-note}
+    [text] 注釈｜M D03b 本人の精算（モバイル・回収金タブ）  {fill=$text fontSize=14 fontWeight=700}
+  [text] 段階（成立・入金待ち・一部入金・精算中・送金済み）を区別し、勝訴だけで受取済みにしない。  {width=fill_container fill=$text-sub fontSize=13 fontWeight=normal}
+  [text] 遷移：「振込内容を確認しました」→ 確認済み／「異議を申し立てる」→ 異議フォーム。  {width=fill_container fill=$text-sub fontSize=13 fontWeight=normal}

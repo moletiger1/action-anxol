@@ -1,0 +1,7 @@
+[frame] 注釈_B01d 公開内容の確認（4／4）  {layout=vertical width=1440 gap=4 padding=[16,20] fill=#EAEFF4 cornerRadius=12 stroke=$border-strong}
+  [frame] Head  {gap=8 alignItems=center}
+    [icon] icon-sticky-note  {width=16 height=16 fill=$text-sub icon=sticky-note}
+    [text] 注釈｜B01d 公開内容の確認（4／4）  {fill=$text fontSize=14 fontWeight=700}
+  [text] 目的：公開される内容と非公開の情報を明確に分けて確認する。  {width=fill_container fill=$text-sub fontSize=13 fontWeight=normal}
+  [text] 遷移：「参加希望の募集を公開する」→ 公開後の A02／A03。  {width=fill_container fill=$text-sub fontSize=13 fontWeight=normal}
+  [text] 注記：確認欄は初期状態で未チェック（画面は利用者がチェックした後）。公開前の一律の第三者承認はない。  {width=fill_container fill=$text-sub fontSize=13 fontWeight=normal}

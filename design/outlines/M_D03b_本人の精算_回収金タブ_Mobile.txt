@@ -1,0 +1,101 @@
+[frame] M_D03b_本人の精算_回収金タブ_Mobile  {layout=vertical width=390 fill=$bg}
+  [frame] <Mobile Header> Mobile Header  {width=390 height=56 gap=4 padding=[0,12,0,4] fill=$surface stroke=$border alignItems=center}
+    [frame] Back  {width=44 height=44 justifyContent=center alignItems=center}
+      [icon] Back Icon  {width=24 height=24 fill=$text icon=chevron-left}
+    [text] あなたの精算  {width=fill_container fill=$text fontSize=16 fontWeight=700}
+    [frame] <Demo Badge> Demo  {gap=6 padding=[4,10] fill=#EEF1F5 cornerRadius=999 stroke=$border-strong alignItems=center}
+      [icon] Icon  {width=14 height=14 fill=$text-sub icon=flask-conical}
+      [text] デモ  {fill=$text-sub fontSize=13 fontWeight=normal}
+  [frame] Content  {layout=vertical width=fill_container gap=16 padding=[16,16,24,16]}
+    [frame] <Badge> Badge 本人だけが閲覧できます  {gap=6 padding=[4,10] fill=#EEF1F5 cornerRadius=999 alignItems=center}
+      [icon] Icon  {width=16 height=16 fill=$text-sub icon=lock}
+      [text] 本人だけが閲覧できます  {fill=$text-sub fontSize=14 fontWeight=500}
+    [frame] Switch  {width=fill_container gap=4 padding=4 fill=#E9EDF2 cornerRadius=12}
+      [frame] Seg 相談費などの返金  {width=fill_container height=44 cornerRadius=9 justifyContent=center alignItems=center}
+        [text] 相談費などの返金  {fill=$text-sub fontSize=14 fontWeight=500}
+      [frame] Seg 回収金の受取り  {width=fill_container height=44 fill=$surface cornerRadius=9 justifyContent=center alignItems=center}
+        [text] 回収金の受取り  {fill=$text fontSize=14 fontWeight=700}
+    [text] 対象：〔架空〕オンライン英会話の件（架空の別シナリオ・円での精算）  {width=fill_container fill=$text-muted fontSize=12 fontWeight=normal}
+    [frame] Stages  {layout=vertical width=fill_container padding=[4,16] fill=$surface cornerRadius=12 stroke=$border}
+      [frame] S 和解が成立  {width=fill_container gap=10 padding=[10,0] stroke=$border alignItems=center}
+        [icon] icon-circle-check  {width=18 height=18 fill=$green icon=circle-check}
+        [text] 和解が成立  {width=80 fill=$text fontSize=14 fontWeight=500}
+        [text] 2027年5月20日  {width=fill_container fill=$text-muted fontSize=13 fontWeight=normal}
+      [frame] S 入金待ち  {width=fill_container gap=10 padding=[10,0] stroke=$border alignItems=center}
+        [icon] icon-circle-check  {width=18 height=18 fill=$green icon=circle-check}
+        [text] 入金待ち  {width=80 fill=$text fontSize=14 fontWeight=500}
+        [text] 2027年6月10日 入金  {width=fill_container fill=$text-muted fontSize=13 fontWeight=normal}
+      [frame] S 一部入金  {width=fill_container gap=10 padding=[10,0] stroke=$border alignItems=center}
+        [icon] icon-circle-minus  {width=18 height=18 fill=$text-muted icon=circle-minus}
+        [text] 一部入金  {width=80 fill=$text fontSize=14 fontWeight=500}
+        [text] 該当なし（全額入金）  {width=fill_container fill=$text-muted fontSize=13 fontWeight=normal}
+      [frame] S 精算中  {width=fill_container gap=10 padding=[10,0] stroke=$border alignItems=center}
+        [icon] icon-clock-3  {width=18 height=18 fill=$amber icon=clock-3}
+        [text] 精算中  {width=80 fill=$amber fontSize=14 fontWeight=700}
+        [text] 振込前の確認期間：6月23日まで  {width=fill_container fill=$text-muted fontSize=13 fontWeight=normal}
+      [frame] S 送金済み  {width=fill_container gap=10 padding=[10,0] alignItems=center}
+        [icon] icon-circle-dashed  {width=18 height=18 fill=$text-muted icon=circle-dashed}
+        [text] 送金済み  {width=80 fill=$text fontSize=14 fontWeight=500}
+        [text] 振込予定 2027年6月24日  {width=fill_container fill=$text-muted fontSize=13 fontWeight=normal}
+    [frame] Breakdown  {layout=vertical width=fill_container padding=[8,16] fill=$surface cornerRadius=12 stroke=$border}
+      [frame] <Cost Row> Cost 実回収額（あなた分）  {width=fill_container gap=16 padding=[12,0] stroke=$border alignItems=center}
+        [frame] Left  {layout=vertical width=fill_container gap=2}
+          [text] 実回収額（あなた分）  {width=fill_container fill=$text-sub fontSize=16 fontWeight=normal}
+        [frame] Right  {layout=vertical gap=2 alignItems=end}
+          [text] 5,000円  {fill=$text fontSize=16 fontWeight=700}
+      [frame] <Cost Row> Cost 報酬（税込・20%）  {width=fill_container gap=16 padding=[12,0] stroke=$border alignItems=center}
+        [frame] Left  {layout=vertical width=fill_container gap=2}
+          [text] 報酬（税込・20%）  {width=fill_container fill=$text-sub fontSize=16 fontWeight=normal}
+        [frame] Right  {layout=vertical gap=2 alignItems=end}
+          [text] − 1,000円  {fill=$text fontSize=16 fontWeight=700}
+      [frame] <Cost Row> Cost 未精算の実費  {width=fill_container gap=16 padding=[12,0] stroke=$border alignItems=center}
+        [frame] Left  {layout=vertical width=fill_container gap=2}
+          [text] 未精算の実費  {width=fill_container fill=$text-sub fontSize=16 fontWeight=normal}
+        [frame] Right  {layout=vertical gap=2 alignItems=end}
+          [text] − 100円  {fill=$text fontSize=16 fontWeight=700}
+      [frame] <Cost Row> Cost 既払額  {width=fill_container gap=16 padding=[12,0] stroke=$border alignItems=center}
+        [frame] Left  {layout=vertical width=fill_container gap=2}
+          [text] 既払額  {width=fill_container fill=$text-sub fontSize=16 fontWeight=normal}
+        [frame] Right  {layout=vertical gap=2 alignItems=end}
+          [text] 0円  {fill=$text fontSize=16 fontWeight=700}
+      [frame] <Cost Row> Cost 今回の振込額  {width=fill_container gap=16 padding=[12,0] stroke=#00000000 alignItems=center}
+        [frame] Left  {layout=vertical width=fill_container gap=2}
+          [text] 今回の振込額  {width=fill_container fill=$text fontSize=16 fontWeight=700}
+        [frame] Right  {layout=vertical gap=2 alignItems=end}
+          [text] 3,900円  {fill=$text fontSize=20 fontWeight=700}
+    [frame] Final  {width=fill_container padding=[12,16] fill=#F4F6F9 cornerRadius=10 justifyContent=space_between alignItems=center}
+      [frame] T  {layout=vertical}
+        [text] 最終的な収支  {fill=$text fontSize=16 fontWeight=700}
+        [text] 既払い相談費600円を差し引き  {fill=$text-muted fontSize=12 fontWeight=normal}
+      [text] ＋3,300円  {fill=$green fontSize=22 fontWeight=700}
+    [frame] Bank  {layout=vertical width=fill_container padding=[4,16] fill=$surface cornerRadius=12 stroke=$border}
+      [frame] KV 振込先  {width=fill_container gap=16 padding=[10,0] stroke=$border}
+        [text] 振込先  {width=84 fill=$text-muted fontSize=14 fontWeight=normal}
+        [text] 〇〇銀行 普通 ****1234  {width=fill_container fill=$text fontSize=15 fontWeight=normal}
+      [frame] KV 送金の担当  {width=fill_container gap=16 padding=[10,0] stroke=#00000000}
+        [text] 送金の担当  {width=84 fill=$text-muted fontSize=14 fontWeight=normal}
+        [text] 弁護士A〔架空〕（預り金口座から円で振込）  {width=fill_container fill=$text fontSize=15 fontWeight=normal}
+    [text] 銀行振込は依頼先の弁護士が行います。ブロックチェーン上の仕組みが銀行口座を操作することはありません。  {width=fill_container fill=$text-muted fontSize=13 fontWeight=normal}
+  [frame] CTA Bar  {layout=vertical width=fill_container gap=8 padding=[12,16] fill=$surface stroke=$border alignItems=center}
+    [frame] <Button/Secondary> Btn 振込内容を確認しました  {width=fill_container height=48 gap=8 padding=[0,24] fill=$surface cornerRadius=10 stroke=$primary justifyContent=center alignItems=center}
+      [icon] Icon  {width=20 height=20 fill=$primary-dark icon=check}
+      [text] 振込内容を確認しました  {fill=$primary-dark fontSize=16 fontWeight=700}
+    [frame] <Button/Text> Btn 内容に異議を申し立てる  {height=44 gap=6 padding=[0,4] alignItems=center}
+      [text] 内容に異議を申し立てる  {fill=$primary-dark fontSize=16 fontWeight=500}
+      [icon] Icon  {width=18 height=18 fill=$primary-dark icon=chevron-right}
+  [frame] <Mobile Bottom Nav> Bottom Nav  {width=fill_container height=84 padding=[8,8,20,8] fill=$surface stroke=$border}
+    [frame] Tab 探す  {layout=vertical width=fill_container height=fill_container gap=4 justifyContent=center alignItems=center}
+      [icon] Icon  {width=24 height=24 fill=$text-muted icon=search}
+      [text] 探す  {fill=$text-muted fontSize=12 fontWeight=500}
+    [frame] Tab 参加中  {layout=vertical width=fill_container height=fill_container gap=4 justifyContent=center alignItems=center}
+      [icon] Icon  {width=24 height=24 fill=$text-muted icon=folder-open}
+      [text] 参加中  {fill=$text-muted fontSize=12 fontWeight=500}
+    [frame] Tab 作る  {layout=vertical width=fill_container height=fill_container gap=4 justifyContent=center alignItems=center}
+      [icon] Icon  {width=24 height=24 fill=$text-muted icon=circle-plus}
+      [text] 作る  {fill=$text-muted fontSize=12 fontWeight=500}
+    [frame] Tab お金の記録  {layout=vertical width=fill_container height=fill_container gap=4 justifyContent=center alignItems=center}
+      [icon] Icon  {width=24 height=24 fill=$primary icon=receipt-text}
+      [text] お金の記録  {fill=$primary-dark fontSize=12 fontWeight=700}
+    [frame] Tab 通知  {layout=vertical width=fill_container height=fill_container gap=4 justifyContent=center alignItems=center}
+      [icon] Icon  {width=24 height=24 fill=$text-muted icon=bell}
+      [text] 通知  {fill=$text-muted fontSize=12 fontWeight=500}
