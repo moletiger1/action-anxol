@@ -3,11 +3,9 @@
 import { useRouter } from "next/navigation";
 import {
   ArrowLeft,
-  BadgeCheck,
   CircleCheck,
   CircleDashed,
   FilePlus2,
-  GitCompareArrows,
   Info,
   Link2,
   Lock,
@@ -80,6 +78,11 @@ export function SimilarStep() {
         </p>
       </Callout>
 
+      <Callout icon={Info} tone="neutral">
+        <p>公開カタログの版競合・再照合・新審査の操作例を、架空データで確認できます。ここで作成するプレビューとは連動しません。</p>
+        <ButtonLink href={`${routes.workflows}#catalog`} variant="text">カタログ再照合の操作デモへ</ButtonLink>
+      </Callout>
+
       {/* 固定の既存事件例 */}
       <section className="flex flex-col gap-3 rounded-xl border border-primary bg-[#FBFEFE] p-4 md:gap-3.5 md:p-6">
         <div className="flex flex-col gap-3 md:flex-row md:items-center md:gap-2.5">
@@ -117,35 +120,9 @@ export function SimilarStep() {
         </div>
       </section>
 
-      {/* 固定の類似候補例 */}
-      <section className="flex flex-col gap-2.5 rounded-xl border border-border bg-surface p-4 md:gap-3 md:p-6">
-        <div className="md:hidden">
-          <Badge tone="neutral" icon={GitCompareArrows}>
-            類似候補の表示例
-          </Badge>
-        </div>
-        <div className="hidden items-center gap-2.5 md:flex">
-          <Badge tone="neutral" icon={CircleDashed}>
-            固定の候補例
-          </Badge>
-          <span className="text-sm text-text-muted">入力との照合はしていません</span>
-        </div>
-        <h3 className="text-base font-bold text-text md:text-lg">
-          〔架空の例〕カーシェア予約アプリで他の会員情報が表示された件
-        </h3>
-        <p className="hidden text-sm text-text-sub md:block">
-          予約アプリの表示不具合で、一時的に他の会員の予約情報が見えたとされる出来事。漏えいの公表とは別の出来事の可能性があります。
-        </p>
-        <div className="flex flex-col items-start md:flex-row md:items-center md:gap-3">
-          <Button variant="text" onClick={() => go("new")}>
-            別の事件として説明する
-          </Button>
-        </div>
-      </section>
-
-      {/* どちらとも違う */}
+      {/* 別の出来事 */}
       <section className="flex flex-col gap-2 rounded-xl bg-[#F1F5F6] p-4 md:gap-3 md:p-6">
-        <h3 className="text-base font-bold text-text">どちらとも違う出来事の場合</h3>
+        <h3 className="text-base font-bold text-text">この事件と違う出来事の場合</h3>
         <p className="hidden text-sm text-text-sub md:block">
           既存の事件との違い（対象のサービス・時期・起きたこと）を一言添えると、参加者が迷わずに済みます。
         </p>

@@ -1,7 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { useEffect, useRef, useState, type DragEvent } from "react";
+import { useMemo, useRef, useState, type DragEvent } from "react";
 import {
   ArrowLeft,
   Ban,
@@ -16,6 +16,7 @@ import {
 } from "lucide-react";
 import { Badge, Button, ButtonLink, Callout, ConfirmDialog, StageBanner } from "@/components/ui";
 import { cn } from "@/lib/cn";
+import { createClientSnapshotStore, useClientSnapshot } from "@/lib/clientSnapshot";
 import { loadJoinDemoState, saveJoinDemoState, type JoinDemoReadResult } from "@/lib/joinDemo";
 import { routes } from "@/lib/routes";
 import { demoRecruitments } from "@/lib/demoRecruitments";
@@ -215,7 +216,8 @@ export function JoinFlow({ recruitmentId = "timescar-corporate" }: { recruitment
   const audienceLabel = recruitmentId === "timescar-individual" ? "個人会員" : "法人会員の利用者";
   const [phase, setPhase] = useState<"share" | "confirm">("share");
   const [files, setFiles] = useState<SharedFile[]>([]);
-  const [priorSubmission, setPriorSubmission] = useState<JoinDemoReadResult | undefined>(undefined);
+  const priorStore = useMemo(() => createClientSnapshotStore(() => loadJoinDemoState(recruitmentId)), [recruitmentId]);
+  const priorSubmission = useClientSnapshot(priorStore);
   const [skipped, setSkipped] = useState(false);
   const [uploadError, setUploadError] = useState<string | null>(null);
   const [dragging, setDragging] = useState(false);
@@ -223,8 +225,6 @@ export function JoinFlow({ recruitmentId = "timescar-corporate" }: { recruitment
   const [submitting, setSubmitting] = useState(false);
   const [submissionError, setSubmissionError] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
-
-  useEffect(() => setPriorSubmission(loadJoinDemoState(recruitmentId)), [recruitmentId]);
 
   const shareStage =
     priorSubmission === undefined

@@ -1,20 +1,20 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useMemo, useState } from "react";
 import { ArrowRight, BadgeCheck, Building2, CircleDashed, CircleX, FileText, FlaskConical, UserRound } from "lucide-react";
 import { Badge, Button, ButtonLink, ConfirmDialog } from "@/components/ui";
-import { cancelJoinDemoState, loadJoinDemoState, type JoinDemoReadResult } from "@/lib/joinDemo";
+import { createClientSnapshotStore, useClientSnapshot } from "@/lib/clientSnapshot";
+import { cancelJoinDemoState, loadJoinDemoState } from "@/lib/joinDemo";
 import { routes } from "@/lib/routes";
 import { demoRecruitments } from "@/lib/demoRecruitments";
 
 export function DashboardJoinCase({ recruitmentId = "timescar-corporate" }: { recruitmentId?: "timescar-corporate" | "timescar-individual" }) {
   const recruitment = demoRecruitments.find((item) => item.id === recruitmentId)!;
   const joinHref = recruitmentId === "timescar-individual" ? routes.individualJoin : routes.join;
-  const [state, setState] = useState<JoinDemoReadResult | undefined>(undefined);
   const [confirmCancel, setConfirmCancel] = useState(false);
   const [cancelError, setCancelError] = useState(false);
-
-  useEffect(() => setState(loadJoinDemoState(recruitmentId)), [recruitmentId]);
+  const store = useMemo(() => createClientSnapshotStore(() => loadJoinDemoState(recruitmentId)), [recruitmentId]);
+  const state = useClientSnapshot(store);
 
   const registered = typeof state !== "string" && state?.status === "registered";
   const cancelled = typeof state !== "string" && state?.status === "cancelled";
@@ -32,7 +32,7 @@ export function DashboardJoinCase({ recruitmentId = "timescar-corporate" }: { re
       setCancelError(true);
       return;
     }
-    setState(next);
+    store.invalidate();
     setCancelError(false);
   }
 

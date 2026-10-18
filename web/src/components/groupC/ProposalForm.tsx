@@ -16,9 +16,10 @@ import {
   Users,
   type LucideIcon,
 } from "lucide-react";
-import { useEffect, useId, useState, type ComponentProps, type ReactNode } from "react";
+import { useId, useMemo, useState, type ComponentProps, type ReactNode } from "react";
 import { Badge, Button, Callout, ConfirmDialog, StageBanner, StatePanel } from "@/components/ui";
 import { cn } from "@/lib/cn";
+import { createClientSnapshotStore, useClientSnapshot } from "@/lib/clientSnapshot";
 import { parseYenAmount, recruitmentStats, formatYen } from "@/lib/demo";
 import { NumHead, OptionCard } from "./parts";
 
@@ -111,6 +112,50 @@ function nowHm() {
   return `${String(d.getHours()).padStart(2, "0")}:${String(d.getMinutes()).padStart(2, "0")}`;
 }
 
+type FormValues = {
+  scope: string;
+  fee: string;
+  expense: string;
+  pay: string;
+  due: string;
+  team: string;
+  docs: Record<string, boolean>;
+  future: string;
+  savedLabel: string;
+};
+
+const FORM_DEFAULTS: FormValues = {
+  scope: SCOPE_DEFAULT,
+  fee: "180,000",
+  expense: "7,500",
+  pay: "lump",
+  due: "採択から6週間",
+  team: "弁護士2名",
+  docs: { mail: true, corp: true, log: false },
+  future: "estimate",
+  savedLabel: "このブラウザーに未保存",
+};
+
+function initialFormValues(draft: ProposalDraft | null | "unreadable" | undefined): FormValues {
+  if (draft === "unreadable") {
+    return { ...FORM_DEFAULTS, docs: { ...FORM_DEFAULTS.docs }, savedLabel: "このブラウザーの保存データを読み込めませんでした" };
+  }
+  if (!draft) return { ...FORM_DEFAULTS, docs: { ...FORM_DEFAULTS.docs } };
+  return {
+    scope: draft.scope,
+    fee: draft.fee,
+    expense: draft.expense,
+    pay: draft.pay,
+    due: draft.due,
+    team: draft.team,
+    docs: { ...draft.docs },
+    future: draft.future,
+    savedLabel: draft.legacyAmounts
+      ? "旧USDC下書きの文章を復元しました。報酬・実費は円で入力し直してください。"
+      : "このブラウザーから円建ての下書きを復元しました",
+  };
+}
+
 
 
 function IconField({
@@ -156,37 +201,28 @@ function IconField({
 }
 
 export function ProposalForm() {
-  const [scope, setScope] = useState(SCOPE_DEFAULT);
-  const [fee, setFee] = useState("180,000");
-  const [expense, setExpense] = useState("7,500");
-  const [pay, setPay] = useState("lump");
-  const [due, setDue] = useState("採択から6週間");
-  const [team, setTeam] = useState("弁護士2名");
-  const [docs, setDocs] = useState<Record<string, boolean>>({ mail: true, corp: true, log: false });
-  const [future, setFuture] = useState("estimate");
-  const [savedLabel, setSavedLabel] = useState("このブラウザーに未保存");
+  const store = useMemo(() => createClientSnapshotStore(readProposalDraft), []);
+  const draft = useClientSnapshot(store);
+  const draftKey =
+    draft === undefined ? "pending" : draft === "unreadable" ? "unreadable" : draft === null ? "empty" : "restored";
+  return <ProposalFormFields key={draftKey} initial={initialFormValues(draft)} />;
+}
+
+function ProposalFormFields({ initial }: { initial: FormValues }) {
+  const [scope, setScope] = useState(initial.scope);
+  const [fee, setFee] = useState(initial.fee);
+  const [expense, setExpense] = useState(initial.expense);
+  const [pay, setPay] = useState(initial.pay);
+  const [due, setDue] = useState(initial.due);
+  const [team, setTeam] = useState(initial.team);
+  const [docs, setDocs] = useState<Record<string, boolean>>(initial.docs);
+  const [future, setFuture] = useState(initial.future);
+  const [savedLabel, setSavedLabel] = useState(initial.savedLabel);
   const [status, setStatus] = useState<Status>("editing");
   const [sendOpen, setSendOpen] = useState(false);
   const [sending, setSending] = useState(false);
   const [conflict, setConflict] = useState<"none" | "declared">("none");
   const [errors, setErrors] = useState<Record<string, string>>({});
-
-  useEffect(() => {
-    const draft = readProposalDraft();
-    if (draft === "unreadable") {
-      setSavedLabel("このブラウザーの保存データを読み込めませんでした");
-    } else if (draft) {
-      setScope(draft.scope);
-      setFee(draft.fee);
-      setExpense(draft.expense);
-      setPay(draft.pay);
-      setDue(draft.due);
-      setTeam(draft.team);
-      setDocs(draft.docs);
-      setFuture(draft.future);
-      setSavedLabel(draft.legacyAmounts ? "旧USDC下書きの文章を復元しました。報酬・実費は円で入力し直してください。" : "このブラウザーから円建ての下書きを復元しました");
-    }
-  }, []);
 
   const feeNum = parseYenAmount(fee);
   const expenseNum = parseYenAmount(expense);

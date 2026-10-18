@@ -1,0 +1,503 @@
+{
+  "url": "https://action.anxol.com",
+  "revision": "shudan-sosho-demo-00007-b5l",
+  "results": [
+    {
+      "name": "ヘッダー幅1440pxでロゴ・メニューの文字折り返しと横はみ出しなし",
+      "status": "PASS"
+    },
+    {
+      "name": "ヘッダー幅1264pxでロゴ・メニューの文字折り返しと横はみ出しなし",
+      "status": "PASS"
+    },
+    {
+      "name": "ヘッダー幅1024pxでロゴ・メニューの文字折り返しと横はみ出しなし",
+      "status": "PASS"
+    },
+    {
+      "name": "ヘッダー幅768pxでロゴ・メニューの文字折り返しと横はみ出しなし",
+      "status": "PASS"
+    },
+    {
+      "name": "ヘッダー幅393pxでロゴ・メニューの文字折り返しと横はみ出しなし",
+      "status": "PASS"
+    },
+    {
+      "name": "企業名の未入力を拒否",
+      "status": "PASS"
+    },
+    {
+      "name": "下書きの再読み込みで入力を保持",
+      "status": "PASS"
+    },
+    {
+      "name": "不正な公表資料URLを拒否",
+      "status": "PASS"
+    },
+    {
+      "name": "確認未チェック時の保存を拒否",
+      "status": "PASS"
+    },
+    {
+      "name": "内容変更なしの往復で確認チェックを保持",
+      "status": "PASS"
+    },
+    {
+      "name": "②公開内容の変更で確認チェック2件を解除",
+      "status": "PASS"
+    },
+    {
+      "name": "②再確認なしの保存を拒否",
+      "status": "PASS"
+    },
+    {
+      "name": "①保存操作内で即時完了し戻るリンクが残らない",
+      "status": "PASS"
+    },
+    {
+      "name": "通常の新規プレビュー保存",
+      "status": "PASS"
+    },
+    {
+      "name": "保存したプレビューの再読込で内容を保持",
+      "status": "PASS"
+    },
+    {
+      "name": "①保存後の別案件の下書きを旧タイマー以上の待機後も保持",
+      "status": "PASS"
+    },
+    {
+      "name": "編集の下書き置換をキャンセルすると現在の下書きを保持",
+      "status": "PASS"
+    },
+    {
+      "name": "保存済みプレビューの編集開始で再確認を要求",
+      "status": "PASS"
+    },
+    {
+      "name": "編集後の更新が同一IDに反映され重複しない",
+      "status": "PASS"
+    },
+    {
+      "name": "既存事件に別の募集を追加する分岐",
+      "status": "PASS"
+    },
+    {
+      "name": "相談費の必須5項目を検証",
+      "status": "PASS"
+    },
+    {
+      "name": "0円と過去の募集期限を拒否",
+      "status": "PASS"
+    },
+    {
+      "name": "円建て募集条件を確認画面へ反映",
+      "status": "PASS"
+    }
+  ],
+  "headerMetrics": [
+    {
+      "width": 1440,
+      "logo": {
+        "x": 40,
+        "y": 18,
+        "width": 200.4921875,
+        "height": 36
+      },
+      "layout": "Element: body.min-h-full\nBox: x=0 y=0 w=1425 h=1760\nChildren: 7  Text length: 12906\nScroll Y: size=1760 client=1760 overflowing=false top=0\nScroll X: size=1425 client=1425 overflowing=false left=0\nStyles: overflow-y=visible overflow-x=visible position=static max-height=none display=flex flex-direction=column flex-shrink=1"
+    },
+    {
+      "width": 1264,
+      "logo": {
+        "x": 24,
+        "y": 18,
+        "width": 200.4921875,
+        "height": 36
+      },
+      "layout": "Element: body.min-h-full\nBox: x=0 y=0 w=1249 h=1796\nChildren: 7  Text length: 12906\nScroll Y: size=1796 client=1796 overflowing=false top=0\nScroll X: size=1249 client=1249 overflowing=false left=0\nStyles: overflow-y=visible overflow-x=visible position=static max-height=none display=flex flex-direction=column flex-shrink=1"
+    },
+    {
+      "width": 1024,
+      "logo": {
+        "x": 24,
+        "y": 18,
+        "width": 200.4921875,
+        "height": 36
+      },
+      "layout": "Element: body.min-h-full\nBox: x=0 y=0 w=1009 h=1840\nChildren: 7  Text length: 12906\nScroll Y: size=1840 client=1840 overflowing=false top=0\nScroll X: size=1009 client=1009 overflowing=false left=0\nStyles: overflow-y=visible overflow-x=visible position=static max-height=none display=flex flex-direction=column flex-shrink=1"
+    },
+    {
+      "width": 768,
+      "logo": {
+        "x": 24,
+        "y": 18,
+        "width": 200.4921875,
+        "height": 36
+      },
+      "layout": "Element: body.min-h-full\nBox: x=0 y=0 w=753 h=2623\nChildren: 7  Text length: 12906\nScroll Y: size=2623 client=2623 overflowing=false top=0\nScroll X: size=753 client=753 overflowing=false left=0\nStyles: overflow-y=visible overflow-x=visible position=static max-height=none display=flex flex-direction=column flex-shrink=1"
+    },
+    {
+      "width": 393,
+      "logo": {
+        "x": 16,
+        "y": 9.5,
+        "width": 200.4921875,
+        "height": 36
+      },
+      "layout": "Element: body.min-h-full\nBox: x=0 y=0 w=378 h=2746\nChildren: 7  Text length: 12906\nScroll Y: size=2746 client=2746 overflowing=false top=0\nScroll X: size=378 client=378 overflowing=false left=0\nStyles: overflow-y=visible overflow-x=visible position=static max-height=none display=flex flex-direction=column flex-shrink=1"
+    }
+  ],
+  "logs": [
+    {
+      "url": "https://action.anxol.com/",
+      "logs": []
+    },
+    {
+      "url": "https://action.anxol.com/",
+      "logs": [
+        "[info] This page uses Chrome's Built-In AI features (LanguageDetector)! We're always improving our models; please submit your feedback here: https://issues.chromium.org/issues/new?component=1583316"
+      ]
+    },
+    {
+      "url": "https://action.anxol.com/",
+      "logs": []
+    },
+    {
+      "url": "https://action.anxol.com/",
+      "logs": []
+    },
+    {
+      "url": "https://action.anxol.com/",
+      "logs": []
+    },
+    {
+      "url": "https://action.anxol.com/",
+      "logs": []
+    },
+    {
+      "url": "https://action.anxol.com/",
+      "logs": []
+    },
+    {
+      "url": "https://action.anxol.com/create",
+      "logs": []
+    },
+    {
+      "url": "https://action.anxol.com/create",
+      "logs": [
+        "[info] This page uses Chrome's Built-In AI features (LanguageDetector)! We're always improving our models; please submit your feedback here: https://issues.chromium.org/issues/new?component=1583316"
+      ]
+    },
+    {
+      "url": "https://action.anxol.com/create",
+      "logs": []
+    },
+    {
+      "url": "https://action.anxol.com/create",
+      "logs": []
+    },
+    {
+      "url": "https://action.anxol.com/create",
+      "logs": []
+    },
+    {
+      "url": "https://action.anxol.com/create",
+      "logs": []
+    },
+    {
+      "url": "https://action.anxol.com/create",
+      "logs": []
+    },
+    {
+      "url": "https://action.anxol.com/create",
+      "logs": []
+    },
+    {
+      "url": "https://action.anxol.com/create",
+      "logs": []
+    },
+    {
+      "url": "https://action.anxol.com/create",
+      "logs": [
+        "[info] This page uses Chrome's Built-In AI features (LanguageDetector)! We're always improving our models; please submit your feedback here: https://issues.chromium.org/issues/new?component=1583316"
+      ]
+    },
+    {
+      "url": "https://action.anxol.com/create/similar",
+      "logs": []
+    },
+    {
+      "url": "https://action.anxol.com/create/details",
+      "logs": []
+    },
+    {
+      "url": "https://action.anxol.com/create/details",
+      "logs": []
+    },
+    {
+      "url": "https://action.anxol.com/create/details",
+      "logs": []
+    },
+    {
+      "url": "https://action.anxol.com/create/details",
+      "logs": []
+    },
+    {
+      "url": "https://action.anxol.com/create/details",
+      "logs": []
+    },
+    {
+      "url": "https://action.anxol.com/create/details",
+      "logs": []
+    },
+    {
+      "url": "https://action.anxol.com/create/review",
+      "logs": []
+    },
+    {
+      "url": "https://action.anxol.com/create/review",
+      "logs": []
+    },
+    {
+      "url": "https://action.anxol.com/create/review",
+      "logs": []
+    },
+    {
+      "url": "https://action.anxol.com/create/details",
+      "logs": []
+    },
+    {
+      "url": "https://action.anxol.com/create/details",
+      "logs": []
+    },
+    {
+      "url": "https://action.anxol.com/create/review",
+      "logs": []
+    },
+    {
+      "url": "https://action.anxol.com/create/details",
+      "logs": []
+    },
+    {
+      "url": "https://action.anxol.com/create/details",
+      "logs": [
+        "[pageerror] A listener indicated an asynchronous response by returning true, but the message channel closed before a response was received",
+        "[pageerror] A listener indicated an asynchronous response by returning true, but the message channel closed before a response was received",
+        "[pageerror] A listener indicated an asynchronous response by returning true, but the message channel closed before a response was received",
+        "[pageerror] A listener indicated an asynchronous response by returning true, but the message channel closed before a response was received",
+        "[pageerror] A listener indicated an asynchronous response by returning true, but the message channel closed before a response was received",
+        "[pageerror] A listener indicated an asynchronous response by returning true, but the message channel closed before a response was received",
+        "[pageerror] A listener indicated an asynchronous response by returning true, but the message channel closed before a response was received",
+        "[pageerror] A listener indicated an asynchronous response by returning true, but the message channel closed before a response was received",
+        "[pageerror] A listener indicated an asynchronous response by returning true, but the message channel closed before a response was received",
+        "[pageerror] A listener indicated an asynchronous response by returning true, but the message channel closed before a response was received",
+        "[pageerror] A listener indicated an asynchronous response by returning true, but the message channel closed before a response was received",
+        "[pageerror] A listener indicated an asynchronous response by returning true, but the message channel closed before a response was received",
+        "[pageerror] A listener indicated an asynchronous response by returning true, but the message channel closed before a response was received"
+      ]
+    },
+    {
+      "url": "https://action.anxol.com/create/details",
+      "logs": []
+    },
+    {
+      "url": "https://action.anxol.com/create/details",
+      "logs": []
+    },
+    {
+      "url": "https://action.anxol.com/create/review",
+      "logs": []
+    },
+    {
+      "url": "https://action.anxol.com/create/review",
+      "logs": []
+    },
+    {
+      "url": "https://action.anxol.com/create/review",
+      "logs": []
+    },
+    {
+      "url": "https://action.anxol.com/create/review",
+      "logs": []
+    },
+    {
+      "url": "https://action.anxol.com/create/review",
+      "logs": []
+    },
+    {
+      "url": "https://action.anxol.com/create/published",
+      "logs": []
+    },
+    {
+      "url": "https://action.anxol.com/create",
+      "logs": [
+        "[info] This page uses Chrome's Built-In AI features (LanguageDetector)! We're always improving our models; please submit your feedback here: https://issues.chromium.org/issues/new?component=1583316"
+      ]
+    },
+    {
+      "url": "https://action.anxol.com/create",
+      "logs": []
+    },
+    {
+      "url": "https://action.anxol.com/create",
+      "logs": []
+    },
+    {
+      "url": "https://action.anxol.com/create",
+      "logs": []
+    },
+    {
+      "url": "https://action.anxol.com/create",
+      "logs": []
+    },
+    {
+      "url": "https://action.anxol.com/create",
+      "logs": []
+    },
+    {
+      "url": "https://action.anxol.com/create/published",
+      "logs": []
+    },
+    {
+      "url": "https://action.anxol.com/create/published",
+      "logs": [
+        "[info] This page uses Chrome's Built-In AI features (LanguageDetector)! We're always improving our models; please submit your feedback here: https://issues.chromium.org/issues/new?component=1583316"
+      ]
+    },
+    {
+      "url": "https://action.anxol.com/create/published",
+      "logs": [
+        "[pageerror] A listener indicated an asynchronous response by returning true, but the message channel closed before a response was received"
+      ]
+    },
+    {
+      "url": "https://action.anxol.com/create/published",
+      "logs": []
+    },
+    {
+      "url": "https://action.anxol.com/create/published",
+      "logs": []
+    },
+    {
+      "url": "https://action.anxol.com/create/review",
+      "logs": []
+    },
+    {
+      "url": "https://action.anxol.com/create/details",
+      "logs": []
+    },
+    {
+      "url": "https://action.anxol.com/create/details",
+      "logs": []
+    },
+    {
+      "url": "https://action.anxol.com/create/details",
+      "logs": []
+    },
+    {
+      "url": "https://action.anxol.com/create/review",
+      "logs": []
+    },
+    {
+      "url": "https://action.anxol.com/create/review",
+      "logs": []
+    },
+    {
+      "url": "https://action.anxol.com/create/review",
+      "logs": []
+    },
+    {
+      "url": "https://action.anxol.com/create/review",
+      "logs": []
+    },
+    {
+      "url": "https://action.anxol.com/create/published",
+      "logs": []
+    },
+    {
+      "url": "https://action.anxol.com/create/similar",
+      "logs": []
+    },
+    {
+      "url": "https://action.anxol.com/create/similar",
+      "logs": []
+    },
+    {
+      "url": "https://action.anxol.com/create/details",
+      "logs": []
+    },
+    {
+      "url": "https://action.anxol.com/create/details",
+      "logs": []
+    },
+    {
+      "url": "https://action.anxol.com/create/details",
+      "logs": []
+    },
+    {
+      "url": "https://action.anxol.com/create/details",
+      "logs": []
+    },
+    {
+      "url": "https://action.anxol.com/create/details",
+      "logs": []
+    },
+    {
+      "url": "https://action.anxol.com/create/details",
+      "logs": []
+    },
+    {
+      "url": "https://action.anxol.com/create/details",
+      "logs": []
+    },
+    {
+      "url": "https://action.anxol.com/create/details",
+      "logs": []
+    },
+    {
+      "url": "https://action.anxol.com/create/details",
+      "logs": []
+    },
+    {
+      "url": "https://action.anxol.com/create/details",
+      "logs": []
+    },
+    {
+      "url": "https://action.anxol.com/create/details",
+      "logs": []
+    },
+    {
+      "url": "https://action.anxol.com/create/details",
+      "logs": []
+    },
+    {
+      "url": "https://action.anxol.com/create/details",
+      "logs": []
+    },
+    {
+      "url": "https://action.anxol.com/create/details",
+      "logs": []
+    },
+    {
+      "url": "https://action.anxol.com/create/details",
+      "logs": []
+    },
+    {
+      "url": "https://action.anxol.com/create/details",
+      "logs": []
+    },
+    {
+      "url": "https://action.anxol.com/create/details",
+      "logs": []
+    },
+    {
+      "url": "https://action.anxol.com/create/details",
+      "logs": []
+    },
+    {
+      "url": "https://action.anxol.com/create/review",
+      "logs": []
+    }
+  ],
+  "dataRestored": true
+}

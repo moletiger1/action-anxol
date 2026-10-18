@@ -17,17 +17,17 @@ const nav = [
 
 export function PublicHeader({ active = "案件を探す" }: { active?: string }) {
   return (
-    <header className="hidden h-[72px] items-center justify-between border-b border-border bg-surface px-6 md:flex lg:px-[120px]">
-      <div className="flex items-center gap-12">
+    <header className="hidden border-b border-border bg-surface md:block">
+      <div className="mx-auto flex min-h-[72px] w-full max-w-[1440px] flex-wrap items-center justify-between gap-x-6 gap-y-3 px-6 py-3 xl:flex-nowrap xl:px-10">
         <Logo />
-        <nav aria-label="メインメニュー" className="flex items-center gap-8">
+        <nav aria-label="メインメニュー" className="order-last flex w-full shrink-0 items-center justify-center gap-6 xl:order-none xl:w-auto">
           {nav.map((n) => (
             <Link
               key={n.label}
               href={n.href}
               aria-current={n.label === active ? "page" : undefined}
               className={cn(
-                "text-[15px]",
+                "shrink-0 text-[15px] whitespace-nowrap",
                 n.label === active ? "font-bold text-primary-dark" : "font-medium text-text-sub hover:text-text",
               )}
             >
@@ -35,15 +35,15 @@ export function PublicHeader({ active = "案件を探す" }: { active?: string }
             </Link>
           ))}
         </nav>
-      </div>
-      <div className="flex items-center gap-4">
-        <DemoBadge />
-        <ButtonLink href={routes.signin} variant="text">
-          ログイン
-        </ButtonLink>
-        <ButtonLink href={routes.create} variant="secondary" icon={Plus} size="sm">
-          案件を作る
-        </ButtonLink>
+        <div className="flex shrink-0 items-center gap-3">
+          <DemoBadge />
+          <ButtonLink href={routes.signin} variant="text">
+            ログイン
+          </ButtonLink>
+          <ButtonLink href={routes.create} variant="secondary" icon={Plus} size="sm">
+            案件を作る
+          </ButtonLink>
+        </div>
       </div>
     </header>
   );

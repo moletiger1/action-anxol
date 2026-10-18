@@ -1,31 +1,35 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 import { CircleDashed, Info } from "lucide-react";
 import { Badge, Button, ButtonLink, Callout, ConfirmDialog } from "@/components/ui";
 import { PublicShell } from "@/components/layout";
 import { Breadcrumb, SectionTitle, Wrap } from "@/components/groupA/parts";
 import { restoreCreateDraft, useCreateDraft, type RestoreCreateDraftResult } from "./draft";
-import { readPublishedPreviews, type PreviewReadError, type PublishedPreview } from "@/lib/publishedPreview";
+import { createClientSnapshotStore, useClientSnapshot } from "@/lib/clientSnapshot";
+import { readPublishedPreviews } from "@/lib/publishedPreview";
 import { routes } from "@/lib/routes";
 
 export function CreatedPreview() {
   const router = useRouter();
   const { draft, reset, draftInvalid } = useCreateDraft();
-  const [previews, setPreviews] = useState<PublishedPreview[]>([]);
-  const [selectedId, setSelectedId] = useState<string | null>(null);
+  const [pickedId, setPickedId] = useState<string | null>(null);
   const [editError, setEditError] = useState<Exclude<RestoreCreateDraftResult, "restored"> | null>(null);
   const [actionError, setActionError] = useState(false);
-  const [loadError, setLoadError] = useState<PreviewReadError | null>(null);
   const [pendingAction, setPendingAction] = useState<"edit" | "new" | null>(null);
 
-  useEffect(() => {
-    const result = readPublishedPreviews();
-    if ("error" in result) setLoadError(result.error);
-    else setPreviews(result.previews);
-    setSelectedId(new URLSearchParams(window.location.search).get("preview"));
-  }, []);
+  const previewsStore = useMemo(() => createClientSnapshotStore(readPublishedPreviews), []);
+  const previewResult = useClientSnapshot(previewsStore);
+  const loadError = previewResult && "error" in previewResult ? previewResult.error : null;
+  const previews = previewResult && !("error" in previewResult) ? previewResult.previews : [];
+
+  const initialSelectionStore = useMemo(
+    () => createClientSnapshotStore(() => new URLSearchParams(window.location.search).get("preview")),
+    [],
+  );
+  const initialSelection = useClientSnapshot(initialSelectionStore);
+  const selectedId = pickedId ?? initialSelection ?? null;
 
   const preview = loadError
     ? null
@@ -99,7 +103,7 @@ export function CreatedPreview() {
                     <Button
                       variant="text"
                       aria-pressed={preview?.id === item.id}
-                      onClick={() => setSelectedId(item.id)}
+                      onClick={() => setPickedId(item.id)}
                     >
                       {preview?.id === item.id ? "表示中" : "表示する"}
                     </Button>

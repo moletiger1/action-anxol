@@ -1,15 +1,16 @@
 "use client";
 
-import { useEffect, useId, useState } from "react";
+import { useId, useMemo } from "react";
 import { ButtonLink } from "@/components/ui";
-import { loadJoinDemoState, type JoinDemoReadResult } from "@/lib/joinDemo";
+import { createClientSnapshotStore, useClientSnapshot } from "@/lib/clientSnapshot";
+import { loadJoinDemoState } from "@/lib/joinDemo";
 import { routes } from "@/lib/routes";
 
 export function MyJoinStatus({ recruitmentId = "timescar-corporate" }: { recruitmentId?: "timescar-corporate" | "timescar-individual" }) {
-  const [state, setState] = useState<JoinDemoReadResult | undefined>(undefined);
   const titleId = useId();
   const joinHref = recruitmentId === "timescar-individual" ? routes.individualJoin : routes.join;
-  useEffect(() => setState(loadJoinDemoState(recruitmentId)), [recruitmentId]);
+  const store = useMemo(() => createClientSnapshotStore(() => loadJoinDemoState(recruitmentId)), [recruitmentId]);
+  const state = useClientSnapshot(store);
 
   return (
     <section
