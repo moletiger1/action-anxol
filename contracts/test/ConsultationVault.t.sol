@@ -82,10 +82,10 @@ contract ConsultationVaultTest is Test {
         cfg.maxPauseDuration = MAX_PAUSE;
         cfg.maxTotalPause = MAX_TOTAL_PAUSE;
         cfg.lineItems = new ConsultationVault.LineItemInit[](4);
-        cfg.lineItems[0] = ConsultationVault.LineItemInit(LI_CONSULT, keccak256("法律相談"), 1_200 * USDC);
-        cfg.lineItems[1] = ConsultationVault.LineItemInit(LI_RESEARCH, keccak256("初期調査"), 500 * USDC);
-        cfg.lineItems[2] = ConsultationVault.LineItemInit(LI_ORGANIZE, keccak256("資料整理"), 200 * USDC);
-        cfg.lineItems[3] = ConsultationVault.LineItemInit(LI_FEES, keccak256("決済等の予備費"), 100 * USDC);
+        cfg.lineItems[0] = ConsultationVault.LineItemInit(LI_CONSULT, keccak256(unicode"法律相談"), 1_200 * USDC);
+        cfg.lineItems[1] = ConsultationVault.LineItemInit(LI_RESEARCH, keccak256(unicode"初期調査"), 500 * USDC);
+        cfg.lineItems[2] = ConsultationVault.LineItemInit(LI_ORGANIZE, keccak256(unicode"資料整理"), 200 * USDC);
+        cfg.lineItems[3] = ConsultationVault.LineItemInit(LI_FEES, keccak256(unicode"決済等の予備費"), 100 * USDC);
         cfg.deliberators = new address[](3);
         cfg.deliberators[0] = d1;
         cfg.deliberators[1] = d2;
@@ -617,7 +617,7 @@ contract ConsultationVaultTest is Test {
         vault.raiseDispute(SPEND_RESEARCH, H);
 
         vm.prank(carol); // 拠出者
-        vault.raiseDispute(SPEND_RESEARCH, keccak256("調査範囲が契約と異なる"));
+        vault.raiseDispute(SPEND_RESEARCH, keccak256(unicode"調査範囲が契約と異なる"));
 
         vm.warp(block.timestamp + DISPUTE_WINDOW + 1 days);
         vm.expectRevert(ConsultationVault.UnderDispute.selector);
@@ -633,7 +633,7 @@ contract ConsultationVaultTest is Test {
         vault.resolveDispute(SPEND_RESEARCH, false, H);
 
         vm.prank(r1);
-        vault.resolveDispute(SPEND_RESEARCH, false, keccak256("契約の範囲内と確認"));
+        vault.resolveDispute(SPEND_RESEARCH, false, keccak256(unicode"契約の範囲内と確認"));
         vault.execute(SPEND_RESEARCH);
         assertEq(usdc.balanceOf(lawyer), 500 * USDC);
     }
@@ -646,7 +646,7 @@ contract ConsultationVaultTest is Test {
         vm.prank(a1); // 確認担当も異議を出せる
         vault.raiseDispute(SPEND_RESEARCH, H);
         vm.prank(r2);
-        vault.resolveDispute(SPEND_RESEARCH, true, keccak256("報告書が未提出"));
+        vault.resolveDispute(SPEND_RESEARCH, true, keccak256(unicode"報告書が未提出"));
 
         ConsultationVault.Spend memory s = vault.getSpend(SPEND_RESEARCH);
         assertEq(uint8(s.status), uint8(ConsultationVault.SpendStatus.Registered));
@@ -715,7 +715,7 @@ contract ConsultationVaultTest is Test {
         _invoiceAndConfirm(SPEND_RESEARCH, 500 * USDC);
 
         vm.prank(r1);
-        vault.pause(5 days, keccak256("異議の確認のため"));
+        vault.pause(5 days, keccak256(unicode"異議の確認のため"));
         assertTrue(vault.isPaused());
 
         vm.warp(block.timestamp + DISPUTE_WINDOW);
@@ -723,13 +723,13 @@ contract ConsultationVaultTest is Test {
         vault.execute(SPEND_RESEARCH);
 
         // 停止中の契約採択も不可
-        vm.prank(d1);
         vm.expectRevert(abi.encodeWithSelector(ConsultationVault.Paused.selector, vault.pausedUntil()));
+        vm.prank(d1);
         vault.proposeContract(keccak256("z"), LI_ORGANIZE, lawyer, 1 * USDC, H);
 
         // 停止の延長・重ねがけは不可
-        vm.prank(r2);
         vm.expectRevert(abi.encodeWithSelector(ConsultationVault.AlreadyPaused.selector, vault.pausedUntil()));
+        vm.prank(r2);
         vault.pause(1 days, H);
 
         vm.warp(vault.pausedUntil()); // 解除の取引は不要
@@ -870,7 +870,7 @@ contract ConsultationVaultTest is Test {
         _payConsultation();
 
         vm.prank(d1);
-        vault.approveEarlyClose(keccak256("相談の結果、見送り"));
+        vault.approveEarlyClose(keccak256(unicode"相談の結果、見送り"));
         assertEq(uint8(vault.phase()), uint8(ConsultationVault.Phase.Active));
         vm.prank(d1);
         vm.expectRevert(ConsultationVault.AlreadyApproved.selector);

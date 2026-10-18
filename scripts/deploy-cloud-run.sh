@@ -3,6 +3,9 @@ set -euo pipefail
 
 # Use a dedicated gcloud configuration; never deploy to the user's unrelated default project.
 cd "$(dirname "$0")/.."
+# Fail before replacing the working service if the shared limiter has not been provisioned.
+gcloud --configuration=action-anxol firestore databases describe \
+  --project=action-anxol-com --database=auth-security --format=none
 gcloud --configuration=action-anxol run deploy shudan-sosho-demo \
   --project=action-anxol-com \
   --region=asia-northeast1 \
@@ -15,7 +18,7 @@ gcloud --configuration=action-anxol run deploy shudan-sosho-demo \
   --port=8080 \
   --update-env-vars=NEXT_TELEMETRY_DISABLED=1,BASIC_AUTH_USERNAME=reviewer,AUTH_FIRESTORE_PROJECT_ID=action-anxol-com,AUTH_FIRESTORE_DATABASE_ID=auth-security \
   --update-secrets=BASIC_AUTH_PASSWORD=shudan-basic-auth-password:1,AUTH_SESSION_SECRET=shudan-basic-auth-session-secret:1 \
-  --quiet
+  --quiet "$@"
 
 # A previous --no-traffic deployment pins traffic to an older revision.
 gcloud --configuration=action-anxol run services update-traffic shudan-sosho-demo \

@@ -5,7 +5,13 @@ const username = process.env.BASIC_AUTH_USERNAME;
 const password = process.env.BASIC_AUTH_PASSWORD;
 assert.ok(base && username && password, 'Set BASIC_AUTH_TEST_URL, BASIC_AUTH_USERNAME, BASIC_AUTH_PASSWORD');
 const authorization = `Basic ${Buffer.from(`${username}:${password}`).toString('base64')}`;
-const request = (path, headers = {}) => fetch(new URL(path, base), { headers, redirect: 'manual' });
+const request = async (path, headers = {}) => {
+  const response = await fetch(new URL(path, base), { headers, redirect: 'manual' });
+  assert.equal(response.headers.get('x-frame-options'), 'DENY', path);
+  assert.match(response.headers.get('content-security-policy') ?? '', /frame-ancestors 'none'/, path);
+  assert.equal(response.headers.get('x-content-type-options'), 'nosniff', path);
+  return response;
+};
 
 for (const path of ['/', '/recruitments/timescar-corporate/contribute', '/favicon.ico', '/_next/static/missing.js']) {
   const response = await request(path);
