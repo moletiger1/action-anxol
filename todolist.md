@@ -10,7 +10,7 @@
 |---|---|---|
 | backend-contracts＋workflowsの自動試験 | 実行可能／2026-10-19にNode24.22.0で再実行・全件成功（`npm run verify`で一括実行可） | Node26.8.1およびNode24.22.0、P1 214件＋デモ137件。DB・ブラウザー不要。両バージョンで成功 |
 | `/dashboard/workflows`の操作デモ | ローカル認証環境・操作確認・実ブラウザーE2Eまで完了（TEST-02／03／04、2026-10-16／17） | 専用Firestoreエミュレーター／開発ADC／Basic・sessionを設定。productionビルドで認証・Cookie・静的保護・主要導線・エラー表示・キーボード・小画面をGoogle Chromeで確認（TEST-04、44/44成功）。操作デモ操作もGoogle Chromeで34/34成功（TEST-03）。Node24でも同一結果（TEST-01） |
-| 再現可能な検証手順／CI | `npm run verify`（`web/scripts/verify.mjs`）とGitHub Actions（`.github/workflows/ci.yml`）を追加（TEST-06、2026-10-19） | 各チェックを分離表示し失敗を隠さない。Node24以外は`runtime`をFAIL記録。認証DB・ブラウザー・secrets不要。CIの初回実行はpush後 |
+| 再現可能な検証手順／CI | `npm run verify`（`web/scripts/verify.mjs`）とGitHub Actions（`.github/workflows/ci.yml`）を追加（TEST-06、2026-10-19） | 各チェックを分離表示し失敗を隠さない。Node24以外は`runtime`をFAIL記録。認証DB・ブラウザー・secrets不要。CIはPR #2で初回成功 |
 | 本人資格・実投票・契約・集金・返金・通知の一連の動作 | 未実装/未接続のため不可 | 業務API/権威ある正本/署名検証/外部能力・契約が未成立。全live portは常時拒否 |
 | 外部事業者sandbox・全銀行権限の接続試験 | 未準備・未許可 | 公開Web調査のみ。照会・契約・口座開設・sandbox登録も未実施 |
 
@@ -33,7 +33,7 @@ node node_modules/typescript/bin/tsc --noEmit
 NEXT_TELEMETRY_DISABLED=1 npm run build
 ```
 
-CI（`.github/workflows/ci.yml`、2026-10-19追加・同意済み）は`main`へのpush／Pull Requestで`ubuntu-latest`・Node 24・`npm ci`・`npm run verify`を実行する。secretsは使わない。**GitHubへのpush後に有効**で、初回実行はまだ確認していない（TEST-06）。
+CI（`.github/workflows/ci.yml`、2026-10-19追加・同意済み）は`main`へのpush／Pull Requestで`ubuntu-latest`・Node 24・`npm ci`・`npm run verify`を実行する。secretsは使わない。初回実行はPR #2で`verify`が成功（2026-10-19、1分1秒）。その過程で、クリーンチェックアウトでは`next typegen`を先に実行しないと`tsc`が`LayoutProps`未定義（TS2304）で失敗することを検出し、手順に`typegen`を追加した（TEST-06）。
 
 `npm run dev`だけで画面確認の準備が済むわけではない。環境要件は[web/README.md](web/README.md)を参照。2026-10-16にサーバー／エミュレーター起動とBasic認証の検証を実施した（TEST-02）。2026-10-17に実ブラウザー（Google Chrome）をPlaywrightで自動操作し、操作デモの全確認項目（TEST-03、34/34）とproductionビルドのE2E/表示（TEST-04、44/44）を確認した。人手での目視操作は未実施。
 
@@ -62,7 +62,7 @@ CI（`.github/workflows/ci.yml`、2026-10-19追加・同意済み）は`main`へ
 - [x] **TEST-03：`/dashboard/workflows`の操作デモを確認する。**（2026-10-17完了）実ブラウザー（Google Chrome）をPlaywrightで自動操作し、勝者/敗者辞退、UNKNOWN→照合、取消→必要額相殺、無関係/関連カタログ競合、未分類保留を架空データで実行。34/34項目成功・コンソールエラー0・外部リクエスト0。再読み込みで状態が初期化されるメモリーデモで、実機能に接続されていないことを確認。自動操作であり人手の目視操作ではない点はTEST-04で補う。記録は§9。
 - [x] **TEST-04：実ブラウザーのE2E/表示を確認する。**（2026-10-17完了）productionビルドをGoogle Chrome（Playwright自動操作・ヘッドレス）で検査。認証（誤認証401・WWW-Authenticate・Cookie未発行）、Cookie属性（`__Host-demo-auth`：HttpOnly/Secure/SameSite=strict/Path=/・約8時間）、保護された静的資産（JS/CSS/フォント/ファビコンの401/200）、主要導線21ルート・内部リンク14件、404表示、キーボード（Tab到達・`:focus-visible`3px・Enter実行）、小画面（320/375px、10ページ）、コンソールエラー0・失敗リクエスト0・外部送信0を確認。44/44成功。発見した320px横はみ出しは原因から修正。記録は§9。
 - [x] **TEST-05：既存UIの全体lint6件を修正する。**（2026-10-16完了）`useSyncExternalStore`（新規`web/src/lib/clientSnapshot.ts`）でeffect内の同期的setStateを除去し、6ファイルを原因から修正。ルール抑制なし。`eslint .`は6 errors→0 problems、型・対象lint・351件・production build（25 routes）は成功。記録は§9。
-- [x] **TEST-06：再現可能なテスト手順/CIを整える。**（2026-10-19完了）`web/scripts/verify.mjs`（`npm run verify`）を追加し、Node24で`runtime`／`yen`／`tests`(351)／`typecheck`／対象lint／全体lint／buildの7項目を個別プロセスで実行して結果を分離表示。1件でも失敗すればexit 1で、既知の失敗を成功として隠さず、Node24以外は`runtime`をFAILとして記録する（26での成功を24の成功として扱わない）。同条件で7/7成功。CIは対象確認の上で`.github/workflows/ci.yml`を追加（mainのpush/PR、Node24、`npm ci`、`npm run verify`、secretsなし）。依存の追加・変更はしていない。記録は§9。
+- [x] **TEST-06：再現可能なテスト手順/CIを整える。**（2026-10-19完了）`web/scripts/verify.mjs`（`npm run verify`）を追加し、Node24で`runtime`／`yen`／`tests`(351)／`typegen`／`typecheck`／対象lint／全体lint／buildの8項目を個別プロセスで実行して結果を分離表示。1件でも失敗すればexit 1で、既知の失敗を成功として隠さず、Node24以外は`runtime`をFAILとして記録する（26での成功を24の成功として扱わない）。`.next`を削除した状態で8/8成功。CIは対象確認の上で`.github/workflows/ci.yml`を追加（mainのpush/PR、Node24、`npm ci`、`npm run verify`、secretsなし）。初回実行はPR #2で成功（`verify`、2026-10-19）。その過程でクリーンチェックアウトでは`next typegen`が無いと`tsc`が`LayoutProps`未定義（TS2304）で失敗することを検出し、`typegen`を`typecheck`の前段に追加した。分岐の解消のため別worktreeで`origin/main`をマージした（PR #2、リモート`main`は未変更）。依存の追加・変更はしていない。記録は§9。
 
 ### TEST-05の修正対象（2026-10-16修正済み）
 
@@ -126,7 +126,7 @@ T1〜T18の詳細は[段階計画](docs/superpowers/plans/2026-10-14-backend-imp
 ## 8. 直近のおすすめ順
 
 1. **一旦触るなら：TEST-02→TEST-03**（開発専用の認証環境を準備してメモリーデモを確認。いずれも完了）。
-2. TEST-06で再現性（Node24実行手順・CI）を整備済み（TEST-01/02/03/04/05/06は2026-10-19までに完了）。CIの初回実行はpush後に確認する。
+2. TEST-06で再現性（Node24実行手順・CI）を整備し、CIの初回実行も成功した（TEST-01/02/03/04/05/06は2026-10-19までに完了）。残るのはPR #2のマージ判断。
 3. 並行してP0-02から事業者への連絡許可を確認し、先行4問→全27問の成立性を評価する。
 4. その結果を踏まえDEV/INTの範囲を承認して着手。本番のRELは最後まで停止線として保持する。
 
@@ -145,7 +145,7 @@ T1〜T18の詳細は[段階計画](docs/superpowers/plans/2026-10-14-backend-imp
   - `node node_modules/eslint/bin/eslint.js .` → **0 problems**
   - `npm run build`（PATHをv24へ前置） → **成功・25 static routes**
 - 追加確認：Node 24で`next start`も起動し、未認証401／認証済み200、`Cache-Control: private, no-store`、CSP/XFO/nosniff、`__Host-demo-auth`（Secure/HttpOnly/SameSite=strict/Path=/・Max-Age=28800）がNode 26と同一であることを確認（`/`・`/dashboard`・`/dashboard/workflows`・`/create`）。
-- 未実施：CI（`.github/workflows`）での自動実行は当時未整備で、後にTEST-06で追加した（初回実行はpush後）。`nvm`はユーザー領域の任意導入で、恒久的なPATH/システム変更はしていない。
+- 未実施：CI（`.github/workflows`）での自動実行は当時未整備で、後にTEST-06で追加し2026-10-19にCI初回成功（PR #2）。`nvm`はユーザー領域の任意導入で、恒久的なPATH/システム変更はしていない。
 
 ### TEST-02：ローカル認証環境
 
@@ -190,7 +190,10 @@ T1〜T18の詳細は[段階計画](docs/superpowers/plans/2026-10-14-backend-imp
 - 挙動確認（隠蔽しないことの確認）：Node 26.8.1で`runtime`のみ実行すると**FAIL（exit 1）**、不明なIDはexit 2、`--list`は7項目を表示。失敗を成功に丸める処理はない。
 - 文書：`web/README.md`の古い記述2箇所（「24での実行は未確認」「24.x未確認・全体lintは6件で失敗」）を現状へ更新し、`## 確認（再現用）`に`npm run verify`のID・内容表と2026-10-19時点の結果を追記した。
 - CI（**同意の上で追加**）：`.github/workflows/ci.yml`。`main`へのpush／Pull Requestで`ubuntu-latest`・Node 24・`working-directory: web`・`npm ci`・`npm run verify`を実行。`permissions: contents: read`、同一refの並行実行はcancel。secretsは使わず認証DB/ブラウザーも不要。`web/.gcloudignore`はホワイトリスト方式のため`.github/`はデプロイ対象に含まれない。
-- 未実施：CIの初回実行（GitHubへpush後に確認）。`npm ci`は`allowScripts`未登録の警告（`protobufjs`／`unrs-resolver`のpostinstall）を出すが、`ignore-scripts=false`かつ`strict-allow-scripts=false`のため実行される（`npm ci --dry-run`は同期エラーなく完了）。**依存の追加・更新・削除はしていない**。
-- 変更した文書：`web/README.md`（Node24の記述・確認手順）、`web/package.json`（`verify`スクリプト1件）、本一覧。
+- CI初回実行（2026-10-19、PR #2 / run 39158759273）：`npm ci`は成功したが**`typecheck`のみ失敗**（exit 2）。ローカルは既存`.next`のため通っていた。原因はクリーンチェックアウトでNext.jsのルート型（`LayoutProps`）が未生成のためで、`src/app/layout.tsx(17,50): error TS2304: Cannot find name 'LayoutProps'`。`build`は型チェックを含むため成功していた。
+- 原因修正：`verify.mjs`の`typecheck`の前段に`typegen`（`next typegen`）を追加。`.next`と`tsconfig.tsbuildinfo`を削除した状態で`npm run verify`が**8/8成功**（typegen 710ms、typecheck exit 0）。修正後のCI（run 39159242967）は**`verify`成功（1分1秒、Node v24.21.0）**。
+- 分岐の解消：ローカル`main`(030e6f7)とリモート`main`(a09a786)は`50ce74d`で分岐していたため、本体の作業ディレクトリと未コミットの`youtube_uploader_mcp.log`に触れず、**別worktree**で`origin/main`をマージした（`cfb339d`）。競合は3件（`web/package.json`・`scripts/deploy-cloud-run.sh`・`web/README.md`）で両側の追加を統合（package.jsonは`verify`と`test:security`を併存、deployは`--update-env-vars`＋DB存在チェック＋traffic更新、READMEは検証済みの8080/demo-action-local手順＋`test:security`説明）。認証系（`auth.server.ts`・`proxy.ts`・`next.config.ts`・`package-lock.json`）は両側で同一内容だった。PR #2（ブランチ`chore/test-06-verify`）を作成し、**リモート`main`は変更していない**。
+- 未実施：PR #2のマージ（ユーザー判断）。`npm ci`は`allowScripts`未登録の警告（`protobufjs`／`unrs-resolver`のpostinstall）を出すが、CIでは実行され成功した。**依存の追加・更新・削除はしていない**（マージで取り込んだ`web/scripts/check-auth-limit.mjs`等は既存ファイル）。
+- 変更した文書：`web/README.md`（Node24の記述・確認手順・`typegen`）、`web/package.json`（`verify`スクリプト1件）、本一覧。
 
-2026-10-16〜19の作業で行ったのは、ローカル専用の認証環境の構築・検証、全体lint 6件の修正、productionビルドでの実ブラウザーE2E/表示確認と、その過程で見つかった小画面（320px）の横はみ出し修正、同意の上でのNode 24.22.0導入と再検証、再現可能な検証手順`web/scripts/verify.mjs`の追加、同意の上でのCI（`.github/workflows/ci.yml`）追加、上記の再実行のみ。アプリへの依存追加・更新、ADC変更、外部送信（Nodeのダウンロードを除く）、銀行/通知接続、本番配備、GitHubへのpushはしていない。Node 24の導入はユーザー領域（`~/.nvm`）のみで、システムや恒久的なPATHは変更していない。
+2026-10-16〜19の作業で行ったのは、ローカル専用の認証環境の構築・検証、全体lint 6件の修正、productionビルドでの実ブラウザーE2E/表示確認と、その過程で見つかった小画面（320px）の横はみ出し修正、同意の上でのNode 24.22.0導入と再検証、再現可能な検証手順`web/scripts/verify.mjs`の追加、同意の上でのCI（`.github/workflows/ci.yml`）追加と原因修正（`typegen`）、同意の上でのPR #2作成（ブランチ`chore/test-06-verify`へのpush）とCI初回成功、上記の再実行のみ。アプリへの依存追加・更新、ADC変更、銀行/通知接続、本番配備はしていない。外部送信はNodeのダウンロード、npmレジストリへの`npm ci`、および同意の上でのGitHubへのブランチpush／PR作成（`moletiger1/action-anxol`、public）に限られる。GitHubへの変更はPR #2のみで、**リモート`main`は変更していない**。Node 24の導入はユーザー領域（`~/.nvm`）のみで、システムや恒久的なPATHは変更していない。
