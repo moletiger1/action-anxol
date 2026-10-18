@@ -41,6 +41,7 @@ const CHECKS = [
   { id: "runtime", desc: `実行Nodeが${REQUIRED_MAJOR}.x（engines準拠）`, runtime: true },
   { id: "yen", desc: "円の整数入力・予算/返金例（scripts/check-yen.mjs）", cmd: node, args: ["scripts/check-yen.mjs"] },
   { id: "tests", desc: `アプリコード試験（${testArgs.length}ファイル）`, cmd: node, args: ["--test", ...testArgs], parseTests: true },
+  { id: "typegen", desc: "Next.jsの型生成（next typegen、クリーンチェックアウト用）", cmd: node, args: ["node_modules/next/dist/bin/next", "typegen"], env: { NEXT_TELEMETRY_DISABLED: "1" } },
   { id: "typecheck", desc: "型検証（tsc --noEmit）", cmd: node, args: ["node_modules/typescript/bin/tsc", "--noEmit"] },
   { id: "lint:target", desc: "対象lint（P1範囲）", cmd: node, args: ["node_modules/eslint/bin/eslint.js", "src/domain/operational", "src/server/ports", "scripts/backend-contracts"] },
   { id: "lint:all", desc: "全体lint（eslint .）", cmd: node, args: ["node_modules/eslint/bin/eslint.js", "."] },

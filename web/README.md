@@ -116,12 +116,13 @@ node scripts/verify.mjs --skip-build
 | `runtime` | 実行中Nodeが `engines` の `24.x` を満たすか（24以外はFAILとして記録し、他バージョンの成功を24の成功として扱わない） |
 | `yen` | `node scripts/check-yen.mjs`（円の整数入力・予算/返金例） |
 | `tests` | `node --test scripts/backend-contracts/*.test.mjs scripts/workflows/*.test.mjs`（351件） |
+| `typegen` | `next typegen`（Next.jsのルート型。クリーンチェックアウトでは`tsc`より前に必要。無いと`LayoutProps`未定義で失敗する） |
 | `typecheck` | `tsc --noEmit` |
 | `lint:target` | `eslint src/domain/operational src/server/ports scripts/backend-contracts` |
 | `lint:all` | `eslint .` |
 | `build` | `next build` |
 
-2026-10-19時点の結果：**すべて成功**（Node 24.22.0、tests 351 pass / fail 0 / skip 0、build 25 static routes）。個別コマンドを手で流すこともできます。
+2026-10-19時点の結果：**すべて成功**（Node 24.22.0、tests 351 pass / fail 0 / skip 0、build 25 static routes）。`typegen`はクリーンチェックアウト（`.next`なし）で`tsc`を成立させるために必要で、GitHub ActionsのCIで実際に検出した。個別コマンドを手で流すこともできます。
 
 ```bash
 node scripts/check-yen.mjs
