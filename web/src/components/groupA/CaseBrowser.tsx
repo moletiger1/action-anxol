@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import {
   ArrowDownUp,
   ArrowRight,
@@ -24,6 +24,7 @@ import {
 import { Badge, Button, ButtonLink, Callout, DemoBadge, SearchBar, StatePanel } from "@/components/ui";
 import { cn } from "@/lib/cn";
 import { readPublishedPreviews, type PreviewReadError, type PublishedPreview } from "@/lib/publishedPreview";
+import { createClientSnapshotStore, useClientSnapshot } from "@/lib/clientSnapshot";
 import { routes } from "@/lib/routes";
 import { recruitmentsForEvent } from "@/lib/demoRecruitments";
 import { TIMESCAR_EVENT_ID } from "@/lib/eventIds";
@@ -191,41 +192,6 @@ function FeaturedCard({ c }: { c: CaseItem }) {
   );
 }
 
-function FictionalCard({ c }: { c: CaseItem }) {
-  const [noted, setNoted] = useState(false);
-  return (
-    <article className="flex flex-1 flex-col gap-3 rounded-xl border border-border bg-surface p-6">
-      <div className="flex flex-wrap items-center gap-2">
-        <Badge icon={Users}>参加希望を受付中</Badge>
-        <Badge tone="neutral" icon={FlaskConical}>
-          架空の例
-        </Badge>
-      </div>
-      <h3 className="text-lg font-bold text-text">{c.title}</h3>
-      <p className="text-sm text-text-sub">{c.summary}</p>
-      <div className="flex flex-wrap items-center gap-4 text-sm text-text-muted">
-        <span>募集中の相談 {c.recruitmentCount ?? 0}件</span>
-        <span>{c.updatedLabel}</span>
-      </div>
-      <div className="mt-auto flex flex-col">
-        <Button
-          variant="text"
-          className="self-start"
-          aria-expanded={noted}
-          onClick={() => setNoted((v) => !v)}
-        >
-          事件ページを見る
-        </Button>
-        {noted && (
-          <p role="status" className="text-[13px] text-text-muted">
-            架空の例のため、このデモには事件ページがありません。
-          </p>
-        )}
-      </div>
-    </article>
-  );
-}
-
 function CreatedPreviewCard({ preview }: { preview: PublishedPreview }) {
   const title = preview.rows.find(([label]) => label === "事件名")?.[1] ?? "作成した事件";
   const summary = preview.rows.find(([label]) => label === "起きたこと")?.[1] ?? "";
@@ -314,8 +280,6 @@ function CreatedPreviewsSection({
 }
 
 export function CaseBrowser() {
-  const [createdPreviews, setCreatedPreviews] = useState<PublishedPreview[]>([]);
-  const [previewLoadError, setPreviewLoadError] = useState<PreviewReadError | null>(null);
   const [query, setQuery] = useState("");
   const [cats, setCats] = useState<Category[]>([]);
   const [stgs, setStgs] = useState<Stage[]>(DEFAULT_STAGES);
@@ -323,11 +287,10 @@ export function CaseBrowser() {
   const [searchKey, setSearchKey] = useState(0);
   const [filtersOpen, setFiltersOpen] = useState(false);
 
-  useEffect(() => {
-    const result = readPublishedPreviews();
-    if ("error" in result) setPreviewLoadError(result.error);
-    else setCreatedPreviews(result.previews);
-  }, []);
+  const previewsStore = useMemo(() => createClientSnapshotStore(readPublishedPreviews), []);
+  const previewResult = useClientSnapshot(previewsStore);
+  const createdPreviews = previewResult && !("error" in previewResult) ? previewResult.previews : [];
+  const previewLoadError = previewResult && "error" in previewResult ? previewResult.error : null;
 
   const counts = useMemo(() => {
     const m: Record<string, number> = {};
@@ -349,9 +312,6 @@ export function CaseBrowser() {
       sort === "new" ? b.updatedAt.localeCompare(a.updatedAt) : a.updatedAt.localeCompare(b.updatedAt),
     );
   }, [query, cats, stgs, sort]);
-
-  const featured = results.filter((c) => c.featured);
-  const others = results.filter((c) => !c.featured);
 
   function toggle<T>(list: T[], v: T, on: boolean) {
     return on ? [...list, v] : list.filter((x) => x !== v);
@@ -484,18 +444,7 @@ export function CaseBrowser() {
               検索語を短くするか、募集段階のフィルターを外してください。見つからない場合は新しく作成できます。
             </StatePanel>
           ) : (
-            <>
-              {featured.map((c) => (
-                <FeaturedCard key={c.id} c={c} />
-              ))}
-              {others.length > 0 && (
-                <div className="flex flex-col gap-4 lg:flex-row">
-                  {others.map((c) => (
-                    <FictionalCard key={c.id} c={c} />
-                  ))}
-                </div>
-              )}
-            </>
+            results.map((c) => <FeaturedCard key={c.id} c={c} />)
           )}
 
           <div className="flex flex-col gap-4 rounded-xl bg-[#EEF2F5] px-6 py-5 sm:flex-row sm:items-center">

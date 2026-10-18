@@ -67,6 +67,11 @@ export const DEMO_DRAFT: CreateDraft = {
 };
 
 const KEY = "groupB.createDraft.v1";
+const PUBLIC_FIELDS = [
+  "company", "year", "month", "timeUnknown", "what", "linkMode", "eventId",
+  "targets", "sourceUrl", "purposes", "purposeOther", "funding", "goalYen",
+  "deadline", "usage", "approver", "refund",
+] as const satisfies readonly (keyof CreateDraft)[];
 const listeners = new Set<() => void>();
 let rawCache: string | null | undefined;
 let valueCache: CreateDraft = DEMO_DRAFT;
@@ -192,7 +197,13 @@ export function useCreateDraft() {
   const draftInvalid = useSyncExternalStore(subscribe, () => invalidSavedDraft, () => false);
   const update = useCallback((patch: Partial<CreateDraft>) => {
     if (invalidSavedDraft) return;
-    write({ ...read(), ...patch, savedAt: nowHHMM() });
+    const current = read();
+    const next = { ...current, ...patch, savedAt: nowHHMM() };
+    if (PUBLIC_FIELDS.some((key) => JSON.stringify(current[key]) !== JSON.stringify(next[key]))) {
+      next.confirmPii = false;
+      next.confirmFacts = false;
+    }
+    write(next);
   }, []);
   const reset = useCallback(() => write(null), []);
   return { draft, update, reset, persistenceFailed, draftInvalid };

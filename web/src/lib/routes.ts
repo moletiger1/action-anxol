@@ -17,6 +17,7 @@ export const routes = {
   createReview: "/create/review", // B01d 公開内容の確認
   createPublished: "/create/published", // B01e 作成内容のデモプレビュー
   dashboard: "/dashboard", // D01 参加中の案件
+  workflows: "/dashboard/workflows", // 辞退・返金・カタログの境界付き操作デモ
   decision: "/dashboard/decision", // D01b 相談後・依頼の判断
   settlement: "/me/settlement", // D03 本人の返金・回収金の精算
   lawyerProposal: "/lawyer/proposals/new", // C03 弁護士向け提案作成

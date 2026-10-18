@@ -1,0 +1,120 @@
+{
+  "date": "2026-09-30",
+  "url": "https://action.anxol.com",
+  "results": [
+    {
+      "name": "企業名の未入力を拒否",
+      "status": "PASS"
+    },
+    {
+      "name": "下書きの再読み込みで入力を保持",
+      "status": "PASS"
+    },
+    {
+      "name": "不正な公表資料URLを拒否",
+      "status": "PASS"
+    },
+    {
+      "name": "確認未チェック時の保存を拒否",
+      "status": "PASS"
+    },
+    {
+      "name": "内容変更なしの往復で確認チェックを保持",
+      "status": "PASS"
+    },
+    {
+      "name": "②内容変更後に確認チェック2件を解除",
+      "status": "FAIL",
+      "actual": "公開内容に追加文章が表示されても確認2件がtrue"
+    },
+    {
+      "name": "①保存直後に戻った先の下書きを保持",
+      "status": "FAIL",
+      "actual": "保存直後は未完了で戻るリンクが残り、戻り先で下書きがnull、フォームは初期値に戻った"
+    },
+    {
+      "name": "既存事件に別の募集を追加する分岐",
+      "status": "PASS"
+    },
+    {
+      "name": "相談費の必須5項目を検証",
+      "status": "PASS"
+    },
+    {
+      "name": "0円と過去の募集期限を拒否",
+      "status": "PASS"
+    },
+    {
+      "name": "円建て募集条件を確認画面へ反映",
+      "status": "PASS"
+    },
+    {
+      "name": "必要条件を満たした新規プレビューの保存",
+      "status": "PASS"
+    },
+    {
+      "name": "保存済みプレビューを再読み込みで保持",
+      "status": "PASS"
+    },
+    {
+      "name": "保存済みプレビューの編集開始時に再確認を要求",
+      "status": "PASS"
+    },
+    {
+      "name": "編集後の更新が同一IDへ反映され重複しない",
+      "status": "PASS"
+    }
+  ],
+  "logs": [
+    {
+      "url": "https://action.anxol.com/create/review",
+      "logs": [
+        "[pageerror] A listener indicated an asynchronous response by returning true, but the message channel closed before a response was received",
+        "[pageerror] A listener indicated an asynchronous response by returning true, but the message channel closed before a response was received",
+        "[pageerror] A listener indicated an asynchronous response by returning true, but the message channel closed before a response was received",
+        "[pageerror] A listener indicated an asynchronous response by returning true, but the message channel closed before a response was received",
+        "[pageerror] A listener indicated an asynchronous response by returning true, but the message channel closed before a response was received",
+        "[pageerror] A listener indicated an asynchronous response by returning true, but the message channel closed before a response was received",
+        "[pageerror] A listener indicated an asynchronous response by returning true, but the message channel closed before a response was received",
+        "[pageerror] A listener indicated an asynchronous response by returning true, but the message channel closed before a response was received",
+        "[pageerror] A listener indicated an asynchronous response by returning true, but the message channel closed before a response was received"
+      ]
+    },
+    {
+      "url": "https://action.anxol.com/create/similar",
+      "logs": [
+        "[pageerror] A listener indicated an asynchronous response by returning true, but the message channel closed before a response was received",
+        "[pageerror] A listener indicated an asynchronous response by returning true, but the message channel closed before a response was received",
+        "[pageerror] A listener indicated an asynchronous response by returning true, but the message channel closed before a response was received",
+        "[pageerror] A listener indicated an asynchronous response by returning true, but the message channel closed before a response was received",
+        "[pageerror] A listener indicated an asynchronous response by returning true, but the message channel closed before a response was received",
+        "[pageerror] A listener indicated an asynchronous response by returning true, but the message channel closed before a response was received",
+        "[pageerror] A listener indicated an asynchronous response by returning true, but the message channel closed before a response was received",
+        "[pageerror] A listener indicated an asynchronous response by returning true, but the message channel closed before a response was received"
+      ]
+    },
+    {
+      "url": "https://action.anxol.com/create/details",
+      "logs": [
+        "[pageerror] A listener indicated an asynchronous response by returning true, but the message channel closed before a response was received",
+        "[pageerror] A listener indicated an asynchronous response by returning true, but the message channel closed before a response was received",
+        "[pageerror] A listener indicated an asynchronous response by returning true, but the message channel closed before a response was received",
+        "[pageerror] A listener indicated an asynchronous response by returning true, but the message channel closed before a response was received",
+        "[pageerror] A listener indicated an asynchronous response by returning true, but the message channel closed before a response was received",
+        "[pageerror] A listener indicated an asynchronous response by returning true, but the message channel closed before a response was received",
+        "[pageerror] A listener indicated an asynchronous response by returning true, but the message channel closed before a response was received",
+        "[pageerror] A listener indicated an asynchronous response by returning true, but the message channel closed before a response was received",
+        "[pageerror] A listener indicated an asynchronous response by returning true, but the message channel closed before a response was received",
+        "[pageerror] A listener indicated an asynchronous response by returning true, but the message channel closed before a response was received",
+        "[pageerror] A listener indicated an asynchronous response by returning true, but the message channel closed before a response was received",
+        "[pageerror] A listener indicated an asynchronous response by returning true, but the message channel closed before a response was received"
+      ]
+    },
+    {
+      "url": "https://action.anxol.com/create/published",
+      "logs": [
+        "[info] This page uses Chrome's Built-In AI features (LanguageDetector)! We're always improving our models; please submit your feedback here: https://issues.chromium.org/issues/new?component=1583316"
+      ]
+    }
+  ]
+}

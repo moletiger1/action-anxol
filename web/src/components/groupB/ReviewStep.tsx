@@ -92,7 +92,6 @@ export function ReviewStep() {
   const router = useRouter();
   const { draft, update, reset } = useCreateDraft();
   const [submitted, setSubmitted] = useState(false);
-  const [publishing, setPublishing] = useState(false);
   const [publishError, setPublishError] = useState<
     "create-fields" | "details-fields" | "history-unreadable" | "preview-missing" | "storage-unavailable" | null
   >(null);
@@ -119,20 +118,15 @@ export function ReviewStep() {
       focusFirstError();
       return;
     }
-    setPublishing(true);
-    // デモ：公開用の項目だけをこのブラウザに保存する。
-    window.setTimeout(() => {
-      const result = savePublishedPreview(publicRows(draft), draft);
-      if (result !== "saved") {
-        setPublishing(false);
-        setPublishError(result);
-        return;
-      }
-      setPublished(draft);
-      setPublishing(false);
-      reset();
-      window.scrollTo({ top: 0 });
-    }, 1200);
+    // ブラウザー内への保存は同期処理。画面移動後に下書きを消さないよう、この操作内で完了する。
+    const result = savePublishedPreview(publicRows(draft), draft);
+    if (result !== "saved") {
+      setPublishError(result);
+      return;
+    }
+    setPublished(draft);
+    reset();
+    window.scrollTo({ top: 0 });
   };
 
   if (published) {
@@ -199,8 +193,6 @@ export function ReviewStep() {
           </ButtonLink>
           <Button
             onClick={publish}
-            loading={publishing}
-            loadingLabel={draft.previewId ? "作成例を更新中…" : "プレビューを作成中…"}
             className="flex-1 px-4"
           >
             {draft.previewId ? "この作成例を更新する" : "公開内容のプレビューを作る"}
@@ -333,7 +325,7 @@ export function ReviewStep() {
           </ButtonLink>
         }
         right={
-          <Button onClick={publish} loading={publishing} loadingLabel={draft.previewId ? "更新中…" : "作成中…"}>
+          <Button onClick={publish}>
             {draft.previewId ? "この作成例を更新する" : "公開内容のプレビューを作る"}
           </Button>
         }

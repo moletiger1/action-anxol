@@ -1,0 +1,38 @@
+name: CI
+
+# TEST-06: 再現可能な検証。main への push と Pull Request で、
+# Node.js 24（package.json の engines に準拠）で 351件・型・lint・build を実行する。
+# 認証DB・Firestoreエミュレーター・実ブラウザー・稼働サーバーは不要で、secrets も使わない。
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: web
+    env:
+      NEXT_TELEMETRY_DISABLED: "1"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+          cache: npm
+          cache-dependency-path: web/package-lock.json
+      - name: Install dependencies
+        run: npm ci
+      - name: Verify (tests / typecheck / lint / build)
+        run: npm run verify
