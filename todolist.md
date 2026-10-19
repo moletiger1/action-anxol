@@ -227,5 +227,6 @@ T1〜T18の詳細は[段階計画](docs/superpowers/plans/2026-10-14-backend-imp
   - `runs-on: ubuntu-latest` → **`ubuntu-24.04`**（固定）。
   - `actions/checkout@v4` → **`actions/checkout@v7`**、`actions/setup-node@v4` → **`actions/setup-node@v7`**。いずれも`action.yml`の`runs.using`が`node24`であること、`setup-node@v7`にも`node-version`・`cache`・`cache-dependency-path`の入力があることを確認したうえで更新した。
   - 判断理由（なぜ固定し、なぜv7か）をワークフローのコメントに残した。
-- 検証：変更はワークフローのみのため、アプリの`npm run verify`（9項目）には影響しない。YAMLはパース確認済み（`runs-on`・`uses`を読み出して確認）。実際の実行はPull RequestのCIで確認する。
+- 検証：変更はワークフローのみのため、アプリの`npm run verify`（9項目）には影響しない。YAMLはパース確認済み（`runs-on`・`uses`を読み出して確認）。実際の実行はPull RequestのCIで確認した。
+- 実行結果（PR #4のCI・run 39207014045）：**success（1分2秒、Node v24.21.0、9/9 PASS）**。runnerは`Image: ubuntu-24.04`／`Ubuntu 24.04.5 LTS`（image version 20261012.334.1）。ログ内の「Node.js 20 is deprecated」と「`ubuntu-latest` label will migrate」は**ともに0件**になり、警告2件は解消した。境界検査（`boundary`）も7.1秒で成功している。
 - 限界：runnerイメージの固定はUbuntu 26への移行を「今は受け入れない」という判断である。Ubuntu 26での検証・移行は未実施で、必要になった時点で別途行う。actionsのメジャー更新も、このCI（Node 24・`npm ci`・`npm run verify`）が成功する範囲での確認である。
