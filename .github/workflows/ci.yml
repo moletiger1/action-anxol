@@ -3,6 +3,11 @@ name: CI
 # TEST-06: 再現可能な検証。main への push と Pull Request で、
 # Node.js 24（package.json の engines に準拠）で 351件・型・lint・build を実行する。
 # 認証DB・Firestoreエミュレーター・実ブラウザー・稼働サーバーは不要で、secrets も使わない。
+#
+# runner は `ubuntu-latest` ではなく `ubuntu-24.04` を固定する（`ubuntu-latest` の
+# Ubuntu 26 への移行が 2026-10-19 に開始されたため。移行後の挙動変化を検証せずに
+# 受け入れない）。actions は Node 24 ランタイムの v7 系を使う（v4 系は Node 20 の
+# 非推奨警告が出る）。
 
 on:
   push:
@@ -19,15 +24,15 @@ concurrency:
 
 jobs:
   verify:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     defaults:
       run:
         working-directory: web
     env:
       NEXT_TELEMETRY_DISABLED: "1"
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
         with:
           node-version: "24"
           cache: npm

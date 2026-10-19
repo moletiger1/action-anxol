@@ -33,7 +33,7 @@ node node_modules/typescript/bin/tsc --noEmit
 NEXT_TELEMETRY_DISABLED=1 npm run build
 ```
 
-CI（`.github/workflows/ci.yml`、2026-10-19追加・同意済み）は`main`へのpush／Pull Requestで`ubuntu-latest`・Node 24・`npm ci`・`npm run verify`を実行する。secretsは使わない。初回実行はPR #2で`verify`が成功（2026-10-19、1分1秒）。その過程で、クリーンチェックアウトでは`next typegen`を先に実行しないと`tsc`が`LayoutProps`未定義（TS2304）で失敗することを検出し、手順に`typegen`を追加した（TEST-06）。
+CI（`.github/workflows/ci.yml`、2026-10-19追加・同意済み）は`main`へのpush／Pull Requestで`ubuntu-24.04`（固定。2026-10-19に`ubuntu-latest`から変更。§11）・Node 24・`npm ci`・`npm run verify`を実行する。secretsは使わない。初回実行はPR #2で`verify`が成功（2026-10-19、1分1秒）。その過程で、クリーンチェックアウトでは`next typegen`を先に実行しないと`tsc`が`LayoutProps`未定義（TS2304）で失敗することを検出し、手順に`typegen`を追加した（TEST-06）。
 
 `npm run dev`だけで画面確認の準備が済むわけではない。環境要件は[web/README.md](web/README.md)を参照。2026-10-16にサーバー／エミュレーター起動とBasic認証の検証を実施した（TEST-02）。2026-10-17に実ブラウザー（Google Chrome）をPlaywrightで自動操作し、操作デモの全確認項目（TEST-03、34/34）とproductionビルドのE2E/表示（TEST-04、44/44）を確認した。人手での目視操作は未実施。
 
@@ -192,7 +192,7 @@ T1〜T18の詳細は[段階計画](docs/superpowers/plans/2026-10-14-backend-imp
 - 実行（Node 24.22.0、`web`で`npm run verify`）→ **7/7成功**：`runtime`（v24.22.0）、`yen`（exit 0）、`tests`（**pass 351／fail 0／skip 0**）、`typecheck`（exit 0）、`lint:target`（exit 0）、`lint:all`（exit 0）、`build`（exit 0）。認証DB・Firestoreエミュレーター・ブラウザー・稼働サーバー・secretsは不要（`build`は認証envなしで成功）。
 - 挙動確認（隠蔽しないことの確認）：Node 26.8.1で`runtime`のみ実行すると**FAIL（exit 1）**、不明なIDはexit 2、`--list`は7項目を表示。失敗を成功に丸める処理はない。
 - 文書：`web/README.md`の古い記述2箇所（「24での実行は未確認」「24.x未確認・全体lintは6件で失敗」）を現状へ更新し、`## 確認（再現用）`に`npm run verify`のID・内容表と2026-10-19時点の結果を追記した。
-- CI（**同意の上で追加**）：`.github/workflows/ci.yml`。`main`へのpush／Pull Requestで`ubuntu-latest`・Node 24・`working-directory: web`・`npm ci`・`npm run verify`を実行。`permissions: contents: read`、同一refの並行実行はcancel。secretsは使わず認証DB/ブラウザーも不要。`web/.gcloudignore`はホワイトリスト方式のため`.github/`はデプロイ対象に含まれない。
+- CI（**同意の上で追加**）：`.github/workflows/ci.yml`。`main`へのpush／Pull Requestで`ubuntu-latest`・Node 24・`working-directory: web`・`npm ci`・`npm run verify`を実行。`permissions: contents: read`、同一refの並行実行はcancel。secretsは使わず認証DB/ブラウザーも不要。`web/.gcloudignore`はホワイトリスト方式のため`.github/`はデプロイ対象に含まれない。**（2026-10-19にrunnerを`ubuntu-24.04`へ固定し、actionsをNode 24ランタイムのv7へ更新。§11）**
 - CI初回実行（2026-10-19、PR #2 / run 39158759273）：`npm ci`は成功したが**`typecheck`のみ失敗**（exit 2）。ローカルは既存`.next`のため通っていた。原因はクリーンチェックアウトでNext.jsのルート型（`LayoutProps`）が未生成のためで、`src/app/layout.tsx(17,50): error TS2304: Cannot find name 'LayoutProps'`。`build`は型チェックを含むため成功していた。
 - 原因修正：`verify.mjs`の`typecheck`の前段に`typegen`（`next typegen`）を追加。`.next`と`tsconfig.tsbuildinfo`を削除した状態で`npm run verify`が**8/8成功**（typegen 710ms、typecheck exit 0）。修正後のCI（run 39159242967）は**`verify`成功（1分1秒、Node v24.21.0）**。
 - 分岐の解消：ローカル`main`(030e6f7)とリモート`main`(a09a786)は`50ce74d`で分岐していたため、本体の作業ディレクトリと未コミットの`youtube_uploader_mcp.log`に触れず、**別worktree**で`origin/main`をマージした（`cfb339d`）。競合は3件（`web/package.json`・`scripts/deploy-cloud-run.sh`・`web/README.md`）で両側の追加を統合（package.jsonは`verify`と`test:security`を併存、deployは`--update-env-vars`＋DB存在チェック＋traffic更新、READMEは検証済みの8080/demo-action-local手順＋`test:security`説明）。認証系（`auth.server.ts`・`proxy.ts`・`next.config.ts`・`package-lock.json`）は両側で同一内容だった。PR #2（ブランチ`chore/test-06-verify`）を作成し、**リモート`main`は変更していない**。
@@ -217,3 +217,16 @@ T1〜T18の詳細は[段階計画](docs/superpowers/plans/2026-10-14-backend-imp
 - 実行（Node 24.22.0、`web`で`npm run verify`）→ **9/9成功**：`runtime`（v24.22.0）、`yen`（exit 0）、`tests`（**pass 351／fail 0／skip 0**）、`typegen`（exit 0）、`typecheck`（exit 0）、`lint:target`（exit 0）、`lint:all`（exit 0）、`build`（25 static routes）、`boundary`（exit 0）。認証DB・Firestoreエミュレーター・ブラウザー・稼働サーバー・secretsは不要。
 - 変更した文書・ファイル：`web/README.md`（`## 確認（再現用）`の表と結果、DEV-07の説明）、`web/.gitignore`（一時fixture `/.boundary-fixture/`）、`web/scripts/verify.mjs`（`boundary`の追加）、`web/src/lib/auth.server.ts`（`import "server-only"`の1行）、本一覧。
 - 限界：本試験の範囲は**ローカルビルド成果物と`next build`**である。実ブラウザーでの動作確認はTEST-03/04の範囲で、実運用の受入（T1〜T18）や本番配備の合格ではない。`src/proxy.ts`（middleware）とサーバー描画のHTML/RSCは配信物であってもサーバー側コードであるため、混入の有無は上記1のmarker走査で判定している。
+
+## 11. CI衛生の更新（2026-10-19）
+
+- 目的：CI実行に出ていた警告2件を、ルール抑制ではなく設定の原因側で解消する。
+  - ① `ubuntu-latest` のUbuntu 26への移行が**2026-10-19に開始**されるとの通知（移行後のイメージ変化を検証せずに受け入れない）。
+  - ② `actions/checkout@v4`・`actions/setup-node@v4` が**Node 20非推奨**（Node 24へ強制実行）という警告。
+- 変更（`.github/workflows/ci.yml`のみ。アプリコード・依存パッケージの変更なし）：
+  - `runs-on: ubuntu-latest` → **`ubuntu-24.04`**（固定）。
+  - `actions/checkout@v4` → **`actions/checkout@v7`**、`actions/setup-node@v4` → **`actions/setup-node@v7`**。いずれも`action.yml`の`runs.using`が`node24`であること、`setup-node@v7`にも`node-version`・`cache`・`cache-dependency-path`の入力があることを確認したうえで更新した。
+  - 判断理由（なぜ固定し、なぜv7か）をワークフローのコメントに残した。
+- 検証：変更はワークフローのみのため、アプリの`npm run verify`（9項目）には影響しない。YAMLはパース確認済み（`runs-on`・`uses`を読み出して確認）。実際の実行はPull RequestのCIで確認した。
+- 実行結果（PR #4のCI・run 39207014045）：**success（1分2秒、Node v24.21.0、9/9 PASS）**。runnerは`Image: ubuntu-24.04`／`Ubuntu 24.04.5 LTS`（image version 20261012.334.1）。ログ内の「Node.js 20 is deprecated」と「`ubuntu-latest` label will migrate」は**ともに0件**になり、警告2件は解消した。境界検査（`boundary`）も7.1秒で成功している。
+- 限界：runnerイメージの固定はUbuntu 26への移行を「今は受け入れない」という判断である。Ubuntu 26での検証・移行は未実施で、必要になった時点で別途行う。actionsのメジャー更新も、このCI（Node 24・`npm ci`・`npm run verify`）が成功する範囲での確認である。
