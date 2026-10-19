@@ -121,8 +121,19 @@ node scripts/verify.mjs --skip-build
 | `lint:target` | `eslint src/domain/operational src/server/ports scripts/backend-contracts` |
 | `lint:all` | `eslint .` |
 | `build` | `next build` |
+| `boundary` | `node scripts/check-client-boundary.mjs`（DEV-07。実ビルド成果物への混入検査＋実`next build`での拒否確認。`--skip-build`時は除外） |
 
-2026-10-19時点の結果：**すべて成功**（Node 24.22.0、tests 351 pass / fail 0 / skip 0、build 25 static routes）。`typegen`はクリーンチェックアウト（`.next`なし）で`tsc`を成立させるために必要で、GitHub ActionsのCIで実際に検出した。個別コマンドを手で流すこともできます。
+2026-10-19時点の結果：**すべて成功（9項目）**（Node 24.22.0、tests 351 pass / fail 0 / skip 0、build 25 static routes）。`typegen`はクリーンチェックアウト（`.next`なし）で`tsc`を成立させるために必要で、GitHub ActionsのCIで実際に検出した。個別コマンドを手で流すこともできます。
+
+### server/client境界のnegative検証（DEV-07、`boundary`）
+
+`build`の後に、**実際のビルド成果物**を対象に境界を確認します（`node scripts/check-client-boundary.mjs`）。
+
+1. **配信物の走査**：`.next/static/**`（ブラウザーが取得するJS等）と`.next/server/app/**/*.{html,rsc}`に、秘密／サーバー専用の11 marker（`__Host-demo-auth`、`AUTH_FIRESTORE_PROJECT_ID`、`createHmac`、`@google-cloud/firestore`、`AUTH_SESSION_SECRET`、`BASIC_AUTH_PASSWORD`、`PRODUCTION_PORT_UNAVAILABLE`、Nextのserver-only guard文言など）が**無い**ことを確認します。各markerは「ソース側に実在すること（対照）」も確認するため、marker名を変えるだけで空振り合格することはありません。あわせて配信物にroot layoutのtitle（サーバー描画）が実在することを確認し、走査対象そのものの空振りも検出します。
+2. **実`next build`での拒否**：client componentが`import 'server-only'`するモジュールを取り込む最小fixture（`web/.boundary-fixture`。gitignore対象で、スクリプトが生成と削除を行います）を実際にbuildし、**失敗**することとguard文言が出ることを確認します。
+3. **明示ガード**：`src/lib/auth.server.ts`と`src/server/ports/closed.ts`が`import 'server-only'`を宣言していることを確認します。以前の`auth.server.ts`は宣言が無く、client componentからの誤ったimportはFirestore SDKの`child_process`未解決エラー（46件）で止まるだけでした。境界の拒否として明確に出すため、Next.jsのドキュメントの推奨どおり1行追加しています。
+
+この検査は**ローカルのビルド成果物と`next build`**の範囲です。実ブラウザーでの確認はTEST-03/04、実運用の受入（T1〜T18）や本番配備の合格ではありません。記録は[todolist.md §10](../todolist.md)を参照してください。
 
 ```bash
 node scripts/check-yen.mjs

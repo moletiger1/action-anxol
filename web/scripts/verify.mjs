@@ -11,7 +11,7 @@
 //   node scripts/verify.mjs tests lint:all  指定したIDだけ実行
 //   node scripts/verify.mjs --list          IDの一覧
 //   node scripts/verify.mjs --quiet         各チェックの生ログを出さず要約のみ
-//   node scripts/verify.mjs --skip-build    ビルドを除外（時間短縮）
+//   node scripts/verify.mjs --skip-build    ビルドを除外（時間短縮。build成果物を使う boundary も除外）
 //
 // 依存パッケージは追加しない（Node標準のみ）。認証DB・ブラウザー・稼働サーバーは不要。
 
@@ -46,6 +46,7 @@ const CHECKS = [
   { id: "lint:target", desc: "対象lint（P1範囲）", cmd: node, args: ["node_modules/eslint/bin/eslint.js", "src/domain/operational", "src/server/ports", "scripts/backend-contracts"] },
   { id: "lint:all", desc: "全体lint（eslint .）", cmd: node, args: ["node_modules/eslint/bin/eslint.js", "."] },
   { id: "build", desc: "本番ビルド（next build）", cmd: node, args: ["node_modules/next/dist/bin/next", "build"], env: { NEXT_TELEMETRY_DISABLED: "1" } },
+  { id: "boundary", desc: "server/client境界のnegative検証（DEV-07、build成果物＋拒否build）", cmd: node, args: ["scripts/check-client-boundary.mjs"] },
 ];
 
 if (argv.includes("--list")) {
@@ -60,7 +61,7 @@ if (filters.length) {
   const unknown = filters.filter(f => !CHECKS.some(c => c.id === f));
   if (unknown.length) { console.error(`不明なID: ${unknown.join(", ")}`); process.exit(2); }
 }
-if (skipBuild) selected = selected.filter(c => c.id !== "build");
+if (skipBuild) selected = selected.filter(c => c.id !== "build" && c.id !== "boundary");
 
 console.log(`# 検証手順（再現用）`);
 console.log(`  node     : ${process.version}`);

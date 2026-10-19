@@ -50,6 +50,8 @@ CI（`.github/workflows/ci.yml`、2026-10-19追加・同意済み）は`main`へ
 - [x] 2026-10-17にproductionビルドへ実ブラウザー（Google Chrome）でE2E/表示確認を行った（TEST-04、44/44成功）。この過程で見つかった320px幅の`/dashboard/workflows`横はみ出しを原因から修正した（`WorkflowConsole`の長い日本語ボタンに折り返しを許可、カタログカードに`min-w-0`・`select`に`w-full`）。
 - [x] 2026-10-19に同意の上nvmでNode v24.22.0を導入し、351件・型・対象lint・全体lint・build（25 routes）をNode 24で再確認した（TEST-01）。
 - [x] 2026-10-19に再現可能な検証手順`web/scripts/verify.mjs`（`npm run verify`）を追加し、Node 24で全7項目の成功を確認した。CIは同意の上で`.github/workflows/ci.yml`を追加した（TEST-06）。
+- [x] 2026-10-19に同意の上PR #2を`main`へマージし（`ce3606b`）、ルート`.gitignore`（`youtube_uploader_mcp.log`・`.DS_Store`）を`main`へ直接pushした（`6c56991`）。CIはいずれも成功。
+- [x] 2026-10-19にserver/client境界のnegative試験を追加した（DEV-07、`web/scripts/check-client-boundary.mjs`）。実ビルド成果物への混入なし・実`next build`での拒否・秘密モジュールの明示ガードを確認し、`npm run verify`は9項目になった。
 
 実装/非保証：[P1記録](docs/reviews/2026-10-14-backend-p1.md)、[デモ記録](docs/reviews/2026-10-14-app-workflows.md)。
 
@@ -100,7 +102,7 @@ CI（`.github/workflows/ci.yml`、2026-10-19追加・同意済み）は`main`へ
 - [ ] **DEV-04／P2：耐久索引・投影・inbox/outboxと復元を実装する。** 公開合意/外部保管の正本を前提にproof/因果cursor/原intent/receiptを保存。既存auth-security用Firestoreへ業務台帳を混載せず、Web DBを銀行/合意の正本にしない。
 - [ ] **DEV-05／P3：実資格・公開案件・選任を実装する。** 外部自然人一意性/所持、共通issuer/policy、固定root/N、初回/決選scope、再発行/失効を検証。端末内AI/評価、カタログ署名・同一panel再照合/異議/選任holdを実装し、Cookie非依存の資格受付候補を通常AUTH必須へ勝手に変更しない。
 - [ ] **DEV-06／P4：一般化した私的会計・固定配分・相殺を実装する。** 状態別額/現金恒等式/二重liability除外、不足/実収、本人集約w/cap/Fと上限超過の反復除外・全量原子的予約、部分完了/UNKNOWN/fence/新版移行。通常支出/固定返金/相殺/元決済返品は別条件、仮定立替・既払い再配分は禁止。
-- [ ] **DEV-07：server/client境界のnegative試験を追加する。** 実際のNext client-buildでserver-only/秘密の混入を拒否することを確認。現在のport試験のmarker代替を実ブラウザーの境界検証と呼ばない。
+- [x] **DEV-07：server/client境界のnegative試験を追加する。**（2026-10-19完了）実際のNext client-buildの成果物でserver-only/秘密の混入を拒否することを確認した（`web/scripts/check-client-boundary.mjs`、`npm run verify`の`boundary`）。既存port試験のmarker代替を実ブラウザーの境界検証と呼ばない方針は維持し、記録は§10。
 
 ## 6. 外部接続・受入・UI置換（P5〜P6）
 
@@ -126,9 +128,10 @@ T1〜T18の詳細は[段階計画](docs/superpowers/plans/2026-10-14-backend-imp
 ## 8. 直近のおすすめ順
 
 1. **一旦触るなら：TEST-02→TEST-03**（開発専用の認証環境を準備してメモリーデモを確認。いずれも完了）。
-2. TEST-06で再現性（Node24実行手順・CI）を整備し、CIの初回実行も成功した（TEST-01/02/03/04/05/06は2026-10-19までに完了）。残るのはPR #2のマージ判断。
-3. 並行してP0-02から事業者への連絡許可を確認し、先行4問→全27問の成立性を評価する。
-4. その結果を踏まえDEV/INTの範囲を承認して着手。本番のRELは最後まで停止線として保持する。
+2. TEST-06で再現性（Node24実行手順・CI）を整備し、CIの初回実行も成功した（TEST-01/02/03/04/05/06は2026-10-19までに完了）。PR #2はマージ済み（`ce3606b`）。
+3. DEV-07（server/client境界のnegative試験）は2026-10-19に完了（§10）。次はP0-02から事業者への連絡許可を確認し、先行4問→全27問の成立性を評価する（外部照会は送信のため要承認）。
+4. TEST-04の所見（`not-found`／`error`／`global-error`／`loading`の未実装、スキップリンク未実装）はローカルで対応可能な残作業。
+5. その結果を踏まえDEV/INTの範囲を承認して着手。本番のRELは最後まで停止線として保持する。
 
 この一覧作成で行ったのは文書作成とローカル351件の再実行のみ。依存導入、ADC/秘密/認証設定変更、外部送信、銀行/通知接続、本番配備はしていない。
 
@@ -193,7 +196,24 @@ T1〜T18の詳細は[段階計画](docs/superpowers/plans/2026-10-14-backend-imp
 - CI初回実行（2026-10-19、PR #2 / run 39158759273）：`npm ci`は成功したが**`typecheck`のみ失敗**（exit 2）。ローカルは既存`.next`のため通っていた。原因はクリーンチェックアウトでNext.jsのルート型（`LayoutProps`）が未生成のためで、`src/app/layout.tsx(17,50): error TS2304: Cannot find name 'LayoutProps'`。`build`は型チェックを含むため成功していた。
 - 原因修正：`verify.mjs`の`typecheck`の前段に`typegen`（`next typegen`）を追加。`.next`と`tsconfig.tsbuildinfo`を削除した状態で`npm run verify`が**8/8成功**（typegen 710ms、typecheck exit 0）。修正後のCI（run 39159242967）は**`verify`成功（1分1秒、Node v24.21.0）**。
 - 分岐の解消：ローカル`main`(030e6f7)とリモート`main`(a09a786)は`50ce74d`で分岐していたため、本体の作業ディレクトリと未コミットの`youtube_uploader_mcp.log`に触れず、**別worktree**で`origin/main`をマージした（`cfb339d`）。競合は3件（`web/package.json`・`scripts/deploy-cloud-run.sh`・`web/README.md`）で両側の追加を統合（package.jsonは`verify`と`test:security`を併存、deployは`--update-env-vars`＋DB存在チェック＋traffic更新、READMEは検証済みの8080/demo-action-local手順＋`test:security`説明）。認証系（`auth.server.ts`・`proxy.ts`・`next.config.ts`・`package-lock.json`）は両側で同一内容だった。PR #2（ブランチ`chore/test-06-verify`）を作成し、**リモート`main`は変更していない**。
-- 未実施：PR #2のマージ（ユーザー判断）。`npm ci`は`allowScripts`未登録の警告（`protobufjs`／`unrs-resolver`のpostinstall）を出すが、CIでは実行され成功した。**依存の追加・更新・削除はしていない**（マージで取り込んだ`web/scripts/check-auth-limit.mjs`等は既存ファイル）。
+- PR #2のマージ（2026-10-19完了・ユーザー承認）：`chore/test-06-verify`は**`main`へマージされた**（`ce3606b`、GitHub PR #2＝MERGED）。CIはPRの`verify`（run 39159512946、45秒）とマージ後の`main`push（run 39159753563、47秒）がいずれも成功。その後、ルート`.gitignore`（`youtube_uploader_mcp.log`・`.DS_Store`）を追加して`main`へ**直接push**した（`6c56991`、run 39160764815、40秒）。ローカル`main`＝`origin/main`＝`6c56991`。
+- `npm ci`は`allowScripts`未登録の警告（`protobufjs`／`unrs-resolver`のpostinstall）を出すが、CIでは実行され成功した。**依存の追加・更新・削除はしていない**（マージで取り込んだ`web/scripts/check-auth-limit.mjs`等は既存ファイル）。
 - 変更した文書：`web/README.md`（Node24の記述・確認手順・`typegen`）、`web/package.json`（`verify`スクリプト1件）、本一覧。
 
-2026-10-16〜19の作業で行ったのは、ローカル専用の認証環境の構築・検証、全体lint 6件の修正、productionビルドでの実ブラウザーE2E/表示確認と、その過程で見つかった小画面（320px）の横はみ出し修正、同意の上でのNode 24.22.0導入と再検証、再現可能な検証手順`web/scripts/verify.mjs`の追加、同意の上でのCI（`.github/workflows/ci.yml`）追加と原因修正（`typegen`）、同意の上でのPR #2作成（ブランチ`chore/test-06-verify`へのpush）とCI初回成功、上記の再実行のみ。アプリへの依存追加・更新、ADC変更、銀行/通知接続、本番配備はしていない。外部送信はNodeのダウンロード、npmレジストリへの`npm ci`、および同意の上でのGitHubへのブランチpush／PR作成（`moletiger1/action-anxol`、public）に限られる。GitHubへの変更はPR #2のみで、**リモート`main`は変更していない**。Node 24の導入はユーザー領域（`~/.nvm`）のみで、システムや恒久的なPATHは変更していない。
+2026-10-16〜19の作業で行ったのは、ローカル専用の認証環境の構築・検証、全体lint 6件の修正、productionビルドでの実ブラウザーE2E/表示確認と、その過程で見つかった小画面（320px）の横はみ出し修正、同意の上でのNode 24.22.0導入と再検証、再現可能な検証手順`web/scripts/verify.mjs`の追加、同意の上でのCI（`.github/workflows/ci.yml`）追加と原因修正（`typegen`）、同意の上でのPR #2作成（ブランチ`chore/test-06-verify`へのpush）とCI初回成功、上記の再実行のみ。アプリへの依存追加・更新、ADC変更、銀行/通知接続、本番配備はしていない。外部送信はNodeのダウンロード、npmレジストリへの`npm ci`、および同意の上でのGitHubへのブランチpush／PR作成（`moletiger1/action-anxol`、public）に限られる。GitHubへの変更は、同意の上でのブランチpushとPR #2作成、その**PR #2のマージ**（リモート`main`＝`ce3606b`）、およびルート`.gitignore`追加の`main`への直接push（`6c56991`）のみ。Node 24の導入はユーザー領域（`~/.nvm`）のみで、システムや恒久的なPATHは変更していない。
+
+## 10. DEV-07の検証記録（2026-10-19）
+
+- 目的：**実際のNext client-buildの成果物**でserver-only／秘密の混入を拒否することを確認する。既存の`scripts/backend-contracts/closed-ports.test.mjs`はソースのAST markerを見る代替であり、実ブラウザーの境界検証ではないため、実ビルド成果物を対象にする。
+- 追加（依存パッケージの追加なし・Node標準のみ）：`web/scripts/check-client-boundary.mjs`。`npm run verify`の`boundary`として`build`の後に実行する（`--skip-build`時は`boundary`も除外）。
+  1. **実ビルド出力の走査**：ブラウザーへ配信される資産（`.next/static/**`の156ファイルと`.next/server/app/**/*.{html,rsc}`の120ファイル、計8.5MB）に、秘密／サーバー専用の11 marker（`__Host-demo-auth`、レート制限の文言、`AUTH_FIRESTORE_PROJECT_ID`、`createHmac`、`@google-cloud/firestore`、`AUTH_SESSION_SECRET`、`BASIC_AUTH_PASSWORD`／`BASIC_AUTH_USERNAME`、`PRODUCTION_PORT_UNAVAILABLE`、`UNCONFIGURED_CAPABILITIES`、Nextのserver-only guard文言）が**無い**ことを確認する。各markerは「ソース側に実在する（対照）」と「配信物に無い」の**両方**を確認するので、marker名を変えるだけで空振り合格しない。さらに配信物にroot layoutのtitle（サーバー描画）が実在することを確認し、走査対象そのものの空振りを検出する。`.next/cache`・`.next/turbopack`・`.next/dev`は配信物ではないため対象外。
+  2. **実`next build`による拒否**：client componentが`import 'server-only'`するモジュールを取り込む最小fixture（`web/.boundary-fixture`。gitignore対象で、スクリプトが生成と削除を行う）を、このリポジトリのNextで実際にbuildし、**失敗**することとguard文言（`cannot be imported from a Client Component`）が出ることを確認する。buildが成功したらFAIL。
+  3. **明示ガード**：秘密を扱う`src/lib/auth.server.ts`と`src/server/ports/closed.ts`が`import 'server-only'`を宣言していることを確認する。
+- **原因修正（本試験で検出）**：`src/lib/auth.server.ts`は`server-only`を宣言していなかった。
+  - 修正前（実測・client componentからの誤ったimport）：`Turbopack build failed with 46 errors`（`Can't resolve 'child_process'`、google-auth-library／Firestore SDK経由）。**境界の拒否としては現れない**（SDKを差し替えると境界が黙って開きうる）。
+  - 修正：Next.jsのドキュメント（`web/node_modules/next/dist/docs/01-app/01-getting-started/05-server-and-client-components.md`、同`02-guides/authentication.md`）が秘密／セッション管理モジュールに`import 'server-only'`を推奨しているため、`src/lib/auth.server.ts`の先頭に1行追加した（`server-only`はNextが内部で解決するため、npmパッケージの導入は不要）。
+  - 修正後（同じprobe）：`./src/lib/auth.server.ts:1:1 Error: 'server-only' cannot be imported from a Client Component module`とimport trace（当該client component）が出て**exit 1**。probeは削除済みで、作業ツリーには残していない。
+- 試験の妥当性確認（歯の確認）：①server componentから同じモジュールをimportする対照fixtureは**build成功**（exit 0）し、そのmarkerは配信物の`.html`／`.rsc`に**実際に現れた**（＝混入があれば走査で検出できる）。②`auth.server.ts`の`server-only`行を一時的に外すと`boundary`は**NG・exit 1**となり、戻すとsha256一致で復元された。
+- 実行（Node 24.22.0、`web`で`npm run verify`）→ **9/9成功**：`runtime`（v24.22.0）、`yen`（exit 0）、`tests`（**pass 351／fail 0／skip 0**）、`typegen`（exit 0）、`typecheck`（exit 0）、`lint:target`（exit 0）、`lint:all`（exit 0）、`build`（25 static routes）、`boundary`（exit 0）。認証DB・Firestoreエミュレーター・ブラウザー・稼働サーバー・secretsは不要。
+- 変更した文書・ファイル：`web/README.md`（`## 確認（再現用）`の表と結果、DEV-07の説明）、`web/.gitignore`（一時fixture `/.boundary-fixture/`）、`web/scripts/verify.mjs`（`boundary`の追加）、`web/src/lib/auth.server.ts`（`import "server-only"`の1行）、本一覧。
+- 限界：本試験の範囲は**ローカルビルド成果物と`next build`**である。実ブラウザーでの動作確認はTEST-03/04の範囲で、実運用の受入（T1〜T18）や本番配備の合格ではない。`src/proxy.ts`（middleware）とサーバー描画のHTML/RSCは配信物であってもサーバー側コードであるため、混入の有無は上記1のmarker走査で判定している。
