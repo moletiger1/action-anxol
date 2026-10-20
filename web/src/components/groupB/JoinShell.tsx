@@ -49,7 +49,13 @@ export function JoinShell({
         </div>
       </header>
       <MobileHeader title={mobileTitle} backHref={mobileBackHref} />
-      <main className={cn("flex-1 md:pb-0", hasCtaBar ? "pb-[140px]" : "pb-6")}>{children}</main>
+      <main
+        id="main"
+        tabIndex={-1}
+        className={cn("flex-1 md:pb-0", hasCtaBar ? "pb-[140px]" : "pb-6")}
+      >
+        {children}
+      </main>
     </div>
   );
 }

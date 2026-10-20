@@ -130,7 +130,7 @@ T1〜T18の詳細は[段階計画](docs/superpowers/plans/2026-10-14-backend-imp
 1. **一旦触るなら：TEST-02→TEST-03**（開発専用の認証環境を準備してメモリーデモを確認。いずれも完了）。
 2. TEST-06で再現性（Node24実行手順・CI）を整備し、CIの初回実行も成功した（TEST-01/02/03/04/05/06は2026-10-19までに完了）。PR #2はマージ済み（`ce3606b`）。
 3. DEV-07（server/client境界のnegative試験）は2026-10-19に完了（§10）。次はP0-02から事業者への連絡許可を確認し、先行4問→全27問の成立性を評価する（外部照会は送信のため要承認）。
-4. TEST-04の所見（`not-found`／`error`／`global-error`／`loading`の未実装、スキップリンク未実装）はローカルで対応可能な残作業。
+4. TEST-04の所見（`not-found`／`error`／`global-error`／`loading`の未実装、スキップリンク未実装）は2026-10-19に対応した（§9「TEST-04の所見対応」。`loading.tsx`は全ルートが静的のため見送り）。
 5. その結果を踏まえDEV/INTの範囲を承認して着手。本番のRELは最後まで停止線として保持する。
 
 この一覧作成で行ったのは文書作成とローカル351件の再実行のみ。依存導入、ADC/秘密/認証設定変更、外部送信、銀行/通知接続、本番配備はしていない。
@@ -172,12 +172,33 @@ T1〜T18の詳細は[段階計画](docs/superpowers/plans/2026-10-14-backend-imp
 - 認証・Cookie：誤認証は401＋`WWW-Authenticate`（Cookie未発行）、正認証は200で`__Host-demo-auth`がブラウザーに保存され、属性は`HttpOnly`・`Secure`・`SameSite=strict`・`Path=/`・有効期限約8時間・Domainなし。応答は`Cache-Control: private, no-store`、CSP`frame-ancestors 'none'`、`X-Frame-Options: DENY`、`X-Content-Type-Options: nosniff`。
 - 保護された静的資産：未認証では`/favicon.ico`・`/_next/static/missing.js`・実在のJS/CSS/フォントが401、セッション付きでJS/CSS/フォント/ファビコンが200（proxyに除外matcherなし）。
 - 主要導線：21ルートが200＋見出し描画。ホーム／作成／ダッシュボードの内部リンク14件はすべて400未満。
-- エラー表示：未定義URLと未定義のネストURLは404（認証なしは401が優先）。本文にスタックトレースなし。カスタム`not-found`／`error`／`loading`は未実装でNext.js既定の404を表示。
-- キーボード：Tabで操作可能要素に到達し`:focus-visible`のアウトライン（3px solid）を表示。リセットボタンにフォーカスしてEnterで操作が実行された。`button:not([disabled])`・`a[href]`はすべて`tabIndex>=0`。スキップリンク（本文へ移動）は未実装。
+- エラー表示：未定義URLと未定義のネストURLは404（認証なしは401が優先）。本文にスタックトレースなし。カスタム`not-found`／`error`／`loading`は未実装でNext.js既定の404を表示（**2026-10-19に対応。下記「TEST-04の所見対応」**）。
+- キーボード：Tabで操作可能要素に到達し`:focus-visible`のアウトライン（3px solid）を表示。リセットボタンにフォーカスしてEnterで操作が実行された。`button:not([disabled])`・`a[href]`はすべて`tabIndex>=0`。スキップリンク（本文へ移動）は未実装（**2026-10-19に対応。下記「TEST-04の所見対応」**）。
 - 小画面：320px・375pxで10ページに横スクロールなし。モバイルの下部ナビ表示を確認。**320pxで`/dashboard/workflows`が42px横にはみ出す不具合を発見**し、原因（長い日本語ボタンラベル＋`whitespace-nowrap`、カタログカードの`min-width:auto`）を修正して再検証した。
 - その他：コンソールエラー0・失敗リクエスト0・外部リクエスト0。RSC prefetchの遷移中断（ERR_ABORTED）と意図的な404のコンソール出力は失敗として計上していない。
 - 修正内容：`web/src/components/workflows/WorkflowConsole.tsx`の長い日本語ボタン3種に`whitespace-normal!`（Tailwind v4のimportant接尾辞）、カタログの`<article>`に`min-w-0`、`<select>`に`w-full min-w-0`を付与。修正後に型（`tsc --noEmit`）・全体lint（`eslint .`）・351件・`build`（25 routes）・TEST-03（34/34）・TEST-04（44/44）を再実行しすべて成功。
 - 未実施：人手での目視・操作の体感確認。Node 24での再実行（TEST-01で認証・ヘッダ・Cookieを確認済み）。
+
+#### TEST-04の所見対応（2026-10-19）
+
+- 対象：上記で「未実装」と記録した`not-found`／`error`／`global-error`／`loading`とスキップリンク。
+- 実装（`web/src/app/`）：
+  - `not-found.tsx`（404。未定義URLと`notFound()`の両方で表示）、`error.tsx`（ルート配下のエラー境界。`retry()`で再試行）、`global-error.tsx`（ルートレイアウト自体の失敗。`html`／`body`・`globals.css`・フォントを自前で読み込む）。
+  - 3つは共通シェル（`PublicShell`／`AppShell`）の外側で描画されるため、`web/src/components/ui/StatusPage.tsx`に自分の`<main id="main">`を持つ中央寄せ枠を追加した。
+  - フォントは`web/src/app/font.ts`に1つだけ定義し、ルートレイアウト（`layout.tsx`）と`global-error.tsx`で共有する。
+  - スキップリンク（`layout.tsx`冒頭、`href="#main"`）を追加し、共通シェル（`AppShell`／`PublicShell`／`JoinShell`）の`<main>`に`id="main"`と`tabIndex={-1}`を付けて移動先にした。
+- `loading.tsx`は実測のうえ**見送り**（ルート直下には置かない）：
+  - 対照A（ルート直下に`loading.tsx`あり）: `/dashboard`の初回表示で読み込みUIを**通常回線1297ms→本文1849ms／低速60KB/s 713ms→本文6589ms**（`#main`=1）。
+  - 対照B（`loading.tsx`を退避）: **読み込みUIを検出せず**（`#main`=1）。
+  - `next build`のルート表は`/`・`/dashboard`を含め**全ルートが○（Static、prerender）**で、`loading.tsx`のフォールバックは初期HTMLに入る。静的ページの初回表示に読み込みUIが挟まる回帰になるため置かない判断とし、理由を`layout.tsx`にコメントで残した。動的なセグメントが生まれた時点で、その配下に追加する。
+  - 対照で退避した`loading.tsx`は`/tmp/loading.tsx.off`（sha256 `2ee7515b…`）に残し、最終ツリーには含めていない。
+- 検証（Node v24.22.0、`web`で`npm run verify`）→ **9/9成功**：`runtime`（v24.22.0）、`yen`（exit 0）、`tests`（**pass 351／fail 0／skip 0**）、`typegen`、`typecheck`、`lint:target`、`lint:all`、`build`、`boundary`（すべてexit 0）。
+- 実ブラウザー確認（productionビルド＋`next start`、Playwright 1.57＋Chrome、認証はリポジトリ外の一時ファイル）：
+  - `/`・`/dashboard`・未定義URLの3経路で**`#main`は各1件**（二重なし）。
+  - スキップリンクは非フォーカス時`top=-80px`（画面外）→**Tabで`top=16px`・可視・`:focus-visible`の3pxアウトライン**。Enterで`location.hash="#main"`かつ`document.activeElement.id="main"`（本文へ移動が機能）。
+  - 未定義URLは**404でカスタム`not-found`**（「ページが見つかりません」）を表示。コンソールエラーは`/`・`/dashboard`が0件、404のみ意図的な出力1件（失敗として計上しない）。
+- 一時ファイル：検証用の一時ルート（`src/app/zz-probe-slow`／`zz-probe-throw`）は削除済みで、作業ツリーには残していない。
+- 未実施：人手での目視・操作の体感確認。`error.tsx`の表示は例外を投げる一時ルートで確認した範囲（React error #441は当該ルートのみで発生、通常ページは0件）で、恒久的な導線からは発火させていない。`global-error.tsx`はコード上の確認のみ（実発火は未確認）。
 
 ### TEST-05：全体lint
 
@@ -200,7 +221,7 @@ T1〜T18の詳細は[段階計画](docs/superpowers/plans/2026-10-14-backend-imp
 - `npm ci`は`allowScripts`未登録の警告（`protobufjs`／`unrs-resolver`のpostinstall）を出すが、CIでは実行され成功した。**依存の追加・更新・削除はしていない**（マージで取り込んだ`web/scripts/check-auth-limit.mjs`等は既存ファイル）。
 - 変更した文書：`web/README.md`（Node24の記述・確認手順・`typegen`）、`web/package.json`（`verify`スクリプト1件）、本一覧。
 
-2026-10-16〜19の作業で行ったのは、ローカル専用の認証環境の構築・検証、全体lint 6件の修正、productionビルドでの実ブラウザーE2E/表示確認と、その過程で見つかった小画面（320px）の横はみ出し修正、同意の上でのNode 24.22.0導入と再検証、再現可能な検証手順`web/scripts/verify.mjs`の追加、同意の上でのCI（`.github/workflows/ci.yml`）追加と原因修正（`typegen`）、同意の上でのPR #2作成（ブランチ`chore/test-06-verify`へのpush）とCI初回成功、上記の再実行のみ。アプリへの依存追加・更新、ADC変更、銀行/通知接続、本番配備はしていない。外部送信はNodeのダウンロード、npmレジストリへの`npm ci`、および同意の上でのGitHubへのブランチpush／PR作成（`moletiger1/action-anxol`、public）に限られる。GitHubへの変更は、同意の上でのブランチpushとPR #2作成、その**PR #2のマージ**（リモート`main`＝`ce3606b`）、およびルート`.gitignore`追加の`main`への直接push（`6c56991`）のみ。Node 24の導入はユーザー領域（`~/.nvm`）のみで、システムや恒久的なPATHは変更していない。
+2026-10-16〜19の作業で行ったのは、ローカル専用の認証環境の構築・検証、全体lint 6件の修正、productionビルドでの実ブラウザーE2E/表示確認と、その過程で見つかった小画面（320px）の横はみ出し修正、同意の上でのNode 24.22.0導入と再検証、再現可能な検証手順`web/scripts/verify.mjs`の追加、同意の上でのCI（`.github/workflows/ci.yml`）追加と原因修正（`typegen`）、同意の上でのPR #2作成（ブランチ`chore/test-06-verify`へのpush）とCI初回成功、上記の再実行のみ。アプリへの依存追加・更新、ADC変更、銀行/通知接続、本番配備はしていない。外部送信はNodeのダウンロード、npmレジストリへの`npm ci`、および同意の上でのGitHubへのブランチpush／PR作成（`moletiger1/action-anxol`、public）に限られる。GitHubへの変更は、同意の上でのブランチpushとPR #2作成、その**PR #2のマージ**（リモート`main`＝`ce3606b`）、およびルート`.gitignore`追加の`main`への直接push（`6c56991`）のみ。Node 24の導入はユーザー領域（`~/.nvm`）のみで、システムや恒久的なPATHは変更していない。加えて2026-10-19に、TEST-04の所見である特殊ファイル（`not-found`／`error`／`global-error`）とスキップリンクを実装し、`loading.tsx`は全ルートが静的（prerender）のため見送る判断をした（同TEST-04の追記。外部送信・依存追加・ADC変更・本番配備は行っていない）。
 
 ## 10. DEV-07の検証記録（2026-10-19）
 
