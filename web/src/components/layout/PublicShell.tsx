@@ -77,7 +77,13 @@ export function PublicShell({
           <DemoBadge short />
         </header>
       )}
-      <main className={cn("flex-1 md:pb-0", hasCtaBar ? "pb-[176px]" : "pb-[84px]")}>{children}</main>
+      <main
+        id="main"
+        tabIndex={-1}
+        className={cn("flex-1 md:pb-0", hasCtaBar ? "pb-[176px]" : "pb-[84px]")}
+      >
+        {children}
+      </main>
       <MobileBottomNav />
     </div>
   );

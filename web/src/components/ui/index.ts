@@ -5,4 +5,5 @@ export * from "./Dialog";
 export * from "./Field";
 export * from "./Panels";
 export * from "./Stepper";
+export * from "./StatusPage";
 export * from "./Tabs";

@@ -163,6 +163,8 @@ export function AppShell({
       <div className="flex min-w-0 flex-1 flex-col">
         <MobileHeader title={mobileTitle} backHref={mobileBackHref} />
         <main
+          id="main"
+          tabIndex={-1}
           key={pathname}
           className={cn("flex-1 md:pb-0", hasCtaBar ? "pb-[176px]" : "pb-[84px]")}
         >
