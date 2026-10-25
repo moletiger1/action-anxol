@@ -2,8 +2,7 @@
 
 import { useEffect } from "react";
 import { RotateCcw, TriangleAlert } from "lucide-react";
-import { Button, ButtonLink, StatePanel, StatusPage } from "@/components/ui";
-import { routes } from "@/lib/routes";
+import { Button, StatePanel, StatusPage } from "@/components/ui";
 
 /**
  * ルート直下のエラー境界（`retry()`で再取得・再描画を試みる）。
@@ -28,20 +27,11 @@ export default function Error({
         tone="red"
         title="画面を表示できませんでした"
         action={
-          <div className="flex flex-wrap justify-center gap-3">
-            <Button icon={RotateCcw} onClick={() => retry()}>
-              もう一度試す
-            </Button>
-            <ButtonLink href={routes.home} variant="secondary">
-              案件を探す
-            </ButtonLink>
-          </div>
+          <Button icon={RotateCcw} onClick={() => retry()}>
+            もう一度試す
+          </Button>
         }
-      >
-        <p>一時的な問題の可能性があります。もう一度お試しください。</p>
-        <p>繰り返す場合は、時間をおいてからアクセスしてください。</p>
-        {error.digest && <p className="text-xs text-text-muted">識別子: {error.digest}</p>}
-      </StatePanel>
+      />
     </StatusPage>
   );
 }

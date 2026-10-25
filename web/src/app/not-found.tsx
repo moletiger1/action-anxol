@@ -15,18 +15,8 @@ export default function NotFound() {
         icon={MapPinOff}
         tone="neutral"
         title="ページが見つかりません"
-        action={
-          <div className="flex flex-wrap justify-center gap-3">
-            <ButtonLink href={routes.home}>案件を探す</ButtonLink>
-            <ButtonLink href={routes.dashboard} variant="secondary">
-              参加中の案件へ
-            </ButtonLink>
-          </div>
-        }
-      >
-        <p>URLが変わったか、ページが削除された可能性があります。</p>
-        <p>この画面は固定のデモです。実際の案件・資金・通知には接続していません。</p>
-      </StatePanel>
+        action={<ButtonLink href={routes.home}>案件を探す</ButtonLink>}
+      />
     </StatusPage>
   );
 }

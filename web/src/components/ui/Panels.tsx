@@ -52,7 +52,7 @@ const iconTones: Record<PanelTone, string> = {
   green: "bg-green-soft text-green",
 };
 
-/** 読み込み・空・エラー・権限なし・処理失敗。理由と次の行動を必ず添える */
+/** 読み込み・空・エラー・権限なし・処理失敗。見出しと操作で用が足りるなら本文は足さない */
 export function StatePanel({
   icon: Icon,
   tone = "primary",
@@ -65,7 +65,7 @@ export function StatePanel({
   icon: LucideIcon;
   tone?: PanelTone;
   title: ReactNode;
-  children: ReactNode;
+  children?: ReactNode;
   action?: ReactNode;
   className?: string;
   spin?: boolean;
@@ -81,7 +81,7 @@ export function StatePanel({
         <Icon className={cn("size-6", spin && "animate-spin")} aria-hidden />
       </span>
       <p className="text-lg font-bold text-text">{title}</p>
-      <div className="text-sm text-text-sub">{children}</div>
+      {children ? <div className="text-sm text-text-sub">{children}</div> : null}
       {action}
     </div>
   );

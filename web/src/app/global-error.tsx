@@ -32,16 +32,13 @@ export default function GlobalError({
           <StatePanel
             icon={TriangleAlert}
             tone="red"
-            title="サービスを表示できません"
+            title="画面を表示できませんでした"
             action={
               <Button icon={RotateCcw} onClick={() => retry()}>
                 もう一度試す
               </Button>
             }
-          >
-            <p>アプリ全体で問題が発生しました。再読み込みしても解決しない場合は、時間をおいてアクセスしてください。</p>
-            {error.digest && <p className="text-xs text-text-muted">識別子: {error.digest}</p>}
-          </StatePanel>
+          />
         </StatusPage>
       </body>
     </html>
