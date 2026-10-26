@@ -2,7 +2,7 @@ import Link from "next/link";
 import { UsersRound } from "lucide-react";
 
 /**
- * 社名は明朝で組む。頭の印は藍の角版で、丸ピルにはしない。
+ * 社名は最も重い太さ（900）で組む。頭の印は藍の角版で、丸ピルにはしない。
  * 「（仮）」は社名の一部ではなく注記なので、小さく淡く置く。
  */
 export function Logo() {
@@ -16,7 +16,7 @@ export function Logo() {
         <UsersRound className="size-[18px]" aria-hidden />
       </span>
       <span className="flex items-baseline gap-1">
-        <span className="font-serif text-[19px] leading-none font-bold text-text">集団訴訟.jp</span>
+        <span className="text-[19px] leading-none font-black text-text">集団訴訟.jp</span>
         <span className="text-[12px] leading-none text-text-muted">（仮）</span>
       </span>
     </Link>

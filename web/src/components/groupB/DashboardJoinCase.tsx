@@ -41,7 +41,7 @@ export function DashboardJoinCase({ recruitmentId = "timescar-corporate" }: { re
       <div className="flex flex-col-reverse gap-2 sm:flex-row sm:gap-3">
         <div className="flex min-w-0 flex-1 flex-col gap-0.5">
           <p className="text-[12px] text-text-muted">タイムズカーの個人情報漏えいに関する共同相談</p>
-          <h3 className="font-serif text-lg leading-snug font-bold text-text">{recruitment.title}</h3>
+          <h3 className="font-display text-lg leading-snug font-bold text-text">{recruitment.title}</h3>
         </div>
         <Badge tone="neutral" icon={FlaskConical}>このブラウザのデモ状態</Badge>
       </div>

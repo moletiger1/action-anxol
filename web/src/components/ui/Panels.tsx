@@ -32,7 +32,7 @@ export function StageBanner({
     >
       <div className="flex flex-col gap-0.5 md:w-[300px] md:shrink-0">
         <span className="text-[13px] font-bold text-primary-dark">現在の段階</span>
-        <span className="font-serif text-lg font-bold text-text">{stage}</span>
+        <span className="font-display text-lg font-bold text-text">{stage}</span>
       </div>
       <div aria-hidden className="hidden h-12 w-px bg-primary-line md:block" />
       <div className="flex flex-1 flex-col gap-0.5">
@@ -85,7 +85,7 @@ export function StatePanel({
       <span className={cn("flex size-12 items-center justify-center rounded-sm", iconTones[tone])}>
         <Icon className={cn("size-6", spin && "animate-spin")} aria-hidden />
       </span>
-      <p className="font-serif text-lg font-bold text-text">{title}</p>
+      <p className="font-display text-lg font-bold text-text">{title}</p>
       {children ? (
         <div className="max-w-[26em] text-[14px] leading-[1.8] text-text-sub">{children}</div>
       ) : null}
@@ -174,7 +174,7 @@ export function SectionHead({
   return (
     <div className={cn("flex flex-wrap items-end justify-between gap-x-4 gap-y-2", className)}>
       <div className="flex min-w-0 flex-col gap-0.5">
-        <As className="font-serif text-xl leading-snug font-bold text-text">{title}</As>
+        <As className="font-display text-xl leading-snug font-bold text-text">{title}</As>
         {description && <p className="text-sm text-text-muted">{description}</p>}
       </div>
       {action}
@@ -199,7 +199,7 @@ export function RuleHead({
   return (
     <div className={cn("rule-head flex flex-wrap items-end justify-between gap-x-4 gap-y-2", className)}>
       <div className="flex min-w-0 flex-col gap-0.5">
-        <As className="font-serif text-lg leading-snug font-bold text-text">{title}</As>
+        <As className="font-display text-lg leading-snug font-bold text-text">{title}</As>
         {description && <p className="text-sm text-text-muted">{description}</p>}
       </div>
       {action}

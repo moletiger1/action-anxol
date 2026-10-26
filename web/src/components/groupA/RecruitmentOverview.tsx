@@ -55,7 +55,7 @@ function Participation({ id }: { id: string }) {
         {metrics.map((m) => (
           <div key={m.label} className="flex flex-col gap-0.5 border-l-2 border-border-strong pl-3">
             <dt className="text-[12px] leading-[1.6] text-text-muted md:text-[13px]">{m.label}</dt>
-            <dd className="tabular font-serif text-[24px] leading-none font-bold text-text md:text-[30px]">
+            <dd className="tabular font-display text-[24px] leading-none font-bold text-text md:text-[30px]">
               {m.value}
               <span className="ml-0.5 font-sans text-[13px] font-medium text-text-sub">人</span>
             </dd>
@@ -136,7 +136,7 @@ function OverviewDesktop() {
         <div className="flex flex-col gap-5">
           <div className="flex flex-col gap-8 lg:flex-row">
             <div className="flex flex-1 flex-col">
-              <h3 className="font-serif text-[15px] font-bold text-text">
+              <h3 className="font-display text-[15px] font-bold text-text">
                 使い道（相談予算の内訳）
               </h3>
               {consultationBudget.map((b) => (
@@ -264,7 +264,7 @@ export function SummaryAside() {
         aria-labelledby="sec-summary-card"
         className="rule-head flex flex-col gap-4"
       >
-        <h2 id="sec-summary-card" className="font-serif text-lg font-bold text-text">
+        <h2 id="sec-summary-card" className="font-display text-lg font-bold text-text">
           参加サマリー
         </h2>
         <BudgetProgress current={st.currentYen} goal={st.goalYen} />
@@ -302,7 +302,7 @@ export function SummaryAside() {
       </section>
 
       <section aria-labelledby="sec-public-info" className="rule-head flex flex-col gap-3">
-        <h2 id="sec-public-info" className="font-serif text-[15px] font-bold text-text">
+        <h2 id="sec-public-info" className="font-display text-[15px] font-bold text-text">
           公開される情報
         </h2>
         <div className="flex flex-col items-start gap-2.5">
@@ -330,7 +330,7 @@ export function MobileTop() {
         className="flex flex-col gap-1.5 border-l-2 border-primary bg-primary-soft px-4 py-3.5"
       >
         <span className="text-[12px] font-bold text-primary-dark">現在の段階</span>
-        <span className="font-serif text-[15px] font-bold text-text">
+        <span className="font-display text-[15px] font-bold text-text">
           参加希望の受付中・資金募集前
         </span>
         <span className="flex items-center gap-1.5 pt-1 text-xs font-bold text-primary-dark">

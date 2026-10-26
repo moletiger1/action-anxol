@@ -6,7 +6,7 @@ import { cn } from "@/lib/cn";
 
 /**
  * 番号付き見出し。段取りに番号が要る場所だけに使う。
- * 丸バッジではなく、墨の枠に明朝の数字を置く。
+ * 丸バッジではなく、墨の枠に数字を置く。
  */
 export function NumHead({
   num,
@@ -25,14 +25,14 @@ export function NumHead({
     <div className="flex gap-3">
       <span
         aria-hidden
-        className="tabular mt-0.5 flex size-7 shrink-0 items-center justify-center border border-text font-serif text-sm font-bold text-text"
+        className="tabular mt-0.5 flex size-7 shrink-0 items-center justify-center border border-text font-display text-sm font-bold text-text"
       >
         {num}
       </span>
       <div className="flex min-w-0 flex-col gap-0.5">
         <As
           className={cn(
-            "font-serif leading-snug font-bold text-text",
+            "font-display leading-snug font-bold text-text",
             size === "lg" ? "text-lg" : "text-base",
           )}
         >

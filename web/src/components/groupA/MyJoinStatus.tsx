@@ -35,7 +35,7 @@ export function MyJoinStatus({
         aria-labelledby={titleId}
         className="flex flex-col gap-3 border-l-2 border-border-strong pl-4"
       >
-        <h2 id={titleId} className="font-serif text-[15px] font-bold text-text">
+        <h2 id={titleId} className="font-display text-[15px] font-bold text-text">
           このブラウザーの参加状態
         </h2>
         <div role="status" aria-busy aria-label="参加状態を確認中" className="flex flex-col gap-2.5">
@@ -87,7 +87,7 @@ export function MyJoinStatus({
       className="flex flex-col gap-3 border-l-2 border-primary bg-primary-soft px-4 py-4 md:px-5"
     >
       <div className="flex flex-col gap-0.5">
-        <h2 id={titleId} className="font-serif text-[15px] font-bold text-text">
+        <h2 id={titleId} className="font-display text-[15px] font-bold text-text">
           このブラウザーの参加状態
         </h2>
         <p className="text-[14px] font-medium text-text">

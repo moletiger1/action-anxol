@@ -39,7 +39,7 @@ export default function Page() {
               </Badge>
             </span>
           </div>
-          <h1 className="text-2xl leading-snug font-bold text-text md:text-[32px]">
+          <h1 className="text-2xl leading-snug text-text md:text-[32px]">
             法人会員・利用者の共同相談
           </h1>
           <div className="flex flex-wrap items-center gap-x-5 gap-y-1 text-sm">

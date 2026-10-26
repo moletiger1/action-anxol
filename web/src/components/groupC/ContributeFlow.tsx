@@ -48,7 +48,7 @@ export function ContributeFlow() {
       <div className="mx-auto flex w-full max-w-[1120px] flex-col gap-5 p-4 md:gap-6 md:p-8">
         <ButtonLink href={routes.recruitment} variant="text" icon={ArrowLeft} className="self-start">募集の詳細へ戻る</ButtonLink>
         <div>
-          <h1 className="text-2xl font-bold text-text">共同相談費を円で支払う</h1>
+          <h1 className="text-2xl text-text">共同相談費を円で支払う</h1>
           <p className="mt-2 text-text-sub">法人会員・利用者の共同相談</p>
         </div>
         <Callout icon={Info} tone="neutral" title="円払いのデモ">
@@ -60,14 +60,14 @@ export function ContributeFlow() {
         {phase === "review" ? (
           <div className="grid min-w-0 grid-cols-1 gap-6 lg:grid-cols-2">
             <section className="rule-head flex min-w-0 flex-col gap-5">
-              <h2 className="font-serif text-lg font-bold text-text">支払金額と方法</h2>
+              <h2 className="font-display text-lg font-bold text-text">支払金額と方法</h2>
               <div className="flex flex-col gap-2">
                 <label htmlFor="contribution-yen" className="font-bold text-text">拠出額（円）</label>
                 <input
                   id="contribution-yen" inputMode="numeric" value={amountText}
                   onChange={(e) => { setAmountText(e.target.value); setRulesChecked(false); }}
                   aria-invalid={!valid || undefined} aria-describedby="contribution-yen-help"
-                  className="tabular h-14 min-w-0 rounded-sm border border-border-strong bg-surface px-4 font-serif text-2xl font-bold text-text transition-surface focus:border-primary focus:ring-2 focus:ring-focus/25 focus:outline-none"
+                  className="tabular h-14 min-w-0 rounded-sm border border-border-strong bg-surface px-4 font-display text-2xl font-bold text-text transition-surface focus:border-primary focus:ring-2 focus:ring-focus/25 focus:outline-none"
                 />
                 <p id="contribution-yen-help" className={valid ? "text-sm text-text-muted" : "text-sm text-red"}>
                   {valid ? `1円単位で入力できます。募集残額は${formatYen(remaining)}です。` : `1円以上、${formatYen(remaining)}以下の整数を入力してください。`}
@@ -99,7 +99,7 @@ export function ContributeFlow() {
               </div>
             </section>
             <section className="rule-head flex min-w-0 flex-col gap-5">
-              <h2 className="font-serif text-lg font-bold text-text">募集のルール</h2>
+              <h2 className="font-display text-lg font-bold text-text">募集のルール</h2>
               <dl className="space-y-4 text-sm text-text-sub">
                 <div><dt className="font-bold text-text">使い道</dt><dd>{consultationBudget.map((item) => `${item.label} ${formatYen(item.yen)}`).join("／")}</dd></div>
                 <div><dt className="font-bold text-text">募集期限・目標</dt><dd>{recruitmentStats.deadline} 23:59・{formatYen(recruitmentStats.goalYen)}</dd></div>

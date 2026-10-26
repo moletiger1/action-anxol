@@ -758,7 +758,7 @@ export function BudgetView() {
 
           <section className="rule-head flex flex-col gap-3">
             <div className="flex flex-col gap-1 md:flex-row md:justify-between md:gap-4">
-              <h2 className="font-serif text-[15px] font-bold text-text">
+              <h2 className="font-display text-[15px] font-bold text-text">
                 予算の使われ方（目標 300,000円 に対する割合）
               </h2>
               <p className="text-[13px] text-text-muted">{expired ? "返金原資は拠出額に応じて按分。返金は本人が別途請求します" : "未拘束残高の全額が、すぐに返金できるとは限りません"}</p>
@@ -779,7 +779,7 @@ export function BudgetView() {
 
           <section aria-labelledby="spend-list" className="flex flex-col gap-3.5">
             <div className="flex flex-col gap-0.5">
-              <h2 id="spend-list" className="rule-head font-serif text-lg font-bold text-text">
+              <h2 id="spend-list" className="rule-head font-display text-lg font-bold text-text">
                 支出の一覧
               </h2>
               <p className="text-sm text-text-muted">
@@ -821,7 +821,7 @@ export function BudgetView() {
           <div className="flex min-w-0 flex-1 gap-3">
             <IconWrap icon={LockKeyhole} />
             <div className="flex min-w-0 flex-col gap-0.5">
-              <h2 className="font-serif text-lg font-bold text-text">
+              <h2 className="font-display text-lg font-bold text-text">
                 円払いでも、使い道と支払条件を確認できます
               </h2>
               <p className="text-[13px] leading-[1.75] text-text-sub">
@@ -943,7 +943,7 @@ function Metric({
         <Icon className={cn("size-[18px] shrink-0", iconClass)} aria-hidden />
         {label}
       </p>
-      <p className="tabular font-serif text-xl leading-snug font-bold text-text md:text-[26px]">
+      <p className="tabular font-display text-xl leading-snug font-bold text-text md:text-[26px]">
         {formatYen(yen)}
       </p>
       <p className="tabular text-[13px] text-text-muted">

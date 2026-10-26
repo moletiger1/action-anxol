@@ -28,7 +28,7 @@ export function DecisionView() {
       <section aria-labelledby="decision-rules" className="flex flex-col">
         <h2
           id="decision-rules"
-          className="rule-head font-serif text-lg leading-snug font-bold text-text"
+          className="rule-head font-display text-lg leading-snug font-bold text-text"
         >
           相談結果が出た後に決めること
         </h2>

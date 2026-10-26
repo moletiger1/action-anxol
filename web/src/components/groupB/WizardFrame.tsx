@@ -111,7 +111,7 @@ export function WizardFrame({
         <div className="mx-auto flex w-full max-w-[1192px] flex-col gap-4 px-4 pt-4 pb-6 md:gap-6 md:px-9 md:pt-7 md:pb-18">
           {/* 見出しは1つだけ置き、幅によって周辺の要素だけを差し替える */}
           <div className="flex flex-col gap-3 border-b-2 border-text pb-4 md:flex-row md:items-end md:justify-between md:gap-4">
-            <h1 className="font-serif text-[26px] leading-snug font-bold text-text md:text-[28px]">
+            <h1 className="font-display text-[26px] leading-snug text-text md:text-[28px]">
               新しい案件を作る
             </h1>
             <div className="flex items-center justify-between gap-4 md:justify-end">

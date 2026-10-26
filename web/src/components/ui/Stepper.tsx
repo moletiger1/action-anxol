@@ -39,7 +39,7 @@ export function Stepper({
             <li className="flex min-w-0 shrink-0 flex-col items-start gap-1.5">
               <span
                 className={cn(
-                  "tabular flex size-8 items-center justify-center rounded-sm border font-serif text-sm font-bold",
+                  "tabular flex size-8 items-center justify-center rounded-sm border font-display text-sm font-bold",
                   state === "done" && "border-primary bg-primary text-white",
                   state === "current" && "border-2 border-text bg-surface text-text",
                   state === "todo" && "border-border-strong bg-surface text-text-muted",

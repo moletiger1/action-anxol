@@ -30,7 +30,7 @@ export default function Page() {
             <Badge icon={Users}>参加希望を受付中</Badge>
             <Badge tone="neutral" icon={FolderOpen}>タイムズカーの事件ページに掲載</Badge>
           </div>
-          <h1 className="text-2xl font-bold text-text md:text-[32px]">{recruitment.title}</h1>
+          <h1 className="text-2xl text-text md:text-[32px]">{recruitment.title}</h1>
           <p className="flex items-center gap-2 text-sm text-primary-dark"><UserRound className="size-4" aria-hidden />タイムズカーの個人情報漏えいに関する共同相談</p>
         </div>
         <StageBanner

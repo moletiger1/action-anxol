@@ -30,7 +30,7 @@ export function PageHeader({
     <div className="flex flex-col gap-3 border-b-2 border-text pb-4 md:flex-row md:items-end md:justify-between md:gap-6">
       <div className="flex min-w-0 flex-col gap-1">
         <p className="text-[13px] text-text-muted">{eyebrow}</p>
-        <h1 className="font-serif text-2xl leading-snug font-bold text-text md:text-[30px]">
+        <h1 className="font-display text-2xl leading-snug text-text md:text-[30px]">
           {title}
         </h1>
       </div>
@@ -102,7 +102,7 @@ export function FactBox({ label, value }: { label: ReactNode; value: ReactNode }
   return (
     <div className="flex flex-1 flex-col gap-0.5 border-l-2 border-border-strong pl-3">
       <span className="text-[12px] text-text-muted">{label}</span>
-      <span className="font-serif text-[15px] font-bold text-text">{value}</span>
+      <span className="font-display text-[15px] font-bold text-text">{value}</span>
     </div>
   );
 }

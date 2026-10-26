@@ -1,13 +1,15 @@
 @import "tailwindcss";
 
 /*
- * 「罫線と藍」— 台帳・公文書の世界。
+ * 「罫線と藍」— 台帳の組版。
  *
  * 影を使わない。カードを積まない。階層は
  *   罫線の太さ（2px の墨／1px の淡）・インクの濃さ（本文／補足／注記）・
- *   明朝とゴシックの役割差
+ *   文字の太さと字サイズの段差（400 → 500 → 700 → 900）
  * の3つだけで作る。色は装飾ではなく意味を運ぶ：
  *   藍 = 現在地と主要操作、朱 = 確認待ち、赤 = 重大、緑 = 完了。
+ *
+ * 書体は Noto Sans JP の1つだけ。見出しに別書体（明朝など）は使わない。
  */
 @theme {
   /* 紙とインク */
@@ -61,8 +63,8 @@
   --radius-xl: 4px;
   --radius-2xl: 5px;
 
-  --font-sans: var(--font-gothic), "Hiragino Kaku Gothic ProN", "Noto Sans JP", sans-serif;
-  --font-serif: var(--font-mincho), "Hiragino Mincho ProN", "Yu Mincho", serif;
+  --font-sans: var(--font-sans-jp), "Hiragino Kaku Gothic ProN", "Noto Sans JP", sans-serif;
+  /* 見出し用の別書体は持たない。階層は太さと字間で作る（.font-display を参照） */
 }
 
 body {
@@ -76,12 +78,35 @@ body {
   -webkit-tap-highlight-color: transparent;
 }
 
-/* 見出しは明朝。同じ字号でも字面が違うので階層が立つ */
+/*
+ * 見出しの階層は「太さ・字サイズ」だけで作る。
+ *
+ * 書体は本文と同じ Noto Sans JP。切り替えの代わりに太さを使う。
+ * 日本語のゴシックは太さの差が字面にはっきり出るので、
+ * 本文（400/500）と見出し（700/900）は混同されない。
+ *
+ * 字間は詰めない。日本語は詰め組み（palt）で句読点が既に詰まるため、
+ * さらに負の字間を与えると「、」「。」が前の字に接して読みにくくなる。
+ */
 h1,
 h2,
 h3,
-.font-serif {
-  font-family: var(--font-serif);
+.font-display {
+  font-family: var(--font-sans);
+  font-weight: 700;
+  letter-spacing: normal;
+}
+
+/*
+ * 画面見出しは最も重く。太さで本文から明確に切り離す。
+ *
+ * `.font-display` はクラス（詳細度 0,1,0）なので要素セレクタ（0,0,1）より
+ * 優先される。`<h1 className="font-display">` で 900 を保つため、
+ * h1.font-display まで明示する。
+ */
+h1,
+h1.font-display {
+  font-weight: 900;
 }
 
 /* 数字の桁を揃える。金額・人数・日付に使う */

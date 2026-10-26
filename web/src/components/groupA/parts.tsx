@@ -100,7 +100,7 @@ export function SectionTitle({
       <h2
         id={id}
         tabIndex={id ? -1 : undefined}
-        className="scroll-mt-20 font-serif text-lg leading-snug font-bold text-text"
+        className="scroll-mt-20 font-display text-lg leading-snug font-bold text-text"
       >
         {title}
       </h2>

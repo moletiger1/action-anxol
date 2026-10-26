@@ -50,12 +50,12 @@ export function Question({
         <div className="flex min-w-0 flex-1 gap-3">
           <span
             aria-hidden
-            className="tabular mt-0.5 flex size-7 shrink-0 items-center justify-center border border-text font-serif text-sm font-bold text-text"
+            className="tabular mt-0.5 flex size-7 shrink-0 items-center justify-center border border-text font-display text-sm font-bold text-text"
           >
             {num}
           </span>
           <div className="flex min-w-0 flex-1 flex-col gap-0.5">
-            <legend className="font-serif text-lg leading-snug font-bold text-text">
+            <legend className="font-display text-lg leading-snug font-bold text-text">
               <span className="sr-only">質問{num}：</span>
               {title}
             </legend>
@@ -276,7 +276,7 @@ export function AsideCard({
 }) {
   return (
     <section className={cn("flex flex-col gap-3 pt-4", muted ? "rule-head" : "border-t border-border", className)}>
-      {title && <h2 className="font-serif text-[15px] leading-snug font-bold text-text">{title}</h2>}
+      {title && <h2 className="font-display text-[15px] leading-snug font-bold text-text">{title}</h2>}
       {children}
     </section>
   );

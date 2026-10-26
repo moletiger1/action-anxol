@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { shipporiMincho, zenKakuGothic } from "./font";
+import { notoSansJp } from "./font";
 
 export const metadata: Metadata = {
   title: "集団訴訟.jp（仮）｜出来事から共同相談を探す",
@@ -16,7 +16,7 @@ export const metadata: Metadata = {
  */
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="ja" className={`${shipporiMincho.variable} ${zenKakuGothic.variable} h-full antialiased`}>
+    <html lang="ja" className={`${notoSansJp.variable} h-full antialiased`}>
       <body className="min-h-full flex flex-col">
         {/* キーボード利用者向けのスキップリンク。フォーカス時だけ画面上部に現れる。 */}
         <a

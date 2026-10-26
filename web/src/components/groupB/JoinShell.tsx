@@ -38,7 +38,7 @@ export function JoinShell({
           </span>
           <span className="flex flex-col leading-snug">
             <span className="text-[12px] text-text-muted">集団訴訟.jp（仮）</span>
-            <span className="font-serif text-[15px] font-bold text-text">
+            <span className="font-display text-[15px] font-bold text-text">
               {recruitmentTitle}に参加
             </span>
           </span>

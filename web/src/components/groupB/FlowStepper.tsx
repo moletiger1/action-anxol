@@ -26,7 +26,7 @@ export function FlowStepper({ steps, current }: { steps: string[]; current: numb
               >
                 <span
                   className={cn(
-                    "tabular flex size-8 items-center justify-center border font-serif text-sm font-bold",
+                    "tabular flex size-8 items-center justify-center border font-display text-sm font-bold",
                     state === "done" && "border-primary bg-primary text-white",
                     state === "current" && "border-2 border-text bg-surface text-text",
                     state === "todo" && "border-border-strong bg-surface text-text-muted",
@@ -89,7 +89,7 @@ export function MobileStageCard({ stage, next }: { stage: string; next: string }
       className="flex flex-col gap-2 border-l-2 border-primary bg-primary-soft px-4 py-3.5 md:hidden"
     >
       <span className="text-[12px] font-bold text-primary-dark">現在の段階</span>
-      <span className="font-serif text-[15px] font-bold text-text">{stage}</span>
+      <span className="font-display text-[15px] font-bold text-text">{stage}</span>
       <span className="flex items-center gap-1.5 pt-1 text-[12px] font-bold text-primary-dark">
         <CircleArrowRight className="size-4" aria-hidden />
         次にすること

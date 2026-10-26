@@ -54,7 +54,7 @@ export function ConfirmDialog({
       <div className="flex flex-col gap-5">
         <div className="rule-head flex items-start gap-3">
           <Icon className="mt-0.5 size-5 shrink-0 text-primary" aria-hidden />
-          <h2 className="font-serif text-xl leading-snug font-bold">{title}</h2>
+          <h2 className="font-display text-xl leading-snug font-bold">{title}</h2>
         </div>
         {description && (
           <p className="text-[15px] leading-[1.8] text-text-sub">{description}</p>

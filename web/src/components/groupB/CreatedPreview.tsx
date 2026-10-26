@@ -69,7 +69,7 @@ export function CreatedPreview() {
 
         <div className="flex flex-col gap-3 border-b-2 border-text pb-4">
           <Badge tone="neutral" icon={CircleDashed}>このブラウザ内のデモ保存</Badge>
-          <h1 className="font-serif text-[26px] leading-snug font-bold text-text md:text-[32px]">
+          <h1 className="font-display text-[26px] leading-snug text-text md:text-[32px]">
             作成内容のプレビュー
           </h1>
           <Callout icon={Info} tone="neutral">
@@ -140,7 +140,7 @@ export function CreatedPreview() {
           </section>
         ) : (
           <section className="flex flex-col gap-4 border-t border-border pt-5">
-            <h2 className="font-serif text-lg font-bold text-text">
+            <h2 className="font-display text-lg font-bold text-text">
               {loadError ? "保存済みプレビューを読み込めません" : selectionMissing ? "指定されたプレビューが見つかりません" : "保存されたプレビューがありません"}
             </h2>
             <p className="text-[13px] leading-[1.75] text-text-sub">

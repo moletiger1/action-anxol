@@ -92,7 +92,7 @@ function RegistrationStatus({ submission, audienceLabel }: { submission: JoinDem
   return (
     <aside className="flex w-full shrink-0 flex-col gap-4 lg:w-[340px]">
       <section className="rule-head flex flex-col pb-2">
-        <h2 className="font-serif text-[15px] font-bold text-text">登録状況（デモ）</h2>
+        <h2 className="font-display text-[15px] font-bold text-text">登録状況（デモ）</h2>
         <StatusRow
           label="参加希望"
           badge={
@@ -355,7 +355,7 @@ export function JoinFlow({ recruitmentId = "timescar-corporate" }: { recruitment
             <section className="flex min-w-0 flex-1 flex-col gap-6 rounded-sm border border-border bg-surface p-5 md:border-0 md:bg-transparent md:p-0">
               <div className="flex flex-col gap-1.5">
                 <div className="flex flex-wrap items-center gap-3">
-                  <h1 className="font-serif text-xl leading-snug font-bold text-text md:text-[22px]">
+                  <h1 className="font-display text-xl leading-snug text-text md:text-[22px]">
                     資料共有のデモ（任意）
                   </h1>
                   <Badge tone="neutral" icon={Lock}>
@@ -438,7 +438,7 @@ export function JoinFlow({ recruitmentId = "timescar-corporate" }: { recruitment
               <FieldError>{uploadError}</FieldError>
 
               <div className="flex flex-col gap-3">
-                <h2 className="font-serif text-[15px] font-bold text-text">
+                <h2 className="font-display text-[15px] font-bold text-text">
                   この画面で選択した資料（{files.length}件）
                 </h2>
                 {files.length === 0 ? (
@@ -474,7 +474,7 @@ export function JoinFlow({ recruitmentId = "timescar-corporate" }: { recruitment
           ) : (
             <section className="flex min-w-0 flex-1 flex-col gap-6 rounded-sm border border-border bg-surface p-5 md:border-0 md:bg-transparent md:p-0">
               <div className="flex flex-col gap-1.5">
-                <h1 className="font-serif text-xl leading-snug font-bold text-text md:text-[22px]">
+                <h1 className="font-display text-xl leading-snug text-text md:text-[22px]">
                   登録内容の確認
                 </h1>
                 <p className="measure text-[14px] leading-[1.8] text-text-sub">

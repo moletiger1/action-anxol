@@ -116,7 +116,7 @@ function FilterGroup<T extends string>({
 }) {
   return (
     <fieldset className="flex flex-col gap-0.5">
-      <legend className="mb-2 font-serif text-[15px] font-bold text-text">{title}</legend>
+      <legend className="mb-2 font-display text-[15px] font-bold text-text">{title}</legend>
       {options.map((o) => (
         <FilterOption
           key={o}
@@ -142,7 +142,7 @@ function FeaturedCard({ c }: { c: CaseItem }) {
         ))}
         <span className="text-[13px] text-text-muted">{c.category}</span>
       </div>
-      <h3 className="font-serif text-xl leading-[1.4] font-bold text-text md:text-2xl">
+      <h3 className="font-display text-xl leading-[1.4] font-bold text-text md:text-2xl">
         {c.title}
       </h3>
       <p className="measure text-[15px] leading-[1.9] text-text-sub">{c.summary}</p>
@@ -222,7 +222,7 @@ function CreatedPreviewCard({ preview }: { preview: PublishedPreview }) {
   return (
     <article className="flex flex-col gap-3 border-t border-border bg-surface px-5 py-5 md:px-6">
       <Badge tone="neutral" icon={FlaskConical}>このブラウザ内のプレビュー</Badge>
-      <h3 className="font-serif text-lg leading-snug font-bold text-text">{title}</h3>
+      <h3 className="font-display text-lg leading-snug font-bold text-text">{title}</h3>
       {summary && <p className="text-[14px] leading-[1.8] text-text-sub">{summary}</p>}
       <p className="tabular text-[12px] text-text-muted">
         {preview.updatedAt ? "更新" : "作成"}{" "}
@@ -269,7 +269,7 @@ function CreatedPreviewsSection({
   if (loading) {
     return (
       <section aria-labelledby={titleId} className={className}>
-        <h2 id={titleId} className="rule-head mb-1 font-serif text-lg font-bold text-text">
+        <h2 id={titleId} className="rule-head mb-1 font-display text-lg font-bold text-text">
           作成したプレビュー
         </h2>
         <SkeletonRegion label="保存したプレビューを読み込み中">
@@ -283,7 +283,7 @@ function CreatedPreviewsSection({
   if (loadError) {
     return (
       <section aria-labelledby={titleId} className={className}>
-        <h2 id={titleId} className="rule-head mb-3 font-serif text-lg font-bold text-text">
+        <h2 id={titleId} className="rule-head mb-3 font-display text-lg font-bold text-text">
           作成したプレビュー
         </h2>
         <Callout icon={Info} tone="red">
@@ -300,7 +300,7 @@ function CreatedPreviewsSection({
   const visible = previews.slice(0, 3);
   return (
     <section aria-labelledby={titleId} className={className}>
-      <h2 id={titleId} className="rule-head mb-1 font-serif text-lg font-bold text-text">
+      <h2 id={titleId} className="rule-head mb-1 font-display text-lg font-bold text-text">
         作成したプレビュー
       </h2>
       <div className="flex flex-col">
@@ -370,7 +370,7 @@ export function CaseBrowser() {
     <>
       <section className="border-b border-border bg-surface">
         <Wrap className="flex flex-col gap-5 pt-9 pb-7 md:pt-14 md:pb-10">
-          <h1 className="measure-head font-serif text-[30px] leading-[1.3] font-bold text-text md:text-[42px]">
+          <h1 className="measure-head font-display text-[30px] leading-[1.3] text-text md:text-[42px]">
             出来事から、共同相談を探す
           </h1>
           <p className="measure text-[15px] leading-[1.85] text-text-sub">
@@ -460,7 +460,7 @@ export function CaseBrowser() {
           />
           <div className="flex flex-wrap items-center justify-between gap-x-3 gap-y-2 border-b border-border pb-2">
             <div className="flex items-center gap-3">
-              <h2 className="tabular font-serif text-lg font-bold text-text" aria-live="polite">
+              <h2 className="tabular font-display text-lg font-bold text-text" aria-live="polite">
                 {results.length}件の事件
               </h2>
               <DemoBadge />
@@ -507,7 +507,7 @@ export function CaseBrowser() {
           <div className="flex flex-col gap-4 border-t-2 border-text pt-5 sm:flex-row sm:items-center">
             <SearchX className="size-5 shrink-0 text-text-muted" aria-hidden />
             <div className="flex flex-1 flex-col gap-0.5">
-              <p className="font-serif text-base font-bold text-text">出来事が見つからないとき</p>
+              <p className="font-display text-base font-bold text-text">出来事が見つからないとき</p>
               <p className="text-[13px] leading-[1.7] text-text-muted">
                 質問に答える形で、新しい出来事の募集を作れます。
               </p>

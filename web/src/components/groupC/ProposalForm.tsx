@@ -318,7 +318,7 @@ function ProposalFormFields({ initial }: { initial: FormValues }) {
       <div className="flex flex-col gap-3 lg:flex-row lg:items-end lg:justify-between">
         <div className="flex flex-col gap-0.5">
           <p className="text-sm text-text-muted">弁護士用ワークスペース ／ 提案の下書き</p>
-          <h1 className="text-2xl font-bold text-text md:text-[28px]">提案を作成する：法人会員・利用者の共同相談</h1>
+          <h1 className="text-2xl text-text md:text-[28px]">提案を作成する：法人会員・利用者の共同相談</h1>
         </div>
         <p className="flex items-center gap-1.5 text-sm text-text-sub" aria-live="polite">
           <Save className="size-[18px] text-green" aria-hidden />

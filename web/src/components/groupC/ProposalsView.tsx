@@ -292,7 +292,7 @@ export function ProposalsView() {
       <div className="flex flex-col gap-3 lg:flex-row lg:items-end lg:justify-between">
         <div className="flex flex-col gap-0.5">
           <p className="text-sm text-text-muted">参加中の案件 ／ 法人会員・利用者の共同相談</p>
-          <h1 className="font-serif text-[26px] leading-snug font-bold text-text md:text-[30px]">
+          <h1 className="font-display text-[26px] leading-snug text-text md:text-[30px]">
             弁護士の提案を比較する
           </h1>
         </div>
@@ -565,7 +565,7 @@ export function ProposalsView() {
         {/* 誰が選ぶか */}
         <aside className="flex w-full shrink-0 flex-col gap-4 xl:w-[320px]">
           <section className="rule-head flex flex-col gap-3.5">
-            <h2 className="flex items-center gap-2 font-serif text-lg font-bold text-text">
+            <h2 className="flex items-center gap-2 font-display text-lg font-bold text-text">
               <Users className="size-[18px] text-primary" aria-hidden />
               誰が選ぶか
             </h2>

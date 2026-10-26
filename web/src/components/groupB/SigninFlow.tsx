@@ -52,7 +52,7 @@ function SigninFlow({ individual = false }: { individual?: boolean }) {
           className="flex w-full max-w-[520px] flex-col gap-5"
         >
           <div className="flex flex-col gap-2">
-            <h1 id="signin-title" className="text-xl font-bold text-text md:text-[22px]">
+            <h1 id="signin-title" className="text-xl text-text md:text-[22px]">
               参加を続けるにはサインインしてください
             </h1>
             <p className="text-[15px] text-text-sub">

@@ -24,7 +24,7 @@ export function MobileHeader({ title, backHref }: { title: string; backHref?: st
           <ChevronLeft className="size-6" aria-hidden />
         </button>
       )}
-      <span className="min-w-0 flex-1 truncate font-serif text-[15px] font-bold text-text">
+      <span className="min-w-0 flex-1 truncate font-display text-[15px] font-bold text-text">
         {title}
       </span>
       <DemoBadge short />

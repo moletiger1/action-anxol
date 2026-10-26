@@ -38,7 +38,7 @@ export function UnreadUpdates() {
         <div className="flex min-w-0 flex-col gap-0.5">
           <h2
             id="unread-updates-title"
-            className="font-serif text-lg leading-snug font-bold text-text"
+            className="font-display text-lg leading-snug font-bold text-text"
           >
             更新
           </h2>

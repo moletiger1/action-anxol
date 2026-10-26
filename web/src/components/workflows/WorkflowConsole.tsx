@@ -52,7 +52,7 @@ function Panel({ id, title, feedback, state, reset, children }: {
 }) {
   return <section id={id} aria-labelledby={`${id}-title`} className="rule-head flex scroll-mt-24 flex-col gap-4">
     <div className="flex flex-wrap items-center justify-between gap-3">
-      <h2 id={`${id}-title`} className="font-serif text-lg font-bold text-text">{title}</h2>
+      <h2 id={`${id}-title`} className="font-display text-lg font-bold text-text">{title}</h2>
       <Button variant="text" onClick={reset}>このデモを初期状態に戻す</Button>
     </div>
     {children}

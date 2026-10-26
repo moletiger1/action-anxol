@@ -60,7 +60,7 @@ export function TermsDialog() {
         <div className="flex max-h-[min(85dvh,52rem)] flex-col">
           <div className="flex items-start gap-3 border-b border-border px-6 py-5">
             <ScrollText className="mt-1 size-5 shrink-0 text-primary" aria-hidden />
-            <h2 id={titleId} className="flex-1 font-serif text-xl leading-snug font-bold">
+            <h2 id={titleId} className="flex-1 font-display text-xl leading-snug font-bold">
               この募集の支払条件案（全文）
             </h2>
             <button
@@ -81,7 +81,7 @@ export function TermsDialog() {
                 key={t.title}
                 className="flex gap-3 border-b border-border py-3.5 last:border-b-0"
               >
-                <span className="tabular flex size-6 shrink-0 items-center justify-center border border-border-strong font-serif text-[13px] font-bold text-text-sub">
+                <span className="tabular flex size-6 shrink-0 items-center justify-center border border-border-strong font-display text-[13px] font-bold text-text-sub">
                   {i + 1}
                 </span>
                 <div className="flex flex-col gap-0.5">

@@ -76,7 +76,7 @@ export default function Page() {
             <Badge icon={Users}>募集中の相談 {eventRecruitments.length}件</Badge>
             <span className="text-[13px] text-text-muted">個人情報・プライバシー</span>
           </div>
-          <h1 className="measure-head font-serif text-[26px] leading-[1.35] font-bold text-text md:text-[34px]">
+          <h1 className="measure-head font-display text-[26px] leading-[1.35] text-text md:text-[34px]">
             {EVENT_TITLE}
           </h1>
           <p className="measure text-[14px] leading-[1.8] text-text-muted">
@@ -111,7 +111,7 @@ export default function Page() {
                     >
                       <div className="flex items-center gap-2.5">
                         <Icon className="size-[18px] shrink-0 text-primary" aria-hidden />
-                        <h3 className="font-serif text-lg leading-snug font-bold text-text">
+                        <h3 className="font-display text-lg leading-snug font-bold text-text">
                           {r.title}
                         </h3>
                       </div>
@@ -163,7 +163,7 @@ export default function Page() {
               <SectionTitle id="sec-known" title="分かっていること／未確認のこと" />
               <div className="flex flex-col gap-4 md:flex-row">
                 <div className="flex flex-1 flex-col gap-3 border-t-2 border-green pt-4">
-                  <h3 className="flex items-center gap-2 font-serif text-base font-bold text-green">
+                  <h3 className="flex items-center gap-2 font-display text-base font-bold text-green">
                     <CircleCheck className="size-[18px]" aria-hidden />
                     分かっていること（公表資料より）
                   </h3>
@@ -176,7 +176,7 @@ export default function Page() {
                   </ul>
                 </div>
                 <div className="flex flex-1 flex-col gap-3 border-t-2 border-border-strong pt-4">
-                  <h3 className="flex items-center gap-2 font-serif text-base font-bold text-text-sub">
+                  <h3 className="flex items-center gap-2 font-display text-base font-bold text-text-sub">
                     <CircleDashed className="size-[18px]" aria-hidden />
                     未確認のこと
                   </h3>
@@ -208,7 +208,7 @@ export default function Page() {
 
           <aside className="flex flex-col gap-4 lg:w-[352px] lg:shrink-0">
             <section className="rule-head flex flex-col gap-3">
-              <h2 className="font-serif text-base font-bold text-text">公表資料</h2>
+              <h2 className="font-display text-base font-bold text-text">公表資料</h2>
               <div className="flex flex-col gap-1 border-l-2 border-border-strong pl-3.5">
                 <p className="text-[14px] leading-[1.75] font-bold text-text">{TIMES_SOURCE_TITLE}</p>
                 <p className="text-[13px] break-all text-text-muted">
@@ -220,7 +220,7 @@ export default function Page() {
             </section>
 
             <section className="rule-head flex flex-col gap-3">
-              <h2 className="font-serif text-base font-bold text-text">
+              <h2 className="font-display text-base font-bold text-text">
                 このページで公開しないもの
               </h2>
               <div className="flex flex-col items-start gap-2.5">
@@ -240,7 +240,7 @@ export default function Page() {
             </section>
 
             <section className="rule-head flex flex-col gap-3">
-              <h2 className="font-serif text-base font-bold text-text">内容の誤りに気づいたら</h2>
+              <h2 className="font-display text-base font-bold text-text">内容の誤りに気づいたら</h2>
               <p className="text-[13px] leading-[1.75] text-text-sub">
                 更新提案フォームの操作例です。入力内容は送信・保存されず、ページにも反映されません。
               </p>

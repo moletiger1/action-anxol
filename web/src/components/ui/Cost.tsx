@@ -40,7 +40,7 @@ export function CostRow({
       <div className="flex shrink-0 flex-col items-end gap-0.5 text-right">
         <span
           className={cn(
-            "tabular font-serif font-bold text-text",
+            "tabular font-display font-bold text-text",
             total ? "text-xl" : "text-base",
           )}
         >
@@ -69,8 +69,8 @@ export function BudgetProgress({
   return (
     <div className={cn("flex flex-col gap-2", className)}>
       <div className="flex items-baseline justify-between gap-4">
-        <span className="tabular font-serif text-2xl font-bold text-text">{formatYen(current)}</span>
-        <span className="tabular font-serif text-xl font-bold text-primary">{pct}%</span>
+        <span className="tabular font-display text-2xl font-bold text-text">{formatYen(current)}</span>
+        <span className="tabular font-display text-xl font-bold text-primary">{pct}%</span>
       </div>
       <div
         className="h-3 w-full border border-border bg-neutral-soft"
