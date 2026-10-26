@@ -37,11 +37,11 @@ export function DashboardJoinCase({ recruitmentId = "timescar-corporate" }: { re
   }
 
   return (
-    <article className="flex flex-col gap-3.5 rounded-xl border border-border bg-surface p-5 md:p-6">
+    <article className="flex flex-col gap-3.5 border-t-2 border-text pt-4">
       <div className="flex flex-col-reverse gap-2 sm:flex-row sm:gap-3">
         <div className="flex min-w-0 flex-1 flex-col gap-0.5">
-          <p className="text-[13px] text-text-muted">タイムズカーの個人情報漏えいに関する共同相談</p>
-          <h3 className="text-lg font-bold text-text">{recruitment.title}</h3>
+          <p className="text-[12px] text-text-muted">タイムズカーの個人情報漏えいに関する共同相談</p>
+          <h3 className="font-serif text-lg leading-snug font-bold text-text">{recruitment.title}</h3>
         </div>
         <Badge tone="neutral" icon={FlaskConical}>このブラウザのデモ状態</Badge>
       </div>
@@ -64,16 +64,16 @@ export function DashboardJoinCase({ recruitmentId = "timescar-corporate" }: { re
         )}
       </div>
 
-      <dl className="grid gap-2 sm:grid-cols-2">
-        <div className="rounded-[10px] bg-[#F4F6F9] px-4 py-3">
-          <dt className="text-[13px] font-bold text-text-muted">進行段階</dt>
-          <dd className="text-[15px] text-text">
+      <dl className="grid gap-x-6 gap-y-3 sm:grid-cols-2">
+        <div className="border-l-2 border-border-strong pl-3">
+          <dt className="text-[12px] text-text-muted">進行段階</dt>
+          <dd className="text-[14px] font-medium text-text">
             {state === undefined ? "参加状態を確認中" : typeof state === "string" ? "参加状態を確認できません" : registered ? "参加希望の受付（デモ）" : cancelled ? "参加希望を取り消し済み" : "参加希望登録前（デモ）"}
           </dd>
         </div>
-        <div className="rounded-[10px] bg-[#F4F6F9] px-4 py-3">
-          <dt className="text-[13px] font-bold text-text-muted">あなたの拠出額</dt>
-          <dd className="text-[15px] text-text">0（拠出操作なし）</dd>
+        <div className="border-l-2 border-border-strong pl-3">
+          <dt className="text-[12px] text-text-muted">あなたの拠出額</dt>
+          <dd className="tabular text-[14px] font-medium text-text">0円（拠出操作なし）</dd>
         </div>
       </dl>
 
@@ -82,7 +82,7 @@ export function DashboardJoinCase({ recruitmentId = "timescar-corporate" }: { re
           {cancelled ? "取り消し日時" : "登録日時"}：{new Date(shownDate).toLocaleString("ja-JP")}
         </p>
       )}
-      <p className="text-sm text-text-sub">
+      <p className="text-[12px] leading-[1.7] text-text-muted">
         {typeof state === "string"
           ? state === "invalid"
             ? "保存データが壊れているため、未登録とは判断できません。元データを残してあります。"
@@ -105,7 +105,7 @@ export function DashboardJoinCase({ recruitmentId = "timescar-corporate" }: { re
           取り消し状態を保存できませんでした。ブラウザーの保存領域を確認してください。
         </p>
       )}
-      {typeof state === "string" && <p role="alert" className="text-sm text-red">保存状態が確認できるまで、この画面から登録状態を変更できません。</p>}
+      {typeof state === "string" && <p role="alert" className="text-[13px] text-red">保存状態が確認できるまで、この画面から登録状態を変更できません。</p>}
 
       <ConfirmDialog
         open={confirmCancel}

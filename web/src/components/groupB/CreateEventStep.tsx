@@ -211,7 +211,7 @@ export function CreateEventStep() {
             aria-describedby={`${whatId}-help`}
             placeholder="例：運営会社から、会員情報が漏えいしたという通知メールが届いた"
             className={cn(
-              "min-h-32 w-full rounded-[10px] border bg-surface px-4 py-3 text-base text-text placeholder:text-text-muted focus:border-primary focus:ring-3 focus:ring-focus/60 focus:outline-none focus-visible:outline-none",
+              "min-h-32 w-full rounded-sm border border-border-strong bg-surface px-4 py-3 text-base leading-[1.8] text-text placeholder:text-text-muted transition-surface focus:border-primary focus:ring-2 focus:ring-focus/25 focus:outline-none",
               errors.what ? "border-red bg-red-soft" : "border-border-strong",
             )}
           />

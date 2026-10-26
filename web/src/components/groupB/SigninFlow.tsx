@@ -49,7 +49,7 @@ function SigninFlow({ individual = false }: { individual?: boolean }) {
 
         <section
           aria-labelledby="signin-title"
-          className="flex w-full max-w-[520px] flex-col gap-5 rounded-2xl border border-border bg-surface p-6 md:p-9"
+          className="flex w-full max-w-[520px] flex-col gap-5"
         >
           <div className="flex flex-col gap-2">
             <h1 id="signin-title" className="text-xl font-bold text-text md:text-[22px]">
@@ -75,7 +75,7 @@ function SigninFlow({ individual = false }: { individual?: boolean }) {
           </div>
 
           {sent ? (
-            <div role="status" className="flex flex-col gap-3 rounded-[10px] bg-[#F4F6F9] p-4">
+            <div role="status" className="flex flex-col gap-3 rounded-sm bg-neutral-soft p-4">
               <p className="text-base font-bold text-text">送信状態の表示例</p>
               <p className="text-sm text-text">
                 {email.trim()} 宛に送る想定の画面です。実際のメール送信・認証・有効期限の発行はありません。

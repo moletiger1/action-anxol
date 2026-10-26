@@ -6,14 +6,17 @@ import { cn } from "@/lib/cn";
 type Variant = "primary" | "secondary" | "text";
 
 const base =
-  "inline-flex items-center justify-center gap-2 rounded-[10px] text-base font-bold whitespace-nowrap transition-colors disabled:cursor-not-allowed";
+  "inline-flex items-center justify-center gap-2 rounded-md text-base font-bold whitespace-nowrap transition-surface duration-150 disabled:cursor-not-allowed";
 
 const variants: Record<Variant, string> = {
+  /* 藍の面。影は使わず、面そのもので「押せる」ことを示す */
   primary:
-    "h-12 px-6 bg-primary text-white hover:bg-primary-dark disabled:bg-disabled disabled:text-white",
+    "h-12 px-6 bg-primary text-white hover:bg-primary-dark disabled:bg-disabled disabled:text-disabled-text",
+  /* 白地に藍の枠。副次操作は面を持たない */
   secondary:
-    "h-12 px-6 bg-surface text-primary-dark border border-primary hover:bg-primary-soft disabled:border-border disabled:text-disabled-text",
-  text: "h-11 px-1 gap-1.5 font-medium text-primary-dark hover:underline",
+    "h-12 px-6 bg-surface text-primary-dark border border-primary hover:bg-primary-soft disabled:border-border disabled:text-disabled-text disabled:bg-surface",
+  /* 文中の導線。下線で足りるので枠も面も持たない */
+  text: "h-11 px-1 gap-1.5 font-medium text-primary-dark hover:underline underline-offset-4",
 };
 
 type CommonProps = {
@@ -49,8 +52,8 @@ function classes({ variant = "primary", size = "md", loading, className }: Commo
   return cn(
     base,
     variants[variant],
-    size === "sm" && variant !== "text" && "h-11",
-    loading && "bg-primary-dark opacity-85 cursor-wait",
+    size === "sm" && variant !== "text" && "h-11 px-5",
+    loading && "bg-primary-dark opacity-90 cursor-wait",
     className,
   );
 }

@@ -9,7 +9,7 @@ import { cn } from "@/lib/cn";
 export function FlowStepper({ steps, current }: { steps: string[]; current: number }) {
   return (
     <>
-      <ol aria-label="段階" className="hidden w-full items-center gap-3 md:flex">
+      <ol aria-label="段階" className="hidden w-full items-start gap-2 md:flex">
         {steps.map((label, i) => {
           const state = i < current ? "done" : i === current ? "current" : "todo";
           return (
@@ -17,35 +17,35 @@ export function FlowStepper({ steps, current }: { steps: string[]; current: numb
               {i > 0 && (
                 <li
                   aria-hidden
-                  className={cn("h-0.5 min-w-3 flex-1", i <= current ? "bg-primary" : "bg-border-strong")}
+                  className={cn("mt-4 h-px min-w-3 flex-1", i <= current ? "bg-primary" : "bg-border-strong")}
                 />
               )}
               <li
-                className="flex shrink-0 items-center gap-2.5"
+                className="flex min-w-0 shrink-0 flex-col items-start gap-1.5"
                 aria-current={state === "current" ? "step" : undefined}
               >
                 <span
                   className={cn(
-                    "flex size-8 items-center justify-center rounded-full text-sm font-bold",
-                    state === "done" && "bg-primary text-white",
-                    state === "current" && "border border-primary bg-surface text-primary-dark",
-                    state === "todo" && "border border-border-strong bg-surface text-text-muted",
+                    "tabular flex size-8 items-center justify-center border font-serif text-sm font-bold",
+                    state === "done" && "border-primary bg-primary text-white",
+                    state === "current" && "border-2 border-text bg-surface text-text",
+                    state === "todo" && "border-border-strong bg-surface text-text-muted",
                   )}
                 >
-                  {state === "done" ? <Check className="size-[18px]" aria-hidden /> : i + 1}
+                  {state === "done" ? <Check className="size-4" aria-hidden /> : i + 1}
                 </span>
-                <span className="flex flex-col leading-snug">
+                <span className="flex min-w-0 flex-col leading-snug">
                   <span
                     className={cn(
-                      "text-xs",
-                      state === "current" ? "font-bold text-primary-dark" : "text-text-muted",
+                      "text-[11px]",
+                      state === "current" ? "font-bold text-text" : "text-text-muted",
                     )}
                   >
                     {state === "done" ? "完了" : state === "current" ? "現在の段階" : "これから"}
                   </span>
                   <span
                     className={cn(
-                      "text-sm whitespace-nowrap",
+                      "max-w-[10em] text-[13px]",
                       state === "todo" ? "font-medium text-text-sub" : "font-bold text-text",
                     )}
                   >
@@ -73,7 +73,7 @@ export function FlowStepper({ steps, current }: { steps: string[]; current: numb
           aria-label="段階の進み具合"
         >
           {steps.map((s, i) => (
-            <span key={s} className={cn("h-1.5 flex-1 rounded-[3px]", i <= current ? "bg-primary" : "bg-border")} />
+            <span key={s} className={cn("h-1.5 flex-1", i <= current ? "bg-primary" : "bg-border")} />
           ))}
         </div>
       </div>
@@ -86,15 +86,15 @@ export function MobileStageCard({ stage, next }: { stage: string; next: string }
   return (
     <section
       aria-label="現在の段階と次にすること"
-      className="flex flex-col gap-2 rounded-xl border border-border bg-surface p-4 md:hidden"
+      className="flex flex-col gap-2 border-l-2 border-primary bg-primary-soft px-4 py-3.5 md:hidden"
     >
-      <span className="text-xs text-text-muted">現在の段階</span>
-      <span className="text-base font-bold text-text">{stage}</span>
-      <span className="flex items-center gap-1.5 pt-1 text-xs font-bold text-primary-dark">
+      <span className="text-[12px] font-bold text-primary-dark">現在の段階</span>
+      <span className="font-serif text-[15px] font-bold text-text">{stage}</span>
+      <span className="flex items-center gap-1.5 pt-1 text-[12px] font-bold text-primary-dark">
         <CircleArrowRight className="size-4" aria-hidden />
         次にすること
       </span>
-      <p className="text-sm text-text">{next}</p>
+      <p className="text-[13px] leading-[1.75] text-text">{next}</p>
     </section>
   );
 }

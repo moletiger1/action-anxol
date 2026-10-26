@@ -22,7 +22,7 @@ import {
 
 function Timeline({ items }: { items: { at: string; text: string }[] }) {
   return (
-    <ol className="flex flex-col rounded-xl border border-border bg-surface px-5 py-2 md:px-6">
+    <ol className="flex flex-col rounded-sm border border-border bg-surface px-5 py-2 md:px-6">
       {items.map((h, i) => (
         <li
           key={h.at + h.text}
@@ -35,7 +35,7 @@ function Timeline({ items }: { items: { at: string; text: string }[] }) {
             <span className="flex h-[26px] shrink-0 items-center">
               <span
                 aria-hidden
-                className={cn("size-2.5 rounded-full", i === 0 ? "bg-primary" : "bg-border-strong")}
+                className={cn("size-2 rounded-sm", i === 0 ? "bg-primary" : "bg-border-strong")}
               />
             </span>
             <time className="tabular shrink-0 text-sm leading-[26px] text-text-muted sm:w-[170px]">
@@ -59,7 +59,7 @@ export function MaterialsTab() {
           title="公表資料"
           description="出来事の内容は、事業者の公表資料に基づいて整理しています。"
         />
-        <div className="flex flex-col gap-3 rounded-xl border border-border bg-surface p-5 md:p-6">
+        <div className="flex flex-col gap-3 rounded-sm border border-border bg-surface p-5 md:p-6">
           <div className="flex gap-3">
             <FileText className="mt-0.5 size-5 shrink-0 text-text-sub" aria-hidden />
             <div className="flex min-w-0 flex-col gap-1">
@@ -85,7 +85,7 @@ export function MaterialsTab() {
           title="参加者が共有した資料"
           description="資料の中身は公開されません。確認の段階ごとの人数だけを表示します。"
         />
-        <div className="flex flex-col gap-4 rounded-xl border border-border bg-surface p-5 md:p-6">
+        <div className="flex flex-col gap-4 rounded-sm border border-border bg-surface p-5 md:p-6">
           <dl className="flex flex-col">
             <KV label="資料を確認済み" labelWidth="w-32">
               <span className="tabular">{st.documentsChecked}人</span>
@@ -170,7 +170,7 @@ export function ProposalsTab() {
           {proposalPreview.map((p) => (
             <li
               key={p.name}
-              className="flex flex-1 flex-col gap-2 rounded-xl border border-border bg-surface p-5"
+              className="flex flex-1 flex-col gap-2 rounded-sm border border-border bg-surface p-5"
             >
               <div className="flex flex-col">
                 <span className="text-base font-bold text-text">{p.name}</span>
@@ -205,7 +205,7 @@ export function ProposalsTab() {
           title="誰が相談先を決めるか"
           description="設定案は参加者に公開され、意見を募ってから確定します。"
         />
-        <div className="flex flex-col gap-4 rounded-xl border border-border bg-surface p-5 md:p-6">
+        <div className="flex flex-col gap-4 rounded-sm border border-border bg-surface p-5 md:p-6">
           <dl className="flex flex-col">
             <KV label="母集団" labelWidth="w-36">
               この募集で本人・関係性の確認が済んだ参加者（現在{st.identityChecked}人）
@@ -268,7 +268,7 @@ export function MoneyTab() {
           {tiles.map((t) => (
             <div
               key={t.label}
-              className="flex flex-col gap-0.5 rounded-xl border border-border bg-surface px-3.5 py-3 md:px-[18px] md:py-4"
+              className="flex flex-col gap-0.5 rounded-sm border border-border bg-surface px-3.5 py-3 md:px-[18px] md:py-4"
             >
               <dt className="text-[13px] font-bold text-text-sub md:text-sm">{t.label}</dt>
               <dd className="tabular text-lg font-bold text-text md:text-xl">{formatYen(t.value)}</dd>
@@ -287,7 +287,7 @@ export function MoneyTab() {
           title="費目ごとの上限と支出"
           description="以下は円建ての固定デモです。費目ごとの上限と支払条件を確認する設計で、実際の決済基盤は未接続です。"
         />
-        <div className="flex flex-col rounded-xl border border-border bg-surface px-5 py-1 md:px-6">
+        <div className="flex flex-col rounded-sm border border-border bg-surface px-5 py-1 md:px-6">
           {consultationBudget.map((b) => (
             <CostRow
               key={b.label}
@@ -321,7 +321,7 @@ export function MoneyTab() {
           title="検証用情報"
           description="円の決済基盤は未接続です。既存のトークン用コントラクト試作は、日本円を保管・送金する実装ではありません。"
         />
-        <dl className="flex flex-col rounded-xl border border-border bg-surface px-5 py-2 md:px-6">
+        <dl className="flex flex-col rounded-sm border border-border bg-surface px-5 py-2 md:px-6">
           <KV label="円の決済基盤" labelWidth="w-40">
             <span className="flex flex-wrap items-center gap-2">
               <span>事業者選定中</span>

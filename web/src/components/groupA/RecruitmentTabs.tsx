@@ -32,7 +32,9 @@ export function RecruitmentTabs({ items }: { items: RecruitmentTab[] }) {
       if (target) {
         requestAnimationFrame(() => {
           const el = document.getElementById(target);
-          el?.scrollIntoView({ behavior: "smooth", block: "start" });
+          // 動きを減らす設定では即座に移動する
+          const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+          el?.scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "start" });
           el?.focus({ preventScroll: true });
         });
       }
@@ -41,10 +43,26 @@ export function RecruitmentTabs({ items }: { items: RecruitmentTab[] }) {
     return () => window.removeEventListener(EVENT, onShow);
   }, []);
 
+  /* 左右キーで移動できるようにする（タブの期待動作） */
+  function onKeyDown(e: React.KeyboardEvent, index: number) {
+    const forward = e.key === "ArrowRight" || e.key === "ArrowDown";
+    const back = e.key === "ArrowLeft" || e.key === "ArrowUp";
+    if (!forward && !back && e.key !== "Home" && e.key !== "End") return;
+    e.preventDefault();
+    const last = items.length - 1;
+    const next =
+      e.key === "Home" ? 0 : e.key === "End" ? last : forward ? (index + 1) % items.length : (index - 1 + last + 1) % items.length;
+    setActive(items[next].key);
+    document.getElementById(`${id}-tab-${items[next].key}`)?.focus();
+  }
+
   return (
-    <div className="flex flex-col gap-4 md:gap-7">
-      <div role="tablist" className="flex gap-4 overflow-x-auto border-b border-border md:gap-7">
-        {items.map((t) => {
+    <div className="flex flex-col gap-5 md:gap-7">
+      <div
+        role="tablist"
+        className="flex gap-5 overflow-x-auto border-b border-border-strong md:gap-7"
+      >
+        {items.map((t, i) => {
           const selected = t.key === active;
           return (
             <button
@@ -52,14 +70,16 @@ export function RecruitmentTabs({ items }: { items: RecruitmentTab[] }) {
               role="tab"
               type="button"
               id={`${id}-tab-${t.key}`}
+              tabIndex={selected ? 0 : -1}
               aria-selected={selected}
               aria-controls={`${id}-panel-${t.key}`}
               onClick={() => setActive(t.key)}
+              onKeyDown={(e) => onKeyDown(e, i)}
               className={cn(
-                "-mb-px shrink-0 border-b-2 px-1 pt-3 pb-2.5 text-base whitespace-nowrap",
+                "-mb-px shrink-0 border-b-2 px-0.5 pt-2 pb-2.5 text-[15px] whitespace-nowrap transition-surface",
                 selected
                   ? "border-primary font-bold text-primary-dark"
-                  : "border-transparent font-medium text-text-sub hover:text-text",
+                  : "border-transparent font-medium text-text-sub hover:border-border-strong hover:text-text",
               )}
             >
               {t.mobileLabel ? (
@@ -106,7 +126,7 @@ export function JumpButton({
       type="button"
       onClick={() => showTab(tab, target)}
       className={cn(
-        "inline-flex h-11 items-center gap-1.5 self-start px-1 text-left text-base font-medium text-primary-dark hover:underline",
+        "inline-flex min-h-11 items-center gap-1.5 self-start px-0.5 text-left text-[15px] font-medium text-primary-dark hover:underline",
         className,
       )}
     >

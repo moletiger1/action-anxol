@@ -1,12 +1,19 @@
-import { Noto_Sans_JP } from "next/font/google";
+import { Shippori_Mincho, Zen_Kaku_Gothic_New } from "next/font/google";
 
-/**
- * 日本語フォント。ルートレイアウトと`global-error`の両方から使うため、
- * ここに1つだけ定義する（`global-error`はルートレイアウトを置き換えるため、
- * フォントを自分で読み込む必要がある）。
- */
-export const notoSansJp = Noto_Sans_JP({
-  variable: "--font-noto-sans-jp",
+/** 見出し・金額用の明朝。長文本文には使わない */
+export const shipporiMincho = Shippori_Mincho({
+  variable: "--font-mincho",
+  subsets: ["latin"],
+  weight: ["500", "600", "700"],
+  display: "swap",
+});
+
+/** UI本文・ラベル用のゴシック */
+export const zenKakuGothic = Zen_Kaku_Gothic_New({
+  variable: "--font-gothic",
   subsets: ["latin"],
   weight: ["400", "500", "700"],
+  display: "swap",
 });
+
+export const notoSansJp = zenKakuGothic;

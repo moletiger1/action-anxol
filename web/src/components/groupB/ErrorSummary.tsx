@@ -6,9 +6,9 @@ import { CircleAlert } from "lucide-react";
 export function ErrorSummary({ count, message }: { count: number; message?: string }) {
   if (count === 0) return null;
   return (
-    <div role="alert" className="flex gap-3 rounded-[10px] border border-red bg-red-soft px-4 py-3.5">
-      <CircleAlert className="mt-0.5 size-5 shrink-0 text-red" aria-hidden />
-      <p className="text-sm text-text">
+    <div role="alert" className="flex gap-3 border-l-2 border-red bg-red-soft px-4 py-3.5">
+      <CircleAlert className="mt-0.5 size-[18px] shrink-0 text-red" aria-hidden />
+      <p className="text-[13px] leading-[1.75] text-text">
         <span className="font-bold text-red">入力が必要な項目が{count}件あります。</span>
         {message ?? "赤く表示された項目の説明に沿って入力してください。"}
       </p>
@@ -25,7 +25,8 @@ export function focusFirstError() {
     const control = group?.querySelector<HTMLElement>(
       "input:not([disabled]), select:not([disabled]), textarea:not([disabled])",
     );
-    first.scrollIntoView({ block: "center", behavior: "smooth" });
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    first.scrollIntoView({ block: "center", behavior: reduce ? "auto" : "smooth" });
     control?.focus({ preventScroll: true });
   });
 }

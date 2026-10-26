@@ -51,17 +51,15 @@ function Participation({ id }: { id: string }) {
           </>
         }
       />
-      <dl className="grid grid-cols-2 gap-2 md:grid-cols-4 md:gap-3">
+      <dl className="grid grid-cols-2 gap-x-4 gap-y-5 md:grid-cols-4 md:gap-x-6">
         {metrics.map((m) => (
-          <div
-            key={m.label}
-            className="flex flex-col gap-0.5 rounded-xl border border-border bg-surface px-3.5 py-3 md:gap-1 md:px-[18px] md:py-4"
-          >
-            <dt className="text-[13px] font-bold text-text-sub md:text-sm">{m.label}</dt>
-            <dd className="tabular text-[22px] leading-snug font-bold text-text md:text-[28px]">
-              {m.value}人
+          <div key={m.label} className="flex flex-col gap-0.5 border-l-2 border-border-strong pl-3">
+            <dt className="text-[12px] leading-[1.6] text-text-muted md:text-[13px]">{m.label}</dt>
+            <dd className="tabular font-serif text-[24px] leading-none font-bold text-text md:text-[30px]">
+              {m.value}
+              <span className="ml-0.5 font-sans text-[13px] font-medium text-text-sub">人</span>
             </dd>
-            <dd className="hidden text-[13px] text-text-muted md:block">{m.note}</dd>
+            <dd className="hidden text-[12px] leading-[1.6] text-text-muted md:block">{m.note}</dd>
           </div>
         ))}
       </dl>
@@ -72,13 +70,11 @@ function Participation({ id }: { id: string }) {
 
 function Rule({ icon: Icon, title, children }: { icon: LucideIcon; title: string; children: string }) {
   return (
-    <div className="flex gap-3">
-      <span className="flex size-9 shrink-0 items-center justify-center rounded-[10px] bg-primary-soft">
-        <Icon className="size-[18px] text-primary-dark" aria-hidden />
-      </span>
+    <div className="flex gap-3 border-t border-border pt-3">
+      <Icon className="mt-0.5 size-[17px] shrink-0 text-primary" aria-hidden />
       <div className="flex min-w-0 flex-1 flex-col gap-0.5">
-        <h4 className="text-[15px] font-bold text-text">{title}</h4>
-        <p className="text-sm text-text-sub">{children}</p>
+        <h4 className="text-[14px] font-bold text-text">{title}</h4>
+        <p className="text-[13px] leading-[1.75] text-text-sub">{children}</p>
       </div>
     </div>
   );
@@ -90,7 +86,7 @@ function OverviewDesktop() {
     <div className="hidden flex-col gap-7 md:flex">
       <section aria-labelledby="sec-target" className="flex flex-col gap-3.5">
         <SectionTitle id="sec-target" title="参加対象" description="次のいずれかに当てはまる方が対象です。" />
-        <div className="flex flex-col gap-3 rounded-xl border border-border bg-surface p-6">
+        <div className="flex flex-col gap-4">
           <ul className="flex flex-col gap-3">
             <IconItem icon={CircleCheck}>タイムズカーの法人会員として契約している企業・団体の担当者</IconItem>
             <IconItem icon={CircleCheck}>法人会員の契約のもとで車両を利用した個人（利用者）</IconItem>
@@ -110,7 +106,7 @@ function OverviewDesktop() {
           title="相談したいこと"
           description="共同で弁護士に相談し、結果を参加者に共有します。"
         />
-        <div className="flex flex-col gap-3 rounded-xl border border-border bg-surface p-6">
+        <div className="flex flex-col gap-4">
           <ul className="flex flex-col gap-3">
             <IconItem icon={ShieldAlert} iconClass="text-primary-dark">
               漏えいした可能性のある情報の範囲と、法人・利用者それぞれへの影響
@@ -137,10 +133,12 @@ function OverviewDesktop() {
           title="この募集の支払条件"
           description="以下は検討中の条件案です。審議・決済・返金の仕組みが確定するまで、資金募集は開始しません。"
         />
-        <div className="flex flex-col gap-5 rounded-xl border border-border bg-surface p-6">
+        <div className="flex flex-col gap-5">
           <div className="flex flex-col gap-8 lg:flex-row">
             <div className="flex flex-1 flex-col">
-              <h3 className="text-sm font-bold text-text-sub">使い道（相談予算の内訳）</h3>
+              <h3 className="font-serif text-[15px] font-bold text-text">
+                使い道（相談予算の内訳）
+              </h3>
               {consultationBudget.map((b) => (
                 <CostRow key={b.label} label={b.label} value={formatYen(b.yen)} />
               ))}
@@ -191,7 +189,7 @@ function OverviewDesktop() {
             </>
           }
         />
-        <dl className="flex flex-col rounded-xl border border-border bg-surface px-6 py-2">
+        <dl className="flex flex-col border-t border-border">
           <KV label="公表資料" labelWidth="w-40">
             タイムズカー{TIMES_SOURCE_TITLE}2026年9月28日
           </KV>
@@ -228,7 +226,7 @@ function OverviewMobile() {
 
       <section aria-labelledby={TERMS_ID_MOBILE} className="flex flex-col gap-3.5">
         <SectionTitle id={TERMS_ID_MOBILE} title="この募集の支払条件" />
-        <dl className="flex flex-col rounded-xl border border-border bg-surface px-4 py-1">
+        <dl className="flex flex-col border-t border-border">
           {[
             { k: "使い道", v: "法律相談・初期調査・資料整理・予備費（計300,000円）" },
             { k: "誰が確認するか", v: "参加者から選ばれた支出確認担当" },
@@ -264,9 +262,9 @@ export function SummaryAside() {
     <div className="flex flex-col gap-4">
       <section
         aria-labelledby="sec-summary-card"
-        className="flex flex-col gap-[18px] rounded-xl border border-border bg-surface p-6"
+        className="rule-head flex flex-col gap-4"
       >
-        <h2 id="sec-summary-card" className="text-lg font-bold text-text">
+        <h2 id="sec-summary-card" className="font-serif text-lg font-bold text-text">
           参加サマリー
         </h2>
         <BudgetProgress current={st.currentYen} goal={st.goalYen} />
@@ -303,11 +301,8 @@ export function SummaryAside() {
         </div>
       </section>
 
-      <section
-        aria-labelledby="sec-public-info"
-        className="flex flex-col gap-2.5 rounded-xl border border-border bg-surface p-5"
-      >
-        <h2 id="sec-public-info" className="text-[15px] font-bold text-text">
+      <section aria-labelledby="sec-public-info" className="rule-head flex flex-col gap-3">
+        <h2 id="sec-public-info" className="font-serif text-[15px] font-bold text-text">
           公開される情報
         </h2>
         <div className="flex flex-col items-start gap-2.5">
@@ -332,10 +327,12 @@ export function MobileTop() {
     <div className="flex flex-col gap-4 md:hidden">
       <section
         aria-label="現在の段階と次にすること"
-        className="flex flex-col gap-2 rounded-xl border border-border bg-surface p-4"
+        className="flex flex-col gap-1.5 border-l-2 border-primary bg-primary-soft px-4 py-3.5"
       >
-        <span className="text-xs text-text-muted">現在の段階</span>
-        <span className="text-base font-bold text-text">参加希望の受付中・資金募集前</span>
+        <span className="text-[12px] font-bold text-primary-dark">現在の段階</span>
+        <span className="font-serif text-[15px] font-bold text-text">
+          参加希望の受付中・資金募集前
+        </span>
         <span className="flex items-center gap-1.5 pt-1 text-xs font-bold text-primary-dark">
           <CircleArrowRight className="size-4" aria-hidden />
           次にすること
@@ -360,16 +357,13 @@ export function MobileTop() {
           {Array.from({ length: steps }, (_, i) => (
             <span
               key={i}
-              className={cn("h-1.5 flex-1 rounded-[3px]", i < current ? "bg-primary" : "bg-border")}
+              className={cn("h-1.5 flex-1", i < current ? "bg-primary" : "bg-border")}
             />
           ))}
         </div>
       </div>
 
-      <section
-        aria-label="参加サマリー"
-        className="flex flex-col gap-3.5 rounded-xl border border-border bg-surface p-4"
-      >
+      <section aria-label="参加サマリー" className="rule-head flex flex-col gap-3.5">
         <BudgetProgress current={st.currentYen} goal={st.goalYen} />
         <p className="text-[13px] text-text-muted">金額・人数は固定デモ値です。</p>
         <dl className="flex flex-col">

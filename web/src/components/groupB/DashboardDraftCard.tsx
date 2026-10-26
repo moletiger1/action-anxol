@@ -10,14 +10,14 @@ export function DashboardDraftCard() {
   if (!draft.savedAt && !draftInvalid) return null;
 
   return (
-    <div className="flex flex-col gap-3 rounded-xl bg-[#EEF2F5] px-5 py-4 sm:flex-row sm:items-center">
+    <div className="flex flex-col gap-3 border-l-2 border-border-strong pl-4 sm:flex-row sm:items-center">
       <div className="flex min-w-0 flex-1 gap-3">
         <FilePenLine className="mt-0.5 size-5 shrink-0 text-text-sub" aria-hidden />
         <div className="flex min-w-0 flex-col">
-          <p className="text-[15px] font-bold text-text">
+          <p className="text-[14px] font-bold text-text">
             {draftInvalid ? "保存した下書きを確認してください" : `作成中の下書き：${draft.company.trim() || "名称未入力の案件"}`}
           </p>
-          <p className="text-[13px] text-text-muted">
+          <p className="text-[12px] leading-[1.7] text-text-muted">
             {draftInvalid
               ? "保存データが不完全です。記入例で上書きせず、確認してから再開してください。"
               : persistenceFailed

@@ -148,7 +148,7 @@ export function ReviewStep() {
         mobileCta={<ButtonLink href={routes.createPublished}>作成内容のプレビューを見る</ButtonLink>}
       >
         <div role="status" className="flex flex-col items-center gap-3 py-4 text-center">
-          <span className="flex size-13 items-center justify-center rounded-full bg-green-soft text-green">
+          <span className="flex size-12 items-center justify-center rounded-sm bg-green-soft text-green">
             <CircleCheck className="size-6" aria-hidden />
           </span>
           <h2 className="text-xl font-bold text-text">
@@ -203,7 +203,7 @@ export function ReviewStep() {
       <h2 className="text-xl font-bold text-text md:text-[22px]">公開される内容と、公開されない情報</h2>
 
       <div className="flex flex-col gap-4 md:gap-6 xl:flex-row">
-        <section aria-label="一般公開される内容" className="flex-1 rounded-xl border border-primary px-5 py-4">
+        <section aria-label="一般公開される内容" className="flex-1 border-t-2 border-primary pt-4">
           <div className="pb-2">
             <Badge tone="primary" icon={Globe}>
               一般公開される内容
@@ -211,7 +211,7 @@ export function ReviewStep() {
           </div>
           <KvList rows={publicRows(draft)} />
         </section>
-        <section aria-label="公開されない情報" className="flex-1 rounded-xl bg-[#F1F5F6] px-5 py-4">
+        <section aria-label="公開されない情報" className="flex-1 border-t-2 border-border-strong pt-4">
           <div className="pb-2">
             <Badge tone="neutral" icon={Lock}>
               公開されない情報
@@ -229,7 +229,7 @@ export function ReviewStep() {
       </div>
 
       {fundingSet ? (
-        <div className="flex flex-col gap-4 rounded-xl border border-primary bg-primary-soft px-5 py-4 md:flex-row md:items-center">
+        <div className="flex flex-col gap-4 border-l-2 border-primary bg-primary-soft px-5 py-4 md:flex-row md:items-center">
           <CircleCheck className="size-[22px] shrink-0 text-primary-dark" aria-hidden />
           <div className="flex flex-1 flex-col gap-0.5">
             <p className="text-base font-bold text-primary-dark">相談費の募集条件：プレビュー用に入力済み</p>
@@ -243,7 +243,7 @@ export function ReviewStep() {
           </ButtonLink>
         </div>
       ) : (
-        <div className="flex flex-col gap-4 rounded-xl border border-amber-line bg-amber-soft px-5 py-4 md:flex-row md:items-center">
+        <div className="flex flex-col gap-4 border-l-2 border-amber-line bg-amber-soft px-5 py-4 md:flex-row md:items-center">
           <Clock3 className="size-[22px] shrink-0 text-amber" aria-hidden />
           <div className="flex flex-1 flex-col gap-0.5">
             <p className="text-base font-bold text-amber">

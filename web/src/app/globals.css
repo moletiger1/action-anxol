@@ -1,50 +1,252 @@
 @import "tailwindcss";
 
-/* デザイントークン（smart contract.pen の variables と同じ値） */
+/*
+ * 「罫線と藍」— 台帳・公文書の世界。
+ *
+ * 影を使わない。カードを積まない。階層は
+ *   罫線の太さ（2px の墨／1px の淡）・インクの濃さ（本文／補足／注記）・
+ *   明朝とゴシックの役割差
+ * の3つだけで作る。色は装飾ではなく意味を運ぶ：
+ *   藍 = 現在地と主要操作、朱 = 確認待ち、赤 = 重大、緑 = 完了。
+ */
 @theme {
-  --color-bg: #f7f8fa;
+  /* 紙とインク */
+  --color-bg: #f2f4f7;
   --color-surface: #ffffff;
-  --color-text: #172b4d;
-  --color-text-sub: #44546f;
-  --color-text-muted: #5e6c84;
-  --color-primary: #087f8c;
-  --color-primary-dark: #066873;
-  --color-primary-soft: #e6f3f4;
-  --color-border: #e2e8f0;
-  --color-border-strong: #c3ccd8;
-  --color-amber: #8a5300;
-  --color-amber-soft: #fff3dc;
-  --color-amber-line: #f0b85a;
-  --color-red: #b42318;
-  --color-red-soft: #fdedeb;
-  --color-green: #1d6b4a;
-  --color-green-soft: #e3f4eb;
-  --color-disabled: #dde2e9;
-  --color-disabled-text: #7a8699;
-  --color-focus: #7cc7cf;
-  --color-neutral-soft: #eef1f5;
+  --color-text: #15181c;
+  --color-text-sub: #3d4550;
+  --color-text-muted: #666f7b;
+  --color-border: #d9dee4;
+  --color-border-strong: #b9c1cb;
 
-  --radius-sm: 10px;
-  --radius-md: 12px;
+  /* 藍：主要操作・現在地 */
+  --color-primary: #1b3a6b;
+  --color-primary-dark: #10264a;
+  --color-primary-soft: #e8eef7;
+  --color-primary-line: #a3b6d2;
 
-  --font-sans: var(--font-noto-sans-jp), "Hiragino Sans", "Noto Sans JP", sans-serif;
+  /* 朱：確認待ち・注意（朱印の朱） */
+  --color-amber: #9c3a19;
+  --color-amber-soft: #fbece5;
+  --color-amber-line: #dda184;
+
+  /* 赤：エラー・重大 */
+  --color-red: #a32217;
+  --color-red-soft: #fbeae7;
+  --color-red-line: #d9a49c;
+
+  /* 緑：完了 */
+  --color-green: #1f5c3d;
+  --color-green-soft: #e6f0ea;
+  --color-green-line: #9dc0ac;
+
+  --color-disabled: #e4e7eb;
+  --color-disabled-text: #6f7781;
+  --color-focus: #1b3a6b;
+  --color-neutral-soft: #eceff3;
+
+  /* ガラスの面（機能層だけが使う） */
+  --color-glass: rgb(255 255 255 / 0.72);
+  --color-glass-strong: rgb(255 255 255 / 0.86);
+  --color-glass-edge: rgb(255 255 255 / 0.9);
+
+  /* 加減速のある曲線。linear は使わない */
+  --ease-out: cubic-bezier(0.32, 0.72, 0, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+
+  /* 角丸は紙の切り口に近づける。丸いカードは使わない */
+  --radius-sm: 2px;
+  --radius-md: 3px;
+  --radius-lg: 4px;
+  --radius-xl: 4px;
+  --radius-2xl: 5px;
+
+  --font-sans: var(--font-gothic), "Hiragino Kaku Gothic ProN", "Noto Sans JP", sans-serif;
+  --font-serif: var(--font-mincho), "Hiragino Mincho ProN", "Yu Mincho", serif;
 }
 
 body {
   background: var(--color-bg);
   color: var(--color-text);
   font-family: var(--font-sans);
-  line-height: 1.6;
-  font-feature-settings: "palt" 0;
+  font-size: 16px;
+  line-height: 1.7;
+  /* 日本語の詰め組み。数字は .tabular で等幅に固定する */
+  font-feature-settings: "palt" 1;
+  -webkit-tap-highlight-color: transparent;
 }
 
-/* 数字の桁を揃える */
+/* 見出しは明朝。同じ字号でも字面が違うので階層が立つ */
+h1,
+h2,
+h3,
+.font-serif {
+  font-family: var(--font-serif);
+}
+
+/* 数字の桁を揃える。金額・人数・日付に使う */
 .tabular {
   font-variant-numeric: tabular-nums;
+  font-feature-settings: "palt" 1, "tnum" 1;
+}
+
+/*
+ * 日本語本文の行長。1行 35〜45 字が読みやすい。
+ * `ch` は「0」の幅で日本語1字の約半分のため、em で指定する。
+ */
+.measure {
+  max-width: 42em;
+}
+
+/* 見出しは本文より短く。長い見出しは折り返して2行までにする */
+.measure-head {
+  max-width: 26em;
+}
+
+/*
+ * 節の見出し。上端に墨の一本を引く。
+ * 影とカード枠の代わりに、この線が階層を担う。
+ */
+.rule-head {
+  border-top: 2px solid var(--color-text);
+  padding-top: 12px;
+}
+
+/* 台帳の罫線。行の区切りはこれ1本で足りる */
+.rule-row > * + * {
+  border-top: 1px solid var(--color-border);
+}
+
+/*
+ * Liquid Glass（機能層専用）。
+ *
+ * ナビゲーションバー・ツールバー・タブバー・シート・主要操作にだけ使う。
+ * カード・本文・背景などの内容層には決して敷かない。
+ * 基準面は白で、色は背景から透けるぶんだけを持つ。
+ */
+.glass {
+  background: var(--color-glass-strong);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  backdrop-filter: blur(24px) saturate(180%);
+  border-bottom: 1px solid var(--color-border);
+  box-shadow: inset 0 1px 0 var(--color-glass-edge);
+}
+
+.glass-bar {
+  background: var(--color-glass);
+  -webkit-backdrop-filter: blur(28px) saturate(180%);
+  backdrop-filter: blur(28px) saturate(180%);
+  border-top: 1px solid var(--color-glass-edge);
+  box-shadow:
+    inset 0 1px 0 var(--color-glass-edge),
+    0 -1px 0 var(--color-border);
+}
+
+.glass-sheet {
+  background: var(--color-glass);
+  -webkit-backdrop-filter: blur(32px) saturate(180%);
+  backdrop-filter: blur(32px) saturate(180%);
+  border: 1px solid var(--color-glass-edge);
+}
+
+/*
+ * 透過やコントラストを減らす設定では、不透明な面に落とす。
+ * ガラスの見栄えより文字の可読性を優先する。
+ */
+@media (prefers-reduced-transparency: reduce), (prefers-contrast: more) {
+  .glass,
+  .glass-bar,
+  .glass-sheet {
+    background: var(--color-surface);
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+}
+
+/*
+ * 面や状態の遷移。フィードバック 80–200ms、面の遷移 200–400ms。
+ * 動かすのは transform と opacity に限る。
+ */
+.transition-surface {
+  transition:
+    background-color 200ms var(--ease-out),
+    border-color 200ms var(--ease-out),
+    color 160ms var(--ease-out);
+}
+
+/* 差し替え時に位置が飛ばないよう、最終レイアウトと同じ寸法で置く */
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    var(--color-neutral-soft) 0%,
+    #f6f7f9 50%,
+    var(--color-neutral-soft) 100%
+  );
+  background-size: 200% 100%;
+  animation: skeleton-shimmer 2s var(--ease-in-out) infinite;
+}
+
+@keyframes skeleton-shimmer {
+  from {
+    background-position: 200% 0;
+  }
+  to {
+    background-position: -200% 0;
+  }
+}
+
+/* 入場は1回だけ。上限 500ms */
+.enter {
+  animation: enter-rise 420ms var(--ease-out) both;
+}
+
+@keyframes enter-rise {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skeleton {
+    animation: none;
+  }
+  .enter {
+    animation: none;
+  }
+}
+
+/* ブラウザ面も世界に属させる（選択・キャレット・スクロールバー） */
+::selection {
+  background: var(--color-primary);
+  color: #ffffff;
 }
 
 :focus-visible {
-  outline: 3px solid var(--color-focus);
-  outline-offset: 3px;
-  border-radius: 13px;
+  outline: 2px solid var(--color-focus);
+  outline-offset: 2px;
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-border-strong) transparent;
+}
+
+/* リンクの下線を字面から離す */
+a {
+  text-underline-offset: 0.2em;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }

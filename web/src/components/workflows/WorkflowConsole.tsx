@@ -50,13 +50,13 @@ function useWorkflow<S extends WorkflowState, A extends Command>(factory: () => 
 function Panel({ id, title, feedback, state, reset, children }: {
   id: string; title: string; feedback: string; state: WorkflowState; reset: () => void; children: ReactNode;
 }) {
-  return <section id={id} aria-labelledby={`${id}-title`} className="scroll-mt-24 flex flex-col gap-4 rounded-xl border border-border bg-surface p-4 md:p-6">
+  return <section id={id} aria-labelledby={`${id}-title`} className="rule-head flex scroll-mt-24 flex-col gap-4">
     <div className="flex flex-wrap items-center justify-between gap-3">
-      <h2 id={`${id}-title`} className="text-xl font-bold text-text">{title}</h2>
+      <h2 id={`${id}-title`} className="font-serif text-lg font-bold text-text">{title}</h2>
       <Button variant="text" onClick={reset}>このデモを初期状態に戻す</Button>
     </div>
     {children}
-    <p role="status" aria-live="polite" className="rounded-lg bg-primary-soft p-3 text-sm text-primary-dark">{feedback}</p>
+    <p role="status" aria-live="polite" className="border-l-2 border-primary bg-primary-soft px-3.5 py-2.5 text-[13px] leading-[1.7] text-primary-dark">{feedback}</p>
     <details className="text-sm text-text-sub"><summary className="cursor-pointer">この画面の操作履歴（状態版 {state.revision}）</summary>
       <ol className="mt-2 flex flex-col gap-2">{state.audit.length === 0 ? <li>まだ操作していません。</li> : state.audit.map(entry => <li key={entry.revision}>版{entry.revision}：{entry.summary}</li>)}</ol>
     </details>
@@ -71,7 +71,7 @@ function ElectionPanel() {
   const pending = state.bankStatus === "SUBMITTED" || state.bankStatus === "UNKNOWN";
   return <Panel id="election" title="1. 選任後の候補辞退・資格失効" {...{ feedback, state, reset }}>
     <p className="text-sm text-text-sub">D+21に架空候補Aを選任、Bは落選した例です。敗者の辞退は勝者の契約を停止しません。</p>
-    <dl className="grid gap-2 rounded-lg bg-background p-3 sm:grid-cols-2">
+    <dl className="grid gap-2 rounded-sm bg-background p-3 sm:grid-cols-2">
       <div><dt>選任結果</dt><dd className="font-bold">FINAL・候補{state.selectedCandidateId}（履歴不変）</dd></div>
       <div><dt>新規契約・支出</dt><dd className="font-bold">{state.held ? "保留中" : "候補条件に問題なし"}</dd></div>
       <div><dt>契約・予約</dt><dd>{state.contracted ? "契約のデモ済み" : "未契約"}／{state.reserved ? "予約を維持" : "予約なし"}</dd></div>
@@ -102,14 +102,14 @@ function RefundPanel() {
   const latestCancellation = Object.entries(state.cancellations).filter(([, entry]) => entry.ownerId === "A").at(-1)?.[0];
   return <Panel id="refund" title="2. 入金取消と返金予約の追記相殺" {...{ feedback, state, reset }}>
     <p className="text-sm text-text-sub">架空のA/B各100円、最初の返金予約は各50円。A取消→未送金予約相殺→Bの返金照合→残余バッチ追加の順で操作できます。</p>
-    <dl className="grid grid-cols-2 gap-3 rounded-lg bg-background p-3 sm:grid-cols-4">
+    <dl className="grid grid-cols-2 gap-3 rounded-sm bg-background p-3 sm:grid-cols-4">
       <div><dt>デモ現金</dt><dd className="font-bold">{money(state.cash)}</dd></div>
       <div><dt>予約・債務</dt><dd className="font-bold">{money(totals.obligations)}</dd></div>
       <div><dt>追加返金原資</dt><dd className="font-bold">{money(totals.refundAvailable)}</dd></div>
       <div><dt>原資不足</dt><dd className="font-bold">{money(totals.shortfall)}</dd></div>
     </dl>
     <div className="flex flex-wrap items-end gap-3">
-      <label className="flex flex-col gap-1 text-sm">Aの取消額（円）<input className="w-32 rounded-lg border border-border bg-surface p-2" type="number" min={1} max={100 - state.owners.A.reversed} step={1} value={amount} onChange={event => setAmount(Number(event.target.value))} /></label>
+      <label className="flex flex-col gap-1 text-[13px]">Aの取消額（円）<input className="tabular h-11 w-32 max-w-full rounded-sm border border-border-strong bg-surface px-2 text-base text-text transition-surface focus:border-primary focus:ring-2 focus:ring-focus/25 focus:outline-none" type="number" inputMode="numeric" min={1} max={100 - state.owners.A.reversed} step={1} value={amount} onChange={event => setAmount(Number(event.target.value))} /></label>
       <Button size="sm" variant="secondary" disabled={state.owners.A.reversed === 100} onClick={() => dispatch({ type: "cancel", ownerId: "A", amount, transactionVersion: state.owners.A.transactionVersion + 1, proof: "demo-payment-cancelled" })}>入金取消を記録</Button>
       <Button size="sm" variant="secondary" className="whitespace-normal!" disabled={!latestCancellation || !["RESERVED", "FAILED"].includes(state.instructions["batch-1:A"].status)} onClick={() => dispatch({ type: "offset", key: "batch-1:A", eventId: latestCancellation!, signers: DEMO_SIGNERS,
         instructionVersion: state.instructions["batch-1:A"].instructionVersion, transactionVersion: state.owners.A.transactionVersion,
@@ -147,7 +147,7 @@ function CatalogPanel() {
     <div className="grid gap-3 md:grid-cols-2">{(["P", "Q", "R", "S"] as const).map(proposalId => {
       const p = state.proposals[proposalId];
       const terminal = ["FINAL", "NEEDS_CHANGE", "REVIEW_EXPIRED"].includes(p.status);
-      return <article key={proposalId} className="flex min-w-0 flex-col gap-3 rounded-lg border border-border p-3">
+      return <article key={proposalId} className="flex min-w-0 flex-col gap-3 border-l-2 border-border-strong py-1 pl-3.5">
         <h3 className="font-bold">提案{proposalId}：{catalogStatuses[p.status]}</h3>
         <p className="text-sm text-text-sub">署名カタログ版 {p.signedVersion}／期限 D+{(p.signatureExpiresAt / 86400).toFixed(3)}／元12日上限は不変</p>
         <div className={buttonRow}>
@@ -155,7 +155,7 @@ function CatalogPanel() {
           <Button size="sm" variant="secondary" disabled={terminal} onClick={() => dispatch({ type: "begin-reconcile", proposalId, now: state.now + 1 })}>再照合を開始</Button>
         </div>
         <label className="flex flex-col gap-1 text-sm">差分の分類例（AI判定ではありません）
-          <select className="w-full min-w-0 rounded-lg border border-border bg-surface p-2" value={relations[proposalId]} disabled={terminal} onChange={event => setRelations(previous => ({ ...previous, [proposalId]: event.target.value as Relation }))}>
+          <select className="h-11 w-full min-w-0 rounded-sm border border-border-strong bg-surface px-2 text-base text-text transition-surface focus:border-primary focus:ring-2 focus:ring-focus/25 focus:outline-none" value={relations[proposalId]} disabled={terminal} onChange={event => setRelations(previous => ({ ...previous, [proposalId]: event.target.value as Relation }))}>
             <option value="unrelated">無関係</option><option value="unknown">未分類</option><option value="duplicate">真の重複</option><option value="changed">候補・比較条件が変化</option>
           </select>
         </label>

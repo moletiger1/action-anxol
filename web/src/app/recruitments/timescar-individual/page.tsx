@@ -40,7 +40,7 @@ export default function Page() {
         <Callout icon={Info} tone="neutral">
           <p>固定デモの画面例です。表示人数は架空で、本人確認・資料送信・資金募集は行いません。</p>
         </Callout>
-        <section className="flex flex-col gap-3.5 rounded-xl border border-border bg-surface p-5 md:p-7">
+        <section className="rule-head flex flex-col gap-3.5">
           <SectionTitle title="募集内容" />
           <dl className="flex flex-col">
             <KV label="対象">{recruitment.target}</KV>

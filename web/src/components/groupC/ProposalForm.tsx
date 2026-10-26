@@ -180,7 +180,7 @@ function IconField({
       </label>
       <div
         className={cn(
-          "flex h-12 items-center gap-2.5 rounded-[10px] border px-4 focus-within:border-primary focus-within:ring-3 focus-within:ring-focus/60",
+          "flex h-12 items-center gap-2.5 rounded-sm border px-4 transition-surface focus-within:border-primary focus-within:ring-2 focus-within:ring-focus/25",
           error ? "border-red bg-red-soft" : "border-border-strong bg-surface",
         )}
       >
@@ -284,7 +284,7 @@ function ProposalFormFields({ initial }: { initial: FormValues }) {
           参加者向け表示の例です。このデモでは弁護士資格の確認や参加者への公開は行いません。
         </p>
       </div>
-      <dl className="flex flex-col rounded-[10px] border border-border">
+      <dl className="flex flex-col border-t border-border">
         {[
           { k: "相談範囲", v: <span className="whitespace-pre-wrap">{scope}</span> },
           {
@@ -342,7 +342,7 @@ function ProposalFormFields({ initial }: { initial: FormValues }) {
       )}
 
       <div className="flex flex-col gap-8 xl:flex-row">
-        <section className="flex min-w-0 flex-1 flex-col gap-7 rounded-xl border border-border bg-surface p-5 md:p-8">
+        <section className="flex min-w-0 flex-1 flex-col gap-7">
           {readOnly ? (
             preview
           ) : (
@@ -367,7 +367,7 @@ function ProposalFormFields({ initial }: { initial: FormValues }) {
                     aria-invalid={!!errors.scope || undefined}
                     aria-describedby="scope-help"
                     className={cn(
-                      "min-h-32 w-full rounded-[10px] border px-4 py-3 text-base text-text focus:border-primary focus:ring-3 focus:ring-focus/60 focus:outline-none",
+                      "min-h-32 w-full rounded-sm border border-border-strong bg-surface px-4 py-3 text-base leading-[1.8] text-text transition-surface focus:border-primary focus:ring-2 focus:ring-focus/25 focus:outline-none",
                       errors.scope ? "border-red bg-red-soft" : "border-border-strong bg-surface",
                     )}
                   />
@@ -516,7 +516,7 @@ function ProposalFormFields({ initial }: { initial: FormValues }) {
         </section>
 
         <aside className="flex w-full shrink-0 flex-col gap-4 xl:w-[340px]">
-          <section className="flex flex-col gap-2.5 rounded-xl border border-border bg-surface p-5">
+          <section className="rule-head flex flex-col gap-2.5">
             <h2 className="text-base font-bold text-text">あなたの確認状況</h2>
             <div className="flex flex-col gap-1 border-b border-border py-2">
               <div className="flex items-center justify-between gap-2">
@@ -566,13 +566,13 @@ function ProposalFormFields({ initial }: { initial: FormValues }) {
             </Button>
           </section>
 
-          <section className="flex flex-col gap-3 rounded-xl border border-border bg-surface p-5">
+          <section className="rule-head flex flex-col gap-3">
             <h2 className="text-base font-bold text-text">募集の概要（匿名の集計）</h2>
             <div className="flex flex-col gap-0.5">
               <span className="text-[13px] font-bold text-text-muted">対象者</span>
               <span className="text-sm text-text">法人会員の担当者・法人契約で利用した個人</span>
             </div>
-            <dl className="flex flex-col rounded-[10px] border border-border">
+            <dl className="flex flex-col border-t border-border">
               {[
                 ["登録", recruitmentStats.registered],
                 ["本人・関係性の確認", recruitmentStats.identityChecked],
@@ -602,7 +602,7 @@ function ProposalFormFields({ initial }: { initial: FormValues }) {
             </div>
           </section>
 
-          <div className="flex gap-3 rounded-[10px] bg-neutral-soft px-4 py-3.5">
+          <div className="flex gap-3 rounded-sm bg-neutral-soft px-4 py-3.5">
             <Lock className="mt-0.5 size-5 shrink-0 text-text-sub" aria-hidden />
             <div className="flex flex-col gap-0.5">
               <p className="text-base font-bold text-text">原本資料はまだ閲覧できません</p>
@@ -624,7 +624,7 @@ function ProposalFormFields({ initial }: { initial: FormValues }) {
         description="この画面の状態だけを切り替えます。提案の保存・送信・資格確認・比較画面への掲載は行われません。"
         confirmLabel="送信デモを進める"
       >
-        <div className="flex flex-col gap-1 rounded-[10px] bg-[#F4F6F9] px-4 py-3 text-sm text-text">
+        <div className="flex flex-col gap-1 rounded-sm bg-neutral-soft px-4 py-3 text-sm text-text">
           <span>
             今回の相談費用（税込）：{feeNum !== null ? formatYen(feeNum) : "—"}
           </span>

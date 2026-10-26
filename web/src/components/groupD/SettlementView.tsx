@@ -40,7 +40,7 @@ function ClaimStatus({ claim, compact }: { claim: Claim; compact?: boolean }) {
       <div
         role="status"
         className={cn(
-          "flex flex-col gap-2 rounded-[10px] bg-primary-soft sm:flex-row sm:items-center sm:gap-3",
+          "flex flex-col gap-2 rounded-sm bg-primary-soft sm:flex-row sm:items-center sm:gap-3",
           compact ? "px-3.5 py-3" : "px-4 py-3",
         )}
       >
@@ -56,7 +56,7 @@ function ClaimStatus({ claim, compact }: { claim: Claim; compact?: boolean }) {
   return (
     <div
       className={cn(
-        "flex items-center rounded-[10px] bg-green-soft",
+        "flex items-center rounded-sm bg-green-soft",
         compact ? "gap-2.5 px-3.5 py-3" : "gap-3 px-4 py-3",
       )}
     >
@@ -136,22 +136,25 @@ export function SettlementView() {
         {/* ===== モバイル（M_D03 / M_D03b） ===== */}
         <div className="flex flex-col gap-4 md:hidden">
 
-          <section className="flex flex-col gap-2 rounded-xl border border-border bg-surface p-4" aria-label="現在の段階と次にすること">
-            <p className="text-xs text-text-muted">現在の段階</p>
-            <p className="text-base font-bold text-text">相談費の返金（表示例）</p>
-            <p className="flex items-center gap-1.5 pt-1 text-xs font-bold text-primary-dark">
+          <section
+            className="flex flex-col gap-1.5 border-l-2 border-primary bg-primary-soft px-4 py-3.5"
+            aria-label="現在の段階と次にすること"
+          >
+            <p className="text-[12px] font-bold text-primary-dark">現在の段階</p>
+            <p className="font-serif text-[15px] font-bold text-text">相談費の返金（表示例）</p>
+            <p className="flex items-center gap-1.5 pt-1 text-[12px] font-bold text-primary-dark">
               <CircleArrowRight className="size-4" aria-hidden />
               次にすること
             </p>
-            <p className="text-sm text-text">
+            <p className="text-[13px] leading-[1.75] text-text">
               {claim === "claimed"
                 ? "返金請求のデモ操作済みです。"
                 : "返金請求の操作例を確認できます。"}
             </p>
           </section>
 
-            <section className="flex flex-col gap-1 rounded-xl border border-border bg-surface px-4 pt-4 pb-2">
-              <h2 className="text-lg font-bold text-text">相談費などの返金</h2>
+            <section className="rule-head flex flex-col gap-1">
+              <h2 className="font-serif text-lg font-bold text-text">相談費などの返金</h2>
               <p className="text-xs text-text-muted">対象：法人会員・利用者の共同相談（精算確定後の想定）</p>
               <RefundRows compact />
             </section>
@@ -167,14 +170,11 @@ export function SettlementView() {
           </MobileCtaBar>
         </div>
         <div className="hidden md:block">
-          <section
-            aria-labelledby="refund-title"
-            className="flex flex-col gap-4 rounded-xl border border-border bg-surface p-7"
-          >
+          <section aria-labelledby="refund-title" className="rule-head flex flex-col gap-4">
             <div className="flex items-center gap-3">
               <IconWrap icon={Undo2} />
               <div className="flex min-w-0 flex-col">
-                <h2 id="refund-title" className="text-xl font-bold text-text">
+                <h2 id="refund-title" className="font-serif text-lg font-bold text-text">
                   相談費などの返金
                 </h2>
                 <p className="text-[13px] text-text-muted">対象：法人会員・利用者の共同相談（精算確定後の想定）</p>

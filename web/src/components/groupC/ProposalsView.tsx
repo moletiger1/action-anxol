@@ -247,7 +247,7 @@ export function ProposalsView() {
   const qaList = (
     <div className="flex flex-col gap-3.5">
       {posts.map((p) => (
-        <article key={p.id} className="flex flex-col gap-2.5 rounded-xl border border-border bg-surface p-5">
+        <article key={p.id} className="flex flex-col gap-2.5 border-t border-border pt-4">
           <div className="flex flex-wrap items-center gap-2.5">
             <span className="text-[13px] font-bold text-text-muted">あなたの投稿 → {p.target}</span>
             <Badge tone="amber" icon={Clock3}>
@@ -257,7 +257,7 @@ export function ProposalsView() {
           <p className="text-[15px] font-bold whitespace-pre-wrap text-text">{p.body}</p>
         </article>
       ))}
-      <article className="flex flex-col gap-2.5 rounded-xl border border-border bg-surface p-5">
+      <article className="flex flex-col gap-2.5 border-t border-border pt-4">
         <div className="flex flex-wrap items-center gap-2.5">
           <span className="text-[13px] font-bold text-text-muted">参加者の質問 → 弁護士A</span>
           <Badge tone="green" icon={CircleCheck}>
@@ -267,14 +267,14 @@ export function ProposalsView() {
         <p className="text-[15px] font-bold text-text">
           法人会員の利用者として相談に参加した場合、勤務先の担当者にも内容が共有されますか？
         </p>
-        <div className="flex flex-col gap-1 rounded-[10px] bg-[#F4F6F9] px-4 py-3">
+        <div className="flex flex-col gap-1 border-l-2 border-border-strong pl-3.5">
           <span className="text-[13px] font-bold text-text-sub">弁護士Aの回答（2026年10月20日）</span>
           <p className="text-sm text-text">
             共同相談の内容は参加者全体に共有しますが、個人ごとの資料や質問者の名前は、本人の同意なく勤務先に共有しません。
           </p>
         </div>
       </article>
-      <article className="flex flex-col gap-2.5 rounded-xl border border-border bg-surface p-5">
+      <article className="flex flex-col gap-2.5 border-t border-border pt-4">
         <div className="flex flex-wrap items-center gap-2.5">
           <span className="text-[13px] font-bold text-text-muted">参加者の質問 → 弁護士C</span>
           <Badge tone="amber" icon={Clock3}>
@@ -292,7 +292,9 @@ export function ProposalsView() {
       <div className="flex flex-col gap-3 lg:flex-row lg:items-end lg:justify-between">
         <div className="flex flex-col gap-0.5">
           <p className="text-sm text-text-muted">参加中の案件 ／ 法人会員・利用者の共同相談</p>
-          <h1 className="text-2xl font-bold text-text md:text-[28px]">弁護士の提案を比較する</h1>
+          <h1 className="font-serif text-[26px] leading-snug font-bold text-text md:text-[30px]">
+            弁護士の提案を比較する
+          </h1>
         </div>
         <div>
           {isDeliberator ? (
@@ -340,7 +342,7 @@ export function ProposalsView() {
         next="3件の提案を同じ項目で比べ、気になる点を質問してください。相談先の採択は、選任された審議役が決定条件に沿って行います。"
       />
 
-      <div className="flex gap-3 rounded-[10px] bg-primary-soft px-4 py-3.5">
+      <div className="flex gap-3 rounded-sm bg-primary-soft px-4 py-3.5">
         <Info className="mt-0.5 size-5 shrink-0 text-primary-dark" aria-hidden />
         <div className="flex flex-col gap-0.5">
           <p className="text-base font-bold text-primary-dark">ここで選ぶのは「共同相談の相談先」です</p>
@@ -368,7 +370,7 @@ export function ProposalsView() {
         <div className="flex min-w-0 flex-1 flex-col gap-4">
           <div className="flex flex-wrap items-center justify-between gap-3">
             <h2 className="text-xl font-bold text-text">提案の比較（3件）</h2>
-            <label className="relative flex h-11 items-center gap-2 rounded-[10px] border border-border-strong bg-surface pr-3 pl-3.5 focus-within:ring-3 focus-within:ring-focus/60">
+            <label className="relative flex h-11 items-center gap-2 rounded-sm border border-border-strong bg-surface pr-3 pl-3.5 transition-surface focus-within:border-primary focus-within:ring-2 focus-within:ring-focus/25">
               <ArrowDownUp className="size-4 text-text-sub" aria-hidden />
               <span className="sr-only">項目の並び</span>
               <select
@@ -384,11 +386,11 @@ export function ProposalsView() {
           </div>
 
           {/* デスクトップ：表 */}
-          <div className="hidden overflow-hidden rounded-xl border border-border bg-surface lg:block">
+          <div className="hidden overflow-hidden border border-border lg:block">
             <table className="w-full table-fixed border-collapse text-left">
               <caption className="sr-only">弁護士A・B・Cの提案を同じ項目で比較した表</caption>
               <thead>
-                <tr className="border-b border-border bg-[#F4F6F9]">
+                <tr className="border-b border-border bg-neutral-soft">
                   <th scope="col" className="w-[128px] px-4 py-3.5 text-[13px] font-bold text-text-sub">
                     項目
                   </th>
@@ -434,8 +436,8 @@ export function ProposalsView() {
           {/* モバイル・タブレット：項目ごとに縦積み */}
           <div className="flex flex-col gap-3 lg:hidden">
             {rows.map((r) => (
-              <section key={r.key} className="rounded-xl border border-border bg-surface">
-                <h3 className="border-b border-border bg-[#F4F6F9] px-4 py-2.5 text-sm font-bold text-text-sub">
+              <section key={r.key} className="border-t-2 border-text pt-0">
+                <h3 className="border-b border-border bg-neutral-soft px-4 py-2.5 text-[13px] font-bold text-text-sub">
                   {r.label}
                 </h3>
                 <dl className="flex flex-col">
@@ -455,7 +457,7 @@ export function ProposalsView() {
             ))}
             <p className="text-xs text-text-muted">弁護士A・B・Cはいずれも〔架空〕法律事務所です。</p>
             {isDeliberator && (
-              <section className="flex flex-col gap-3 rounded-xl border border-primary bg-surface p-4">
+              <section className="flex flex-col gap-3 border-l-2 border-primary bg-primary-soft px-4 py-4">
                 <h3 className="text-sm font-bold text-text">採択（審議役のみ）</h3>
                 {LAWYERS.map((l) => (
                   <div key={l.key}>{adoptButton(l, true)}</div>
@@ -486,7 +488,7 @@ export function ProposalsView() {
                   content: (
                     <div className="flex flex-col gap-3">
                       {LAWYERS.map((l) => (
-                        <article key={l.key} className="flex items-center gap-3 rounded-xl border border-border bg-surface p-5">
+                        <article key={l.key} className="flex items-center gap-3 border-t border-border pt-4">
                           <Info className="size-5 shrink-0 text-primary-dark" aria-hidden />
                           <span className="flex-1 text-[15px] font-bold text-text">{l.name}による提案の説明</span>
                           <span className="text-[13px] text-text-muted">デモでは本文を省略</span>
@@ -501,18 +503,18 @@ export function ProposalsView() {
                   content: (
                     <div className="flex flex-col gap-3">
                       {adopted && (
-                        <article className="flex flex-col gap-1 rounded-xl border border-border bg-surface p-5">
+                        <article className="flex flex-col gap-1 border-t border-border pt-4">
                           <span className="text-[13px] font-bold text-text-muted">審議記録（デモ）</span>
                           <span className="text-[15px] font-bold text-text">
                             弁護士{adopted}を共同相談の相談先として採択
                           </span>
                         </article>
                       )}
-                      <article className="flex flex-col gap-1 rounded-xl border border-border bg-surface p-5">
+                      <article className="flex flex-col gap-1 border-t border-border pt-4">
                         <span className="text-[13px] font-bold text-text-muted">審議記録（デモ）</span>
                         <span className="text-[15px] font-bold text-text">提案3件の受付を締め切りました</span>
                       </article>
-                      <article className="flex flex-col gap-1 rounded-xl border border-border bg-surface p-5">
+                      <article className="flex flex-col gap-1 border-t border-border pt-4">
                         <span className="text-[13px] font-bold text-text-muted">審議記録（デモ）</span>
                         <span className="text-[15px] font-bold text-text">決定方法の設定案（表示例）</span>
                       </article>
@@ -522,7 +524,7 @@ export function ProposalsView() {
               ]}
             />
             <form
-              className="flex flex-col gap-3 rounded-xl border border-border bg-surface p-4 sm:flex-row sm:items-start"
+              className="flex flex-col gap-3 border-t-2 border-text pt-4 sm:flex-row sm:items-start"
               onSubmit={(e) => {
                 e.preventDefault();
                 openPost();
@@ -545,7 +547,7 @@ export function ProposalsView() {
                   aria-describedby="ask-help"
                   placeholder="提案について質問・意見を書く（名前は表示されません）"
                   className={cn(
-                    "h-12 w-full rounded-[10px] border px-4 text-base text-text placeholder:text-text-muted focus:border-primary focus:ring-3 focus:ring-focus/60 focus:outline-none",
+                    "h-12 w-full rounded-sm border border-border-strong bg-surface px-4 text-base text-text placeholder:text-text-muted transition-surface focus:border-primary focus:ring-2 focus:ring-focus/25 focus:outline-none",
                     postError ? "border-red bg-red-soft" : "border-border-strong bg-surface",
                   )}
                 />
@@ -562,9 +564,9 @@ export function ProposalsView() {
 
         {/* 誰が選ぶか */}
         <aside className="flex w-full shrink-0 flex-col gap-4 xl:w-[320px]">
-          <section className="flex flex-col gap-3.5 rounded-xl border border-border bg-surface p-5">
-            <h2 className="flex items-center gap-2 text-lg font-bold text-text">
-              <Users className="size-5 text-primary-dark" aria-hidden />
+          <section className="rule-head flex flex-col gap-3.5">
+            <h2 className="flex items-center gap-2 font-serif text-lg font-bold text-text">
+              <Users className="size-[18px] text-primary" aria-hidden />
               誰が選ぶか
             </h2>
             <dl className="flex flex-col">
@@ -579,7 +581,7 @@ export function ProposalsView() {
               ))}
             </dl>
             {ruleMet ? (
-              <div className="flex flex-col gap-1.5 rounded-[10px] border border-green/40 bg-green-soft p-3.5">
+              <div className="flex flex-col gap-1.5 rounded-sm border border-green/40 bg-green-soft p-3.5">
                 <p className="flex items-center gap-2 text-base font-bold text-green">
                   <CircleCheck className="size-[18px]" aria-hidden />
                   決定条件を満たしています
@@ -589,7 +591,7 @@ export function ProposalsView() {
                 </p>
               </div>
             ) : (
-              <div className="flex flex-col gap-1.5 rounded-[10px] border border-amber-line bg-amber-soft p-3.5">
+              <div className="flex flex-col gap-1.5 border-l-2 border-amber-line bg-amber-soft px-3.5 py-3">
                 <p className="flex items-center gap-2 text-base font-bold text-amber">
                   <CirclePause className="size-[18px]" aria-hidden />
                   まだ採択できません
@@ -620,7 +622,7 @@ export function ProposalsView() {
             </StatePanel>
           )}
 
-          <nav aria-label="説明・質問・審議記録" className="flex flex-col rounded-xl border border-border bg-surface px-5 py-2">
+          <nav aria-label="説明・質問・審議記録" className="flex flex-col border-t border-border pt-2">
             {["専門家の説明を読む", "参加者の質問を見る", "弁護士の回答を見る", "審議記録を見る"].map((t) => (
               <div key={t}>
                 <ButtonLink href="#discussion" variant="text">
@@ -678,7 +680,7 @@ export function ProposalsView() {
         confirmLabel="デモ画面に投稿する"
         cancelLabel="戻って直す"
       >
-        <p className="rounded-[10px] bg-[#F4F6F9] px-4 py-3 text-[15px] whitespace-pre-wrap text-text">{draft}</p>
+        <p className="rounded-sm bg-neutral-soft px-4 py-3 text-[15px] whitespace-pre-wrap text-text">{draft}</p>
       </ConfirmDialog>
     </div>
   );

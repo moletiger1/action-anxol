@@ -58,16 +58,16 @@ export function ContributeFlow() {
         <DemoSwitch label="支払状態" options={OPTIONS} value={phase} onChange={showPhase} />
 
         {phase === "review" ? (
-          <div className="grid gap-6 lg:grid-cols-2">
-            <section className="flex flex-col gap-5 rounded-xl border border-border bg-surface p-5 md:p-6">
-              <h2 className="text-xl font-bold text-text">支払金額と方法</h2>
+          <div className="grid min-w-0 grid-cols-1 gap-6 lg:grid-cols-2">
+            <section className="rule-head flex min-w-0 flex-col gap-5">
+              <h2 className="font-serif text-lg font-bold text-text">支払金額と方法</h2>
               <div className="flex flex-col gap-2">
                 <label htmlFor="contribution-yen" className="font-bold text-text">拠出額（円）</label>
                 <input
                   id="contribution-yen" inputMode="numeric" value={amountText}
                   onChange={(e) => { setAmountText(e.target.value); setRulesChecked(false); }}
                   aria-invalid={!valid || undefined} aria-describedby="contribution-yen-help"
-                  className="h-14 min-w-0 rounded-lg border border-border-strong px-4 text-2xl font-bold focus:outline-primary"
+                  className="tabular h-14 min-w-0 rounded-sm border border-border-strong bg-surface px-4 font-serif text-2xl font-bold text-text transition-surface focus:border-primary focus:ring-2 focus:ring-focus/25 focus:outline-none"
                 />
                 <p id="contribution-yen-help" className={valid ? "text-sm text-text-muted" : "text-sm text-red"}>
                   {valid ? `1円単位で入力できます。募集残額は${formatYen(remaining)}です。` : `1円以上、${formatYen(remaining)}以下の整数を入力してください。`}
@@ -76,7 +76,7 @@ export function ContributeFlow() {
                   {[1500, 3000, 7500].map((value) => (
                     <button key={value} type="button" aria-pressed={amount === value}
                       onClick={() => { setAmountText(String(value)); setRulesChecked(false); }}
-                      className="min-h-11 rounded-lg border border-border-strong px-4 font-medium text-primary-dark aria-pressed:border-primary aria-pressed:bg-primary-soft">
+                      className="tabular min-h-11 rounded-sm border border-border-strong px-4 font-medium text-primary-dark transition-surface hover:bg-neutral-soft aria-pressed:border-primary aria-pressed:bg-primary-soft aria-pressed:font-bold">
                       {formatYen(value)}
                     </button>
                   ))}
@@ -98,8 +98,8 @@ export function ContributeFlow() {
                 <CostRow label="デモの支払額" value={amountLabel} note="実際の総額ではありません。手数料を含みません" total last />
               </div>
             </section>
-            <section className="flex flex-col gap-5 rounded-xl border border-border bg-surface p-5 md:p-6">
-              <h2 className="text-xl font-bold text-text">募集のルール</h2>
+            <section className="rule-head flex min-w-0 flex-col gap-5">
+              <h2 className="font-serif text-lg font-bold text-text">募集のルール</h2>
               <dl className="space-y-4 text-sm text-text-sub">
                 <div><dt className="font-bold text-text">使い道</dt><dd>{consultationBudget.map((item) => `${item.label} ${formatYen(item.yen)}`).join("／")}</dd></div>
                 <div><dt className="font-bold text-text">募集期限・目標</dt><dd>{recruitmentStats.deadline} 23:59・{formatYen(recruitmentStats.goalYen)}</dd></div>

@@ -67,9 +67,11 @@ export function CreatedPreview() {
           items={[{ label: "案件を作る", href: routes.create }, { label: "作成内容のプレビュー" }]}
         />
 
-        <div className="flex flex-col gap-3">
+        <div className="flex flex-col gap-3 border-b-2 border-text pb-4">
           <Badge tone="neutral" icon={CircleDashed}>このブラウザ内のデモ保存</Badge>
-          <h1 className="text-2xl font-bold text-text md:text-[32px]">作成内容のプレビュー</h1>
+          <h1 className="font-serif text-[26px] leading-snug font-bold text-text md:text-[32px]">
+            作成内容のプレビュー
+          </h1>
           <Callout icon={Info} tone="neutral">
             <p>この内容はこのブラウザだけに保存されています。実際の公開、参加登録、通知は行われません。</p>
           </Callout>
@@ -86,7 +88,7 @@ export function CreatedPreview() {
         )}
 
         {previews.length > 1 && (
-          <section className="flex flex-col gap-3 rounded-xl border border-border bg-surface p-5 md:p-6">
+          <section className="flex flex-col gap-3">
             <SectionTitle title="保存した作成例" description="どのブラウザ内プレビューを表示するか選べます。" />
             <ul className="flex flex-col divide-y divide-border">
               {previews.map((item) => {
@@ -94,8 +96,8 @@ export function CreatedPreview() {
                 return (
                   <li key={item.id} className="flex flex-wrap items-center justify-between gap-3 py-3">
                     <div className="min-w-0 flex-1">
-                      <p className="text-sm text-text">{title}</p>
-                      <time dateTime={item.updatedAt ?? item.createdAt} className="text-xs text-text-muted">
+                      <p className="text-[14px] font-medium text-text">{title}</p>
+                      <time dateTime={item.updatedAt ?? item.createdAt} className="tabular text-[12px] text-text-muted">
                         {item.updatedAt ? "更新 " : "作成 "}
                         {new Date(item.updatedAt ?? item.createdAt).toLocaleString("ja-JP")}
                       </time>
@@ -115,13 +117,13 @@ export function CreatedPreview() {
         )}
 
         {preview ? (
-          <section className="flex flex-col gap-3 rounded-xl border border-border bg-surface p-5 md:p-6">
+          <section className="flex flex-col gap-3">
             <SectionTitle title="一般公開する内容" description="非公開の回答や資料はこのプレビューに含めていません。" />
             <dl className="flex flex-col">
               {preview.rows.map(([label, value], index) => (
                 <div key={label} className={`flex flex-col gap-1 py-3 sm:flex-row sm:gap-4 ${index < preview.rows.length - 1 ? "border-b border-border" : ""}`}>
-                  <dt className="shrink-0 text-sm text-text-muted sm:w-[120px]">{label}</dt>
-                  <dd className="min-w-0 flex-1 break-words text-[15px] text-text">{value}</dd>
+                  <dt className="shrink-0 text-[13px] text-text-muted sm:w-[120px]">{label}</dt>
+                  <dd className="min-w-0 flex-1 text-[14px] leading-[1.8] break-words text-text">{value}</dd>
                 </div>
               ))}
             </dl>
@@ -129,7 +131,7 @@ export function CreatedPreview() {
               内容を編集する
             </Button>
             {editError && (
-              <p role="alert" className="text-sm text-red">
+              <p role="alert" className="text-[13px] text-red">
                 {editError === "invalid-draft"
                   ? "編集用データが不完全なため復元できませんでした。保存済みプレビューはそのまま残っています。"
                   : "ブラウザーの保存領域を利用できず、編集用の下書きを保存できませんでした。"}
@@ -137,11 +139,11 @@ export function CreatedPreview() {
             )}
           </section>
         ) : (
-          <section className="flex flex-col gap-4 rounded-xl border border-border bg-surface p-5 md:p-6">
-            <h2 className="text-lg font-bold text-text">
+          <section className="flex flex-col gap-4 border-t border-border pt-5">
+            <h2 className="font-serif text-lg font-bold text-text">
               {loadError ? "保存済みプレビューを読み込めません" : selectionMissing ? "指定されたプレビューが見つかりません" : "保存されたプレビューがありません"}
             </h2>
-            <p className="text-sm text-text-sub">
+            <p className="text-[13px] leading-[1.75] text-text-sub">
               {loadError
                 ? "保存内容の破損またはブラウザー保存領域のエラーを確認してください。"
                 : selectionMissing
@@ -158,7 +160,7 @@ export function CreatedPreview() {
           </Button>
           <ButtonLink href={routes.home} variant="secondary">案件一覧を見る</ButtonLink>
         </div>
-        {actionError && <p role="alert" className="text-sm text-red">保存領域を利用できず、下書きを置き換えられませんでした。保存データは残っています。</p>}
+        {actionError && <p role="alert" className="text-[13px] text-red">保存領域を利用できず、下書きを置き換えられませんでした。保存データは残っています。</p>}
         <ConfirmDialog
           open={pendingAction !== null}
           onClose={() => setPendingAction(null)}

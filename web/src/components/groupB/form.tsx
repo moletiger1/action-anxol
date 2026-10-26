@@ -9,7 +9,7 @@ import { cn } from "@/lib/cn";
 export function FieldError({ id, children }: { id?: string; children?: ReactNode }) {
   if (!children) return null;
   return (
-    <p id={id} role="alert" className="flex items-start gap-1.5 text-sm text-red">
+    <p id={id} role="alert" className="flex items-start gap-1.5 text-[13px] leading-[1.7] text-red">
       <CircleAlert className="mt-[3px] size-4 shrink-0" aria-hidden />
       <span>{children}</span>
     </p>
@@ -50,16 +50,16 @@ export function Question({
         <div className="flex min-w-0 flex-1 gap-3">
           <span
             aria-hidden
-            className="flex size-7 shrink-0 items-center justify-center rounded-full bg-primary-soft text-sm font-bold text-primary-dark"
+            className="tabular mt-0.5 flex size-7 shrink-0 items-center justify-center border border-text font-serif text-sm font-bold text-text"
           >
             {num}
           </span>
           <div className="flex min-w-0 flex-1 flex-col gap-0.5">
-            <legend className="text-lg font-bold text-text">
+            <legend className="font-serif text-lg leading-snug font-bold text-text">
               <span className="sr-only">質問{num}：</span>
               {title}
             </legend>
-            {hint && <p className="text-sm text-text-muted">{hint}</p>}
+            {hint && <p className="text-[13px] leading-[1.7] text-text-muted">{hint}</p>}
           </div>
         </div>
         <div className="shrink-0 pl-10 sm:pl-0">{badge}</div>
@@ -70,7 +70,7 @@ export function Question({
 }
 
 const fieldBase =
-  "h-12 w-full rounded-[10px] border bg-surface pr-4 pl-11 text-base text-text placeholder:text-text-muted focus:border-primary focus:outline-none focus-visible:outline-none focus:ring-3 focus:ring-focus/60";
+  "h-12 w-full rounded-sm border bg-surface pr-4 pl-11 text-base text-text placeholder:text-text-muted transition-surface focus:border-primary focus:outline-none focus:ring-2 focus:ring-focus/25";
 
 function FieldIcon({ icon: Icon, error }: { icon: LucideIcon; error?: boolean }) {
   const I = error ? CircleAlert : Icon;
@@ -103,7 +103,7 @@ export function IconField({
   const id = useId();
   return (
     <div className={cn("flex min-w-0 flex-col gap-2", className)}>
-      <label htmlFor={id} className="text-sm font-bold text-text">
+      <label htmlFor={id} className="text-[13px] font-bold text-text">
         {label}
       </label>
       <div className="relative">
@@ -120,7 +120,7 @@ export function IconField({
         <FieldError id={`${id}-help`}>{error}</FieldError>
       ) : (
         hint && (
-          <p id={`${id}-help`} className="text-sm text-text-muted">
+          <p id={`${id}-help`} className="text-[13px] leading-[1.7] text-text-muted">
             {hint}
           </p>
         )
@@ -146,7 +146,7 @@ export function IconSelect({
   const id = useId();
   return (
     <div className={cn("flex min-w-0 flex-1 flex-col gap-2", className)}>
-      <label htmlFor={id} className={cn("text-sm font-bold", rest.disabled ? "text-disabled-text" : "text-text")}>
+      <label htmlFor={id} className={cn("text-[13px] font-bold", rest.disabled ? "text-disabled-text" : "text-text")}>
         {label}
       </label>
       <div className="relative">
@@ -158,7 +158,7 @@ export function IconSelect({
             fieldBase,
             "appearance-none",
             error ? "border-red bg-red-soft" : "border-border-strong",
-            rest.disabled && "border-border bg-[#F1F3F6] text-disabled-text",
+            rest.disabled && "border-border bg-neutral-soft text-disabled-text",
           )}
           {...rest}
         >
@@ -192,12 +192,12 @@ export function OptionCard({
   return (
     <label
       className={cn(
-        "flex cursor-pointer gap-3 rounded-[10px] border px-4 py-3.5 transition-colors has-[:focus-visible]:ring-3 has-[:focus-visible]:ring-focus/60",
+        "transition-surface flex cursor-pointer gap-3 rounded-sm border px-4 py-3.5 has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-focus has-[:focus-visible]:ring-offset-1",
         checked
           ? "border-primary bg-primary-soft"
           : invalid
             ? "border-red bg-surface"
-            : "border-border-strong bg-surface hover:bg-bg",
+            : "border-border-strong bg-surface hover:bg-neutral-soft",
       )}
     >
       <input type="radio" name={name} checked={checked} onChange={onChange} className="sr-only" />
@@ -233,7 +233,7 @@ export function CheckRow({
   invalid?: boolean;
 }) {
   return (
-    <label className="flex cursor-pointer gap-3 rounded-md py-2.5 has-[:focus-visible]:ring-3 has-[:focus-visible]:ring-focus/60">
+    <label className="flex min-h-11 cursor-pointer items-start gap-3 rounded-sm py-2.5 has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-focus has-[:focus-visible]:ring-offset-1">
       <input
         type="checkbox"
         checked={checked}
@@ -244,7 +244,7 @@ export function CheckRow({
       <span
         aria-hidden
         className={cn(
-          "mt-0.5 flex size-[22px] shrink-0 items-center justify-center rounded-md border",
+          "mt-0.5 flex size-[20px] shrink-0 items-center justify-center rounded-sm border",
           checked
             ? "border-primary bg-primary"
             : invalid
@@ -275,14 +275,8 @@ export function AsideCard({
   className?: string;
 }) {
   return (
-    <section
-      className={cn(
-        "flex flex-col gap-3 rounded-xl border border-border p-5",
-        muted ? "bg-[#F1F5F6]" : "bg-surface",
-        className,
-      )}
-    >
-      {title && <h2 className="text-base font-bold text-text">{title}</h2>}
+    <section className={cn("flex flex-col gap-3 pt-4", muted ? "rule-head" : "border-t border-border", className)}>
+      {title && <h2 className="font-serif text-[15px] leading-snug font-bold text-text">{title}</h2>}
       {children}
     </section>
   );
@@ -302,7 +296,9 @@ export function AsideItem({
       <span className="flex h-[26px] shrink-0 items-center">
         <Icon className={cn("size-[18px]", muted ? "text-text-muted" : "text-primary-dark")} aria-hidden />
       </span>
-      <p className={cn("text-sm", muted ? "text-text-sub" : "text-text")}>{children}</p>
+      <p className={cn("text-[13px] leading-[1.75]", muted ? "text-text-muted" : "text-text-sub")}>
+        {children}
+      </p>
     </div>
   );
 }
@@ -333,11 +329,11 @@ export function Toggle({
       <span
         aria-hidden
         className={cn(
-          "flex h-[26px] w-11 shrink-0 rounded-full p-[3px] transition-colors",
-          checked ? "justify-end bg-primary" : "justify-start bg-[#C9D3DE]",
+          "flex h-[26px] w-11 shrink-0 rounded-full border p-[3px] transition-surface",
+          checked ? "justify-end border-primary bg-primary" : "justify-start border-border-strong bg-neutral-soft",
         )}
       >
-        <span className="size-5 rounded-full bg-white shadow-sm" />
+        <span className="size-[18px] rounded-full bg-white" />
       </span>
       <span className={cn("text-left text-sm font-medium", checked ? "text-primary-dark" : "text-text-sub")}>
         {checked ? onLabel : offLabel}

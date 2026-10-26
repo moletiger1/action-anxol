@@ -39,12 +39,12 @@ export default function DashboardPage() {
         {/* 固定デモ：提案・審議段階の画面例 */}
         <section
           aria-labelledby="next-step-title"
-          className="flex flex-col gap-5 rounded-[14px] border border-primary bg-surface p-5 md:flex-row md:items-center md:gap-6 md:p-7"
+          className="flex flex-col gap-5 border-l-2 border-primary bg-primary-soft px-5 py-5 md:flex-row md:items-center md:gap-6 md:px-6"
         >
           <IconWrap icon={Footprints} size={56} />
           <div className="flex min-w-0 flex-1 flex-col gap-1.5">
-            <p className="text-sm font-bold text-primary-dark">進行画面の例（段階3／5）</p>
-            <h2 id="next-step-title" className="text-xl font-bold text-text md:text-2xl">
+            <p className="text-[12px] font-bold text-primary-dark">進行画面の例（段階3／5）</p>
+            <h2 id="next-step-title" className="font-serif text-xl leading-snug font-bold text-text md:text-2xl">
               弁護士の提案を比べて、気になる点を質問する
             </h2>
             <p className="text-base text-text-sub">

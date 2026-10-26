@@ -84,7 +84,7 @@ export function SimilarStep() {
       </Callout>
 
       {/* 固定の既存事件例 */}
-      <section className="flex flex-col gap-3 rounded-xl border border-primary bg-[#FBFEFE] p-4 md:gap-3.5 md:p-6">
+      <section className="flex flex-col gap-3 border-t-2 border-primary pt-4 md:gap-3.5">
         <div className="flex flex-col gap-3 md:flex-row md:items-center md:gap-2.5">
           <h3 className="flex flex-1 items-center gap-2 text-base font-bold text-primary-dark md:gap-2.5 md:text-lg">
             <Link2 className="size-[18px] shrink-0 md:size-5" aria-hidden />
@@ -121,7 +121,7 @@ export function SimilarStep() {
       </section>
 
       {/* 別の出来事 */}
-      <section className="flex flex-col gap-2 rounded-xl bg-[#F1F5F6] p-4 md:gap-3 md:p-6">
+      <section className="flex flex-col gap-2 border-l-2 border-primary bg-primary-soft px-4 py-4 md:gap-3 md:px-5">
         <h3 className="text-base font-bold text-text">この事件と違う出来事の場合</h3>
         <p className="hidden text-sm text-text-sub md:block">
           既存の事件との違い（対象のサービス・時期・起きたこと）を一言添えると、参加者が迷わずに済みます。

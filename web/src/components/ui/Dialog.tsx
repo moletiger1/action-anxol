@@ -2,10 +2,12 @@
 
 import { ShieldCheck, type LucideIcon } from "lucide-react";
 import { useEffect, useRef, type ReactNode } from "react";
-import { cn } from "@/lib/cn";
 import { Button } from "./Button";
 
-/** 資金移動・採択など取り消しにくい操作の確認ダイアログ */
+/**
+ * 資金移動・採択など取り消しにくい操作の確認ダイアログ。
+ * 角を立てた紙片として出し、上端に墨を一本引いて「確定の場」であることを示す。
+ */
 export function ConfirmDialog({
   open,
   onClose,
@@ -47,19 +49,17 @@ export function ConfirmDialog({
         if (confirming) e.preventDefault();
       }}
       style={{ maxWidth: `min(${width}px, calc(100vw - 32px))` }}
-      className={cn(
-        "m-auto w-full rounded-2xl bg-surface p-7 text-text backdrop:bg-[#172B4D]/40",
-      )}
+      className="m-auto w-full border border-border-strong bg-surface p-6 text-text backdrop:bg-text/50"
     >
       <div className="flex flex-col gap-5">
-        <div className="flex items-center gap-3.5">
-          <span className="flex size-11 shrink-0 items-center justify-center rounded-full bg-primary-soft text-primary-dark">
-            <Icon className="size-[22px]" aria-hidden />
-          </span>
-          <h2 className="text-xl font-bold">{title}</h2>
+        <div className="rule-head flex items-start gap-3">
+          <Icon className="mt-0.5 size-5 shrink-0 text-primary" aria-hidden />
+          <h2 className="font-serif text-xl leading-snug font-bold">{title}</h2>
         </div>
-        {description && <p className="text-base text-text-sub">{description}</p>}
-        {children && <div className="flex flex-col">{children}</div>}
+        {description && (
+          <p className="text-[15px] leading-[1.8] text-text-sub">{description}</p>
+        )}
+        {children && <div className="flex flex-col border-t border-border">{children}</div>}
         <div className="flex flex-col-reverse gap-3 sm:flex-row sm:justify-end">
           <Button variant="secondary" onClick={onClose} disabled={confirming}>
             {cancelLabel}

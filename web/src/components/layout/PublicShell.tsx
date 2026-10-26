@@ -15,32 +15,42 @@ const nav = [
   { href: routes.lawyerProposal, label: "弁護士の方へ" },
 ];
 
+/*
+ * ヘッダーは一行に組む。二段に折り返すと紙面の骨格が崩れるため、
+ * 幅が足りないときは左右の余白を詰め、それでも入らないときだけ縮める。
+ * 選択中の項目は藍の下線で示す。
+ */
 export function PublicHeader({ active = "案件を探す" }: { active?: string }) {
   return (
-    <header className="hidden border-b border-border bg-surface md:block">
-      <div className="mx-auto flex min-h-[72px] w-full max-w-[1440px] flex-wrap items-center justify-between gap-x-6 gap-y-3 px-6 py-3 xl:flex-nowrap xl:px-10">
+    <header className="glass sticky top-0 z-30 hidden md:block">
+      <div className="mx-auto flex h-[68px] w-full max-w-[1280px] items-center gap-6 px-6 xl:px-8">
         <Logo />
-        <nav aria-label="メインメニュー" className="order-last flex w-full shrink-0 items-center justify-center gap-6 xl:order-none xl:w-auto">
-          {nav.map((n) => (
-            <Link
-              key={n.label}
-              href={n.href}
-              aria-current={n.label === active ? "page" : undefined}
-              className={cn(
-                "shrink-0 text-[15px] whitespace-nowrap",
-                n.label === active ? "font-bold text-primary-dark" : "font-medium text-text-sub hover:text-text",
-              )}
-            >
-              {n.label}
-            </Link>
-          ))}
+        <nav aria-label="メインメニュー" className="flex min-w-0 items-center gap-1">
+          {nav.map((n) => {
+            const selected = n.label === active;
+            return (
+              <Link
+                key={n.label}
+                href={n.href}
+                aria-current={selected ? "page" : undefined}
+                className={cn(
+                  "flex h-[68px] shrink-0 items-center border-b-2 px-3 text-[15px] transition-surface",
+                  selected
+                    ? "border-primary font-bold text-primary-dark"
+                    : "border-transparent font-medium text-text-sub hover:border-border-strong hover:text-text",
+                )}
+              >
+                {n.label}
+              </Link>
+            );
+          })}
         </nav>
-        <div className="flex shrink-0 items-center gap-3">
+        <div className="flex flex-1 items-center justify-end gap-1">
           <DemoBadge />
-          <ButtonLink href={routes.signin} variant="text">
+          <ButtonLink href={routes.signin} variant="text" className="ml-2">
             ログイン
           </ButtonLink>
-          <ButtonLink href={routes.create} variant="secondary" icon={Plus} size="sm">
+          <ButtonLink href={routes.create} variant="secondary" icon={Plus} size="sm" className="ml-1">
             案件を作る
           </ButtonLink>
         </div>
@@ -67,12 +77,12 @@ export function PublicShell({
   active?: string;
 }) {
   return (
-    <div className="flex min-h-screen flex-col">
+    <div className="flex min-h-dvh flex-col">
       <PublicHeader active={active} />
       {mobileTitle ? (
         <MobileHeader title={mobileTitle} backHref={mobileBackHref} />
       ) : (
-        <header className="sticky top-0 z-30 flex h-14 items-center justify-between border-b border-border bg-surface px-4 md:hidden">
+        <header className="glass sticky top-0 z-30 flex h-14 items-center justify-between px-4 md:hidden">
           <Logo />
           <DemoBadge short />
         </header>
@@ -80,7 +90,7 @@ export function PublicShell({
       <main
         id="main"
         tabIndex={-1}
-        className={cn("flex-1 md:pb-0", hasCtaBar ? "pb-[176px]" : "pb-[84px]")}
+        className={cn("flex-1 md:pb-0", hasCtaBar ? "pb-[calc(176px+env(safe-area-inset-bottom))]" : "pb-[calc(84px+env(safe-area-inset-bottom))]")}
       >
         {children}
       </main>

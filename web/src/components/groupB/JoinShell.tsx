@@ -30,15 +30,17 @@ export function JoinShell({
   recruitmentHref?: string;
 }) {
   return (
-    <div className="flex min-h-screen flex-col">
-      <header className="hidden h-[72px] items-center justify-between border-b border-border bg-surface px-6 md:flex lg:px-[120px]">
-        <Link href={recruitmentHref} className="flex items-center gap-4">
-          <span className="flex size-9 items-center justify-center rounded-[10px] bg-primary text-white">
-            <UsersRound className="size-5" aria-hidden />
+    <div className="flex min-h-dvh flex-col">
+      <header className="glass sticky top-0 z-30 hidden h-[68px] items-center justify-between px-6 md:flex lg:px-[120px]">
+        <Link href={recruitmentHref} className="flex items-center gap-3">
+          <span className="flex size-8 shrink-0 items-center justify-center rounded-sm bg-primary text-white">
+            <UsersRound className="size-[18px]" aria-hidden />
           </span>
           <span className="flex flex-col leading-snug">
-            <span className="text-[13px] text-text-muted">集団訴訟.jp（仮）</span>
-            <span className="text-base font-bold text-text">{recruitmentTitle}に参加</span>
+            <span className="text-[12px] text-text-muted">集団訴訟.jp（仮）</span>
+            <span className="font-serif text-[15px] font-bold text-text">
+              {recruitmentTitle}に参加
+            </span>
           </span>
         </Link>
         <div className="flex items-center gap-4">
@@ -52,7 +54,10 @@ export function JoinShell({
       <main
         id="main"
         tabIndex={-1}
-        className={cn("flex-1 md:pb-0", hasCtaBar ? "pb-[140px]" : "pb-6")}
+        className={cn(
+          "flex-1 md:pb-0",
+          hasCtaBar ? "pb-[calc(140px+env(safe-area-inset-bottom))]" : "pb-6",
+        )}
       >
         {children}
       </main>

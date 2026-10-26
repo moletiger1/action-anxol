@@ -91,8 +91,8 @@ function RegistrationStatus({ submission, audienceLabel }: { submission: JoinDem
 
   return (
     <aside className="flex w-full shrink-0 flex-col gap-4 lg:w-[340px]">
-      <section className="flex flex-col rounded-xl border border-border bg-surface px-5 pt-5 pb-2">
-        <h2 className="text-base font-bold text-text">登録状況（デモ）</h2>
+      <section className="rule-head flex flex-col pb-2">
+        <h2 className="font-serif text-[15px] font-bold text-text">登録状況（デモ）</h2>
         <StatusRow
           label="参加希望"
           badge={
@@ -159,14 +159,12 @@ function FileCard({
 }) {
   const Icon = file.kind === "image" ? ImageIcon : FileText;
   return (
-    <li className="flex flex-col gap-3.5 rounded-xl border border-border p-4 md:p-5">
+    <li className="flex flex-col gap-3.5 border-t border-border pt-4">
       <div className="flex flex-wrap items-center gap-3">
-        <span className="flex size-10 shrink-0 items-center justify-center rounded-[10px] bg-neutral-soft">
-          <Icon className="size-5 text-text-sub" aria-hidden />
-        </span>
+        <Icon className="size-[18px] shrink-0 text-text-muted" aria-hidden />
         <div className="flex min-w-0 flex-1 flex-col">
-          <span className="text-base font-bold break-all text-text">{file.name}</span>
-          <span className="text-[13px] text-text-muted">{file.meta}</span>
+          <span className="text-[14px] font-bold break-all text-text">{file.name}</span>
+          <span className="text-[12px] text-text-muted">{file.meta}</span>
         </div>
         <div className="flex items-center gap-3">
           <Badge tone="neutral" icon={CircleDashed}>ファイル未送信</Badge>
@@ -176,7 +174,7 @@ function FileCard({
         </div>
       </div>
       <div className="flex flex-col gap-3 md:flex-row md:gap-4">
-        <div className="flex flex-1 flex-col gap-1.5 rounded-[10px] bg-[#F4F6F9] p-3.5">
+        <div className="flex flex-1 flex-col gap-1.5 rounded-sm bg-neutral-soft p-3.5">
           <span className="text-[13px] font-bold text-text-sub">閲覧設定（デモ表示）</span>
           <p className="text-sm text-text">{viewersText(file)}</p>
           <Toggle
@@ -187,7 +185,7 @@ function FileCard({
             ariaLabel={`${file.name}：内容確認担当の閲覧`}
           />
         </div>
-        <div className="flex flex-1 flex-col gap-0.5 rounded-[10px] bg-[#F4F6F9] px-3.5 py-2">
+        <div className="flex flex-1 flex-col gap-0.5 rounded-sm bg-neutral-soft px-3.5 py-2">
           <span className="text-[13px] font-bold text-text-sub">相談先への共有設定（デモ表示）</span>
           <Toggle
             checked={file.lawyerShare}
@@ -354,21 +352,23 @@ export function JoinFlow({ recruitmentId = "timescar-corporate" }: { recruitment
           <RegistrationStatus submission={priorSubmission} audienceLabel={audienceLabel} />
 
           {phase === "share" ? (
-            <section className="flex min-w-0 flex-1 flex-col gap-6 rounded-xl border border-border bg-surface p-5 md:p-8">
+            <section className="flex min-w-0 flex-1 flex-col gap-6 rounded-sm border border-border bg-surface p-5 md:border-0 md:bg-transparent md:p-0">
               <div className="flex flex-col gap-1.5">
                 <div className="flex flex-wrap items-center gap-3">
-                  <h1 className="text-xl font-bold text-text md:text-[22px]">資料共有のデモ（任意）</h1>
+                  <h1 className="font-serif text-xl leading-snug font-bold text-text md:text-[22px]">
+                    資料共有のデモ（任意）
+                  </h1>
                   <Badge tone="neutral" icon={Lock}>
                     ファイル本体は未送信
                   </Badge>
                 </div>
-                <p className="text-base text-text-sub">
+                <p className="measure text-[14px] leading-[1.8] text-text-sub">
                   選択したファイルは送信・保管されません。共有範囲の切替は画面表示だけのデモです。
                 </p>
               </div>
 
-              <div className="overflow-hidden rounded-[10px] border border-border">
-                <div className="hidden gap-4 bg-[#F4F6F9] px-4 py-2.5 text-[13px] font-bold text-text-sub md:flex">
+              <div className="border border-border">
+                <div className="hidden gap-4 bg-neutral-soft px-4 py-2.5 text-[12px] font-bold text-text-sub md:flex">
                   <span className="w-[260px] shrink-0">お願いする資料</span>
                   <span>使う目的</span>
                 </div>
@@ -406,16 +406,16 @@ export function JoinFlow({ recruitmentId = "timescar-corporate" }: { recruitment
                 onDragLeave={() => setDragging(false)}
                 onDrop={onDrop}
                 className={cn(
-                  "flex flex-col items-center gap-2.5 rounded-xl border border-dashed p-6 text-center md:p-7",
-                  dragging ? "border-primary bg-primary-soft" : "border-border-strong bg-[#FAFBFC]",
+                  "flex flex-col items-center gap-2.5 rounded-sm border border-dashed p-6 text-center transition-surface md:p-7",
+                  dragging ? "border-primary bg-primary-soft" : "border-border-strong bg-neutral-soft",
                 )}
               >
-                <Upload className="size-7 text-primary-dark" aria-hidden />
-                <p className="text-base font-bold text-text">
+                <Upload className="size-6 text-primary" aria-hidden />
+                <p className="text-[15px] font-bold text-text">
                   <span className="hidden md:inline">ファイルをここにドラッグ、または選択</span>
                   <span className="md:hidden">ファイルを選択</span>
                 </p>
-                <p className="text-[13px] text-text-muted">
+                <p className="max-w-[24em] text-[12px] leading-[1.7] text-text-muted">
                   PNG・JPEG・PDF、1ファイル10MBまで。ファイル名などの情報だけを一時表示し、内容は読み込みません。
                 </p>
                 <input
@@ -438,9 +438,11 @@ export function JoinFlow({ recruitmentId = "timescar-corporate" }: { recruitment
               <FieldError>{uploadError}</FieldError>
 
               <div className="flex flex-col gap-3">
-                <h2 className="text-base font-bold text-text">この画面で選択した資料（{files.length}件）</h2>
+                <h2 className="font-serif text-[15px] font-bold text-text">
+                  この画面で選択した資料（{files.length}件）
+                </h2>
                 {files.length === 0 ? (
-                  <p className="rounded-xl border border-dashed border-border-strong px-4 py-6 text-center text-sm text-text-muted">
+                  <p className="border border-dashed border-border-strong px-4 py-6 text-center text-[13px] text-text-muted">
                     まだ資料は選択されていません。選択しなくても参加希望のデモ登録は進められます。
                   </p>
                 ) : (
@@ -470,10 +472,12 @@ export function JoinFlow({ recruitmentId = "timescar-corporate" }: { recruitment
               </div>
             </section>
           ) : (
-            <section className="flex min-w-0 flex-1 flex-col gap-6 rounded-xl border border-border bg-surface p-5 md:p-8">
+            <section className="flex min-w-0 flex-1 flex-col gap-6 rounded-sm border border-border bg-surface p-5 md:border-0 md:bg-transparent md:p-0">
               <div className="flex flex-col gap-1.5">
-                <h1 className="text-xl font-bold text-text md:text-[22px]">登録内容の確認</h1>
-                <p className="text-base text-text-sub">
+                <h1 className="font-serif text-xl leading-snug font-bold text-text md:text-[22px]">
+                  登録内容の確認
+                </h1>
+                <p className="measure text-[14px] leading-[1.8] text-text-sub">
                   参加する募集：{recruitmentTitle}（タイムズカーの個人情報漏えいに関する共同相談）
                 </p>
               </div>
@@ -496,7 +500,7 @@ export function JoinFlow({ recruitmentId = "timescar-corporate" }: { recruitment
               {sharedFiles.length > 0 && (
                 <ul className="flex flex-col gap-2">
                   {sharedFiles.map((f) => (
-                    <li key={f.id} className="flex flex-col gap-1 rounded-[10px] bg-[#F4F6F9] px-4 py-3">
+                    <li key={f.id} className="flex flex-col gap-1 rounded-sm bg-neutral-soft px-4 py-3">
                       <span className="text-[15px] font-bold break-all text-text">{f.name}</span>
                       <span className="text-sm text-text-sub">閲覧設定：{viewersText(f)}</span>
                       <span className="text-sm text-text-sub">

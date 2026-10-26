@@ -68,16 +68,18 @@ export default function Page() {
           items={[{ label: "案件を探す", href: routes.home }, { label: EVENT_TITLE }]}
         />
 
-        <div className="flex flex-col gap-2.5">
-          <div className="flex flex-wrap items-center gap-2">
+        <div className="flex flex-col gap-3 border-b-2 border-text pb-4">
+          <div className="flex flex-wrap items-center gap-x-3 gap-y-2">
             <Badge tone="neutral" icon={FolderOpen}>
               共通の事件ページ
             </Badge>
             <Badge icon={Users}>募集中の相談 {eventRecruitments.length}件</Badge>
             <span className="text-[13px] text-text-muted">個人情報・プライバシー</span>
           </div>
-          <h1 className="text-2xl leading-snug font-bold text-text md:text-[32px]">{EVENT_TITLE}</h1>
-          <p className="max-w-[800px] text-sm text-text-muted">
+          <h1 className="measure-head font-serif text-[26px] leading-[1.35] font-bold text-text md:text-[34px]">
+            {EVENT_TITLE}
+          </h1>
+          <p className="measure text-[14px] leading-[1.8] text-text-muted">
             同じ出来事のページは一つです。最初の作成者だけのページではなく、誰でも別の目的の募集を追加できます。
           </p>
         </div>
@@ -105,13 +107,13 @@ export default function Page() {
                   return (
                     <article
                       key={r.title}
-                      className="flex flex-1 flex-col gap-3.5 rounded-xl border border-border bg-surface p-6"
+                      className="flex flex-1 flex-col gap-3.5 border-t-2 border-text pt-4"
                     >
                       <div className="flex items-center gap-2.5">
-                        <span className="flex size-10 shrink-0 items-center justify-center rounded-[10px] bg-primary-soft">
-                          <Icon className="size-5 text-primary-dark" aria-hidden />
-                        </span>
-                        <h3 className="text-lg font-bold text-text">{r.title}</h3>
+                        <Icon className="size-[18px] shrink-0 text-primary" aria-hidden />
+                        <h3 className="font-serif text-lg leading-snug font-bold text-text">
+                          {r.title}
+                        </h3>
                       </div>
                       <Badge icon={BadgeIcon} className="self-start">
                         {r.badge}
@@ -147,11 +149,11 @@ export default function Page() {
 
             <section aria-labelledby="sec-summary" className="flex flex-col gap-3.5">
               <SectionTitle id="sec-summary" title="出来事の概要" />
-              <div className="flex flex-col gap-3 rounded-xl border border-border bg-surface p-6">
-                <p className="text-base text-text">
+              <div className="flex flex-col gap-3">
+                <p className="measure text-[15px] leading-[1.9] text-text">
                   2026年9月28日、タイムズカーの運営会社は「タイムズカーWebサイト」への不正アクセスに関する調査結果（第2報）を公表しました。公表資料では、会員等の氏名・住所・連絡先・運転免許情報などが対象とされ、対象者には個別の通知を順次行うとしています。
                 </p>
-                <p className="text-[15px] text-text-sub">
+                <p className="measure text-[14px] leading-[1.85] text-text-sub">
                   このページでは、公表資料で確認できることと、まだ分かっていないことを分けて整理しています。記載は公表資料と参加者からの更新提案に基づき、更新のたびに履歴を残します。
                 </p>
               </div>
@@ -160,8 +162,8 @@ export default function Page() {
             <section aria-labelledby="sec-known" className="flex flex-col gap-3.5">
               <SectionTitle id="sec-known" title="分かっていること／未確認のこと" />
               <div className="flex flex-col gap-4 md:flex-row">
-                <div className="flex flex-1 flex-col gap-2.5 rounded-xl border border-border bg-surface p-5">
-                  <h3 className="flex items-center gap-2 text-base font-bold text-green">
+                <div className="flex flex-1 flex-col gap-3 border-t-2 border-green pt-4">
+                  <h3 className="flex items-center gap-2 font-serif text-base font-bold text-green">
                     <CircleCheck className="size-[18px]" aria-hidden />
                     分かっていること（公表資料より）
                   </h3>
@@ -173,8 +175,8 @@ export default function Page() {
                     ))}
                   </ul>
                 </div>
-                <div className="flex flex-1 flex-col gap-2.5 rounded-xl border border-border bg-[#F4F6F9] p-5">
-                  <h3 className="flex items-center gap-2 text-base font-bold text-text-sub">
+                <div className="flex flex-1 flex-col gap-3 border-t-2 border-border-strong pt-4">
+                  <h3 className="flex items-center gap-2 font-serif text-base font-bold text-text-sub">
                     <CircleDashed className="size-[18px]" aria-hidden />
                     未確認のこと
                   </h3>
@@ -205,10 +207,10 @@ export default function Page() {
           </div>
 
           <aside className="flex flex-col gap-4 lg:w-[352px] lg:shrink-0">
-            <section className="flex flex-col gap-3 rounded-xl border border-border bg-surface p-5">
-              <h2 className="text-base font-bold text-text">公表資料</h2>
-              <div className="flex flex-col gap-1 rounded-[10px] bg-[#F4F6F9] p-3.5">
-                <p className="text-[15px] font-bold text-text">{TIMES_SOURCE_TITLE}</p>
+            <section className="rule-head flex flex-col gap-3">
+              <h2 className="font-serif text-base font-bold text-text">公表資料</h2>
+              <div className="flex flex-col gap-1 border-l-2 border-border-strong pl-3.5">
+                <p className="text-[14px] leading-[1.75] font-bold text-text">{TIMES_SOURCE_TITLE}</p>
                 <p className="text-[13px] break-all text-text-muted">
                   share.timescar.jp/news/2026/0928/1815.html
                 </p>
@@ -217,8 +219,10 @@ export default function Page() {
               <ExternalTextLink href={TIMES_SOURCE_URL}>外部サイトで開く</ExternalTextLink>
             </section>
 
-            <section className="flex flex-col gap-2.5 rounded-xl border border-border bg-surface p-5">
-              <h2 className="text-base font-bold text-text">このページで公開しないもの</h2>
+            <section className="rule-head flex flex-col gap-3">
+              <h2 className="font-serif text-base font-bold text-text">
+                このページで公開しないもの
+              </h2>
               <div className="flex flex-col items-start gap-2.5">
                 <Badge tone="neutral" icon={Lock}>
                   通知メールの原本
@@ -235,9 +239,9 @@ export default function Page() {
               </p>
             </section>
 
-            <section className="flex flex-col gap-2.5 rounded-xl border border-border bg-surface p-5">
-              <h2 className="text-base font-bold text-text">内容の誤りに気づいたら</h2>
-              <p className="text-sm text-text-sub">
+            <section className="rule-head flex flex-col gap-3">
+              <h2 className="font-serif text-base font-bold text-text">内容の誤りに気づいたら</h2>
+              <p className="text-[13px] leading-[1.75] text-text-sub">
                 更新提案フォームの操作例です。入力内容は送信・保存されず、ページにも反映されません。
               </p>
               <SuggestUpdate />

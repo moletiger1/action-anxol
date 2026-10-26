@@ -168,7 +168,7 @@ export function DetailsStep() {
         </div>
 
         {draft.funding === "now" ? (
-          <div className="flex flex-col gap-5 rounded-[10px] border border-border p-4 md:p-5">
+          <div className="flex flex-col gap-5 border-t border-border pt-4">
             <div className="grid gap-5 md:grid-cols-2">
               <TextField
                 label="目標額（円）"

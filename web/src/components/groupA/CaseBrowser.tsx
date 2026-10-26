@@ -21,7 +21,18 @@ import {
   User,
   Users,
 } from "lucide-react";
-import { Badge, Button, ButtonLink, Callout, DemoBadge, SearchBar, StatePanel } from "@/components/ui";
+import {
+  Badge,
+  Button,
+  ButtonLink,
+  Callout,
+  DemoBadge,
+  SearchBar,
+  SkeletonRegion,
+  SkeletonRow,
+  StatePanel,
+  useDelayedFlag,
+} from "@/components/ui";
 import { cn } from "@/lib/cn";
 import { readPublishedPreviews, type PreviewReadError, type PublishedPreview } from "@/lib/publishedPreview";
 import { createClientSnapshotStore, useClientSnapshot } from "@/lib/clientSnapshot";
@@ -58,8 +69,8 @@ function FilterOption({
   return (
     <label
       className={cn(
-        "flex h-11 cursor-pointer items-center gap-2.5 rounded-lg px-2.5",
-        checked ? "bg-primary-soft" : "hover:bg-surface",
+        "transition-surface flex min-h-11 cursor-pointer items-center gap-2.5 rounded-sm px-2.5",
+        checked ? "bg-primary-soft" : "hover:bg-neutral-soft",
       )}
     >
       <input
@@ -71,7 +82,7 @@ function FilterOption({
       <span
         aria-hidden
         className={cn(
-          "flex size-5 shrink-0 items-center justify-center rounded-[5px] border peer-focus-visible:ring-3 peer-focus-visible:ring-focus",
+          "flex size-[18px] shrink-0 items-center justify-center rounded-sm border peer-focus-visible:ring-2 peer-focus-visible:ring-focus peer-focus-visible:ring-offset-1",
           checked ? "border-primary bg-primary" : "border-border-strong bg-surface",
         )}
       >
@@ -79,7 +90,7 @@ function FilterOption({
       </span>
       <span
         className={cn(
-          "flex-1 text-[15px]",
+          "flex-1 text-[14px]",
           checked ? "font-bold text-primary-dark" : "text-text",
         )}
       >
@@ -104,8 +115,8 @@ function FilterGroup<T extends string>({
   onToggle: (v: T, on: boolean) => void;
 }) {
   return (
-    <fieldset className="flex flex-col gap-1">
-      <legend className="mb-1 text-sm font-bold text-text-sub">{title}</legend>
+    <fieldset className="flex flex-col gap-0.5">
+      <legend className="mb-2 font-serif text-[15px] font-bold text-text">{title}</legend>
       {options.map((o) => (
         <FilterOption
           key={o}
@@ -122,8 +133,8 @@ function FilterGroup<T extends string>({
 function FeaturedCard({ c }: { c: CaseItem }) {
   const eventRecruitments = c.eventId ? recruitmentsForEvent(c.eventId) : [];
   return (
-    <article className="flex flex-col gap-4 rounded-xl border border-primary bg-surface p-5 md:p-7">
-      <div className="flex flex-wrap items-center gap-2">
+    <article className="flex flex-col gap-5 border-t-2 border-text bg-surface px-5 py-6 md:px-7 md:py-7">
+      <div className="flex flex-wrap items-center gap-x-3 gap-y-2">
         {c.stages.map((s) => (
           <Badge key={s} icon={stageIcon[s as keyof typeof stageIcon] ?? Users}>
             {s}
@@ -131,12 +142,14 @@ function FeaturedCard({ c }: { c: CaseItem }) {
         ))}
         <span className="text-[13px] text-text-muted">{c.category}</span>
       </div>
-      <h3 className="text-xl font-bold text-text md:text-2xl">{c.title}</h3>
-      <p className="text-base text-text-sub">{c.summary}</p>
-      <div className="overflow-hidden rounded-[10px] border border-border">
-        <p className="border-b border-border bg-[#F4F6F9] px-4 py-2.5 text-[13px] font-bold text-text-muted">
+      <h3 className="font-serif text-xl leading-[1.4] font-bold text-text md:text-2xl">
+        {c.title}
+      </h3>
+      <p className="measure text-[15px] leading-[1.9] text-text-sub">{c.summary}</p>
+      <section className="border border-border">
+        <h4 className="border-b border-border bg-neutral-soft px-4 py-2.5 text-[13px] font-bold text-text-sub">
           この出来事について募集中の相談（{eventRecruitments.length}件）
-        </p>
+        </h4>
         <ul>
           {eventRecruitments.map((recruitment, index) => {
             const Icon = recruitment.audience === "individual" ? User : Building2;
@@ -144,24 +157,26 @@ function FeaturedCard({ c }: { c: CaseItem }) {
             return (
               <li
                 key={recruitment.id}
-                className={`flex flex-col gap-2 px-4 py-3.5 sm:flex-row sm:items-center sm:gap-4 ${
+                className={`transition-surface flex flex-col gap-2.5 px-4 py-4 hover:bg-neutral-soft sm:flex-row sm:items-center sm:gap-4 ${
                   index < eventRecruitments.length - 1 ? "border-b border-border" : ""
                 }`}
               >
-                <div className="flex min-w-0 flex-1 gap-4">
-                  <Icon className="mt-0.5 size-5 shrink-0 text-text-sub" aria-hidden />
-                  <div className="flex min-w-0 flex-col">
+                <div className="flex min-w-0 flex-1 gap-3.5">
+                  <Icon className="mt-0.5 size-[18px] shrink-0 text-text-muted" aria-hidden />
+                  <div className="flex min-w-0 flex-col gap-0.5">
                     {recruitment.audience === "corporate" ? (
                       <Link
                         href={recruitment.href}
-                        className="text-base font-bold text-text hover:text-primary-dark hover:underline"
+                        className="text-[15px] font-bold text-text hover:text-primary-dark hover:underline"
                       >
                         {recruitment.title}
                       </Link>
                     ) : (
-                      <span className="text-base font-bold text-text">{recruitment.title}</span>
+                      <span className="text-[15px] font-bold text-text">{recruitment.title}</span>
                     )}
-                    <span className="text-[13px] text-text-muted">対象：{recruitment.target}</span>
+                    <span className="text-[13px] leading-[1.7] text-text-muted">
+                      対象：{recruitment.target}
+                    </span>
                   </div>
                 </div>
                 <Badge
@@ -175,14 +190,14 @@ function FeaturedCard({ c }: { c: CaseItem }) {
             );
           })}
         </ul>
-      </div>
+      </section>
       <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-        <div className="flex flex-wrap items-center gap-5 text-sm text-text-muted">
+        <div className="flex flex-wrap items-center gap-x-5 gap-y-1 text-[13px] text-text-muted">
           <span className="flex items-center gap-1.5">
             <FileText className="size-4" aria-hidden />
             公表資料あり
           </span>
-          <span>{c.updatedLabel}</span>
+          <span className="tabular">{c.updatedLabel}</span>
         </div>
         <ButtonLink href={routes.event} variant="secondary" icon={ArrowRight}>
           事件ページを見る
@@ -205,22 +220,23 @@ function CreatedPreviewCard({ preview }: { preview: PublishedPreview }) {
     (draft !== null && !("eventId" in draft) && "linkMode" in draft && draft.linkMode === "existing");
 
   return (
-    <article className="flex flex-col gap-3 rounded-xl border border-border bg-surface p-5 md:p-6">
+    <article className="flex flex-col gap-3 border-t border-border bg-surface px-5 py-5 md:px-6">
       <Badge tone="neutral" icon={FlaskConical}>このブラウザ内のプレビュー</Badge>
-      <h3 className="text-lg font-bold text-text">{title}</h3>
-      {summary && <p className="text-sm text-text-sub">{summary}</p>}
-      <p className="text-xs text-text-muted">
-        {preview.updatedAt ? "更新" : "作成"} {new Date(preview.updatedAt ?? preview.createdAt).toLocaleString("ja-JP")}
+      <h3 className="font-serif text-lg leading-snug font-bold text-text">{title}</h3>
+      {summary && <p className="text-[14px] leading-[1.8] text-text-sub">{summary}</p>}
+      <p className="tabular text-[12px] text-text-muted">
+        {preview.updatedAt ? "更新" : "作成"}{" "}
+        {new Date(preview.updatedAt ?? preview.createdAt).toLocaleString("ja-JP")}
       </p>
       {linkedToTimescar && (
-        <div className="flex flex-wrap items-center gap-x-2 gap-y-1 text-sm text-text-sub">
-          <span>紐付け先：タイムズカーの事件ページ。この作成例は募集一覧には掲載されていません。</span>
+        <div className="flex flex-wrap items-center gap-x-2 gap-y-1 text-[13px] leading-[1.7] text-text-sub">
+          <span>紐付け先：タイムズカーの事件ページ。募集一覧には掲載されていません。</span>
           <Link href={routes.event} className="font-medium text-primary-dark hover:underline">
             事件ページを見る
           </Link>
         </div>
       )}
-      <div>
+      <div className="pt-1">
         <ButtonLink
           href={`${routes.createPublished}?preview=${encodeURIComponent(preview.id)}`}
           variant="secondary"
@@ -238,16 +254,38 @@ function CreatedPreviewsSection({
   loadError,
   className,
   titleId,
+  loading,
 }: {
   previews: PublishedPreview[];
   loadError: PreviewReadError | null;
   className: string;
   titleId: string;
+  loading: boolean;
 }) {
+  /*
+   * ブラウザー保存の読み取り中。SSR とハイドレーションの間だけ通る。
+   * 実物と同じ罫線・余白で置き、差し替えで位置が飛ばないようにする。
+   */
+  if (loading) {
+    return (
+      <section aria-labelledby={titleId} className={className}>
+        <h2 id={titleId} className="rule-head mb-1 font-serif text-lg font-bold text-text">
+          作成したプレビュー
+        </h2>
+        <SkeletonRegion label="保存したプレビューを読み込み中">
+          <div className="flex flex-col">
+            <SkeletonRow />
+          </div>
+        </SkeletonRegion>
+      </section>
+    );
+  }
   if (loadError) {
     return (
       <section aria-labelledby={titleId} className={className}>
-        <h2 id={titleId} className="mb-3 text-lg font-bold text-text">作成したプレビュー</h2>
+        <h2 id={titleId} className="rule-head mb-3 font-serif text-lg font-bold text-text">
+          作成したプレビュー
+        </h2>
         <Callout icon={Info} tone="red">
           <p>
             {loadError === "history-unreadable"
@@ -262,10 +300,10 @@ function CreatedPreviewsSection({
   const visible = previews.slice(0, 3);
   return (
     <section aria-labelledby={titleId} className={className}>
-      <h2 id={titleId} className="mb-3 text-lg font-bold text-text">
+      <h2 id={titleId} className="rule-head mb-1 font-serif text-lg font-bold text-text">
         作成したプレビュー
       </h2>
-      <div className="flex flex-col gap-3">
+      <div className="flex flex-col">
         {visible.map((preview) => (
           <CreatedPreviewCard key={preview.id} preview={preview} />
         ))}
@@ -291,6 +329,8 @@ export function CaseBrowser() {
   const previewResult = useClientSnapshot(previewsStore);
   const createdPreviews = previewResult && !("error" in previewResult) ? previewResult.previews : [];
   const previewLoadError = previewResult && "error" in previewResult ? previewResult.error : null;
+  // 200ms 未満で終わるなら骨組みを出さない（点滅を避ける）
+  const previewLoading = useDelayedFlag(previewResult === undefined);
 
   const counts = useMemo(() => {
     const m: Record<string, number> = {};
@@ -329,54 +369,66 @@ export function CaseBrowser() {
   return (
     <>
       <section className="border-b border-border bg-surface">
-        <Wrap className="flex flex-col gap-5 pt-8 pb-6 md:pt-12 md:pb-8">
-          <h1 className="text-[28px] leading-tight font-bold text-text md:text-4xl">
-            同じ問題を、ひとりで抱えない。
+        <Wrap className="flex flex-col gap-5 pt-9 pb-7 md:pt-14 md:pb-10">
+          <h1 className="measure-head font-serif text-[30px] leading-[1.3] font-bold text-text md:text-[42px]">
+            出来事から、共同相談を探す
           </h1>
-          <p className="max-w-[760px] text-base text-text-sub">
-            企業やサービスで起きた出来事ごとに、同じ立場の人と資料を持ち寄り、共同で弁護士に相談できます。閲覧にアカウント登録やウォレット接続は不要です。
+          <p className="measure text-[15px] leading-[1.85] text-text-sub">
+            同じ出来事の当事者どうしで資料と共同相談費を用意し、弁護士の提案を参加者の審議で選びます。閲覧にアカウント登録は不要です。
           </p>
-          <SearchBar key={searchKey} onSearch={setQuery} className="w-full max-w-[880px]" />
-          <ul className="flex flex-wrap items-center gap-x-8 gap-y-2">
+          <SearchBar key={searchKey} onSearch={setQuery} className="mt-1 w-full max-w-[880px]" />
+          <dl className="flex flex-wrap items-start gap-x-10 gap-y-4 pt-1">
             {[
-              { icon: Users, label: "仲間が見つかる" },
-              { icon: ListChecks, label: "次にすることが分かる" },
-              { icon: ReceiptText, label: "お金の使い道と決め方が見える" },
-            ].map(({ icon: Icon, label }) => (
-              <li key={label} className="flex items-center gap-2 text-sm font-medium text-text-sub">
-                <Icon className="size-[18px] text-primary-dark" aria-hidden />
-                {label}
-              </li>
+              { icon: Users, term: "参加のしかた", desc: "参加希望の登録は無料です" },
+              { icon: ListChecks, term: "決めかた", desc: "弁護士の提案は参加者の審議で選びます" },
+              { icon: ReceiptText, term: "お金", desc: "使い道と返金条件は募集ごとに公開します" },
+            ].map(({ icon: Icon, term, desc }) => (
+              <div key={term} className="flex min-w-0 flex-col gap-0.5">
+                <dt className="flex items-center gap-1.5 text-[13px] font-bold text-text">
+                  <Icon className="size-4 shrink-0 text-primary" aria-hidden />
+                  {term}
+                </dt>
+                <dd className="text-[13px] leading-[1.7] text-text-muted">{desc}</dd>
+              </div>
             ))}
-          </ul>
+          </dl>
         </Wrap>
       </section>
 
       <Wrap className="flex flex-col gap-6 pt-6 pb-12 md:flex-row md:gap-8 md:pt-8 md:pb-24">
-        <CreatedPreviewsSection previews={createdPreviews} loadError={previewLoadError} titleId="created-preview-title" className="md:hidden" />
-        <aside aria-label="絞り込み" className="flex flex-col gap-2 md:w-[264px] md:shrink-0">
+        <CreatedPreviewsSection
+          previews={createdPreviews}
+          loadError={previewLoadError}
+          loading={previewLoading}
+          titleId="created-preview-title"
+          className="md:hidden"
+        />
+        <aside aria-label="絞り込み" className="flex flex-col gap-2 md:w-[248px] md:shrink-0">
           <button
             type="button"
             aria-expanded={filtersOpen}
             aria-controls="case-filters"
             onClick={() => setFiltersOpen((v) => !v)}
-            className="flex h-11 items-center gap-2 self-start rounded-[10px] border border-border-strong bg-surface px-3.5 text-sm text-text md:hidden"
+            className="transition-surface flex min-h-11 items-center gap-2 self-start rounded-sm border border-border-strong bg-surface px-3.5 text-[14px] text-text hover:bg-neutral-soft md:hidden"
           >
             <SlidersHorizontal className="size-4 text-text-sub" aria-hidden />
             条件で絞り込む
             {activeFilterCount > 0 && (
-              <span className="rounded-full bg-primary px-2 py-px text-xs font-bold text-white">
+              <span className="tabular rounded-sm bg-primary px-1.5 text-[12px] font-bold text-white">
                 {activeFilterCount}
               </span>
             )}
             <ChevronDown
-              className={cn("size-4 text-text-sub transition-transform", filtersOpen && "rotate-180")}
+              className={cn(
+                "size-4 text-text-sub transition-transform duration-200",
+                filtersOpen && "rotate-180",
+              )}
               aria-hidden
             />
           </button>
           <div
             id="case-filters"
-            className={cn("flex-col gap-6", filtersOpen ? "flex" : "hidden md:flex")}
+            className={cn("flex-col gap-7 md:border-t-2 md:border-text md:pt-4", filtersOpen ? "flex" : "hidden md:flex")}
           >
             <FilterGroup
               title="カテゴリ"
@@ -402,29 +454,30 @@ export function CaseBrowser() {
           <CreatedPreviewsSection
             previews={createdPreviews}
             loadError={previewLoadError}
+            loading={previewLoading}
             titleId="created-preview-title-desktop"
             className="hidden md:block"
           />
-          <div className="flex flex-wrap items-center justify-between gap-3">
+          <div className="flex flex-wrap items-center justify-between gap-x-3 gap-y-2 border-b border-border pb-2">
             <div className="flex items-center gap-3">
-              <h2 className="text-lg font-bold text-text" aria-live="polite">
+              <h2 className="tabular font-serif text-lg font-bold text-text" aria-live="polite">
                 {results.length}件の事件
               </h2>
               <DemoBadge />
             </div>
-            <label className="relative flex h-11 items-center gap-2 rounded-[10px] border border-border-strong bg-surface pr-3.5 pl-3.5 focus-within:border-primary">
-              <ArrowDownUp className="size-4 text-text-sub" aria-hidden />
+            <label className="transition-surface relative flex min-h-11 items-center gap-2 rounded-sm border border-border-strong bg-surface pr-3.5 pl-3.5 focus-within:border-primary">
+              <ArrowDownUp className="size-4 text-text-muted" aria-hidden />
               <span className="sr-only">並べ替え</span>
               <select
                 value={sort}
                 onChange={(e) => setSort(e.target.value as Sort)}
-                className="appearance-none bg-transparent pr-6 text-sm text-text focus:outline-none"
+                className="appearance-none bg-transparent pr-6 text-[14px] text-text focus:outline-none"
               >
                 <option value="new">更新が新しい順</option>
                 <option value="old">更新が古い順</option>
               </select>
               <ChevronDown
-                className="pointer-events-none absolute right-3.5 size-4 text-text-sub"
+                className="pointer-events-none absolute right-3.5 size-4 text-text-muted"
                 aria-hidden
               />
             </label>
@@ -441,18 +494,22 @@ export function CaseBrowser() {
                 </Button>
               }
             >
-              検索語を短くするか、募集段階のフィルターを外してください。見つからない場合は新しく作成できます。
+              検索語を短くするか、募集段階の絞り込みを外してください。
             </StatePanel>
           ) : (
-            results.map((c) => <FeaturedCard key={c.id} c={c} />)
+            <div className="enter flex flex-col gap-6">
+              {results.map((c) => (
+                <FeaturedCard key={c.id} c={c} />
+              ))}
+            </div>
           )}
 
-          <div className="flex flex-col gap-4 rounded-xl bg-[#EEF2F5] px-6 py-5 sm:flex-row sm:items-center">
-            <SearchX className="size-[22px] shrink-0 text-text-sub" aria-hidden />
+          <div className="flex flex-col gap-4 border-t-2 border-text pt-5 sm:flex-row sm:items-center">
+            <SearchX className="size-5 shrink-0 text-text-muted" aria-hidden />
             <div className="flex flex-1 flex-col gap-0.5">
-              <p className="text-base font-bold text-text">探している出来事が見つかりませんか？</p>
-              <p className="text-sm text-text-sub">
-                検索語を短くするか、企業名だけで探してみてください。見つからなければ、質問に答える形で案件を作れます。
+              <p className="font-serif text-base font-bold text-text">出来事が見つからないとき</p>
+              <p className="text-[13px] leading-[1.7] text-text-muted">
+                質問に答える形で、新しい出来事の募集を作れます。
               </p>
             </div>
             <ButtonLink href={routes.create} variant="secondary" icon={Plus} className="self-start sm:self-auto">

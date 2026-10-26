@@ -111,12 +111,12 @@ function Flow({ steps }: { steps: FlowStep[] }) {
           )}
           <li
             className={cn(
-              "flex flex-1 flex-col items-start gap-1.5 self-stretch rounded-[10px] border bg-surface p-4",
+              "flex flex-1 flex-col items-start gap-1.5 self-stretch border-l-2 py-1 pl-4",
               s.highlight === "amber"
-                ? "border-amber-line"
+                ? "border-amber-line bg-amber-soft"
                 : s.highlight === "red"
-                  ? "border-red"
-                  : "border-border",
+                  ? "border-red bg-red-soft"
+                  : "border-border-strong",
             )}
           >
             <div className="flex w-full items-center gap-2">
@@ -187,7 +187,7 @@ function RowToggle({
         aria-expanded={open}
         aria-controls={controls}
         aria-label={open ? `${row.title}の支払いの根拠を閉じる` : `${row.title}の支払いの根拠を開く`}
-        className="flex size-11 shrink-0 items-center justify-center rounded-[10px] bg-primary-soft text-primary-dark hover:bg-[#d4ebed]"
+        className="flex size-11 shrink-0 items-center justify-center rounded-sm bg-primary-soft text-primary-dark hover:bg-primary-line"
       >
         {open ? <ChevronUp className="size-5" aria-hidden /> : <ChevronDown className="size-5" aria-hidden />}
       </button>
@@ -226,7 +226,7 @@ function LedgerRow({
       className={cn(
         "scroll-mt-20",
         !last && "border-b border-border",
-        (row.highlight || open) && "bg-[#FBFEFE]",
+        (row.highlight || open) && "bg-surface",
       )}
     >
       {/* xl 以上：表の行 */}
@@ -264,7 +264,7 @@ function LedgerRow({
           <SpecBadge spec={row.status} />
           {row.statusSub && <span className="text-[13px] text-text-muted">{row.statusSub}</span>}
         </div>
-        <dl className="grid grid-cols-2 gap-x-4 gap-y-2.5 rounded-[10px] bg-[#F4F6F9] px-3.5 py-3">
+        <dl className="grid grid-cols-2 gap-x-4 gap-y-2.5 rounded-sm bg-neutral-soft px-3.5 py-3">
           <div className="col-span-2 flex flex-col">
             <dt className="text-xs font-bold text-text-sub">受取先</dt>
             <dd className="text-[15px] text-text">
@@ -475,7 +475,7 @@ export function BudgetView() {
         <p>この請求の履行確認・異議申立て・支払いは終了しました。拘束の解除だけでは返金は送金されません。各拠出者が本人の返金を別途請求します。</p>
       </Callout>
     ) : role === "reviewer" ? (
-      <div className="flex flex-col gap-4 rounded-[10px] bg-primary-soft p-4 sm:p-5">
+      <div className="flex flex-col gap-4 rounded-sm bg-primary-soft p-4 sm:p-5">
         <div className="flex flex-col gap-1">
           <p className="flex items-center gap-2 text-base font-bold text-primary-dark">
             <UserCheck className="size-[18px]" aria-hidden />
@@ -504,7 +504,7 @@ export function BudgetView() {
             )}
             {objectionOpen && (
               <form
-                className="flex flex-col gap-3 rounded-[10px] bg-surface p-4"
+                className="flex flex-col gap-3 rounded-sm bg-surface p-4"
                 onSubmit={(e) => {
                   e.preventDefault();
                   if (!objection.trim()) {
@@ -673,7 +673,7 @@ export function BudgetView() {
       {/* デモ用の切替（実際のサービスには表示しない） */}
       <section
         aria-label="デモ用の表示切替"
-        className="flex flex-col gap-3 rounded-xl border border-dashed border-border-strong bg-neutral-soft px-4 py-3 lg:flex-row lg:flex-wrap lg:items-center lg:gap-x-6"
+        className="flex flex-col gap-3 rounded-sm border border-dashed border-border-strong bg-neutral-soft px-4 py-3 lg:flex-row lg:flex-wrap lg:items-center lg:gap-x-6"
       >
         <p className="text-[13px] font-bold text-text-sub">デモ用の表示切替</p>
         <div className="flex flex-col gap-1.5 sm:flex-row sm:items-center sm:gap-3">
@@ -756,38 +756,40 @@ export function BudgetView() {
             <Metric icon={Wallet} iconClass="text-primary-dark" label={expired ? "返金原資（未請求）" : "未拘束残高"} yen={free} />
           </div>
 
-          <section className="flex flex-col gap-3 rounded-xl border border-border bg-surface px-4 py-5 md:px-6">
+          <section className="rule-head flex flex-col gap-3">
             <div className="flex flex-col gap-1 md:flex-row md:justify-between md:gap-4">
-              <h2 className="text-[15px] font-bold text-text">予算の使われ方（目標 300,000円 に対する割合）</h2>
+              <h2 className="font-serif text-[15px] font-bold text-text">
+                予算の使われ方（目標 300,000円 に対する割合）
+              </h2>
               <p className="text-[13px] text-text-muted">{expired ? "返金原資は拠出額に応じて按分。返金は本人が別途請求します" : "未拘束残高の全額が、すぐに返金できるとは限りません"}</p>
             </div>
-            <div className="flex h-4 w-full gap-0.5 overflow-hidden rounded-lg" aria-hidden>
+            <div className="flex h-4 w-full gap-0.5 overflow-hidden" aria-hidden>
               <div className="h-full bg-primary transition-all" style={{ width: `${pct(paidTotal)}%` }} />
               {committed > 0 && (
                 <div className="h-full bg-amber-line transition-all" style={{ width: `${pct(committed)}%` }} />
               )}
-              <div className="h-full flex-1 bg-[#C9D3DE]" />
+              <div className="h-full flex-1 bg-border-strong" />
             </div>
             <ul className="flex flex-col gap-2 sm:flex-row sm:flex-wrap sm:gap-7">
               <Legend swatch="bg-primary" label={`支払済み ${n(paidTotal)}（${pct(paidTotal)}%）`} />
               <Legend swatch="bg-amber-line" label={`契約済み・未払い ${n(committed)}（${pct(committed)}%）`} />
-              <Legend swatch="bg-[#C9D3DE]" label={`${expired ? "返金原資" : "未拘束"} ${n(free)}（${pct(free)}%）`} />
+              <Legend swatch="bg-border-strong" label={`${expired ? "返金原資" : "未拘束"} ${n(free)}（${pct(free)}%）`} />
             </ul>
           </section>
 
           <section aria-labelledby="spend-list" className="flex flex-col gap-3.5">
             <div className="flex flex-col gap-0.5">
-              <h2 id="spend-list" className="text-xl font-bold text-text">
+              <h2 id="spend-list" className="rule-head font-serif text-lg font-bold text-text">
                 支出の一覧
               </h2>
               <p className="text-sm text-text-muted">
                 支払いは、契約済みの受取先と費目の上限の範囲でのみ行われます。円の決済基盤との接続時にも、採択した支払先と条件を確認する設計です。
               </p>
             </div>
-            <div className="overflow-hidden rounded-xl border border-border bg-surface">
+            <div className="overflow-hidden border border-border">
               <div
                 className={cn(
-                  "hidden border-b border-border bg-[#F4F6F9] px-5 py-3 text-[13px] font-bold text-text-sub",
+                  "hidden border-b border-border bg-neutral-soft px-5 py-3 text-[12px] font-bold text-text-sub",
                   gridCols,
                 )}
                 aria-hidden
@@ -814,13 +816,15 @@ export function BudgetView() {
         </>
       )}
 
-      <section id="budget-contract-rules" className="flex flex-col gap-[18px] rounded-xl border border-border bg-surface p-5 md:p-6">
+      <section id="budget-contract-rules" className="rule-head flex flex-col gap-5">
         <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
           <div className="flex min-w-0 flex-1 gap-3">
             <IconWrap icon={LockKeyhole} />
             <div className="flex min-w-0 flex-col gap-0.5">
-              <h2 className="text-lg font-bold text-text">円払いでも、使い道と支払条件を確認できます</h2>
-              <p className="text-sm text-text-sub">
+              <h2 className="font-serif text-lg font-bold text-text">
+                円払いでも、使い道と支払条件を確認できます
+              </h2>
+              <p className="text-[13px] leading-[1.75] text-text-sub">
                 以下は支払ルールの設計案です。円の保管・送金を担う決済基盤と、ルールを強制する仕組みは未接続です。
               </p>
             </div>
@@ -830,7 +834,7 @@ export function BudgetView() {
           </ButtonLink>
         </div>
         <div id="budget-contract-rules-detail" className="flex flex-col gap-4 md:flex-row md:gap-5">
-          <div className="flex flex-1 flex-col gap-2.5 rounded-[10px] bg-primary-soft p-5">
+          <div className="flex flex-1 flex-col gap-2.5 rounded-sm bg-primary-soft p-5">
             <p className="flex items-center gap-2 text-base font-bold text-primary-dark">
               <Lock className="size-[18px]" aria-hidden />
               募集開始前に確定する支払ルール
@@ -842,7 +846,7 @@ export function BudgetView() {
               <BulletItem iconClassName="text-primary-dark">返金額の計算方法と、請求できる条件</BulletItem>
             </ul>
           </div>
-          <div className="flex flex-1 flex-col gap-2.5 rounded-[10px] bg-[#F1F5F6] p-5">
+          <div className="flex flex-1 flex-col gap-2.5 rounded-sm bg-primary-soft p-5">
             <p className="flex items-center gap-2 text-base font-bold text-text-sub">
               <Users className="size-[18px]" aria-hidden />
               人が確認・実行する範囲
@@ -873,11 +877,11 @@ export function BudgetView() {
               <div
                 key={s.key}
                 className={cn(
-                  "flex flex-col items-start gap-2.5 rounded-xl border bg-surface p-5",
+                  "flex flex-col items-start gap-2.5 border-l-2 py-1 pl-4 transition-surface",
                   active
                     ? s.badge.tone === "red"
-                      ? "border-red"
-                      : "border-amber-line"
+                      ? "border-red bg-red-soft"
+                      : "border-amber-line bg-amber-soft"
                     : "border-border",
                 )}
               >
@@ -934,12 +938,14 @@ function Metric({
   suffix?: string;
 }) {
   return (
-    <div className="flex flex-col gap-1.5 rounded-xl border border-border bg-surface p-4 md:p-5">
-      <p className="flex items-center gap-2 text-sm font-bold text-text-sub">
+    <div className="flex flex-col gap-1 border-l-2 border-border-strong pl-3.5">
+      <p className="flex items-center gap-2 text-[12px] text-text-muted">
         <Icon className={cn("size-[18px] shrink-0", iconClass)} aria-hidden />
         {label}
       </p>
-      <p className="tabular text-xl font-bold text-text md:text-[26px] md:leading-[1.4]">{formatYen(yen)}</p>
+      <p className="tabular font-serif text-xl leading-snug font-bold text-text md:text-[26px]">
+        {formatYen(yen)}
+      </p>
       <p className="tabular text-[13px] text-text-muted">
         {"日本円"}
         {suffix}

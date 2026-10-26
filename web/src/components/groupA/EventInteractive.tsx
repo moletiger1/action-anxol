@@ -12,7 +12,7 @@ export function EventHistory({ items, initial = 3 }: { items: HistoryItem[]; ini
   const [all, setAll] = useState(false);
   const shown = all ? items : items.slice(0, initial);
   return (
-    <div className="flex flex-col rounded-xl border border-border bg-surface px-5 py-2 md:px-6">
+    <div className="flex flex-col border-t border-border">
       <ol>
         {shown.map((h, i) => (
           <li
@@ -22,18 +22,26 @@ export function EventHistory({ items, initial = 3 }: { items: HistoryItem[]; ini
               i < shown.length - 1 && "border-b border-border",
             )}
           >
-            <span className="flex items-center gap-4 sm:contents">
+            <span className="flex items-center gap-3 sm:contents">
               <span className="flex h-[26px] shrink-0 items-center">
+                {/* 最新だけ藍の印。以前は淡い墨 */}
                 <span
                   aria-hidden
-                  className={cn("size-2.5 rounded-full", i === 0 ? "bg-primary" : "bg-border-strong")}
+                  className={cn("size-2 rounded-sm", i === 0 ? "bg-primary" : "bg-border-strong")}
                 />
               </span>
-              <time className="tabular shrink-0 text-sm leading-[26px] text-text-muted sm:w-[170px]">
+              <time className="tabular shrink-0 text-[13px] leading-[26px] text-text-muted sm:w-[160px]">
                 {h.at}
               </time>
             </span>
-            <span className="text-[15px] text-text sm:flex-1">{h.text}</span>
+            <span
+              className={cn(
+                "text-[14px] leading-[1.7] sm:flex-1",
+                i === 0 ? "font-medium text-text" : "text-text-sub",
+              )}
+            >
+              {h.text}
+            </span>
           </li>
         ))}
       </ol>

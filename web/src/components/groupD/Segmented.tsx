@@ -4,7 +4,11 @@ import { cn } from "@/lib/cn";
 
 export type SegmentOption<K extends string> = { key: K; label: string; sub?: string };
 
-/** 会計・タブの切替（背景グレーの枠に白い選択セグメント） */
+/**
+ * 会計・状態の切替。台帳の見出し行と同じく、一本の罫線を選択中の藍で塗り替える。
+ * 影も面も持たず、選択は「罫線の太さ＋文字の濃さ」で示すので、
+ * 色が見分けられない場合でも現在地が分かる。
+ */
 export function Segmented<K extends string>({
   options,
   value,
@@ -28,8 +32,8 @@ export function Segmented<K extends string>({
       role="tablist"
       aria-label={label}
       className={cn(
-        "flex gap-1 rounded-xl bg-[#E9EDF2] p-1",
-        fill ? "w-full" : "w-fit max-w-full flex-wrap",
+        "flex max-w-full gap-5 overflow-x-auto border-b border-border-strong",
+        fill ? "w-full" : "w-fit",
         className,
       )}
     >
@@ -43,16 +47,26 @@ export function Segmented<K extends string>({
             aria-selected={selected}
             onClick={() => onChange(o.key)}
             className={cn(
-              "flex min-h-11 items-center justify-center gap-2 rounded-[9px] px-[18px] text-left",
+              "-mb-px flex min-h-11 shrink-0 items-center justify-center gap-1.5 border-b-2 px-0.5 pt-1.5 pb-2 whitespace-nowrap transition-surface",
               fill && "flex-1 px-2",
-              size === "sm" ? "text-sm" : "text-[15px]",
+              size === "sm" ? "text-[13px]" : "text-[15px]",
               selected
-                ? "bg-surface font-bold text-text shadow-[0_1px_2px_rgba(23,43,77,0.08)]"
-                : "font-medium text-text-sub hover:bg-white/60",
+                ? "border-primary font-bold text-primary-dark"
+                : "border-transparent font-medium text-text-sub hover:border-border-strong hover:text-text",
             )}
           >
             <span>{o.label}</span>
-            {o.sub && <span className="text-[13px] font-normal text-text-muted">{o.sub}</span>}
+            {o.sub && (
+              <span
+                className={cn(
+                  "font-normal whitespace-nowrap",
+                  selected ? "text-primary-dark/80" : "text-text-muted",
+                  size === "sm" ? "text-[12px]" : "text-[13px]",
+                )}
+              >
+                {o.sub}
+              </span>
+            )}
           </button>
         );
       })}

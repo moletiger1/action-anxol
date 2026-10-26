@@ -13,17 +13,49 @@ import { FlowStepper, MobileStageCard } from "./FlowStepper";
 
 export const createSteps = ["出来事", "似た案件の確認", "募集内容", "公開内容の確認"];
 
-export function AutosaveStatus({ time, short, failed, invalid }: { time?: string | null; short?: boolean; failed?: boolean; invalid?: boolean }) {
+/**
+ * 自動保存の状態。`shortOnMobile` のときは、狭い幅で時刻を省いて1行に収める
+ * （文言は両方とも DOM に置き、CSS で出し分ける）。
+ */
+export function AutosaveStatus({
+  time,
+  short,
+  shortOnMobile,
+  failed,
+  invalid,
+}: {
+  time?: string | null;
+  short?: boolean;
+  shortOnMobile?: boolean;
+  failed?: boolean;
+  invalid?: boolean;
+}) {
+  const icon = cn(
+    "size-[18px] shrink-0",
+    failed || invalid ? "text-red" : time ? "text-green" : "text-text-muted",
+  );
+  const label = invalid
+    ? "保存データを確認してください"
+    : failed
+      ? "ブラウザーに保存できません"
+      : time
+        ? `自動保存済み（${time}）`
+        : "入力すると自動保存";
+
+  if (shortOnMobile && time && !failed && !invalid) {
+    return (
+      <span className="flex min-w-0 items-center gap-1.5 text-[13px] text-text-sub" role="status">
+        <Save className={icon} aria-hidden />
+        <span className="truncate md:hidden">自動保存済み</span>
+        <span className="hidden truncate md:inline">自動保存済み（{time}）</span>
+      </span>
+    );
+  }
+
   return (
-    <span className="flex items-center gap-1.5 text-sm text-text-sub" role="status">
-      <Save className={cn("size-[18px]", failed || invalid ? "text-red" : time ? "text-green" : "text-text-muted")} aria-hidden />
-      {invalid
-        ? "保存データを確認してください"
-        : failed
-        ? "ブラウザーに保存できません"
-        : time
-          ? short ? "自動保存済み" : `自動保存済み（${time}）`
-          : "入力すると自動保存"}
+    <span className="flex min-w-0 items-center gap-1.5 text-[13px] text-text-sub" role="status">
+      <Save className={icon} aria-hidden />
+      <span className="truncate">{short && time ? "自動保存済み" : label}</span>
     </span>
   );
 }
@@ -31,7 +63,10 @@ export function AutosaveStatus({ time, short, failed, invalid }: { time?: string
 /** モバイルの作成中CTAバー。作成中は下部ナビを隠し、戻る・次へをここに置く */
 export function FlowCtaBar({ children }: { children: ReactNode }) {
   return (
-    <div className="fixed inset-x-0 bottom-0 z-30 flex flex-col gap-2 border-t border-border bg-surface px-4 py-3 md:hidden">
+    <div
+      className="glass-bar fixed inset-x-0 bottom-0 z-30 flex flex-col gap-2 px-4 py-3 md:hidden"
+      style={{ paddingBottom: "calc(0.75rem + env(safe-area-inset-bottom))" }}
+    >
       {children}
     </div>
   );
@@ -74,31 +109,29 @@ export function WizardFrame({
     <div className="[&_nav.fixed]:hidden">
       <AppShell mobileTitle="案件を作る" mobileBackHref={mobileBackHref}>
         <div className="mx-auto flex w-full max-w-[1192px] flex-col gap-4 px-4 pt-4 pb-6 md:gap-6 md:px-9 md:pt-7 md:pb-18">
-          {/* 上部バー（デスクトップ） */}
-          <div className="hidden items-end justify-between gap-4 md:flex">
-            <div className="flex flex-col gap-0.5">
-              <span className="text-sm text-text-muted">案件を作る</span>
-              <h1 className="text-[28px] leading-tight font-bold text-text">新しい案件を作る</h1>
-            </div>
-            <div className="flex items-center gap-4">
-              <AutosaveStatus time={draft.savedAt} failed={persistenceFailed} invalid={draftInvalid} />
+          {/* 見出しは1つだけ置き、幅によって周辺の要素だけを差し替える */}
+          <div className="flex flex-col gap-3 border-b-2 border-text pb-4 md:flex-row md:items-end md:justify-between md:gap-4">
+            <h1 className="font-serif text-[26px] leading-snug font-bold text-text md:text-[28px]">
+              新しい案件を作る
+            </h1>
+            <div className="flex items-center justify-between gap-4 md:justify-end">
+              <AutosaveStatus
+                time={draft.savedAt}
+                shortOnMobile
+                failed={persistenceFailed}
+                invalid={draftInvalid}
+              />
               <ButtonLink href={routes.dashboard} variant="text">
                 保存して閉じる
               </ButtonLink>
             </div>
           </div>
-          {/* 上部バー（モバイル） */}
-          <div className="flex items-center justify-between md:hidden">
-            <h1 className="sr-only">新しい案件を作る</h1>
-            <AutosaveStatus time={draft.savedAt} short failed={persistenceFailed} invalid={draftInvalid} />
-            <ButtonLink href={routes.dashboard} variant="text">
-              保存して閉じる
-            </ButtonLink>
-          </div>
 
           <FlowStepper steps={createSteps} current={step} />
           <Callout icon={Info} tone="neutral" title="案件作成のデモ">
-            完了しても、このブラウザー内のプレビューを保存するだけです。実際の公開・参加受付・通知は行いません。
+            <p>
+              完了しても、このブラウザー内のプレビューを保存するだけです。実際の公開・参加受付・通知は行いません。
+            </p>
           </Callout>
           {!draftInvalid && (
             <>
@@ -112,8 +145,9 @@ export function WizardFrame({
           <div className="flex flex-col gap-4 md:gap-8 lg:flex-row lg:items-start">
             <div
               className={cn(
-                "flex min-w-0 flex-1 flex-col md:gap-8 md:rounded-xl md:border md:border-border md:bg-surface md:p-8",
-                mobileBare ? "gap-4" : "gap-7 rounded-xl border border-border bg-surface p-5",
+                "flex min-w-0 flex-1 flex-col md:gap-8",
+                /* モバイルだけ面を持たせる（画面が狭く、地と本文の区別が要るため） */
+                mobileBare ? "gap-4" : "gap-6 rounded-sm border border-border bg-surface p-5 md:border-0 md:bg-transparent md:p-0",
               )}
             >
               {draftInvalid ? (

@@ -4,7 +4,10 @@ import { FlaskConical } from "lucide-react";
 import { useId, type ReactNode } from "react";
 import { cn } from "@/lib/cn";
 
-/** 「1」「2」などの番号付き見出し */
+/**
+ * 番号付き見出し。段取りに番号が要る場所だけに使う。
+ * 丸バッジではなく、墨の枠に明朝の数字を置く。
+ */
 export function NumHead({
   num,
   title,
@@ -19,19 +22,29 @@ export function NumHead({
   size?: "lg" | "md";
 }) {
   return (
-    <div className="flex gap-2.5 md:gap-3">
-      <span className="flex size-7 shrink-0 items-center justify-center rounded-full bg-primary-soft text-sm font-bold text-primary-dark">
+    <div className="flex gap-3">
+      <span
+        aria-hidden
+        className="tabular mt-0.5 flex size-7 shrink-0 items-center justify-center border border-text font-serif text-sm font-bold text-text"
+      >
         {num}
       </span>
       <div className="flex min-w-0 flex-col gap-0.5">
-        <As className={cn("font-bold text-text", size === "lg" ? "text-xl" : "text-lg")}>{title}</As>
-        {description && <p className="text-sm text-text-muted">{description}</p>}
+        <As
+          className={cn(
+            "font-serif leading-snug font-bold text-text",
+            size === "lg" ? "text-lg" : "text-base",
+          )}
+        >
+          {title}
+        </As>
+        {description && <p className="text-[13px] leading-[1.7] text-text-muted">{description}</p>}
       </div>
     </div>
   );
 }
 
-/** ラベル＋値の1行（ラベル幅固定） */
+/** ラベル＋値の1行（ラベル幅固定・罫線区切り） */
 export function KvRow({
   label,
   children,
@@ -46,21 +59,24 @@ export function KvRow({
   return (
     <div
       className={cn(
-        "flex flex-col gap-1 py-2.5 sm:flex-row sm:gap-4",
+        "flex flex-col gap-0.5 py-2.5 sm:flex-row sm:gap-4",
         !last && "border-b border-border",
       )}
     >
-      <dt className="shrink-0 text-sm text-text-muted" style={{ width: labelWidth }}>
+      <dt className="shrink-0 text-[13px] leading-[1.8] text-text-muted" style={{ width: labelWidth }}>
         {label}
       </dt>
-      <dd className="min-w-0 flex-1 text-[15px] text-text">{children}</dd>
+      <dd className="min-w-0 flex-1 text-[15px] leading-[1.8] text-text">{children}</dd>
     </div>
   );
 }
 
 export type DemoOption<T extends string> = { value: T; label: string };
 
-/** デモ用の表示切り替え（実際の画面には出ない操作であることを明示） */
+/**
+ * デモ用の表示切り替え。
+ * 破線の囲みは「これは紙面の一部ではなく操作盤である」ことを示すために残す。
+ */
 export function DemoSwitch<T extends string>({
   label,
   options,
@@ -80,12 +96,12 @@ export function DemoSwitch<T extends string>({
       role="group"
       aria-labelledby={id}
       className={cn(
-        "flex flex-wrap items-center gap-2 rounded-xl border border-dashed border-border-strong bg-neutral-soft px-3 py-2",
+        "flex flex-wrap items-center gap-x-3 gap-y-2 border border-dashed border-border-strong bg-neutral-soft px-3 py-2.5",
         className,
       )}
     >
-      <span id={id} className="flex items-center gap-1.5 text-[13px] font-bold text-text-sub">
-        <FlaskConical className="size-3.5" aria-hidden />
+      <span id={id} className="flex items-center gap-1.5 text-[12px] font-bold text-text-sub">
+        <FlaskConical className="size-3.5 shrink-0" aria-hidden />
         デモ：{label}
       </span>
       <div className="flex flex-wrap gap-1.5">
@@ -98,10 +114,10 @@ export function DemoSwitch<T extends string>({
               aria-pressed={active}
               onClick={() => onChange(o.value)}
               className={cn(
-                "h-9 rounded-lg border px-3 text-[13px] font-medium",
+                "min-h-9 rounded-sm border px-3 text-[13px] transition-surface",
                 active
-                  ? "border-primary bg-surface font-bold text-primary-dark"
-                  : "border-border-strong bg-surface/60 text-text-sub hover:bg-surface",
+                  ? "border-primary bg-primary font-bold text-white"
+                  : "border-border-strong bg-surface text-text-sub hover:bg-primary-soft",
               )}
             >
               {o.label}
@@ -113,7 +129,7 @@ export function DemoSwitch<T extends string>({
   );
 }
 
-/** ラジオの選択肢カード */
+/** ラジオの選択肢。選ばれているものを墨の枠と太字で示す */
 export function OptionCard({
   name,
   checked,
@@ -134,9 +150,9 @@ export function OptionCard({
     <label
       htmlFor={id}
       className={cn(
-        "flex cursor-pointer items-center gap-3 rounded-[10px] border px-4 py-3.5 transition-colors",
-        checked ? "border-primary bg-primary-soft" : "border-border-strong bg-surface",
-        disabled && "cursor-default",
+        "flex cursor-pointer items-start gap-3 border px-4 py-3 transition-surface",
+        checked ? "border-primary bg-primary-soft" : "border-border-strong bg-surface hover:bg-neutral-soft",
+        disabled && "cursor-default opacity-70",
       )}
     >
       <input
@@ -151,15 +167,19 @@ export function OptionCard({
       <span
         aria-hidden
         className={cn(
-          "flex size-[22px] shrink-0 items-center justify-center rounded-full border bg-surface peer-focus-visible:ring-3 peer-focus-visible:ring-focus",
+          "mt-1 flex size-[20px] shrink-0 items-center justify-center rounded-full border-2 bg-surface peer-focus-visible:ring-2 peer-focus-visible:ring-focus peer-focus-visible:ring-offset-1",
           checked ? "border-primary" : "border-border-strong",
         )}
       >
         {checked && <span className="size-2.5 rounded-full bg-primary" />}
       </span>
       <span className="flex min-w-0 flex-col gap-0.5">
-        <span className={cn("text-base text-text", checked ? "font-bold" : "font-medium")}>{title}</span>
-        {description && <span className="text-sm text-text-muted">{description}</span>}
+        <span className={cn("text-[15px] text-text", checked ? "font-bold" : "font-medium")}>
+          {title}
+        </span>
+        {description && (
+          <span className="text-[13px] leading-[1.7] text-text-muted">{description}</span>
+        )}
       </span>
     </label>
   );

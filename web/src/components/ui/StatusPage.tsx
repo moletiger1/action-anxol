@@ -12,7 +12,10 @@ export function StatusPage({ children, className }: { children: ReactNode; class
     <main
       id="main"
       tabIndex={-1}
-      className={cn("mx-auto flex w-full max-w-[720px] flex-1 flex-col gap-4 px-4 py-6 md:py-8", className)}
+      className={cn(
+        "mx-auto flex w-full max-w-[720px] flex-1 flex-col gap-4 px-4 py-6 md:py-8",
+        className,
+      )}
     >
       <div className="flex justify-end">
         <DemoBadge short />

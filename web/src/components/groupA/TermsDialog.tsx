@@ -55,27 +55,25 @@ export function TermsDialog() {
       <dialog
         ref={ref}
         aria-labelledby={titleId}
-        className="m-auto w-full max-w-[min(640px,calc(100vw-32px))] rounded-2xl bg-surface p-0 text-text backdrop:bg-[#172B4D]/40"
+        className="glass-sheet m-auto w-full max-w-[min(640px,calc(100vw-32px))] p-0 text-text backdrop:bg-text/50"
       >
-        <div className="flex max-h-[85vh] flex-col">
-          <div className="flex items-center gap-3.5 border-b border-border px-6 py-5">
-            <span className="flex size-11 shrink-0 items-center justify-center rounded-full bg-primary-soft text-primary-dark">
-              <ScrollText className="size-[22px]" aria-hidden />
-            </span>
-            <h2 id={titleId} className="flex-1 text-xl font-bold">
+        <div className="flex max-h-[min(85dvh,52rem)] flex-col">
+          <div className="flex items-start gap-3 border-b border-border px-6 py-5">
+            <ScrollText className="mt-1 size-5 shrink-0 text-primary" aria-hidden />
+            <h2 id={titleId} className="flex-1 font-serif text-xl leading-snug font-bold">
               この募集の支払条件案（全文）
             </h2>
             <button
               type="button"
               aria-label="閉じる"
               onClick={() => ref.current?.close()}
-              className="flex size-11 items-center justify-center rounded-[10px] hover:bg-bg"
+              className="transition-surface -mt-1 flex size-11 shrink-0 items-center justify-center rounded-sm hover:bg-neutral-soft"
             >
               <X className="size-5 text-text-sub" aria-hidden />
             </button>
           </div>
           <ol className="flex flex-col overflow-y-auto px-6 py-2">
-            <li className="border-b border-border py-3.5 text-sm text-text-sub">
+            <li className="border-b border-border py-3.5 text-[13px] leading-[1.75] text-text-muted">
               以下は円払いを前提にした条件案です。決済基盤・担当者の選任・募集条件は未確定で、資金募集は行われていません。
             </li>
             {terms.map((t, i) => (
@@ -83,12 +81,12 @@ export function TermsDialog() {
                 key={t.title}
                 className="flex gap-3 border-b border-border py-3.5 last:border-b-0"
               >
-                <span className="tabular flex size-7 shrink-0 items-center justify-center rounded-full bg-neutral-soft text-sm font-bold text-text-sub">
+                <span className="tabular flex size-6 shrink-0 items-center justify-center border border-border-strong font-serif text-[13px] font-bold text-text-sub">
                   {i + 1}
                 </span>
                 <div className="flex flex-col gap-0.5">
                   <p className="text-[15px] font-bold">{t.title}</p>
-                  <p className="text-sm text-text-sub">{t.body}</p>
+                  <p className="text-[13px] leading-[1.8] text-text-sub">{t.body}</p>
                 </div>
               </li>
             ))}
